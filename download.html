@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title data-en="Download Loom: 14-day free trial">Stáhnout Loom: 14 dní zdarma</title>
+  <meta name="description" content="Stáhni si Loom pro Windows a vyzkoušej ho 14 dní zdarma." data-en-content="Download Loom for Windows and try it free for 14 days.">
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#6c5cff">
+  <link rel="icon" href="assets/img/logo.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Inter:wght@400..700&family=Instrument+Serif:ital@1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script>
+    (function () {
+      var d = document.documentElement, lang = null;
+      try { lang = new URLSearchParams(location.search).get('lang') || localStorage.getItem('loom-lang'); } catch (e) {}
+      if (!lang) lang = /^(cs|sk)/i.test(navigator.language || '') ? 'cs' : 'en';
+      d.dataset.lang = lang === 'en' ? 'en' : 'cs';
+      if (d.dataset.lang === 'en') { d.classList.add('i18n-pending'); setTimeout(function () { d.classList.remove('i18n-pending'); }, 1500); }
+    })();
+  </script>
+</head>
+<body class="subpage">
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></symbol>
+    <symbol id="i-windows" viewBox="0 0 24 24"><rect x="3" y="3" width="8" height="8" rx="1"/><rect x="13" y="3" width="8" height="8" rx="1"/><rect x="3" y="13" width="8" height="8" rx="1"/><rect x="13" y="13" width="8" height="8" rx="1"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+    <symbol id="i-file" viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/></symbol>
+    <symbol id="i-chev-l" viewBox="0 0 24 24"><path d="m15 6-6 6 6 6"/></symbol>
+    <symbol id="i-card" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20M6 15h4"/></symbol>
+    <symbol id="i-sparkle" viewBox="0 0 24 24"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/></symbol>
+    <symbol id="i-gift" viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13M19 12v9H5v-9M7.5 8a2.5 2.5 0 0 1 0-5C10 3 12 8 12 8s2-5 4.5-5a2.5 2.5 0 0 1 0 5"/></symbol>
+  </svg>
+
+  <header class="nav is-scrolled">
+    <div class="container nav__inner">
+      <a class="brand" href="index.html"><img src="assets/img/logo.svg" alt="" width="32" height="32">Loom</a>
+      <div class="nav__right">
+        <div class="lang" role="group" aria-label="Jazyk / Language">
+          <button type="button" data-lang-btn="cs" aria-pressed="true">CZ</button>
+          <button type="button" data-lang-btn="en" aria-pressed="false">EN</button>
+        </div>
+        <a class="btn btn--ghost btn--sm" href="index.html"><svg class="ic"><use href="#i-chev-l"/></svg><span data-en="Back to the site">Zpět na web</span></a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="aurora" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+    <div class="grid-bg" aria-hidden="true"></div>
+    <div class="container">
+      <div class="subcard" data-autodownload>
+        <div class="dl-ring"><svg class="ic"><use href="#i-download"/></svg></div>
+        <span class="eyebrow" data-en="14 days free">14 dní zdarma</span>
+        <h1 class="h2" data-en="Your download is <em>starting</em>">Stahování <em>začíná</em></h1>
+        <p class="lead" data-en="The full version of Loom for 14 days, no card and no sign-up. If the download doesn’t start, use the button below.">Plná verze Loomu na 14 dní, bez karty a&nbsp;bez registrace. Pokud se stahování nespustí, použij tlačítko níže.</p>
+        <div class="meta-row">
+          <span><svg class="ic"><use href="#i-windows"/></svg>Windows 10 / 11 · 64 bit</span>
+          <span><svg class="ic"><use href="#i-file"/></svg><span data-en="Version">Verze</span>&nbsp;<span data-cfg="version">0.1.0</span></span>
+          <span><svg class="ic"><use href="#i-download"/></svg><span data-cfg="installerSize">≈ 95 MB</span></span>
+        </div>
+        <a class="btn btn--primary btn--lg" href="downloads/Loom-Setup.exe" download data-trial-file><svg class="ic"><use href="#i-download"/></svg><span data-en="Download again">Stáhnout znovu</span></a>
+
+        <ol class="install">
+          <li><div><b data-en="Run Loom-Setup.exe">Spusť Loom-Setup.exe</b><span data-en="You’ll find it in your Downloads folder.">Najdeš ho ve složce Stažené soubory.</span></div></li>
+          <li><div><b data-en="Allow it to run">Povol spuštění</b><span data-en="Windows may show a blue SmartScreen window. Click “More info”, then “Run anyway”.">Windows může ukázat modré okno SmartScreen. Klikni na „Další informace“ a&nbsp;pak na „Přesto spustit“.</span></div></li>
+          <li><div><b data-en="Start writing">Začni psát</b><span data-en="Loom opens with a demo vault in your Documents. Or open your own folder or an existing Obsidian vault.">Loom se otevře s&nbsp;ukázkovým vaultem v&nbsp;Dokumentech. Nebo otevři vlastní složku či existující Obsidian vault.</span></div></li>
+        </ol>
+      </div>
+
+      <div class="subcard" style="margin-top:22px">
+        <h2 class="h3" data-en="Already sure? Get the lifetime licence">Už víš, že to je ono? Pořiď si doživotní licenci</h2>
+        <p class="lead" style="font-size:16px" data-en="One payment, no subscription. Your licence key arrives by e-mail within minutes.">Jedna platba, žádné předplatné. Licenční klíč ti přijde e-mailem do pár minut.</p>
+        <a class="btn btn--ghost btn--lg" href="index.html#cena" data-buy><svg class="ic"><use href="#i-card"/></svg><span data-en="Buy Loom">Koupit Loom</span><span class="btn-price" data-cfg="price">999 Kč</span></a>
+      </div>
+    </div>
+  </main>
+
+  <div class="toast" role="status" aria-live="polite" data-toast><svg class="ic"><use href="#i-sparkle"/></svg><span data-toast-text></span></div>
+
+  <script src="assets/vendor/gsap.min.js" defer></script>
+  <script src="assets/vendor/ScrollTrigger.min.js" defer></script>
+  <script src="assets/js/config.js" defer></script>
+  <script src="assets/js/main.js" defer></script>
+</body>
+</html>

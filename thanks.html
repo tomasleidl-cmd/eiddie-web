@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title data-en="Thank you: Loom">Děkuju: Loom</title>
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#6c5cff">
+  <link rel="icon" href="assets/img/logo.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Inter:wght@400..700&family=Instrument+Serif:ital@1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script>
+    (function () {
+      var d = document.documentElement, lang = null;
+      try { lang = new URLSearchParams(location.search).get('lang') || localStorage.getItem('loom-lang'); } catch (e) {}
+      if (!lang) lang = /^(cs|sk)/i.test(navigator.language || '') ? 'cs' : 'en';
+      d.dataset.lang = lang === 'en' ? 'en' : 'cs';
+      if (d.dataset.lang === 'en') { d.classList.add('i18n-pending'); setTimeout(function () { d.classList.remove('i18n-pending'); }, 1500); }
+    })();
+  </script>
+</head>
+<body class="subpage">
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></symbol>
+    <symbol id="i-chev-l" viewBox="0 0 24 24"><path d="m15 6-6 6 6 6"/></symbol>
+    <symbol id="i-sparkle" viewBox="0 0 24 24"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/></symbol>
+  </svg>
+
+  <header class="nav is-scrolled">
+    <div class="container nav__inner">
+      <a class="brand" href="index.html"><img src="assets/img/logo.svg" alt="" width="32" height="32">Loom</a>
+      <div class="nav__right">
+        <div class="lang" role="group" aria-label="Jazyk / Language">
+          <button type="button" data-lang-btn="cs" aria-pressed="true">CZ</button>
+          <button type="button" data-lang-btn="en" aria-pressed="false">EN</button>
+        </div>
+        <a class="btn btn--ghost btn--sm" href="index.html"><svg class="ic"><use href="#i-chev-l"/></svg><span data-en="Back to the site">Zpět na web</span></a>
+      </div>
+    </div>
+  </header>
+
+  <main data-confetti>
+    <div class="aurora" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+    <div class="grid-bg" aria-hidden="true"></div>
+    <div class="container">
+      <div class="subcard">
+        <div class="dl-ring" style="background:linear-gradient(135deg,#e93d97,#6c5cff 55%,#12a594)"><svg class="ic" style="animation:none"><use href="#i-heart"/></svg></div>
+        <span class="eyebrow" data-en="Payment received">Platba proběhla</span>
+        <h1 class="h2" data-en="Thank you for supporting <em>independent software</em>!">Díky, že podporuješ <em>nezávislý software</em>!</h1>
+        <p class="lead" data-en="Within a few minutes you’ll get an e-mail with your licence key, the download link and a tax receipt.">Do pár minut ti přijde e-mail s&nbsp;licenčním klíčem, odkazem ke stažení a&nbsp;daňovým dokladem.</p>
+
+        <!-- TODO: step 3 assumes a licence screen in the app (Settings → Licence); adjust once it exists. -->
+        <ol class="install">
+          <li><div><b data-en="Open the e-mail from Lemon Squeezy">Otevři e-mail od Lemon Squeezy</b><span data-en="Nothing there? Check your spam folder, or write to me and I’ll sort it out.">Nic nepřišlo? Mrkni do spamu, nebo mi napiš a&nbsp;vyřešíme to.</span></div></li>
+          <li><div><b data-en="Download and install Loom">Stáhni a&nbsp;nainstaluj Loom</b><span data-en="Already running the trial? Keep it, there’s nothing to reinstall.">Máš už nainstalovaný trial? Nech ho být, nic se nepřeinstalovává.</span></div></li>
+          <li><div><b data-en="Paste your licence key">Vlož licenční klíč</b><span data-en="In Loom open Settings → Licence and paste the key. It works on up to 3 of your computers.">V&nbsp;Loomu otevři Nastavení → Licence a&nbsp;vlož klíč. Platí až pro 3 tvoje počítače.</span></div></li>
+        </ol>
+
+        <div class="btn-row" style="justify-content:center">
+          <a class="btn btn--primary btn--lg" href="downloads/Loom-Setup.exe" download data-trial-file><svg class="ic"><use href="#i-download"/></svg><span data-en="Download Loom">Stáhnout Loom</span></a>
+          <a class="btn btn--ghost btn--lg" href="mailto:tomas.leidl@gmail.com" data-cfg-mail="support"><svg class="ic"><use href="#i-mail"/></svg><span data-en="Write to me">Napsat mi</span></a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div class="toast" role="status" aria-live="polite" data-toast><svg class="ic"><use href="#i-sparkle"/></svg><span data-toast-text></span></div>
+
+  <script src="assets/js/config.js" defer></script>
+  <script src="assets/js/main.js" defer></script>
+</body>
+</html>

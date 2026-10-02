@@ -1,0 +1,1199 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title data-en="Loom: outliner, whiteboards and databases in one offline app">Loom: outliner, tabule a databáze v jedné offline aplikaci</title>
+  <meta name="description" content="Loom spojuje bleskový outliner, nekonečné tabule a databázové pohledy v jedné offline aplikaci. Čistý Markdown, kompatibilní s Obsidianem. 999 Kč jednorázově, 14 dní zdarma." data-en-content="Loom brings a lightning-fast outliner, infinite whiteboards and database views together in one offline app. Plain Markdown, works with Obsidian vaults. 999 CZK one-time, 14 days free.">
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#6c5cff">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Loom: utkej si druhý mozek" data-en-content="Loom: weave your second brain">
+  <meta property="og:description" content="Outliner, tabule a databáze v jedné offline aplikaci. Bez předplatného." data-en-content="Outliner, whiteboards and databases in one offline app. No subscription.">
+  <!-- TODO after deploy: use absolute URLs, e.g. https://your-domain.cz/assets/img/og.png, and add <link rel="canonical"> -->
+  <meta property="og:image" content="assets/img/og.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="assets/img/logo.svg" type="image/svg+xml">
+  <link rel="icon" href="assets/img/icon.png" type="image/png" sizes="512x512">
+  <link rel="apple-touch-icon" href="assets/img/icon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Inter:wght@400..700&family=Instrument+Serif:ital@1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <script>
+    // Runs before first paint: enables reveal styles and hides the page briefly while English is applied.
+    (function () {
+      var d = document.documentElement, lang = null;
+      d.classList.add('js');
+      try { lang = new URLSearchParams(location.search).get('lang') || localStorage.getItem('loom-lang'); } catch (e) {}
+      if (!lang) lang = /^(cs|sk)/i.test(navigator.language || '') ? 'cs' : 'en';
+      d.dataset.lang = lang === 'en' ? 'en' : 'cs';
+      if (d.dataset.lang === 'en') { d.classList.add('i18n-pending'); setTimeout(function () { d.classList.remove('i18n-pending'); }, 1500); }
+    })();
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Loom",
+    "applicationCategory": "ProductivityApplication",
+    "operatingSystem": "Windows 10, Windows 11",
+    "description": "Outliner, whiteboards and database views in one offline app. Plain Markdown files.",
+    "offers": { "@type": "Offer", "price": "999", "priceCurrency": "CZK" },
+    "author": { "@type": "Person", "name": "Tomáš Leidl" }
+  }
+  </script>
+</head>
+<body>
+  <a class="skip" href="#main" data-en="Skip to content">Přeskočit na obsah</a>
+
+  <!-- Icon sprite (Lucide-style strokes) -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></symbol>
+    <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></symbol>
+    <symbol id="i-db" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-board" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><rect x="7" y="7" width="5" height="4" rx="1"/><path d="M15 9h2M7 15h10"/></symbol>
+    <symbol id="i-folder" viewBox="0 0 24 24"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></symbol>
+    <symbol id="i-file" viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/></symbol>
+    <symbol id="i-hash" viewBox="0 0 24 24"><path d="M5 9h14M5 15h14M10 4 8 20M16 4l-2 16"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></symbol>
+    <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></symbol>
+    <symbol id="i-wifi-off" viewBox="0 0 24 24"><path d="m2 2 20 20"/><path d="M8.5 16.5a5 5 0 0 1 7 0M5 12.9a10 10 0 0 1 5.2-2.7M19 12.9a10 10 0 0 0-2.2-1.6M2 8.8a15 15 0 0 1 4.2-2.6M22 8.8A15 15 0 0 0 11 5"/><path d="M12 20h.01"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-chev" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+    <symbol id="i-chev-l" viewBox="0 0 24 24"><path d="m15 6-6 6 6 6"/></symbol>
+    <symbol id="i-chev-r" viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"/></symbol>
+    <symbol id="i-sidebar" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M9 4v16"/></symbol>
+    <symbol id="i-sparkle" viewBox="0 0 24 24"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/><path d="M19 15l.7 1.9L21.5 18l-1.8.6L19 20.5l-.7-1.9-1.8-.6 1.8-.7z"/></symbol>
+    <symbol id="i-kanban" viewBox="0 0 24 24"><rect x="3" y="4" width="5" height="15" rx="1.5"/><rect x="10" y="4" width="5" height="10" rx="1.5"/><rect x="17" y="4" width="4" height="12" rx="1.5"/></symbol>
+    <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18M3 15h18M9 4v16"/></symbol>
+    <symbol id="i-gallery" viewBox="0 0 24 24"><rect x="3" y="3" width="8" height="8" rx="1.5"/><rect x="13" y="3" width="8" height="8" rx="1.5"/><rect x="3" y="13" width="8" height="8" rx="1.5"/><rect x="13" y="13" width="8" height="8" rx="1.5"/></symbol>
+    <symbol id="i-outline" viewBox="0 0 24 24"><path d="M9 6h11M13 12h7M13 18h7"/><circle cx="5" cy="6" r="1.3"/><circle cx="9" cy="12" r="1.3"/><circle cx="9" cy="18" r="1.3"/></symbol>
+    <symbol id="i-doc" viewBox="0 0 24 24"><path d="M4 6h16M4 10h16M4 14h10M4 18h12"/></symbol>
+    <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></symbol>
+    <symbol id="i-graph" viewBox="0 0 24 24"><circle cx="6" cy="6" r="2.5"/><circle cx="18" cy="8" r="2.5"/><circle cx="9" cy="18" r="2.5"/><path d="m8.4 6.4 7.2 1.2M6.8 8.4l1.4 7.2M16.4 10l-5.8 6.2"/></symbol>
+    <symbol id="i-key" viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M6 10h.01M10 10h.01M14 10h.01M18 10h.01M7 14h10"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></symbol>
+    <symbol id="i-card" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20M6 15h4"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"/><path d="m9 12 2 2 4-4"/></symbol>
+    <symbol id="i-layers" viewBox="0 0 24 24"><path d="m12 3 9 5-9 5-9-5z"/><path d="m3 13 9 5 9-5"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 19V5a2 2 0 0 1 2-2h14v15H6a2 2 0 0 0-2 2 2 2 0 0 0 2 2h14"/></symbol>
+    <symbol id="i-brief" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M3 13h18"/></symbol>
+    <symbol id="i-pen" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></symbol>
+    <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></symbol>
+    <symbol id="i-cap" viewBox="0 0 24 24"><path d="m2 9 10-5 10 5-10 5z"/><path d="M6 11v5c0 1.5 2.7 3 6 3s6-1.5 6-3v-5M22 9v6"/></symbol>
+    <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 11a8 8 0 0 0-14.6-4.5L4 8M4 4v4h4M4 13a8 8 0 0 0 14.6 4.5L20 16M20 20v-4h-4"/></symbol>
+    <symbol id="i-cloud-off" viewBox="0 0 24 24"><path d="m2 2 20 20M5.6 5.6A6 6 0 0 0 7 18h10.5M20.5 16A4.5 4.5 0 0 0 17 9h-.3A6 6 0 0 0 9 6.2"/></symbol>
+    <symbol id="i-coins" viewBox="0 0 24 24"><circle cx="9" cy="9" r="6"/><path d="M15.5 9.2A6 6 0 1 1 9.2 15.5M7 9h4M9 7v4"/></symbol>
+    <symbol id="i-scatter" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="4" width="7" height="7" rx="1.5" transform="rotate(12 17.5 7.5)"/><rect x="5" y="14" width="7" height="7" rx="1.5" transform="rotate(-10 8.5 17.5)"/><path d="m16 16 4 4"/></symbol>
+    <symbol id="i-loader" viewBox="0 0 24 24"><path d="M12 3v3M12 18v3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M3 12h3M18 12h3M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"/></symbol>
+    <symbol id="i-split" viewBox="0 0 24 24"><path d="M12 3v18"/><rect x="3" y="6" width="6" height="5" rx="1"/><rect x="3" y="14" width="6" height="5" rx="1"/><path d="M15 7c2 0 3 2 6 1M15 12c2-1 3 1 6 0M15 17c2 0 3-2 6-1"/></symbol>
+    <symbol id="i-star" viewBox="0 0 24 24"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"/></symbol>
+    <symbol id="i-focus" viewBox="0 0 24 24"><path d="M3 8V5a2 2 0 0 1 2-2h3M16 3h3a2 2 0 0 1 2 2v3M21 16v3a2 2 0 0 1-2 2h-3M8 21H5a2 2 0 0 1-2-2v-3"/><circle cx="12" cy="12" r="3"/></symbol>
+    <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 11 12 4l9 7"/><path d="M5 10v10h14V10"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 17v5M9 3h6l-1 6 3 3H7l3-3z"/></symbol>
+    <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16M10 11v6M14 11v6M5 7l1 13h12l1-13M9 7V4h6v3"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+    <symbol id="i-sync" viewBox="0 0 24 24"><path d="M17.5 19H8a6 6 0 1 1 1.3-11.9A7 7 0 0 1 22 11.5 4 4 0 0 1 17.5 19z"/><path d="m10 13 2 2 4-4"/></symbol>
+    <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></symbol>
+    <symbol id="i-filter" viewBox="0 0 24 24"><path d="M4 5h16l-6 7v6l-4 2v-8z"/></symbol>
+    <symbol id="i-sort" viewBox="0 0 24 24"><path d="M7 4v16M3 8l4-4 4 4M17 20V4M13 16l4 4 4-4"/></symbol>
+    <symbol id="i-text" viewBox="0 0 24 24"><path d="M5 6V4h14v2M12 4v16M9 20h6"/></symbol>
+    <symbol id="i-status" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m8.5 12 2.5 2.5 4.5-5"/></symbol>
+    <symbol id="i-flag" viewBox="0 0 24 24"><path d="M5 21V4M5 4h11l-2 4 2 4H5"/></symbol>
+    <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></symbol>
+    <symbol id="i-palette" viewBox="0 0 24 24"><path d="M12 3a9 9 0 0 0 0 18c1.1 0 2-.9 2-2 0-.5-.2-1-.5-1.3-.3-.4-.5-.8-.5-1.3 0-1.1.9-2 2-2h2.3A4.7 4.7 0 0 0 22 9.8C22 6 17.5 3 12 3z"/><circle cx="7.5" cy="11" r="1"/><circle cx="10.5" cy="7" r="1"/><circle cx="15.5" cy="7.5" r="1"/></symbol>
+    <symbol id="i-gift" viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13M19 12v9H5v-9M7.5 8a2.5 2.5 0 0 1 0-5C10 3 12 8 12 8s2-5 4.5-5a2.5 2.5 0 0 1 0 5"/></symbol>
+    <symbol id="i-windows" viewBox="0 0 24 24"><rect x="3" y="3" width="8" height="8" rx="1"/><rect x="13" y="3" width="8" height="8" rx="1"/><rect x="3" y="13" width="8" height="8" rx="1"/><rect x="13" y="13" width="8" height="8" rx="1"/></symbol>
+  </svg>
+
+  <div class="progress" aria-hidden="true"></div>
+
+  <!-- ============ NAV ============ -->
+  <header class="nav" data-nav>
+    <div class="container nav__inner">
+      <a class="brand" href="#top" aria-label="Loom">
+        <img src="assets/img/logo.svg" alt="" width="32" height="32">
+        Loom
+      </a>
+      <nav class="nav__links" aria-label="Hlavní navigace" data-en-aria-label="Main navigation">
+        <a href="#funkce" data-en="Features">Funkce</a>
+        <a href="#jak" data-en="How it works">Jak to funguje</a>
+        <a href="#pouziti" data-en="Use cases">Použití</a>
+        <a href="#cena" data-en="Pricing">Cena</a>
+        <a href="#faq">FAQ</a>
+        <a href="#kontakt" data-en="Contact">Kontakt</a>
+      </nav>
+      <div class="nav__right">
+        <div class="lang" role="group" aria-label="Jazyk / Language">
+          <button type="button" data-lang-btn="cs" aria-pressed="true">CZ</button>
+          <button type="button" data-lang-btn="en" aria-pressed="false">EN</button>
+        </div>
+        <a class="btn btn--primary btn--sm nav__cta" href="#cena">
+          <span data-en="Buy">Koupit</span><span class="btn-price" data-cfg="price">999 Kč</span>
+        </a>
+        <button class="nav__burger" type="button" aria-expanded="false" aria-controls="drawer" aria-label="Menu" data-burger>
+          <svg class="ic"><use href="#i-menu"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+  <div class="drawer" id="drawer" data-drawer>
+    <a href="#funkce" data-en="Features">Funkce</a>
+    <a href="#jak" data-en="How it works">Jak to funguje</a>
+    <a href="#pouziti" data-en="Use cases">Použití</a>
+    <a href="#cena" data-en="Pricing">Cena</a>
+    <a href="#faq">FAQ</a>
+    <a href="#kontakt" data-en="Contact">Kontakt</a>
+    <a class="btn btn--primary btn--lg" href="download.html" data-trial><svg class="ic"><use href="#i-download"/></svg><span data-en="Try free for 14 days">Vyzkoušet 14 dní zdarma</span></a>
+  </div>
+
+  <main id="main">
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="top">
+      <div class="aurora" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+      <div class="grid-bg" aria-hidden="true"></div>
+      <div class="grain" aria-hidden="true"></div>
+
+      <div class="container">
+        <div class="hero__copy">
+          <a class="badge" href="#cena" data-hero-in>
+            <b data-en="New">Nově</b>
+            <span data-en="Launch price 999 CZK · no subscription">Zaváděcí cena 999 Kč · bez předplatného</span>
+            <svg class="ic"><use href="#i-arrow"/></svg>
+          </a>
+          <h1 class="h1" data-hero-title data-en="Weave your <em>second brain</em>.">Utkej si <em>druhý mozek</em>.</h1>
+          <p class="lead" data-hero-in data-en="Loom brings a lightning-fast outliner, infinite whiteboards and database views together in one offline app. Your notes stay plain Markdown files on your own disk. Forever.">Loom spojuje bleskový outliner, nekonečné tabule a&nbsp;databázové pohledy v&nbsp;jedné offline aplikaci. Poznámky zůstávají obyčejnými Markdown soubory na tvém disku. Navždy.</p>
+          <div class="btn-row hero__ctas" data-hero-in>
+            <a class="btn btn--primary btn--lg" href="download.html" data-trial data-magnetic>
+              <svg class="ic"><use href="#i-download"/></svg>
+              <span data-en="Try free for 14 days">Vyzkoušet 14 dní zdarma</span>
+            </a>
+            <a class="btn btn--ghost btn--lg" href="#cena" data-magnetic>
+              <span data-en="Buy">Koupit</span><span class="btn-price" data-cfg="price">999 Kč</span>
+            </a>
+          </div>
+          <ul class="trust" data-hero-in>
+            <li><svg class="ic"><use href="#i-check"/></svg><span data-en="100% offline">100% offline</span></li>
+            <li><svg class="ic"><use href="#i-check"/></svg><span data-en="One-time payment">Jednorázová platba</span></li>
+            <li><svg class="ic"><use href="#i-check"/></svg><span data-en="Plain Markdown">Čistý Markdown</span></li>
+            <li><svg class="ic"><use href="#i-check"/></svg><span data-en="Opens Obsidian vaults">Otevře i Obsidian vault</span></li>
+          </ul>
+        </div>
+
+        <div class="hero__visual" data-hero-visual>
+          <div class="hero__glow" aria-hidden="true"></div>
+          <div class="hero__tilt" data-hero-tilt>
+            <!-- App mockup: a faithful HTML copy of Loom's UI (light theme) -->
+            <div class="app" aria-hidden="true">
+              <div class="app__top">
+                <svg class="ic"><use href="#i-sidebar"/></svg>
+                <svg class="ic"><use href="#i-chev-l"/></svg>
+                <svg class="ic" style="opacity:.4"><use href="#i-chev-r"/></svg>
+                <div class="app__search"><svg class="ic"><use href="#i-search"/></svg><span data-en="Search or jump to…">Hledat nebo přejít…</span><kbd>Ctrl K</kbd></div>
+                <span class="app__title">Loom · vault</span>
+                <span class="app__win"><i></i><i></i><i></i></span>
+              </div>
+              <div class="app__body">
+                <aside class="app__side">
+                  <div class="app__vault"><span class="app__vault-logo">L</span><span data-en="My vault">Můj vault</span><svg class="ic"><use href="#i-chev"/></svg></div>
+                  <ul>
+                    <li><svg class="ic"><use href="#i-search"/></svg><span data-en="Search">Hledat</span><kbd>Ctrl K</kbd></li>
+                    <li><svg class="ic"><use href="#i-calendar"/></svg><span data-en="Today">Dnes</span><kbd>Alt D</kbd></li>
+                    <li><svg class="ic"><use href="#i-db"/></svg><span data-en="Supertags">Supertagy</span></li>
+                    <li><svg class="ic"><use href="#i-plus"/></svg><span data-en="New page">Nová stránka</span><kbd>Ctrl N</kbd></li>
+                    <li><svg class="ic"><use href="#i-board"/></svg><span data-en="New whiteboard">Nová tabule</span></li>
+                  </ul>
+                  <div class="app__label" data-en="Supertags">Supertagy</div>
+                  <ul>
+                    <li class="is-active"><span class="hash hash--blue">#</span>task<span class="n">10</span></li>
+                    <li><span class="hash hash--orange">#</span><span data-en="book">kniha</span><span class="n">3</span></li>
+                    <li><span class="hash hash--green">#</span><span data-en="person">osoba</span><span class="n">3</span></li>
+                    <li><span class="hash hash--purple">#</span><span data-en="project">projekt</span><span class="n">2</span></li>
+                    <li><span class="hash hash--pink">#</span><span data-en="meeting">schůzka</span><span class="n">2</span></li>
+                    <li><span class="hash hash--yellow">#</span><span data-en="idea">nápad</span><span class="n">2</span></li>
+                  </ul>
+                  <div class="app__label" data-en="Files">Soubory</div>
+                  <ul>
+                    <li><svg class="ic"><use href="#i-folder"/></svg>Daily</li>
+                    <li><svg class="ic"><use href="#i-folder"/></svg><span data-en="People">Lidé</span></li>
+                    <li><svg class="ic"><use href="#i-folder"/></svg><span data-en="Projects">Projekty</span></li>
+                    <li><svg class="ic"><use href="#i-folder"/></svg><span data-en="Reading">Čtení</span></li>
+                    <li><svg class="ic"><use href="#i-folder"/></svg><span data-en="Whiteboards">Tabule</span></li>
+                  </ul>
+                </aside>
+                <div class="app__main">
+                  <div class="app__crumbs"><span data-en="Projects /">Projekty /</span><span class="app__seg"><span class="is-on"><svg class="ic"><use href="#i-outline"/></svg>Outline</span><span><svg class="ic"><use href="#i-doc"/></svg><span data-en="Document">Dokument</span></span></span></div>
+                  <div class="app__h" data-en="Loom launch">Spuštění Loomu</div>
+                  <div class="app__tagrow"><span class="pill pill--purple" data-en="#project">#projekt</span><span>+ Tag</span></div>
+                  <div class="app__props">
+                    <div><span class="k"><svg class="ic"><use href="#i-status"/></svg>Status</span><span><span class="pill pill--green">Active</span></span></div>
+                    <div><span class="k"><svg class="ic"><use href="#i-user"/></svg><span data-en="Owner">Vlastník</span></span><span class="app__link">Jana Nováková</span></div>
+                    <div><span class="k"><svg class="ic"><use href="#i-calendar"/></svg><span data-en="Due">Termín</span></span><span data-en="Oct 23, 2026">23. 10. 2026</span></div>
+                  </div>
+                  <ul class="ol">
+                    <li><div class="ol__row"><span data-en="Milestones">Milníky</span></div>
+                      <ul>
+                        <li><div class="ol__row"><span class="ol__cb"></span><span class="ol__t" data-en="Finish outliner polish">Doladit outliner</span><span class="pill pill--blue">#task</span></div>
+                          <ul class="ol__fields">
+                            <li><span class="k"><svg class="ic"><use href="#i-status"/></svg>Status</span><span class="pill pill--blue">Doing</span></li>
+                            <li><span class="k"><svg class="ic"><use href="#i-flag"/></svg><span data-en="Priority">Priorita</span></span><span class="pill pill--red">High</span></li>
+                            <li><span class="k"><svg class="ic"><use href="#i-calendar"/></svg><span data-en="Due">Termín</span></span><span class="pill pill--blue" data-en="Mon Oct 5">po 5. 10.</span></li>
+                          </ul>
+                        </li>
+                        <li><div class="ol__row"><span class="ol__cb"></span><span class="ol__t" data-en="Database views: kanban + calendar">Databázové pohledy: kanban + kalendář</span><span class="pill pill--blue">#task</span></div></li>
+                        <li><div class="ol__row is-done"><span class="ol__cb"></span><span class="ol__t" data-en="Markdown round-trip tests">Testy Markdownu</span><span class="pill pill--blue">#task</span></div></li>
+                        <li><div class="ol__row ol__typing"><span class="ol__cb"></span><span class="ol__t" data-typer data-type-cs="Napsat článek ke spuštění" data-type-en="Write the launch blog post"></span><span class="caret"></span><span class="pill pill--blue is-hidden" data-typer-pill>#task</span></div></li>
+                      </ul>
+                    </li>
+                    <li><div class="ol__row"><span data-en="Open tasks">Otevřené úkoly</span></div>
+                      <div class="ol__search">
+                        <code>{{search: #task Status != Done}}</code>
+                        <div><span class="ol__cb"></span><span data-en="Call the printer about stickers">Zavolat do tiskárny kvůli samolepkám</span><span class="pill pill--gray">Todo</span></div>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Floating chips -->
+          <div class="float float--palette" data-float="-90" aria-hidden="true">
+            <div class="float__in">
+              <div class="fp__in"><svg class="ic"><use href="#i-search"/></svg><span data-en="resume">zlutoucky</span><kbd>Ctrl K</kbd></div>
+              <div class="fp__res"><svg class="ic"><use href="#i-file"/></svg><span data-en="My <mark>résumé</mark> draft">Příliš <mark>žluťoučký</mark> kůň</span><span class="fp__ms">2 ms</span></div>
+            </div>
+          </div>
+          <div class="float float--kanban" data-float="-140" aria-hidden="true">
+            <div class="float__in" style="animation-delay:-2s">
+              <div class="fk__head"><i></i>Doing<span>2</span></div>
+              <div class="fk__card"><span data-en="Finish outliner polish">Doladit outliner</span><div><span class="pill pill--red">High</span><span class="pill pill--blue" data-en="Mon Oct 5">po 5. 10.</span></div></div>
+              <div class="fk__card"><span data-en="Landing page wireframes">Wireframy webu</span><div><span class="pill pill--yellow">Medium</span></div></div>
+            </div>
+          </div>
+          <div class="float float--stat" data-float="-60" aria-hidden="true">
+            <div class="float__in" style="display:flex;align-items:center;gap:14px;animation-delay:-3.5s">
+              <span class="ic-wrap"><svg class="ic"><use href="#i-bolt"/></svg></span>
+              <span><b>40 ms</b><span data-en="to start the app">start aplikace</span></span>
+            </div>
+          </div>
+          <div class="float float--offline" data-float="-110" aria-hidden="true">
+            <div class="float__in" style="display:flex;align-items:center;gap:12px;animation-delay:-1s">
+              <span class="ic-wrap"><svg class="ic"><use href="#i-lock"/></svg></span>
+              <span><b data-en="Offline &amp; private">Offline a soukromě</b><span data-en=".md files on your disk">.md soubory na tvém disku</span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ MARQUEE ============ -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee__track" data-marquee>
+        <span class="marquee__item"><svg class="ic"><use href="#i-outline"/></svg>Outliner</span>
+        <span class="marquee__item"><svg class="ic"><use href="#i-hash"/></svg><span data-en="Supertags">Supertagy</span></span>
+        <span class="marquee__item"><svg class="ic"><use href="#i-grid"/></svg><span data-en="Tables">Tabulky</span></span>
+        <span class="marquee__item"><svg class="ic"><use href="#i-kanban"/></svg>Kanban</span>
+        <span class="marquee__item"><svg class="ic"><use href="#i-gallery"/></svg><span data-en="Gallery">Galerie</span></span>
+        <span class="marquee__item"><svg class="ic"><use href="#i-calendar"/></svg><span data-en="Calendar">Kalendář</span></span>
+        <span class="marquee__item"><svg class="ic"><use href="#i-board"/></svg><span data-en="Whiteboards">Tabule</span></span>
+        <span class="marquee__item"><svg class="ic"><use href="#i-link"/></svg>[[Wikilinky]]</span>
+        <span class="marquee__item"><svg class="ic"><use href="#i-graph"/></svg><span data-en="Backlinks">Zpětné odkazy</span></span>
+        <span class="marquee__item"><svg class="ic"><use href="#i-clock"/></svg>Daily notes</span>
+        <span class="marquee__item"><svg class="ic"><use href="#i-search"/></svg><span data-en="Live search">Živé hledání</span></span>
+        <span class="marquee__item"><svg class="ic"><use href="#i-pen"/></svg><span data-en="Quick capture">Rychlý záznam</span></span>
+        <span class="marquee__item"><svg class="ic"><use href="#i-focus"/></svg>Focus mode</span>
+        <span class="marquee__item"><svg class="ic"><use href="#i-moon"/></svg><span data-en="Dark mode">Tmavý režim</span></span>
+        <span class="marquee__item"><svg class="ic"><use href="#i-file"/></svg>Markdown</span>
+        <span class="marquee__item"><svg class="ic"><use href="#i-wifi-off"/></svg>Offline</span>
+      </div>
+    </div>
+
+    <!-- ============ PAIN POINTS ============ -->
+    <section class="section" id="proc">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow" data-reveal data-en="Sound familiar?">Zní ti to povědomě?</span>
+          <h2 class="h2" data-split data-en="Your notes are <em>everywhere</em>. Which means nowhere.">Tvoje poznámky jsou <em>všude</em>. A&nbsp;proto nikde.</h2>
+          <p class="lead" data-reveal data-en="Working with information today is fragmented. Every tool does one thing, and you pay for each of them separately.">Práce s&nbsp;informacemi je dnes roztříštěná. Každý nástroj umí jednu věc a&nbsp;za každý platíš zvlášť.</p>
+        </div>
+
+        <div class="pain-grid" data-stagger>
+          <article class="pain" data-reveal>
+            <div class="pain__ic"><svg class="ic"><use href="#i-scatter"/></svg></div>
+            <h3 data-en="Notes scattered across five apps">Poznámky rozházené v&nbsp;pěti aplikacích</h3>
+            <p data-en="Tasks in one, ideas in another, meetings in a third. When you need something, it isn’t anywhere.">Úkoly v&nbsp;jedné, nápady v&nbsp;druhé, schůzky ve třetí. Když něco hledáš, není to nikde.</p>
+          </article>
+          <article class="pain" data-reveal>
+            <div class="pain__ic"><svg class="ic"><use href="#i-coins"/></svg></div>
+            <h3 data-en="Another subscription. Again.">Další předplatné. Zase.</h3>
+            <p data-en="Three tools at 250 CZK a month add up to 9,000 CZK a year. For notes.">Tři nástroje po 250 Kč měsíčně jsou 9&nbsp;000 Kč ročně. Za poznámky.</p>
+            <div class="pain__stat"><span data-en="9,000 CZK / year">9 000 Kč / rok</span></div>
+          </article>
+          <article class="pain" data-reveal>
+            <div class="pain__ic"><svg class="ic"><use href="#i-cloud-off"/></svg></div>
+            <h3 data-en="Your data, their server">Tvoje data, jejich server</h3>
+            <p data-en="An outage, a new price list or a shut-down service, and your notes are out of reach. Export? Good luck.">Výpadek, nový ceník nebo zrušená služba a&nbsp;k&nbsp;poznámkám se nedostaneš. Export? Hodně štěstí.</p>
+          </article>
+          <article class="pain" data-reveal>
+            <div class="pain__ic"><svg class="ic"><use href="#i-split"/></svg></div>
+            <h3 data-en="Structure or freedom?">Struktura, nebo svoboda?</h3>
+            <p data-en="Free writing turns into chaos, databases feel like a straitjacket. Why should you have to choose?">Volné psaní končí chaosem, databáze jsou svěrací kazajka. Proč si mezi nimi vybírat?</p>
+          </article>
+          <article class="pain" data-reveal>
+            <div class="pain__ic"><svg class="ic"><use href="#i-loader"/></svg></div>
+            <h3 data-en="Waiting for things to load">Čekání na načítání</h3>
+            <p data-en="A spinner after every click. Meanwhile, the thought slips away. Thinking should be faster than your Wi-Fi.">Po každém kliknutí kolečko. Myšlenka mezitím uteče. Přemýšlení má být rychlejší než tvoje Wi-Fi.</p>
+          </article>
+        </div>
+
+        <div class="weave" data-weave>
+          <svg class="weave__svg" viewBox="0 0 1200 280" preserveAspectRatio="none" aria-hidden="true"></svg>
+          <img class="weave__logo" src="assets/img/logo.svg" alt="" data-weave-logo>
+          <p class="weave__text" data-reveal data-en="Loom weaves it all together. <span class='em'>One app, one format, zero chaos.</span>">Loom to splete dohromady. <span class="em">Jedna aplikace, jeden formát, žádný chaos.</span></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ MORPH (dark) ============ -->
+    <section class="morph on-dark" id="jak">
+      <div class="container" style="padding-top:clamp(88px,12vw,150px)">
+        <div class="section-head">
+          <span class="eyebrow" data-reveal data-en="How it works">Jak to funguje</span>
+          <h2 class="h2" data-split data-en="Write once. <em>View it</em> any way.">Napiš jednou. <em>Dívej se</em> jakkoli.</h2>
+          <p class="lead" data-reveal data-en="Every bullet in Loom is a record. You see the same data as an outline, a table, a kanban board or a whiteboard. No copying, no importing.">Každá odrážka v&nbsp;Loomu je záznam. Stejná data uvidíš jako outline, tabulku, kanban i&nbsp;tabuli. Bez kopírování a&nbsp;bez importu.</p>
+        </div>
+      </div>
+      <div class="morph__pin" data-morph>
+        <div class="container">
+          <div class="morph__grid">
+            <div>
+              <ol class="steps" data-steps>
+                <li class="step is-active" data-step="0">
+                  <span class="step__n">01</span>
+                  <h3><svg class="ic"><use href="#i-outline"/></svg><span data-en="Write">Piš</span></h3>
+                  <p data-en="Enter for a new node, Tab to indent. The outliner reacts within a single frame, even on pages with thousands of rows.">Enter pro nový uzel, Tab pro zanoření. Outliner reaguje do jednoho snímku i&nbsp;na stránce s&nbsp;tisíci řádky.</p>
+                </li>
+                <li class="step" data-step="1">
+                  <span class="step__n">02</span>
+                  <h3><svg class="ic"><use href="#i-grid"/></svg><span data-en="Structure">Třiď</span></h3>
+                  <p data-en="Add #task and you have a database. A supertag turns a bullet into a record with fields that line up in a table with filters and sorting.">Přidej #task a&nbsp;máš databázi. Supertag udělá z&nbsp;odrážky záznam s&nbsp;poli, které se seřadí do tabulky s&nbsp;filtry a&nbsp;řazením.</p>
+                </li>
+                <li class="step" data-step="2">
+                  <span class="step__n">03</span>
+                  <h3><svg class="ic"><use href="#i-kanban"/></svg><span data-en="Move">Přesouvej</span></h3>
+                  <p data-en="The same records as a kanban board. Drag a card and the change is written straight back into your Markdown.">Stejné záznamy jako kanban. Přetáhneš kartu a&nbsp;změna se zapíše zpátky do tvého Markdownu.</p>
+                </li>
+                <li class="step" data-step="3">
+                  <span class="step__n">04</span>
+                  <h3><svg class="ic"><use href="#i-board"/></svg><span data-en="Connect">Propojuj</span></h3>
+                  <p data-en="An infinite canvas for ideas without a hierarchy. The cards are live notes, not copies.">Nekonečné plátno pro nápady bez hierarchie. Karty jsou živé poznámky, ne kopie.</p>
+                </li>
+              </ol>
+            </div>
+            <div>
+              <p class="step-caption" data-step-caption aria-live="polite"></p>
+              <div class="mwin" aria-hidden="true">
+                <div class="mwin__bar">
+                  <span class="mwin__dots"><i></i><i></i><i></i></span>
+                  <span class="mwin__name" data-en="Loom launch">Spuštění Loomu</span>
+                  <div class="vswitch" data-vswitch>
+                    <span class="vswitch__ind"></span>
+                    <button type="button" class="is-on" tabindex="-1"><svg class="ic"><use href="#i-outline"/></svg><span>Outline</span></button>
+                    <button type="button" tabindex="-1"><svg class="ic"><use href="#i-grid"/></svg><span data-en="Table">Tabulka</span></button>
+                    <button type="button" tabindex="-1"><svg class="ic"><use href="#i-kanban"/></svg><span>Kanban</span></button>
+                    <button type="button" tabindex="-1"><svg class="ic"><use href="#i-board"/></svg><span data-en="Board">Tabule</span></button>
+                  </div>
+                </div>
+                <div class="stage-wrap" data-stage-wrap>
+                  <div class="stage" data-stage></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stats -->
+      <div class="stats">
+        <div class="container">
+          <div class="section-head">
+            <h2 class="h2" data-split data-en="Speed you can <em>feel</em>.">Rychlost, kterou <em>ucítíš</em>.</h2>
+          </div>
+          <div class="stats__grid" data-stagger>
+            <div class="stat" data-reveal>
+              <div class="stat__v"><span data-count="40">40</span><small>ms</small></div>
+              <div class="stat__l" data-en="to start the app with an indexed vault">start aplikace s&nbsp;indexovaným vaultem</div>
+            </div>
+            <div class="stat" data-reveal>
+              <div class="stat__v"><span>2–9</span><small>ms</small></div>
+              <div class="stat__l" data-en="full-text search across the whole vault">fulltextové hledání v&nbsp;celém vaultu</div>
+            </div>
+            <div class="stat" data-reveal>
+              <div class="stat__v"><span data-count="16.7" data-decimals="1">16,7</span><small>ms</small></div>
+              <div class="stat__l" data-en="from keystroke to screen: one frame">od úhozu k&nbsp;vykreslení, tedy jeden snímek</div>
+            </div>
+            <div class="stat" data-reveal>
+              <div class="stat__v"><span data-count="138000">138 000</span></div>
+              <div class="stat__l" data-en="nodes in the test vault, without a stutter">uzlů v&nbsp;testovacím vaultu bez zaváhání</div>
+            </div>
+          </div>
+          <p class="stats__note" data-en="Measured on a test vault with 3,000 notes and 138,000 nodes, Windows 11.">Naměřeno na testovacím vaultu se 3&nbsp;000 poznámkami a&nbsp;138&nbsp;000 uzly, Windows 11.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FEATURES (bento) ============ -->
+    <section class="section" id="funkce">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow" data-reveal data-en="Features">Funkce</span>
+          <h2 class="h2" data-split data-en="Everything for your thinking. <em>Nothing extra.</em>">Všechno pro tvoje myšlení. <em>Nic navíc.</em></h2>
+          <p class="lead" data-reveal data-en="Ten tools’ worth of capability in a single window. No plugins to hunt for, no configuration marathon.">Schopnosti deseti nástrojů v&nbsp;jednom okně. Žádné hledání pluginů, žádný konfigurační maraton.</p>
+        </div>
+
+        <div class="bento" data-stagger>
+          <article class="tile tile--7 tile--tall" data-reveal data-tile>
+            <div class="tile__ic"><svg class="ic"><use href="#i-outline"/></svg></div>
+            <h3 data-en="An outliner that keeps up with your thoughts">Outliner, který stíhá tvoje myšlenky</h3>
+            <p data-en="Indent, zoom into any node with breadcrumbs, move nodes between parents, multi-select, drag &amp; drop and undo. Every bullet is its own node.">Zanořování, zoom do uzlu s&nbsp;drobečkovou navigací, přesuny mezi rodiči, hromadný výběr, drag &amp; drop a&nbsp;undo. Každá odrážka je samostatný uzel.</p>
+            <div class="tile__viz">
+              <div class="v-ol" style="position:relative">
+                <div data-en="Thesis">Diplomka</div>
+                <div class="i1" data-en="Chapter 1: Introduction">Kapitola 1: Úvod</div>
+                <div class="i2 ghost" data-en="Research question">Výzkumná otázka</div>
+                <div class="i1" data-en="Chapter 2: Methods">Kapitola 2: Metodika</div>
+                <div class="i1 new" data-en="Interview with the supervisor">Rozhovor s&nbsp;vedoucím</div>
+                <span class="keyhint keyhint--enter"><kbd>Enter</kbd></span>
+                <span class="keyhint keyhint--tab"><kbd>Tab</kbd></span>
+              </div>
+            </div>
+          </article>
+
+          <article class="tile tile--5 tile--tall" data-reveal data-tile>
+            <div class="tile__ic"><svg class="ic"><use href="#i-hash"/></svg></div>
+            <h3 data-en="Supertags turn notes into data">Supertagy dělají z&nbsp;poznámek data</h3>
+            <p data-en="#task, #book, #client: your own record types with select, date, number, checkbox or URL fields.">#task, #kniha, #klient: vlastní typy záznamů s&nbsp;poli výběr, datum, číslo, checkbox nebo URL.</p>
+            <div class="tile__viz">
+              <div class="v-tag">
+                <div class="row"><span class="ol__cb"></span><span data-en="Call the printer">Zavolat do tiskárny</span><span class="pill pill--blue">#task</span></div>
+                <div class="fields">
+                  <div><span>Status</span><span class="pill pill--gray">Todo</span></div>
+                  <div><span data-en="Priority">Priorita</span><span class="pill pill--red">High</span></div>
+                  <div><span data-en="Due">Termín</span><span class="pill pill--blue" data-en="Fri Oct 9">pá 9. 10.</span></div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="tile" data-reveal data-tile>
+            <div class="tile__ic"><svg class="ic"><use href="#i-db"/></svg></div>
+            <h3 data-en="Database views">Databázové pohledy</h3>
+            <p data-en="Table, kanban, gallery and calendar by day, week, month or year. Filter, sort, group. Editing a cell edits the file.">Tabulka, kanban, galerie a&nbsp;kalendář po dnech, týdnech, měsících i&nbsp;letech. Filtry, řazení, seskupení. Úprava buňky = úprava souboru.</p>
+            <div class="tile__viz">
+              <div class="v-views">
+                <div class="v-views__tabs">
+                  <span><svg class="ic"><use href="#i-grid"/></svg></span>
+                  <span><svg class="ic"><use href="#i-kanban"/></svg></span>
+                  <span><svg class="ic"><use href="#i-gallery"/></svg></span>
+                  <span><svg class="ic"><use href="#i-calendar"/></svg></span>
+                </div>
+                <div class="v-views__grid">
+                  <div><span data-en="Name">Název</span><span>Status</span><span data-en="Priority">Priorita</span></div>
+                  <div><span data-en="Outliner">Outliner</span><span class="pill pill--blue">Doing</span><span class="pill pill--red">High</span></div>
+                  <div><span data-en="Tests">Testy</span><span class="pill pill--green">Done</span><span class="pill pill--yellow">Medium</span></div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="tile" data-reveal data-tile>
+            <div class="tile__ic"><svg class="ic"><use href="#i-search"/></svg></div>
+            <h3 data-en="Search that ignores accents">Hledání, které umí česky</h3>
+            <p data-en="Type “resume” and you’ll find “résumé”. Full-text search that handles diacritics, in milliseconds.">Napiš „zlutoucky“ a&nbsp;najdeš „žluťoučký“. Fulltext, který si poradí s&nbsp;diakritikou, a&nbsp;to za milisekundy.</p>
+            <div class="tile__viz">
+              <div class="v-dia" data-dia data-q-cs="zlutoucky" data-q-en="resume">
+                <div class="in"><svg class="ic"><use href="#i-search"/></svg><span data-dia-text></span><span class="caret"></span><span class="ms">3 ms</span></div>
+                <div class="hit"><svg class="ic"><use href="#i-file"/></svg><span data-en="Updated <mark>résumé</mark> for 2026">Příliš <mark>žluťoučký</mark> kůň úpěl</span></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="tile" data-reveal data-tile>
+            <div class="tile__ic"><svg class="ic"><use href="#i-sparkle"/></svg></div>
+            <h3 data-en="Live search nodes">Živé vyhledávací uzly</h3>
+            <p data-en="Drop a query into any note and its results stay up to date on their own.">Vlož do poznámky dotaz a&nbsp;jeho výsledky se budou samy aktualizovat.</p>
+            <div class="tile__viz">
+              <div class="v-search">
+                <div class="q">{{search: #task Status != Done}}</div>
+                <div class="r"><span class="ol__cb"></span><span data-en="Finish outliner polish">Doladit outliner</span><span class="pill pill--blue">Doing</span></div>
+                <div class="r"><span class="ol__cb"></span><span data-en="Kanban + calendar">Kanban + kalendář</span><span class="pill pill--gray">Todo</span></div>
+                <div class="r"><span class="ol__cb"></span><span data-en="Pick typography">Vybrat typografii</span><span class="pill pill--red">Blocked</span></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="tile tile--5" data-reveal data-tile>
+            <div class="tile__ic"><svg class="ic"><use href="#i-board"/></svg></div>
+            <h3 data-en="Infinite whiteboards">Nekonečné tabule</h3>
+            <p data-en="Note cards, sections and arrows on an infinite canvas. Saved as JSON Canvas, so they open in Obsidian too.">Karty poznámek, sekce a&nbsp;šipky na nekonečném plátně. Ukládá se jako JSON Canvas, takže ho otevřeš i&nbsp;v&nbsp;Obsidianu.</p>
+            <div class="tile__viz">
+              <div class="v-board">
+                <svg viewBox="0 0 400 170" preserveAspectRatio="none" aria-hidden="true">
+                  <path d="M120 48 C 170 48, 180 36, 222 36"/>
+                  <path d="M90 70 C 100 120, 120 125, 140 122"/>
+                </svg>
+                <div class="c c1"><svg class="ic"><use href="#i-file"/></svg><span data-en="Loom launch">Spuštění</span></div>
+                <div class="c c2"><svg class="ic"><use href="#i-file"/></svg><span data-en="Ideas">Nápady</span></div>
+                <div class="c c3"><span data-en="Why? One tool.">Proč? Jeden nástroj.</span></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="tile" data-reveal data-tile>
+            <div class="tile__ic"><svg class="ic"><use href="#i-link"/></svg></div>
+            <h3 data-en="Links and backlinks">Odkazy a&nbsp;zpětné odkazy</h3>
+            <p data-en="[[Wikilinks]], #tags and backlinks. Rename a page and every link updates itself.">[[Wikilinky]], #tagy a&nbsp;zpětné odkazy. Přejmenuješ stránku a&nbsp;všechny odkazy se opraví samy.</p>
+            <div class="tile__viz">
+              <div class="v-graph">
+                <svg viewBox="0 0 300 170" aria-hidden="true">
+                  <defs><linearGradient id="gGraph" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8b7dff"/><stop offset="1" stop-color="#12a594"/></linearGradient></defs>
+                  <line x1="150" y1="85" x2="60" y2="40"/><line x1="150" y1="85" x2="250" y2="45"/><line x1="150" y1="85" x2="70" y2="135"/><line x1="150" y1="85" x2="235" y2="135"/><line x1="60" y1="40" x2="70" y2="135"/><line x1="250" y1="45" x2="235" y2="135"/>
+                  <g class="node"><circle class="core" cx="150" cy="85" r="15"/></g>
+                  <g class="node"><circle cx="60" cy="40" r="8"/><text x="72" y="36" data-en="Ideas">Nápady</text></g>
+                  <g class="node"><circle class="n2" cx="250" cy="45" r="8"/><text x="196" y="30">Jana N.</text></g>
+                  <g class="node"><circle class="n3" cx="70" cy="135" r="8"/><text x="84" y="139" data-en="Meeting">Schůzka</text></g>
+                  <g class="node"><circle class="n4" cx="235" cy="135" r="8"/><text x="172" y="160" data-en="Book">Kniha</text></g>
+                </svg>
+              </div>
+            </div>
+          </article>
+
+          <article class="tile tile--3" data-reveal data-tile>
+            <div class="tile__ic"><svg class="ic"><use href="#i-key"/></svg></div>
+            <h3 data-en="Built for the keyboard">Stvořený pro klávesnici</h3>
+            <p data-en="Ctrl+K for everything: commands, pages, search. A cheat sheet of every shortcut is always one key away.">Ctrl+K na všechno: příkazy, stránky, hledání. Tahák všech zkratek máš vždy po ruce.</p>
+            <div class="tile__viz">
+              <div class="v-keys">
+                <kbd>Ctrl</kbd><kbd>K</kbd><span class="plus">·</span><kbd>Alt</kbd><kbd>D</kbd><span class="plus">·</span><kbd>Tab</kbd>
+              </div>
+            </div>
+          </article>
+          <article class="tile tile--6" data-reveal data-tile>
+            <div class="tile__ic"><svg class="ic"><use href="#i-calendar"/></svg></div>
+            <h3 data-en="Daily notes &amp; quick capture">Daily notes a&nbsp;rychlý záznam</h3>
+            <p data-en="A page for every day, and Ctrl+Shift+Space to capture an idea from anywhere.">Každý den vlastní stránka a&nbsp;Ctrl+Shift+Mezerník pro nápad odkudkoli.</p>
+            <div class="tile__viz">
+              <div class="v-daily">
+                <div class="v-cal" aria-hidden="true">
+                  <b data-en="M">P</b><b data-en="T">Ú</b><b data-en="W">S</b><b data-en="T">Č</b><b data-en="F">P</b><b data-en="S">S</b><b data-en="S">N</b>
+                  <span></span><span></span><span class="has">1</span><span class="has today">2</span><span>3</span><span>4</span><span>5</span>
+                  <span class="has">6</span><span>7</span><span class="has">8</span><span>9</span><span class="has">10</span><span>11</span><span>12</span>
+                </div>
+                <div class="v-capture">
+                  <div class="h"><svg class="ic"><use href="#i-pen"/></svg><span data-en="Quick capture">Rychlý záznam</span></div>
+                  <div class="b" data-en="Idea: dark mode for the website #idea">Nápad: tmavý web #nápad</div>
+                  <div class="h"><kbd>Ctrl</kbd><kbd>⇧</kbd><kbd data-en="Space">Mezerník</kbd></div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="tile tile--6" data-reveal data-tile>
+            <div class="tile__ic"><svg class="ic"><use href="#i-palette"/></svg></div>
+            <h3 data-en="Make it yours">Vzhled podle tebe</h3>
+            <p data-en="Dark or light mode, your own accent colour, font size and page width. Focus mode hides everything that distracts you.">Tmavý i&nbsp;světlý režim, vlastní barva akcentu, velikost písma a&nbsp;šířka stránky. Focus mode schová všechno, co ruší.</p>
+            <div class="tile__viz">
+              <div class="v-theme" aria-hidden="true">
+                <div class="v-theme__win">
+                  <i class="h"></i><i></i><i class="s"></i><span class="acc"></span><i></i>
+                </div>
+                <div class="v-theme__win is-dark">
+                  <i class="h"></i><i></i><i class="s"></i><span class="acc"></span><i></i>
+                </div>
+                <div class="v-theme__sw"><b></b><b></b><b></b><b></b><b></b><b></b></div>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <div class="chips" data-reveal>
+          <div class="chips__label" data-en="And also:">A k tomu:</div>
+          <span><svg class="ic"><use href="#i-doc"/></svg><span data-en="Document mode with live preview">Dokumentový režim s&nbsp;live preview</span></span>
+          <span><svg class="ic"><use href="#i-key"/></svg><span data-en="Shortcut cheat sheet">Tahák klávesových zkratek</span></span>
+          <span><svg class="ic"><use href="#i-clock"/></svg><span data-en="Word count &amp; save status">Počet slov a&nbsp;stav ukládání</span></span>
+          <span><svg class="ic"><use href="#i-home"/></svg><span data-en="Home dashboard">Domovská stránka</span></span>
+          <span><svg class="ic"><use href="#i-pin"/></svg><span data-en="Pinned &amp; recent pages">Připnuté a&nbsp;nedávné stránky</span></span>
+          <span><svg class="ic"><use href="#i-refresh"/></svg><span data-en="Changes from other apps appear instantly">Změny z&nbsp;jiných aplikací se ukážou hned</span></span>
+          <span><svg class="ic"><use href="#i-trash"/></svg><span data-en="Deleted files go to .trash">Smazané soubory končí v&nbsp;.trash</span></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ USE CASES ============ -->
+    <section class="section cases" id="pouziti">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow" data-reveal data-en="Who it’s for">Pro koho</span>
+          <h2 class="h2" data-split data-en="One tool. <em>Endless</em> ways to use it.">Jeden nástroj. <em>Nekonečno</em> způsobů použití.</h2>
+        </div>
+
+        <div class="tabs" role="tablist" aria-label="Použití" data-en-aria-label="Use cases" data-reveal>
+          <button class="tab" role="tab" id="tab-student" aria-controls="panel-student" aria-selected="true"><svg class="ic"><use href="#i-cap"/></svg><span data-en="Students">Studenti</span></button>
+          <button class="tab" role="tab" id="tab-free" aria-controls="panel-free" aria-selected="false" tabindex="-1"><svg class="ic"><use href="#i-brief"/></svg><span data-en="Freelancers">Freelanceři</span></button>
+          <button class="tab" role="tab" id="tab-write" aria-controls="panel-write" aria-selected="false" tabindex="-1"><svg class="ic"><use href="#i-pen"/></svg><span data-en="Research &amp; writing">Výzkum a&nbsp;psaní</span></button>
+          <button class="tab" role="tab" id="tab-pm" aria-controls="panel-pm" aria-selected="false" tabindex="-1"><svg class="ic"><use href="#i-target"/></svg><span data-en="Product people">Produkťáci</span></button>
+          <button class="tab" role="tab" id="tab-life" aria-controls="panel-life" aria-selected="false" tabindex="-1"><svg class="ic"><use href="#i-heart"/></svg><span data-en="Personal life">Osobní život</span></button>
+        </div>
+
+        <div data-reveal>
+          <div class="panel" role="tabpanel" id="panel-student" aria-labelledby="tab-student">
+            <div>
+              <span class="panel__who"><svg class="ic"><use href="#i-cap"/></svg><span data-en="Students">Studenti</span></span>
+              <h3 data-en="Exam season without the panic">Zkouškové bez paniky</h3>
+              <p data-en="Write lecture notes as an outline, keep sources as #book records and see every exam date in the calendar.">Výpisky z&nbsp;přednášek píšeš jako outline, zdroje ukládáš jako #kniha a&nbsp;termíny zkoušek vidíš v&nbsp;kalendáři.</p>
+              <ul class="checks">
+                <li><svg class="ic"><use href="#i-check"/></svg><span data-en="Lecture bullets become revision cards on a whiteboard">Odrážky z&nbsp;přednášky se stanou kartičkami na opakování na tabuli</span></li>
+                <li><svg class="ic"><use href="#i-check"/></svg><span data-en="#exam with a Date field gives you an automatic calendar">#zkouška s&nbsp;polem Termín = automatický kalendář</span></li>
+                <li><svg class="ic"><use href="#i-check"/></svg><span data-en="Search without diacritics when you’re in a hurry">Hledání bez diakritiky, když spěcháš</span></li>
+              </ul>
+            </div>
+            <div class="case-mock" aria-hidden="true">
+              <div class="case-mock__bar"><svg class="ic"><use href="#i-file"/></svg><span data-en="School / Macroeconomics.md">Škola / Makroekonomie.md</span></div>
+              <div class="case-mock__body">
+                <div class="case-mock__h" data-en="Macroeconomics: lecture 4">Makroekonomie: přednáška 4</div>
+                <ul class="ol">
+                  <li><div class="ol__row"><span data-en="Inflation and monetary policy">Inflace a&nbsp;měnová politika</span></div>
+                    <ul>
+                      <li><div class="ol__row"><span data-en="The central bank targets 2% inflation">Centrální banka cílí inflaci 2&nbsp;%</span></div></li>
+                      <li><div class="ol__row"><span data-en="See also">Viz</span><span class="wl">[[Keynes]]</span></div></li>
+                    </ul>
+                  </li>
+                  <li><div class="ol__row"><span class="ol__cb"></span><span data-en="Macro exam">Zkouška z&nbsp;makra</span><span class="pill pill--orange" data-en="#exam">#zkouška</span></div>
+                    <ul><li><div class="ol__row fld"><b data-en="Date">Termín</b>:: <span data-en="Jan 14">14. 1.</span></div></li></ul>
+                  </li>
+                  <li><div class="ol__row"><span>Mankiw: Principles</span><span class="pill pill--yellow" data-en="#book">#kniha</span></div></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel" role="tabpanel" id="panel-free" aria-labelledby="tab-free" hidden>
+            <div>
+              <span class="panel__who"><svg class="ic"><use href="#i-brief"/></svg><span data-en="Freelancers &amp; consultants">Freelanceři a&nbsp;konzultanti</span></span>
+              <h3 data-en="Clients, projects and meetings in one place">Klienti, projekty a&nbsp;schůzky na jednom místě</h3>
+              <p data-en="Every client is a #client with contacts and status, projects live on a kanban board, and meeting notes link themselves to the right client.">Každý klient je #klient s&nbsp;kontakty a&nbsp;stavem, zakázky máš v&nbsp;kanbanu a&nbsp;poznámky ze schůzek se samy propojí se správným klientem.</p>
+              <ul class="checks">
+                <li><svg class="ic"><use href="#i-check"/></svg><span data-en="#client with Company, Contact and Rate fields">#klient s&nbsp;poli Firma, Kontakt a&nbsp;Sazba</span></li>
+                <li><svg class="ic"><use href="#i-check"/></svg><span data-en="A jobs board: Inquiry → In progress → Done">Kanban zakázek: Poptávka → Běží → Hotovo</span></li>
+                <li><svg class="ic"><use href="#i-check"/></svg><span data-en="Daily notes as a work log with links to clients">Daily notes jako pracovní deník s&nbsp;odkazy na klienty</span></li>
+              </ul>
+            </div>
+            <div class="case-mock" aria-hidden="true">
+              <div class="case-mock__bar"><svg class="ic"><use href="#i-calendar"/></svg>Daily / 2026-10-02.md</div>
+              <div class="case-mock__body">
+                <div class="case-mock__h" data-en="Fri, Oct 2">Pátek 2. 10.</div>
+                <ul class="ol">
+                  <li><div class="ol__row"><span data-en="Call with">Call s</span><span class="wl">[[Acme s.r.o.]]</span><span class="pill pill--pink" data-en="#meeting">#schůzka</span></div>
+                    <ul>
+                      <li><div class="ol__row"><span class="wl">[[Jana Nováková]]</span><span data-en="wants a redesign by November">chce redesign do listopadu</span></div></li>
+                      <li><div class="ol__row fld"><b data-en="Budget">Rozpočet</b>:: <span data-en="80,000 CZK">80 000 Kč</span></div></li>
+                    </ul>
+                  </li>
+                  <li><div class="ol__row"><span class="ol__cb"></span><span data-en="Send the proposal">Poslat nabídku</span><span class="pill pill--blue">#task</span><span class="pill pill--blue" data-en="Fri Oct 9">pá 9. 10.</span></div></li>
+                  <li><div class="ol__row is-done"><span class="ol__cb"></span><span class="ol__t" data-en="Invoice for September">Faktura za září</span><span class="pill pill--blue">#task</span></div></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel" role="tabpanel" id="panel-write" aria-labelledby="tab-write" hidden>
+            <div>
+              <span class="panel__who"><svg class="ic"><use href="#i-pen"/></svg><span data-en="Researchers &amp; writers">Výzkum a&nbsp;psaní</span></span>
+              <h3 data-en="From first idea to manuscript">Od nápadu k&nbsp;rukopisu</h3>
+              <p data-en="A Zettelkasten with backlinks, citations as records, and your book outline laid out on a whiteboard.">Zettelkasten se zpětnými odkazy, citace jako záznamy a&nbsp;osnova knihy rozložená na tabuli.</p>
+              <ul class="checks">
+                <li><svg class="ic"><use href="#i-check"/></svg><span data-en="Atomic notes connected with [[wikilinks]]">Atomické poznámky propojené [[wikilinky]]</span></li>
+                <li><svg class="ic"><use href="#i-check"/></svg><span data-en="#source with Author, Year and Quote fields">#zdroj s&nbsp;poli Autor, Rok a&nbsp;Citace</span></li>
+                <li><svg class="ic"><use href="#i-check"/></svg><span data-en="Chapter outline on a whiteboard, writing in document mode">Osnova kapitol na tabuli, psaní v&nbsp;dokumentovém režimu</span></li>
+              </ul>
+            </div>
+            <div class="case-mock" aria-hidden="true">
+              <div class="case-mock__bar"><svg class="ic"><use href="#i-file"/></svg><span data-en="Book / Chapter 3.md">Kniha / Kapitola 3.md</span></div>
+              <div class="case-mock__body">
+                <div class="case-mock__h" data-en="Chapter 3: Systems">Kapitola 3: Systémy</div>
+                <ul class="ol">
+                  <li><div class="ol__row"><span data-en="Feedback loops amplify change">Zpětná vazba zesiluje změnu</span></div>
+                    <ul>
+                      <li><div class="ol__row"><span data-en="Source:">Zdroj:</span><span class="wl">[[Thinking in Systems]]</span><span class="pill pill--teal" data-en="#source">#zdroj</span></div></li>
+                      <li><div class="ol__row fld"><b data-en="Author">Autor</b>:: Donella Meadows</div></li>
+                      <li><div class="ol__row fld"><b data-en="Year">Rok</b>:: 2008</div></li>
+                    </ul>
+                  </li>
+                  <li><div class="ol__row"><span data-en="Example for the reader:">Příklad pro čtenáře:</span><span class="wl">[[Termostat]]</span></div></li>
+                  <li><div class="ol__row"><span class="ol__cb"></span><span data-en="Rewrite the intro">Přepsat úvod</span><span class="pill pill--blue">#task</span></div></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel" role="tabpanel" id="panel-pm" aria-labelledby="tab-pm" hidden>
+            <div>
+              <span class="panel__who"><svg class="ic"><use href="#i-target"/></svg><span data-en="Product managers">Produktoví manažeři</span></span>
+              <h3 data-en="From meeting to roadmap in a minute">Od schůzky k&nbsp;roadmapě za minutu</h3>
+              <p data-en="Meeting notes, decisions and tasks in a single outline. Tasks show up on the sprint board on their own.">Zápisy ze schůzek, rozhodnutí a&nbsp;úkoly v&nbsp;jednom outline. Úkoly se samy objeví na kanbanu sprintu.</p>
+              <ul class="checks">
+                <li><svg class="ic"><use href="#i-check"/></svg><span data-en="A #meeting template with Attendees and Decisions">Šablona #schůzka s&nbsp;Účastníky a&nbsp;Rozhodnutími</span></li>
+                <li><svg class="ic"><use href="#i-check"/></svg><span data-en="A live list of everything you own">Živý seznam všeho, co máš na starost</span></li>
+                <li><svg class="ic"><use href="#i-check"/></svg><span data-en="The roadmap as a month-by-month calendar">Roadmapa jako kalendář po měsících</span></li>
+              </ul>
+            </div>
+            <div class="case-mock" aria-hidden="true">
+              <div class="case-mock__bar"><svg class="ic"><use href="#i-file"/></svg><span data-en="Meetings / Sprint planning.md">Schůzky / Plánování sprintu.md</span></div>
+              <div class="case-mock__body">
+                <div class="case-mock__h" data-en="Sprint 14 planning">Plánování sprintu 14</div>
+                <ul class="ol">
+                  <li><div class="ol__row fld"><b data-en="Attendees">Účastníci</b>:: <span class="wl">[[Petr Svoboda]]</span>, <span class="wl">[[Jana Nováková]]</span></div></li>
+                  <li><div class="ol__row"><span data-en="Decision: onboarding first">Rozhodnutí: nejdřív onboarding</span><span class="pill pill--purple" data-en="#decision">#rozhodnutí</span></div></li>
+                  <li><div class="ol__row"><span class="ol__cb"></span><span data-en="Onboarding wireframes">Wireframy onboardingu</span><span class="pill pill--blue">#task</span><span class="pill pill--blue">Doing</span></div></li>
+                  <li><div class="ol__row"><span data-en="My tasks">Moje úkoly</span></div>
+                    <div class="ol__search"><code>{{search: #task Owner:Petr}}</code></div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel" role="tabpanel" id="panel-life" aria-labelledby="tab-life" hidden>
+            <div>
+              <span class="panel__who"><svg class="ic"><use href="#i-heart"/></svg><span data-en="Personal life">Osobní život</span></span>
+              <h3 data-en="Your private life. Actually private.">Tvůj soukromý život. Opravdu soukromý.</h3>
+              <p data-en="A journal, a reading list, goals and recipes. Nothing ever leaves for someone else’s server.">Deník, čtenářský seznam, cíle i&nbsp;recepty. Nic neodchází na cizí server.</p>
+              <ul class="checks">
+                <li><svg class="ic"><use href="#i-check"/></svg><span data-en="A morning journal in your daily notes">Ranní deník v&nbsp;daily notes</span></li>
+                <li><svg class="ic"><use href="#i-check"/></svg><span data-en="#book with a rating, browsed as a gallery">#kniha s&nbsp;hodnocením, procházená jako galerie</span></li>
+                <li><svg class="ic"><use href="#i-check"/></svg><span data-en="Yearly goals on a kanban board">Roční cíle na kanbanu</span></li>
+              </ul>
+            </div>
+            <div class="case-mock" aria-hidden="true">
+              <div class="case-mock__bar"><svg class="ic"><use href="#i-calendar"/></svg>Daily / 2026-10-02.md</div>
+              <div class="case-mock__body">
+                <div class="case-mock__h" data-en="Morning pages">Ranní stránky</div>
+                <ul class="ol">
+                  <li><div class="ol__row"><span data-en="Grateful for: a walk with the dog, coffee in the sun">Vděčnost: procházka se psem, káva na slunci</span></div></li>
+                  <li><div class="ol__row"><span data-en="Finished">Dočteno:</span><span class="wl">[[The Design of Everyday Things]]</span><span class="pill pill--yellow" data-en="#book">#kniha</span></div>
+                    <ul><li><div class="ol__row fld"><b data-en="Rating">Hodnocení</b>:: ★★★★★</div></li></ul>
+                  </li>
+                  <li><div class="ol__row"><span class="ol__cb"></span><span data-en="Run a half marathon">Uběhnout půlmaraton</span><span class="pill pill--green" data-en="#goal">#cíl</span></div></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ OWN YOUR DATA ============ -->
+    <section class="section" id="data">
+      <div class="container owned">
+        <div>
+          <div class="section-head section-head--left" style="margin-bottom:0">
+            <span class="eyebrow" data-reveal data-en="Your data">Tvoje data</span>
+            <h2 class="h2" data-split data-en="If Loom vanished tomorrow, <em>your notes wouldn’t</em>.">Kdyby Loom zítra zmizel, <em>tvoje poznámky ne</em>.</h2>
+            <p class="lead" data-reveal data-en="No proprietary database, no cloud. Loom works with an ordinary folder of Markdown files that open in any editor.">Žádná proprietární databáze, žádný cloud. Loom pracuje s&nbsp;obyčejnou složkou Markdown souborů, které otevřeš v&nbsp;jakémkoli editoru.</p>
+          </div>
+          <ul class="owned__list" data-stagger>
+            <li data-reveal><span class="ic-wrap"><svg class="ic"><use href="#i-file"/></svg></span><div><b data-en="100% Markdown">100% Markdown</b><span data-en="YAML frontmatter, [[wikilinks]], #tags and ^block-ids. Typical files round-trip byte for byte.">YAML frontmatter, [[wikilinky]], #tagy i&nbsp;^block-id. Běžné soubory zůstanou do posledního bajtu stejné.</span></div></li>
+            <li data-reveal><span class="ic-wrap"><svg class="ic"><use href="#i-layers"/></svg></span><div><b data-en="Opens your Obsidian vault">Otevře tvůj Obsidian vault</b><span data-en="Point Loom at the folder and you’re done. Nothing gets converted.">Stačí vybrat složku. Nic se nepřevádí.</span></div></li>
+            <li data-reveal><span class="ic-wrap"><svg class="ic"><use href="#i-sync"/></svg></span><div><b data-en="Sync it however you like">Synchronizuj čím chceš</b><span data-en="OneDrive, Dropbox, Syncthing or git. It’s just a folder.">OneDrive, Dropbox, Syncthing nebo git. Je to jen složka.</span></div></li>
+            <li data-reveal><span class="ic-wrap"><svg class="ic"><use href="#i-shield"/></svg></span><div><b data-en="Nothing gets lost">Nic se neztratí</b><span data-en="Deleted files go to .trash/, renaming a page fixes every link, and viewing never modifies a file.">Smazané soubory končí v&nbsp;.trash/, přejmenování opraví odkazy a&nbsp;samotné prohlížení soubor nikdy nezmění.</span></div></li>
+          </ul>
+        </div>
+
+        <div class="code" data-reveal aria-hidden="true">
+          <div class="code__bar">
+            <span class="mwin__dots"><i></i><i></i><i></i></span>
+            <span class="tabname"><svg class="ic"><use href="#i-file"/></svg><span data-en="Loom launch.md">Spuštění Loomu.md</span></span>
+          </div>
+          <div class="code__body">
+            <div class="code__tree">
+              <div><svg class="ic"><use href="#i-folder"/></svg><span data-en="My vault">Můj vault</span></div>
+              <div class="d1"><svg class="ic"><use href="#i-folder"/></svg>Daily</div>
+              <div class="d1"><svg class="ic"><use href="#i-folder"/></svg><span data-en="People">Lidé</span></div>
+              <div class="d1"><svg class="ic"><use href="#i-folder"/></svg><span data-en="Projects">Projekty</span></div>
+              <div class="d1 on"><svg class="ic"><use href="#i-file"/></svg><span data-en="Loom launch.md">Spuštění Loomu.md</span></div>
+              <div class="d1"><svg class="ic"><use href="#i-folder"/></svg><span data-en="Whiteboards">Tabule</span></div>
+              <div class="d1"><svg class="ic"><use href="#i-board"/></svg>Product map.canvas</div>
+              <div class="d1 cfg"><svg class="ic"><use href="#i-folder"/></svg>.loom/schema.json</div>
+              <div class="d1 cfg"><svg class="ic"><use href="#i-trash"/></svg>.trash/</div>
+            </div>
+<pre class="md"><span class="ln">1</span><span class="fm">---</span>
+<span class="ln">2</span><span class="key">tags</span>: [<span class="str" data-en="project">projekt</span>]
+<span class="ln">3</span><span class="key">Status</span>: <span class="str">Active</span>
+<span class="ln">4</span><span class="key" data-en="Owner">Vlastník</span>: <span class="str">"[[Jana Nováková]]"</span>
+<span class="ln">5</span><span class="fm">---</span>
+<span class="ln">6</span><span class="box">- [ ]</span> <span data-en="Finish outliner polish">Doladit outliner</span> <span class="tag">#task</span>
+<span class="ln">7</span>	- <span class="fld">Status::</span> Doing
+<span class="ln">8</span>	- <span class="fld" data-en="Due::">Termín::</span> 2026-10-05
+<span class="ln">9</span><span class="box">- [x]</span> <span data-en="Markdown round-trip tests">Testy Markdownu</span> <span class="tag">#task</span>
+<span class="ln">10</span>- <span data-en="Open tasks">Otevřené úkoly</span> <span class="q">{{search: #task Status != Done}}</span>
+<span class="ln">11</span>- <span data-en="Notes from">Poznámky z</span> <span class="q">[[2026-10-02]]</span><span class="cursor"></span></pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ COMPARISON ============ -->
+    <section class="section section--tight" id="srovnani">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow" data-reveal data-en="Comparison">Srovnání</span>
+          <h2 class="h2" data-split data-en="Why not <em>what you already have</em>?">Proč ne <em>to, co už máš</em>?</h2>
+        </div>
+        <div class="compare" data-reveal>
+          <table>
+            <thead>
+              <tr>
+                <th scope="col"><span class="sr-only" data-en="Feature">Funkce</span></th>
+                <th scope="col" data-en="Cloud all-in-one apps">Cloudové all-in-one aplikace</th>
+                <th scope="col" data-en="Markdown editors">Markdown editory</th>
+                <th scope="col" class="is-loom"><img src="assets/img/logo.svg" alt="">Loom</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row" data-en="Works 100% offline">Funguje 100% offline</th><td><span class="no"><svg class="ic"><use href="#i-x"/></svg></span></td><td><span class="yes"><svg class="ic"><use href="#i-check"/></svg></span></td><td class="is-loom"><span class="yes"><svg class="ic"><use href="#i-check"/></svg></span></td></tr>
+              <tr><th scope="row" data-en="Data as plain files on your disk">Data jako obyčejné soubory na disku</th><td><span class="no"><svg class="ic"><use href="#i-x"/></svg></span></td><td><span class="yes"><svg class="ic"><use href="#i-check"/></svg></span></td><td class="is-loom"><span class="yes"><svg class="ic"><use href="#i-check"/></svg></span></td></tr>
+              <tr><th scope="row" data-en="Outliner where every bullet is a node">Outliner, kde je každá odrážka uzel</th><td><span class="meh" data-en="partly">částečně</span></td><td><span class="meh" data-en="partly">částečně</span></td><td class="is-loom"><span class="yes"><svg class="ic"><use href="#i-check"/></svg></span></td></tr>
+              <tr><th scope="row" data-en="Table, kanban &amp; calendar views">Tabulka, kanban a&nbsp;kalendář</th><td><span class="yes"><svg class="ic"><use href="#i-check"/></svg></span></td><td><span class="meh" data-en="plugins">pluginy</span></td><td class="is-loom"><span class="yes"><svg class="ic"><use href="#i-check"/></svg></span></td></tr>
+              <tr><th scope="row" data-en="Infinite whiteboards">Nekonečné tabule</th><td><span class="meh" data-en="partly">částečně</span></td><td><span class="meh" data-en="plugins">pluginy</span></td><td class="is-loom"><span class="yes"><svg class="ic"><use href="#i-check"/></svg></span></td></tr>
+              <tr><th scope="row" data-en="All in one app, no plugins">Vše v&nbsp;jedné aplikaci bez pluginů</th><td><span class="yes"><svg class="ic"><use href="#i-check"/></svg></span></td><td><span class="no"><svg class="ic"><use href="#i-x"/></svg></span></td><td class="is-loom"><span class="yes"><svg class="ic"><use href="#i-check"/></svg></span></td></tr>
+              <tr><th scope="row" data-en="One-time payment">Jednorázová platba</th><td><span class="no"><svg class="ic"><use href="#i-x"/></svg></span></td><td><span class="meh" data-en="varies">různě</span></td><td class="is-loom"><span class="yes"><svg class="ic"><use href="#i-check"/></svg></span></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="compare__note" data-en="A general comparison of tool categories, not of specific products.">Obecné srovnání kategorií nástrojů, ne konkrétních produktů.</p>
+      </div>
+    </section>
+
+    <!-- ============ TESTIMONIALS ============
+         PLACEHOLDER COPY. Replace with real quotes (with permission) from beta testers before going live.
+         Fictional reviews presented as real are illegal under Czech/EU consumer law. -->
+    <section class="section voices" id="recenze">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow" data-reveal data-en="Early users">První uživatelé</span>
+          <h2 class="h2" data-split data-en="People who <em>stopped searching</em>.">Lidé, kteří <em>přestali hledat</em>.</h2>
+          <!-- Remove this note once the quotes below are replaced with real ones -->
+          <p class="voices__note" data-reveal data-en="Sample quotes for illustration. Real reviews from the beta are coming soon.">Ukázkové ohlasy pro ilustraci. Skutečné recenze z&nbsp;bety doplníme brzy.</p>
+        </div>
+      </div>
+      <div class="vrow" data-reveal>
+        <div class="vrow__track" data-marquee>
+          <figure class="quote">
+            <div class="quote__stars" aria-label="5/5"><svg class="ic"><use href="#i-star"/></svg><svg class="ic"><use href="#i-star"/></svg><svg class="ic"><use href="#i-star"/></svg><svg class="ic"><use href="#i-star"/></svg><svg class="ic"><use href="#i-star"/></svg></div>
+            <p data-en="“Tasks, meeting notes and clients finally live in one place. And I don’t pay anything monthly.”">„Konečně mám úkoly, poznámky ze schůzek i&nbsp;klienty na jednom místě. A&nbsp;nic neplatím měsíčně.“</p>
+            <footer><span class="avatar">KM</span><div><b>Klára M.</b><span data-en="UX consultant">UX konzultantka</span></div></footer>
+          </figure>
+          <figure class="quote">
+            <div class="quote__stars" aria-label="5/5"><svg class="ic"><use href="#i-star"/></svg><svg class="ic"><use href="#i-star"/></svg><svg class="ic"><use href="#i-star"/></svg><svg class="ic"><use href="#i-star"/></svg><svg class="ic"><use href="#i-star"/></svg></div>
+            <p data-en="“I moved over from Obsidian in an afternoon. Opened my vault and everything was just there.”">„Přešel jsem z&nbsp;Obsidianu za jedno odpoledne. Otevřel jsem svůj vault a&nbsp;všechno tam prostě bylo.“</p>
+            <footer><span class="avatar">MK</span><div><b>Martin K.</b><span data-en="Backend developer">Backend vývojář</span></div></footer>
+          </figure>
+          <figure class="quote">
+            <div class="quote__stars" aria-label="5/5"><svg class="ic"><use href="#i-star"/></svg><svg class="ic"><use href="#i-star"/></svg><svg class="ic"><use href="#i-star"/></svg><svg class="ic"><use href="#i-star"/></svg><svg class="ic"><use href="#i-star"/></svg></div>
+            <p data-en="“Supertags changed how I read. Every book is a record, every idea a link.”">„Supertagy mi změnily, jak čtu. Každá kniha je záznam, každá myšlenka odkaz.“</p>
+            <footer><span class="avatar">TD</span><div><b>Tereza D.</b><span data-en="Psychology student">Studentka psychologie</span></div></footer>
+          </figure>
+          <figure class="quote">
+            <div class="quote__stars" aria-label="5/5"><svg class="ic"><use href="#i-star"/></svg><svg class="ic"><use href="#i-star"/></svg><svg class="ic"><use href="#i-star"/></svg><svg class="ic"><use href="#i-star"/></svg><svg class="ic"><use href="#i-star"/></svg></div>
+            <p data-en="“A whiteboard for my thesis outline, an outline for writing. No more switching apps.”">„Tabule na osnovu disertace, outline na psaní. Žádné přepínání mezi aplikacemi.“</p>
+            <footer><span class="avatar">OP</span><div><b>Ondřej P.</b><span data-en="PhD candidate">Doktorand</span></div></footer>
+          </figure>
+        </div>
+      </div>
+      <div class="vrow vrow--rev" data-reveal>
+        <div class="vrow__track" data-marquee>
+          <figure class="quote">
+            <div class="quote__stars" aria-label="5/5"><svg class="ic"><use href="#i-star"/></svg><svg class="ic"><use href="#i-star"/></svg><svg class="ic"><use href="#i-star"/></svg><svg class="ic"><use href="#i-star"/></svg><svg class="ic"><use href="#i-star"/></svg></div>
+            <p data-en="“The speed is addictive. Ctrl+K and I’m exactly where I need to be.”">„Ta rychlost je návyková. Ctrl+K a&nbsp;jsem přesně tam, kde potřebuju.“</p>
+            <footer><span class="avatar">LV</span><div><b>Lukáš V.</b><span>Product manager</span></div></footer>
+          </figure>
+          <figure class="quote">
+            <div class="quote__stars" aria-label="5/5"><svg class="ic"><use href="#i-star"/></svg><svg class="ic"><use href="#i-star"/></svg><svg class="ic"><use href="#i-star"/></svg><svg class="ic"><use href="#i-star"/></svg><svg class="ic"><use href="#i-star"/></svg></div>
+            <p data-en="“I search for ‘schuzka’ and it finds ‘schůzka’. A small thing, but exactly what other apps get wrong.”">„Hledám ‚schuzka‘ a&nbsp;najde ‚schůzka‘. Maličkost, ale přesně tohle jinde chybí.“</p>
+            <footer><span class="avatar">JH</span><div><b>Jana H.</b><span data-en="Project manager">Projektová manažerka</span></div></footer>
+          </figure>
+          <figure class="quote">
+            <div class="quote__stars" aria-label="5/5"><svg class="ic"><use href="#i-star"/></svg><svg class="ic"><use href="#i-star"/></svg><svg class="ic"><use href="#i-star"/></svg><svg class="ic"><use href="#i-star"/></svg><svg class="ic"><use href="#i-star"/></svg></div>
+            <p data-en="“999 CZK once versus 300 CZK every month. The maths is simple.”">„999 Kč jednou, nebo 300 Kč každý měsíc. Ta matematika je jednoduchá.“</p>
+            <footer><span class="avatar">PS</span><div><b>Petr S.</b><span data-en="Freelance copywriter">Freelance copywriter</span></div></footer>
+          </figure>
+          <figure class="quote">
+            <div class="quote__stars" aria-label="5/5"><svg class="ic"><use href="#i-star"/></svg><svg class="ic"><use href="#i-star"/></svg><svg class="ic"><use href="#i-star"/></svg><svg class="ic"><use href="#i-star"/></svg><svg class="ic"><use href="#i-star"/></svg></div>
+            <p data-en="“Daily notes plus a kanban board is my whole morning routine. Five minutes and I know my day.”">„Daily notes a&nbsp;kanban jsou celá moje ranní rutina. Pět minut a&nbsp;vím, co mě dnes čeká.“</p>
+            <footer><span class="avatar">ER</span><div><b>Eva R.</b><span data-en="Marketing lead">Vedoucí marketingu</span></div></footer>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PRICING ============ -->
+    <section class="section pricing" id="cena">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow" data-reveal data-en="Pricing">Cena</span>
+          <h2 class="h2" data-split data-en="Pay once. <em>Keep it forever.</em>">Zaplať jednou. <em>Používej navždy.</em></h2>
+          <p class="lead" data-reveal data-en="No subscription, no tiers, no “Pro” features behind a paywall. One licence, everything included.">Žádné předplatné, žádné tarify, žádné „Pro“ funkce za paywallem. Jedna licence, všechno v&nbsp;ceně.</p>
+        </div>
+
+        <div class="plans" data-stagger>
+          <div class="plan" data-reveal>
+            <h3 data-en="Free trial">Zkušební verze</h3>
+            <p class="plan__desc" data-en="Every feature for 14 days. No card, no strings attached.">Všechny funkce na 14 dní. Bez karty, bez závazků.</p>
+            <div class="plan__price"><b data-en="0 CZK">0 Kč</b></div>
+            <div class="plan__sub" data-en="14 days of the full version">14 dní plné verze</div>
+            <ul>
+              <li><svg class="ic"><use href="#i-check"/></svg><span data-en="The full version, no limits">Plná verze bez omezení</span></li>
+              <li><svg class="ic"><use href="#i-check"/></svg><span data-en="No credit card required">Bez platební karty</span></li>
+              <li><svg class="ic"><use href="#i-check"/></svg><span data-en="A demo vault to get you started">Ukázkový vault pro rychlý start</span></li>
+              <li><svg class="ic"><use href="#i-check"/></svg><span data-en="Your notes stay yours after the trial">Poznámky ti zůstanou i&nbsp;po skončení</span></li>
+            </ul>
+            <a class="btn btn--ghost btn--lg" href="download.html" data-trial><svg class="ic"><use href="#i-download"/></svg><span data-en="Download for free">Stáhnout zdarma</span></a>
+          </div>
+
+          <div class="plan plan--pro on-dark" data-reveal>
+            <span class="plan__badge" data-en="Launch price">Zaváděcí cena</span>
+            <h3 data-en="Loom lifetime licence">Loom: doživotní licence</h3>
+            <p class="plan__desc" data-en="Pay once, own it forever. No subscription, no tiers.">Jednou zaplatíš, navždy máš. Žádné předplatné, žádné tarify.</p>
+            <div class="plan__price"><b data-cfg="price">999 Kč</b><span data-cfg="priceNote">jednorázově</span></div>
+            <div class="plan__sub" data-en="Final price including VAT">Konečná cena včetně DPH</div>
+            <ul>
+              <li><svg class="ic"><use href="#i-check"/></svg><span data-en="Every feature, now and in all 1.x versions">Všechny funkce, teď i&nbsp;ve všech verzích 1.x</span></li>
+              <li><svg class="ic"><use href="#i-check"/></svg><span data-en="Use it on up to 3 of your own computers">Licence pro 3 vlastní počítače</span></li>
+              <li><svg class="ic"><use href="#i-check"/></svg><span data-en="Licence key and download link by e-mail, instantly">Klíč a&nbsp;odkaz ke stažení ihned e-mailem</span></li>
+              <li><svg class="ic"><use href="#i-check"/></svg><span data-en="A tax receipt, automatically">Daňový doklad automaticky</span></li>
+              <li><svg class="ic"><use href="#i-check"/></svg><span data-en="Support straight from the developer">Podpora přímo od vývojáře</span></li>
+            </ul>
+            <a class="btn btn--primary btn--lg" href="#cena" data-buy data-magnetic><svg class="ic"><use href="#i-card"/></svg><span data-en="Buy Loom">Koupit Loom</span><span class="btn-price" data-cfg="price">999 Kč</span></a>
+            <div class="plan__pay"><svg class="ic"><use href="#i-shield"/></svg><span data-en="Secure payment by card, Apple Pay, Google Pay or PayPal via Lemon Squeezy">Bezpečná platba kartou, Apple Pay, Google Pay nebo PayPalem přes Lemon Squeezy</span></div>
+          </div>
+        </div>
+
+        <div class="calc" data-calc data-reveal>
+          <div>
+            <h3 data-en="How much will you save compared with subscriptions?">Kolik ušetříš oproti předplatnému?</h3>
+            <p data-en="Slide to what you pay today for apps for notes, tasks and whiteboards.">Posuň jezdcem podle toho, kolik dnes platíš za aplikace na poznámky, úkoly a&nbsp;tabule.</p>
+            <label for="calc-month"><span data-en="I pay per month">Měsíčně platím</span><output data-calc-month-out>250 Kč</output></label>
+            <input class="range" type="range" id="calc-month" min="0" max="1000" step="50" value="250" data-calc-month>
+            <div class="seg" role="group" aria-label="Období" data-en-aria-label="Period">
+              <button type="button" data-years="1" aria-pressed="false" data-en="1 year">1 rok</button>
+              <button type="button" data-years="3" aria-pressed="true" data-en="3 years">3 roky</button>
+              <button type="button" data-years="5" aria-pressed="false" data-en="5 years">5 let</button>
+            </div>
+          </div>
+          <div class="calc__out" aria-live="polite">
+            <div class="calc__line"><span data-calc-sub-label>Předplatné za 3 roky</span><b><s data-calc-sub>9 000 Kč</s></b></div>
+            <div class="calc__line"><span>Loom</span><b data-cfg="price">999 Kč</b></div>
+            <div class="calc__save"><span data-calc-save-label>Ušetříš</span><b data-calc-save>8 001 Kč</b></div>
+          </div>
+        </div>
+
+        <h3 class="flow__title" data-reveal data-en="How buying works">Jak probíhá nákup</h3>
+        <ol class="flow" data-stagger>
+          <li data-reveal><span class="ic-wrap"><svg class="ic"><use href="#i-card"/></svg></span><b data-en="Pay securely">Zaplať bezpečně</b><span data-en="The checkout opens right on this page. Card, Apple Pay, Google Pay or PayPal.">Pokladna se otevře přímo na stránce. Kartou, Apple Pay, Google Pay nebo PayPalem.</span></li>
+          <li data-reveal><span class="ic-wrap"><svg class="ic"><use href="#i-mail"/></svg></span><b data-en="Check your inbox">Zkontroluj e-mail</b><span data-en="Within minutes you get your licence key, the download link and a tax receipt.">Do pár minut ti přijde licenční klíč, odkaz ke stažení a&nbsp;daňový doklad.</span></li>
+          <li data-reveal><span class="ic-wrap"><svg class="ic"><use href="#i-sparkle"/></svg></span><b data-en="Activate and create">Aktivuj a&nbsp;tvoř</b><span data-en="Install Loom, paste the key and carry on with the notes from your trial.">Nainstaluj Loom, vlož klíč a&nbsp;pokračuj ve svých poznámkách z&nbsp;trialu.</span></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============ FAQ ============ -->
+    <section class="section" id="faq">
+      <div class="container faq-wrap">
+        <div class="section-head section-head--left">
+          <span class="eyebrow" data-reveal>FAQ</span>
+          <h2 class="h2" data-split data-en="Questions <em>&amp; answers</em>">Otázky <em>a&nbsp;odpovědi</em></h2>
+          <p class="lead" data-reveal data-en="Missing an answer? Write to me, I read every message.">Odpověď tu není? Napiš mi, čtu každou zprávu.</p>
+          <a class="btn btn--ghost" href="#kontakt" data-reveal><svg class="ic"><use href="#i-mail"/></svg><span data-en="Ask a question">Zeptat se</span></a>
+        </div>
+        <div class="faq" data-stagger>
+          <details data-reveal open>
+            <summary><span data-en="Is it really subscription-free?">Je to opravdu bez předplatného?</span><span class="pm" aria-hidden="true"></span></summary>
+            <div class="faq__a"><p data-en="Yes. You pay 999 CZK once and Loom is yours. Every 1.x update is free.">Ano. Zaplatíš 999 Kč jednou a&nbsp;Loom je tvůj. Všechny aktualizace verze 1.x dostaneš zdarma.</p></div>
+          </details>
+          <details data-reveal>
+            <summary><span data-en="What happens after the 14-day trial?">Co se stane po 14 dnech zkušební verze?</span><span class="pm" aria-hidden="true"></span></summary>
+            <div class="faq__a"><p data-en="Enter a licence key and keep going. If you decide not to buy, your notes stay with you: they are ordinary Markdown files on your disk.">Zadáš licenční klíč a&nbsp;pokračuješ. Když se rozhodneš nekoupit, poznámky ti zůstanou. Jsou to obyčejné Markdown soubory na tvém disku.</p></div>
+          </details>
+          <details data-reveal>
+            <summary><span data-en="Where is my data stored?">Kde jsou uložená moje data?</span><span class="pm" aria-hidden="true"></span></summary>
+            <div class="faq__a"><p data-en="In a folder you choose. Next to it, Loom only keeps a fast search index (SQLite) in its app data. You can delete it at any time and it rebuilds itself.">Ve složce, kterou si vybereš. Loom si k&nbsp;ní v&nbsp;datech aplikace vede jen rychlý vyhledávací index (SQLite). Ten můžeš kdykoli smazat a&nbsp;sestaví se znovu.</p></div>
+          </details>
+          <details data-reveal>
+            <summary><span data-en="Does Loom work with my Obsidian vault?">Funguje Loom s&nbsp;mým Obsidian vaultem?</span><span class="pm" aria-hidden="true"></span></summary>
+            <div class="faq__a"><p data-en="Yes. Open the vault folder and Loom reads it as is. The Markdown stays compatible, whiteboards are saved as JSON Canvas, and Loom’s own settings live in a .loom/ folder, just like .obsidian/.">Ano. Otevři složku vaultu a&nbsp;Loom ji načte tak, jak je. Markdown zůstává kompatibilní, tabule se ukládají jako JSON Canvas a&nbsp;nastavení Loomu žije ve složce .loom/, podobně jako .obsidian/.</p></div>
+          </details>
+          <details data-reveal>
+            <summary><span data-en="Which systems does it run on?">Na jakých systémech běží?</span><span class="pm" aria-hidden="true"></span></summary>
+            <div class="faq__a"><p data-en="Windows 10 and 11 (64-bit). macOS and Linux versions are planned. Write to me and you’ll be the first to know.">Na Windows 10 a&nbsp;11 (64 bit). Verze pro macOS a&nbsp;Linux jsou v&nbsp;plánu. Napiš mi a&nbsp;dozvíš se to jako první.</p></div>
+          </details>
+          <details data-reveal>
+            <summary><span data-en="How many computers can I use it on?">Na kolik počítačů můžu licenci použít?</span><span class="pm" aria-hidden="true"></span></summary>
+            <div class="faq__a"><p data-en="Up to 3 of your own computers. Need licences for a team? Get in touch.">Až na 3 vlastní počítače. Potřebuješ licence pro tým? Ozvi se.</p></div>
+          </details>
+          <details data-reveal>
+            <summary><span data-en="Do I need an internet connection?">Potřebuju připojení k&nbsp;internetu?</span><span class="pm" aria-hidden="true"></span></summary>
+            <div class="faq__a"><p data-en="Only to download and activate your licence. After that, Loom works completely offline.">Jen ke stažení a&nbsp;aktivaci licence. Potom Loom funguje úplně offline.</p></div>
+          </details>
+          <details data-reveal>
+            <summary><span data-en="Will I get an invoice?">Dostanu fakturu?</span><span class="pm" aria-hidden="true"></span></summary>
+            <div class="faq__a"><p data-en="Yes. Lemon Squeezy e-mails you a tax receipt right after payment. Buying as a company? Just add your VAT ID at checkout.">Ano. Lemon Squeezy ti hned po platbě pošle daňový doklad e-mailem. Kupuješ na firmu? Stačí v&nbsp;pokladně vyplnit DIČ.</p></div>
+          </details>
+          <details data-reveal>
+            <summary><span data-en="What if Loom isn’t for me?">Co když mi Loom nesedne?</span><span class="pm" aria-hidden="true"></span></summary>
+            <div class="faq__a"><p data-en="That’s exactly why the 14-day trial exists: try everything for free and buy only once you know it fits. And if something still goes wrong, write to me and we’ll sort it out.">Přesně proto existuje 14denní zkušební verze. Vyzkoušej si všechno zdarma a&nbsp;kup, až když víš, že ti sedí. A&nbsp;kdyby i&nbsp;tak něco nefungovalo, napiš mi a&nbsp;domluvíme se.</p></div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CONTACT ============ -->
+    <section class="section section--tight" id="kontakt">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow" data-reveal data-en="Contact">Kontakt</span>
+          <h2 class="h2" data-split data-en="Behind Loom is <em>a person</em>, not a corporation.">Za Loomem je <em>člověk</em>, ne korporace.</h2>
+        </div>
+        <div class="contact" data-stagger>
+          <div class="author" data-reveal>
+            <div class="author__me">
+              <span class="author__avatar">TL</span>
+              <div><b data-cfg="author">Tomáš Leidl</b><span data-en="Development, design &amp; support">Vývoj, design a&nbsp;podpora</span></div>
+            </div>
+            <p data-en="Loom is an independent project. No investors and no pressure to sell you a subscription, just a tool I use every single day.">Loom je nezávislý projekt. Žádní investoři a&nbsp;žádný tlak na předplatné, jen nástroj, který denně používám.</p>
+            <p data-en="I read every e-mail personally and usually reply within two days. Bug reports, feature ideas or a team licence: write to me.">Každý e-mail čtu osobně a&nbsp;obvykle odpovím do dvou dnů. Nahlášení chyby, nápad na funkci nebo licence pro tým: napiš mi.</p>
+            <div class="author__sig">Tomáš</div>
+            <div class="mailchip">
+              <svg class="ic"><use href="#i-mail"/></svg>
+              <a href="mailto:tomas.leidl@gmail.com" data-cfg="email">tomas.leidl@gmail.com</a>
+              <button type="button" data-copy-email><svg class="ic"><use href="#i-copy"/></svg><span data-en="Copy">Kopírovat</span></button>
+            </div>
+          </div>
+
+          <form class="form" data-form novalidate data-reveal>
+            <h3 data-en="Write to me">Napiš mi</h3>
+            <div class="form__row">
+              <div class="field">
+                <label for="f-name" data-en="Name">Jméno</label>
+                <input id="f-name" name="name" autocomplete="name" required placeholder="Jak ti mám říkat?" data-en-placeholder="What should I call you?">
+              </div>
+              <div class="field">
+                <label for="f-email">E-mail</label>
+                <input id="f-email" name="email" type="email" autocomplete="email" required placeholder="ty@example.com" data-en-placeholder="you@example.com">
+              </div>
+            </div>
+            <div class="field">
+              <label for="f-topic" data-en="Topic">Téma</label>
+              <select id="f-topic" name="topic">
+                <option data-en="A question about Loom">Dotaz k&nbsp;aplikaci</option>
+                <option data-en="Team or company licence">Licence pro tým nebo firmu</option>
+                <option data-en="Bug report">Nahlášení chyby</option>
+                <option data-en="Feature idea">Nápad na funkci</option>
+                <option data-en="Collaboration">Spolupráce</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="f-msg" data-en="Message">Zpráva</label>
+              <textarea id="f-msg" name="message" required placeholder="Co máš na srdci?" data-en-placeholder="What’s on your mind?"></textarea>
+            </div>
+            <input class="hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
+            <p class="form__note" data-en="I’ll only use your details to reply to your message.">Údaje použiju jen k&nbsp;odpovědi na tvoji zprávu.</p>
+            <button class="btn btn--primary btn--lg" type="submit"><span data-en="Send message">Odeslat zprávu</span><svg class="ic ic--arrow"><use href="#i-arrow"/></svg></button>
+            <p class="form__status" data-form-status role="status"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FINAL CTA ============ -->
+    <section class="section section--tight">
+      <div class="container">
+        <div class="final" data-reveal>
+          <img src="assets/img/logo.svg" alt="">
+          <h2 class="h2" data-split data-en="Your thoughts deserve <em>a better fabric</em>.">Tvoje myšlenky si zaslouží <em>lepší tkaninu</em>.</h2>
+          <p data-en="Download Loom and try it free for 14 days. No card, no sign-up.">Stáhni Loom a&nbsp;vyzkoušej ho 14 dní zdarma. Bez karty a&nbsp;bez registrace.</p>
+          <div class="btn-row">
+            <a class="btn btn--white btn--lg" href="download.html" data-trial data-magnetic><svg class="ic"><use href="#i-download"/></svg><span data-en="Try free for 14 days">Vyzkoušet 14 dní zdarma</span></a>
+            <a class="btn btn--ghost btn--lg on-dark" style="background:rgba(255,255,255,.08)" href="#cena" data-buy data-magnetic><span data-en="Buy">Koupit</span><span class="btn-price" data-cfg="price">999 Kč</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <a class="brand" href="#top"><img src="assets/img/logo.svg" alt="" width="32" height="32">Loom</a>
+          <p data-en="An outliner, whiteboards and databases in one offline app. For people who want to think, not search.">Outliner, tabule a&nbsp;databáze v&nbsp;jedné offline aplikaci. Pro lidi, kteří chtějí přemýšlet, ne hledat.</p>
+        </div>
+        <div>
+          <h4 data-en="Product">Produkt</h4>
+          <ul>
+            <li><a href="#funkce" data-en="Features">Funkce</a></li>
+            <li><a href="#jak" data-en="How it works">Jak to funguje</a></li>
+            <li><a href="#pouziti" data-en="Use cases">Použití</a></li>
+            <li><a href="#cena" data-en="Pricing">Cena</a></li>
+            <li><a href="download.html" data-trial data-en="Download">Stáhnout</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 data-en="Support">Podpora</h4>
+          <ul>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#kontakt" data-en="Contact">Kontakt</a></li>
+            <li><a href="mailto:tomas.leidl@gmail.com?subject=Loom%3A%20bug" data-cfg-mail="bug" data-en="Report a bug">Nahlásit chybu</a></li>
+            <li><a href="mailto:tomas.leidl@gmail.com?subject=Loom%3A%20team" data-cfg-mail="team" data-en="Team licence">Licence pro tým</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 data-en="Legal">Právní</h4>
+          <ul>
+            <!-- TODO: link your real documents before launch -->
+            <li><a href="#" data-todo data-en="Terms of sale">Obchodní podmínky</a></li>
+            <li><a href="#" data-todo data-en="Privacy policy">Ochrana osobních údajů</a></li>
+            <li><a href="#" data-todo data-en="Licence agreement (EULA)">Licenční ujednání (EULA)</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span data-en="© 2026 Tomáš Leidl. All rights reserved.">© 2026 Tomáš Leidl. Všechna práva vyhrazena.</span>
+        <span data-en="Made with love for bullet points.">Vyrobeno s&nbsp;láskou k&nbsp;odrážkám.</span>
+      </div>
+    </div>
+  </footer>
+
+  <div class="toast" role="status" aria-live="polite" data-toast><svg class="ic"><use href="#i-sparkle"/></svg><span data-toast-text></span></div>
+
+  <!-- GSAP 3.15 (standard no-charge licence) and Lenis 1.3 (MIT), self-hosted: no third-party CDN -->
+  <script src="assets/vendor/gsap.min.js" defer></script>
+  <script src="assets/vendor/ScrollTrigger.min.js" defer></script>
+  <script src="assets/vendor/lenis.min.js" defer></script>
+  <script src="assets/js/config.js" defer></script>
+  <script src="assets/js/main.js" defer></script>
+</body>
+</html>

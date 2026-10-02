@@ -1,0 +1,50 @@
+<!doctype html>
+<!-- Source of assets/img/og.png (1200×630 social preview). Re-render: screenshot this page at 1200×630. Not linked from the site. -->
+<html lang="cs">
+<head>
+  <meta charset="utf-8">
+  <meta name="robots" content="noindex">
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Inter:wght@400..700&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    html, body { width: 1200px; height: 630px; margin: 0; overflow: hidden; }
+    .og { position: relative; width: 1200px; height: 630px; overflow: hidden; isolation: isolate; display: grid; grid-template-columns: 1.05fr 0.95fr; align-items: center; gap: 40px; padding: 0 70px; }
+    .og .aurora { inset: -20%; height: auto; }
+    .og h1 { font-size: 92px; line-height: 0.98; letter-spacing: -0.04em; margin: 22px 0 18px; }
+    .og p { margin: 0; font-size: 25px; line-height: 1.45; color: var(--ink-2); max-width: 520px; }
+    .og .brand { font-size: 34px; gap: 14px; }
+    .og .brand img { width: 56px; height: 56px; }
+    .og .chips2 { display: flex; gap: 10px; margin-top: 28px; }
+    .og .chips2 span { padding: 10px 18px; border-radius: 999px; background: rgba(255,255,255,.85); border: 1px solid var(--line); font: 600 19px/1 var(--f-body); color: var(--ink); box-shadow: var(--shadow-1); }
+    .og .chips2 span:first-child { background: var(--grad); color: #fff; border: 0; }
+    .card { border-radius: 22px; background: #fff; border: 1px solid var(--line); box-shadow: var(--shadow-3); padding: 26px 28px; font: 400 17px/1.4 var(--f-body); transform: rotate(-2deg); }
+    .card .t { font: 700 30px/1.1 var(--f-body); letter-spacing: -0.02em; margin-bottom: 16px; }
+    .card .r { display: flex; align-items: center; gap: 10px; height: 40px; }
+    .card .r::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: #6b6b78; }
+    .card .f { margin-left: 28px; color: var(--ink-3); font-size: 15px; display: flex; gap: 8px; align-items: center; height: 32px; }
+    .card .pill { height: 26px; font-size: 14px; padding: 0 10px; }
+    .card .cb { width: 18px; height: 18px; border-radius: 5px; border: 1.5px solid #c7c7d1; }
+  </style>
+</head>
+<body>
+  <div class="og">
+    <div class="aurora"><span></span><span></span><span></span><span></span></div>
+    <div class="grid-bg"></div>
+    <div>
+      <div class="brand"><img src="assets/img/logo.svg" alt="">Loom</div>
+      <h1 class="h1">Utkej si <em>druhý mozek</em>.</h1>
+      <p>Outliner, tabule a databáze v&nbsp;jedné offline aplikaci. Čistý Markdown.</p>
+      <div class="chips2"><span>999 Kč jednorázově</span><span>14 dní zdarma</span></div>
+    </div>
+    <div class="card">
+      <div class="t">Spuštění Loomu</div>
+      <div class="r"><span class="cb"></span>Doladit outliner <span class="pill pill--blue">#task</span></div>
+      <div class="f">Status <span class="pill pill--blue">Doing</span> Priorita <span class="pill pill--red">High</span></div>
+      <div class="r"><span class="cb"></span>Kanban + kalendář <span class="pill pill--blue">#task</span></div>
+      <div class="f">Status <span class="pill pill--gray">Todo</span> Termín <span class="pill pill--blue">pá 9. 10.</span></div>
+      <div class="r"><span class="cb"></span>Wireframy webu <span class="pill pill--blue">#task</span></div>
+      <div class="f">Status <span class="pill pill--blue">Doing</span> Priorita <span class="pill pill--yellow">Medium</span></div>
+    </div>
+  </div>
+</body>
+</html>
