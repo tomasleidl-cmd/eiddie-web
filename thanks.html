@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title data-en="Thank you: Loom">Děkuju: Loom</title>
+  <title data-en="Thank you: Eiddie">Děkuju: Eiddie</title>
   <meta name="robots" content="noindex">
   <meta name="theme-color" content="#6c5cff">
   <link rel="icon" href="assets/img/logo.svg" type="image/svg+xml">
@@ -14,7 +14,7 @@
   <script>
     (function () {
       var d = document.documentElement, lang = null;
-      try { lang = new URLSearchParams(location.search).get('lang') || localStorage.getItem('loom-lang'); } catch (e) {}
+      try { lang = new URLSearchParams(location.search).get('lang') || localStorage.getItem('eiddie-lang'); } catch (e) {}
       if (!lang) lang = /^(cs|sk)/i.test(navigator.language || '') ? 'cs' : 'en';
       d.dataset.lang = lang === 'en' ? 'en' : 'cs';
       if (d.dataset.lang === 'en') { d.classList.add('i18n-pending'); setTimeout(function () { d.classList.remove('i18n-pending'); }, 1500); }
@@ -33,7 +33,7 @@
 
   <header class="nav is-scrolled">
     <div class="container nav__inner">
-      <a class="brand" href="index.html"><img src="assets/img/logo.svg" alt="" width="32" height="32">Loom</a>
+      <a class="brand" href="index.html"><img src="assets/img/logo.svg" alt="" width="32" height="32">Eiddie</a>
       <div class="nav__right">
         <div class="lang" role="group" aria-label="Jazyk / Language">
           <button type="button" data-lang-btn="cs" aria-pressed="true">CZ</button>
@@ -57,12 +57,12 @@
         <!-- TODO: step 3 assumes a licence screen in the app (Settings → Licence); adjust once it exists. -->
         <ol class="install">
           <li><div><b data-en="Open the e-mail from Lemon Squeezy">Otevři e-mail od Lemon Squeezy</b><span data-en="Nothing there? Check your spam folder, or write to me and I’ll sort it out.">Nic nepřišlo? Mrkni do spamu, nebo mi napiš a&nbsp;vyřešíme to.</span></div></li>
-          <li><div><b data-en="Download and install Loom">Stáhni a&nbsp;nainstaluj Loom</b><span data-en="Already running the trial? Keep it, there’s nothing to reinstall.">Máš už nainstalovaný trial? Nech ho být, nic se nepřeinstalovává.</span></div></li>
-          <li><div><b data-en="Paste your licence key">Vlož licenční klíč</b><span data-en="In Loom open Settings → Licence and paste the key. It works on up to 3 of your computers.">V&nbsp;Loomu otevři Nastavení → Licence a&nbsp;vlož klíč. Platí až pro 3 tvoje počítače.</span></div></li>
+          <li><div><b data-en="Download and install Eiddie">Stáhni a&nbsp;nainstaluj Eiddie</b><span data-en="Already running the trial? Keep it, there’s nothing to reinstall.">Máš už nainstalovaný trial? Nech ho být, nic se nepřeinstalovává.</span></div></li>
+          <li><div><b data-en="Paste your licence key">Vlož licenční klíč</b><span data-en="In Eiddie open Settings → Licence and paste the key. It works on up to 3 of your computers.">V&nbsp;aplikaci Eiddie otevři Nastavení → Licence a&nbsp;vlož klíč. Platí až pro 3 tvoje počítače.</span></div></li>
         </ol>
 
         <div class="btn-row" style="justify-content:center">
-          <a class="btn btn--primary btn--lg" href="downloads/Loom-Setup.exe" download data-trial-file><svg class="ic"><use href="#i-download"/></svg><span data-en="Download Loom">Stáhnout Loom</span></a>
+          <a class="btn btn--primary btn--lg" href="downloads/Eiddie-Setup.exe" download data-trial-file><svg class="ic"><use href="#i-download"/></svg><span data-en="Download Eiddie">Stáhnout Eiddie</span></a>
           <a class="btn btn--ghost btn--lg" href="mailto:tomas.leidl@gmail.com" data-cfg-mail="support"><svg class="ic"><use href="#i-mail"/></svg><span data-en="Write to me">Napsat mi</span></a>
         </div>
       </div>

@@ -1,12 +1,12 @@
 /*
- * Loom website: interactions and scroll animations.
+ * Eiddie website: interactions and scroll animations.
  * Everything here is progressive enhancement: without GSAP / Lenis (CDN blocked)
  * the page stays fully readable and every button still works.
  */
 (() => {
   'use strict';
 
-  const C = window.LOOM_CONFIG || {};
+  const C = window.EIDDIE_CONFIG || {};
   const root = document.documentElement;
   const $ = (s, el = document) => el.querySelector(s);
   const $$ = (s, el = document) => Array.from(el.querySelectorAll(s));
@@ -42,7 +42,7 @@
       years: { 1: '1 rok', 3: '3 roky', 5: '5 let' },
       subFor: (y) => `Předplatné za ${y}`,
       save: 'Ušetříš',
-      payback: 'Loom se ti zaplatí za',
+      payback: 'Eiddie se ti zaplatí za',
       months: (n) => `${n} ${n === 1 ? 'měsíc' : n < 5 ? 'měsíce' : 'měsíců'}`,
       currency: (n) => `${n.toLocaleString('cs-CZ')} Kč`,
       locale: 'cs-CZ',
@@ -61,7 +61,7 @@
       years: { 1: '1 year', 3: '3 years', 5: '5 years' },
       subFor: (y) => `Subscriptions over ${y}`,
       save: 'You save',
-      payback: 'Loom pays for itself in',
+      payback: 'Eiddie pays for itself in',
       months: (n) => `${n} month${n === 1 ? '' : 's'}`,
       currency: (n) => `${n.toLocaleString('en-US')} CZK`,
       locale: 'en-US',
@@ -110,7 +110,7 @@
   function setLang(next) {
     if (next === lang) return;
     lang = next;
-    store.set('loom-lang', lang);
+    store.set('eiddie-lang', lang);
     applyLang();
     if (ST) requestAnimationFrame(() => ST.refresh());
   }
@@ -128,7 +128,7 @@
     });
     $$('[data-cfg-mail]').forEach((el) => {
       if (!C.email) return;
-      const subject = { bug: 'Loom: bug report', team: 'Loom: team licence' }[el.dataset.cfgMail] || 'Loom';
+      const subject = { bug: 'Eiddie: bug report', team: 'Eiddie: team licence' }[el.dataset.cfgMail] || 'Eiddie';
       el.href = `mailto:${C.email}?subject=${encodeURIComponent(subject)}`;
     });
   }
@@ -388,7 +388,7 @@
         return;
       }
       const body = `${message}\n\n${name} <${email}>`;
-      location.href = `mailto:${C.email}?subject=${encodeURIComponent(`Loom: ${topic}`)}&body=${encodeURIComponent(body)}`;
+      location.href = `mailto:${C.email}?subject=${encodeURIComponent(`Eiddie: ${topic}`)}&body=${encodeURIComponent(body)}`;
       setStatus(t('formMailto'), 'ok');
     });
   }
@@ -590,7 +590,7 @@
   langHooks.push(() => counters.forEach((el) => { if (!el._counting) fmtCount(el, Number(el.dataset.count)); }));
 
   /* ------------------------------------------------------------------ */
-  /* Weave: tangled threads straighten into the Loom logo               */
+  /* Weave: tangled threads straighten into rows behind the logo        */
   /* ------------------------------------------------------------------ */
   const weave = $('[data-weave]');
   let setWeave = null;
@@ -643,7 +643,7 @@
   const morph = $('[data-morph]');
   const M = {
     cs: {
-      title: 'Spuštění Loomu', crumb: 'Projekty /', tag: '#projekt', parent: 'Milníky',
+      title: 'Spuštění aplikace Eiddie', crumb: 'Projekty /', tag: '#projekt', parent: 'Milníky',
       records: '5 záznamů', filter: 'Filtr', group: 'Seskupit', sort: 'Řadit',
       cols: ['Název', 'Status', 'Priorita', 'Termín', 'Štítky'], add: 'Nový záznam',
       fs: 'Status', fp: 'Priorita', fd: 'Termín',
@@ -651,7 +651,7 @@
       l1: 'blokuje', l2: 'navazuje',
     },
     en: {
-      title: 'Loom launch', crumb: 'Projects /', tag: '#project', parent: 'Milestones',
+      title: 'Eiddie launch', crumb: 'Projects /', tag: '#project', parent: 'Milestones',
       records: '5 records', filter: 'Filter', group: 'Group', sort: 'Sort',
       cols: ['Name', 'Status', 'Priority', 'Due', 'Tags'], add: 'New record',
       fs: 'Status', fp: 'Priority', fd: 'Due',
@@ -954,7 +954,7 @@
             frag.appendChild(w);
           });
           n.replaceWith(frag);
-        } else if (n.nodeType === 1 && n.tagName !== 'BR') walk(n);
+        } else if (n.nodeType === 1 && n.tagName !== 'BR' && !n.classList.contains('w')) walk(n); // .w = already split in the markup (slogan initials)
       });
     };
     walk(el);

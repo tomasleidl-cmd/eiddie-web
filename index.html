@@ -2,17 +2,21 @@
 <html lang="cs">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title data-en="Loom: outliner, whiteboards and databases in one offline app">Loom: outliner, tabule a databáze v jedné offline aplikaci</title>
-  <meta name="description" content="Loom spojuje bleskový outliner, nekonečné tabule a databázové pohledy v jedné offline aplikaci. Čistý Markdown, kompatibilní s Obsidianem. 999 Kč jednorázově, 14 dní zdarma." data-en-content="Loom brings a lightning-fast outliner, infinite whiteboards and database views together in one offline app. Plain Markdown, works with Obsidian vaults. 999 CZK one-time, 14 days free.">
   <meta name="robots" content="noindex">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Eiddie: Edit Ideas. Draw Diagrams. Index Everything.</title>
+  <meta name="description" content="Eiddie: Edit Ideas. Draw Diagrams. Index Everything. Myšlenky, plátna a data na jednom místě, ve tvých souborech. Outliner, nekonečné plátno a databázové pohledy v jedné offline aplikaci, kompatibilní s Obsidianem. 999 Kč jednorázově, 14 dní zdarma." data-en-content="Eiddie: Edit Ideas. Draw Diagrams. Index Everything. Thoughts, canvases and data in one place, in your own files. An outliner, an infinite canvas and database views in one offline app that works with Obsidian vaults. 999 CZK one-time, 14 days free.">
   <meta name="theme-color" content="#6c5cff">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Loom: utkej si druhý mozek" data-en-content="Loom: weave your second brain">
-  <meta property="og:description" content="Outliner, tabule a databáze v jedné offline aplikaci. Bez předplatného." data-en-content="Outliner, whiteboards and databases in one offline app. No subscription.">
+  <meta property="og:site_name" content="Eiddie">
+  <meta property="og:title" content="Eiddie: Edit Ideas. Draw Diagrams. Index Everything.">
+  <meta property="og:description" content="Myšlenky, plátna a data na jednom místě. Ve tvých souborech. Offline aplikace bez předplatného." data-en-content="Thoughts, canvases and data in one place. In your own files. An offline app with no subscription.">
   <!-- TODO after deploy: use absolute URLs, e.g. https://your-domain.cz/assets/img/og.png, and add <link rel="canonical"> -->
   <meta property="og:image" content="assets/img/og.png">
+  <meta property="og:image:alt" content="Eiddie: Edit Ideas. Draw Diagrams. Index Everything.">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Eiddie: Edit Ideas. Draw Diagrams. Index Everything.">
+  <meta name="twitter:description" content="Myšlenky, plátna a data na jednom místě. Ve tvých souborech." data-en-content="Thoughts, canvases and data in one place. In your own files.">
   <link rel="icon" href="assets/img/logo.svg" type="image/svg+xml">
   <link rel="icon" href="assets/img/icon.png" type="image/png" sizes="512x512">
   <link rel="apple-touch-icon" href="assets/img/icon.png">
@@ -27,7 +31,7 @@
     (function () {
       var d = document.documentElement, lang = null;
       d.classList.add('js');
-      try { lang = new URLSearchParams(location.search).get('lang') || localStorage.getItem('loom-lang'); } catch (e) {}
+      try { lang = new URLSearchParams(location.search).get('lang') || localStorage.getItem('eiddie-lang'); } catch (e) {}
       if (!lang) lang = /^(cs|sk)/i.test(navigator.language || '') ? 'cs' : 'en';
       d.dataset.lang = lang === 'en' ? 'en' : 'cs';
       if (d.dataset.lang === 'en') { d.classList.add('i18n-pending'); setTimeout(function () { d.classList.remove('i18n-pending'); }, 1500); }
@@ -38,10 +42,11 @@
   {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
-    "name": "Loom",
+    "name": "Eiddie",
+    "alternativeHeadline": "Edit Ideas. Draw Diagrams. Index Everything.",
     "applicationCategory": "ProductivityApplication",
     "operatingSystem": "Windows 10, Windows 11",
-    "description": "Outliner, whiteboards and database views in one offline app. Plain Markdown files.",
+    "description": "Thoughts, canvases and data in one place, in your own files: a live Markdown editor, an outliner, daily notes, database views and an infinite canvas in one offline app. Plain Markdown files.",
     "offers": { "@type": "Offer", "price": "999", "priceCurrency": "CZK" },
     "author": { "@type": "Person", "name": "Tomáš Leidl" }
   }
@@ -123,11 +128,12 @@
   <!-- ============ NAV ============ -->
   <header class="nav" data-nav>
     <div class="container nav__inner">
-      <a class="brand" href="#top" aria-label="Loom">
+      <a class="brand" href="#top" aria-label="Eiddie">
         <img src="assets/img/logo.svg" alt="" width="32" height="32">
-        Loom
+        Eiddie
       </a>
       <nav class="nav__links" aria-label="Hlavní navigace" data-en-aria-label="Main navigation">
+        <a href="#pilire" data-en="Pillars">Pilíře</a>
         <a href="#funkce" data-en="Features">Funkce</a>
         <a href="#jak" data-en="How it works">Jak to funguje</a>
         <a href="#pouziti" data-en="Use cases">Použití</a>
@@ -150,6 +156,7 @@
     </div>
   </header>
   <div class="drawer" id="drawer" data-drawer>
+    <a href="#pilire" data-en="Pillars">Pilíře</a>
     <a href="#funkce" data-en="Features">Funkce</a>
     <a href="#jak" data-en="How it works">Jak to funguje</a>
     <a href="#pouziti" data-en="Use cases">Použití</a>
@@ -173,8 +180,14 @@
             <span data-en="Launch price 999 CZK · no subscription">Zaváděcí cena 999 Kč · bez předplatného</span>
             <svg class="ic"><use href="#i-arrow"/></svg>
           </a>
-          <h1 class="h1" data-hero-title data-en="Weave your <em>second brain</em>.">Utkej si <em>druhý mozek</em>.</h1>
-          <p class="lead" data-hero-in data-en="Loom brings a lightning-fast outliner, infinite whiteboards and database views together in one offline app. Your notes stay plain Markdown files on your own disk. Forever.">Loom spojuje bleskový outliner, nekonečné tabule a&nbsp;databázové pohledy v&nbsp;jedné offline aplikaci. Poznámky zůstávají obyčejnými Markdown soubory na tvém disku. Navždy.</p>
+          <!-- The slogan is the acronym E·I·D·D·I·E, identical in both languages. Words are pre-split (.w/.wi) so each initial stays glued to its word. -->
+          <h1 class="h1 slogan" lang="en" data-hero-title>
+            <span class="slogan__line"><span class="w"><span class="wi"><b class="ini" style="--i:0">E</b>dit</span></span> <span class="w"><span class="wi"><b class="ini" style="--i:1">I</b>deas.</span></span></span>
+            <span class="slogan__line"><span class="w"><span class="wi"><b class="ini" style="--i:2">D</b>raw</span></span> <span class="w"><span class="wi"><b class="ini" style="--i:3">D</b>iagrams.</span></span></span>
+            <span class="slogan__line"><span class="w"><span class="wi"><b class="ini" style="--i:4">I</b>ndex</span></span> <span class="w"><span class="wi"><b class="ini" style="--i:5">E</b>verything.</span></span></span>
+          </h1>
+          <p class="hero__sub" data-hero-in data-en="Thoughts, canvases and data in one place. <span>In your own files.</span>">Myšlenky, plátna a&nbsp;data na jednom místě. <span>Ve tvých souborech.</span></p>
+          <p class="lead" data-hero-in data-en="Eiddie brings a lightning-fast outliner, an infinite canvas and database views together in one offline app. Plain Markdown on your own disk, yours forever.">Eiddie spojuje bleskový outliner, nekonečné plátno a&nbsp;databázové pohledy v&nbsp;jedné offline aplikaci. Čistý Markdown na tvém disku, navždy tvůj.</p>
           <div class="btn-row hero__ctas" data-hero-in>
             <a class="btn btn--primary btn--lg" href="download.html" data-trial data-magnetic>
               <svg class="ic"><use href="#i-download"/></svg>
@@ -195,19 +208,19 @@
         <div class="hero__visual" data-hero-visual>
           <div class="hero__glow" aria-hidden="true"></div>
           <div class="hero__tilt" data-hero-tilt>
-            <!-- App mockup: a faithful HTML copy of Loom's UI (light theme) -->
+            <!-- App mockup: a faithful HTML copy of the app's UI (light theme) -->
             <div class="app" aria-hidden="true">
               <div class="app__top">
                 <svg class="ic"><use href="#i-sidebar"/></svg>
                 <svg class="ic"><use href="#i-chev-l"/></svg>
                 <svg class="ic" style="opacity:.4"><use href="#i-chev-r"/></svg>
                 <div class="app__search"><svg class="ic"><use href="#i-search"/></svg><span data-en="Search or jump to…">Hledat nebo přejít…</span><kbd>Ctrl K</kbd></div>
-                <span class="app__title">Loom · vault</span>
+                <span class="app__title">Eiddie · vault</span>
                 <span class="app__win"><i></i><i></i><i></i></span>
               </div>
               <div class="app__body">
                 <aside class="app__side">
-                  <div class="app__vault"><span class="app__vault-logo">L</span><span data-en="My vault">Můj vault</span><svg class="ic"><use href="#i-chev"/></svg></div>
+                  <div class="app__vault"><img class="app__vault-logo" src="assets/img/logo.svg" alt=""><span data-en="My vault">Můj vault</span><svg class="ic"><use href="#i-chev"/></svg></div>
                   <ul>
                     <li><svg class="ic"><use href="#i-search"/></svg><span data-en="Search">Hledat</span><kbd>Ctrl K</kbd></li>
                     <li><svg class="ic"><use href="#i-calendar"/></svg><span data-en="Today">Dnes</span><kbd>Alt D</kbd></li>
@@ -235,7 +248,7 @@
                 </aside>
                 <div class="app__main">
                   <div class="app__crumbs"><span data-en="Projects /">Projekty /</span><span class="app__seg"><span class="is-on"><svg class="ic"><use href="#i-outline"/></svg>Outline</span><span><svg class="ic"><use href="#i-doc"/></svg><span data-en="Document">Dokument</span></span></span></div>
-                  <div class="app__h" data-en="Loom launch">Spuštění Loomu</div>
+                  <div class="app__h" data-en="Eiddie launch">Spuštění aplikace Eiddie</div>
                   <div class="app__tagrow"><span class="pill pill--purple" data-en="#project">#projekt</span><span>+ Tag</span></div>
                   <div class="app__props">
                     <div><span class="k"><svg class="ic"><use href="#i-status"/></svg>Status</span><span><span class="pill pill--green">Active</span></span></div>
@@ -321,6 +334,56 @@
       </div>
     </div>
 
+    <!-- ============ SIX PILLARS (E·I·D·D·I·E) ============ -->
+    <section class="section pillars" id="pilire">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow" data-reveal data-en="Six pillars">Šest pilířů</span>
+          <h2 class="h2" data-split data-en="Six letters. <em>Six pillars.</em>">Šest písmen. <em>Šest pilířů.</em></h2>
+          <p class="lead" data-reveal data-en="Eiddie isn’t a random name. Each letter stands for one thing the app does, and together they make one tool instead of six.">Eiddie není náhodné jméno. Každé písmeno znamená jednu věc, kterou aplikace umí, a&nbsp;dohromady dávají jeden nástroj místo šesti.</p>
+        </div>
+
+        <div class="pillars__grid" data-stagger>
+          <article class="pillar" data-reveal>
+            <div class="pillar__top"><span class="pillar__letter ini" style="--i:0" aria-hidden="true">E</span><svg class="ic"><use href="#i-doc"/></svg></div>
+            <h3 class="pillar__name" lang="en"><b>E</b>ditor</h3>
+            <p class="pillar__desc" data-en="Markdown that renders as you type">Živý Markdown editor</p>
+            <p class="pillar__more" data-en="Write plain Markdown and see the formatting as you type, no mode switching.">Píšeš čistý Markdown a&nbsp;formátování vidíš hned, bez přepínání režimů.</p>
+          </article>
+          <article class="pillar" data-reveal>
+            <div class="pillar__top"><span class="pillar__letter ini" style="--i:1" aria-hidden="true">I</span><svg class="ic"><use href="#i-outline"/></svg></div>
+            <h3 class="pillar__name" lang="en"><b>I</b>deas</h3>
+            <p class="pillar__desc" data-en="An outliner for your thoughts">Outliner pro tvé myšlenky</p>
+            <p class="pillar__more" data-en="Every bullet is a node. Indent, move and zoom in with a single key.">Každá odrážka je uzel. Zanořuj, přesouvej a&nbsp;zoomuj jednou klávesou.</p>
+          </article>
+          <article class="pillar" data-reveal>
+            <div class="pillar__top"><span class="pillar__letter ini" style="--i:2" aria-hidden="true">D</span><svg class="ic"><use href="#i-calendar"/></svg></div>
+            <h3 class="pillar__name" lang="en"><b>D</b>aily notes</h3>
+            <p class="pillar__desc" data-en="A fresh page for every day">Každý den nová stránka</p>
+            <p class="pillar__more" data-en="Today’s page is one keystroke away, and quick capture works from anywhere.">Dnešní stránka je jednu klávesu daleko a&nbsp;nápad zapíšeš odkudkoli.</p>
+          </article>
+          <article class="pillar" data-reveal>
+            <div class="pillar__top"><span class="pillar__letter ini" style="--i:3" aria-hidden="true">D</span><svg class="ic"><use href="#i-db"/></svg></div>
+            <h3 class="pillar__name" lang="en"><b>D</b>atabases</h3>
+            <p class="pillar__desc" data-en="Table, kanban, gallery, calendar">Tabulka, kanban, galerie, kalendář</p>
+            <p class="pillar__more" data-en="A supertag turns a bullet into a record with fields, filters and sorting.">Supertag udělá z&nbsp;odrážky záznam s&nbsp;poli, filtry a&nbsp;řazením.</p>
+          </article>
+          <article class="pillar" data-reveal>
+            <div class="pillar__top"><span class="pillar__letter ini" style="--i:4" aria-hidden="true">I</span><svg class="ic"><use href="#i-board"/></svg></div>
+            <h3 class="pillar__name" lang="en"><b>I</b>nfinite canvas</h3>
+            <p class="pillar__desc" data-en="Whiteboards with live note cards">Nekonečné plátno s&nbsp;živými kartami</p>
+            <p class="pillar__more" data-en="Cards are real notes, not copies. Saved as JSON Canvas.">Karty jsou skutečné poznámky, ne kopie. Ukládá se jako JSON Canvas.</p>
+          </article>
+          <article class="pillar" data-reveal>
+            <div class="pillar__top"><span class="pillar__letter ini" style="--i:5" aria-hidden="true">E</span><svg class="ic"><use href="#i-lock"/></svg></div>
+            <h3 class="pillar__name" lang="en"><b>E</b>verything local</h3>
+            <p class="pillar__desc" data-en="Plain files on your disk, fully offline">Vše lokálně, ve tvých souborech</p>
+            <p class="pillar__more" data-en="Plain .md files on your own disk. Offline, no account, no cloud.">Obyčejné .md soubory na tvém disku. Offline, bez účtu a&nbsp;bez cloudu.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
     <!-- ============ PAIN POINTS ============ -->
     <section class="section" id="proc">
       <div class="container">
@@ -362,7 +425,7 @@
         <div class="weave" data-weave>
           <svg class="weave__svg" viewBox="0 0 1200 280" preserveAspectRatio="none" aria-hidden="true"></svg>
           <img class="weave__logo" src="assets/img/logo.svg" alt="" data-weave-logo>
-          <p class="weave__text" data-reveal data-en="Loom weaves it all together. <span class='em'>One app, one format, zero chaos.</span>">Loom to splete dohromady. <span class="em">Jedna aplikace, jeden formát, žádný chaos.</span></p>
+          <p class="weave__text" data-reveal data-en="Eiddie puts it all in order. <span class='em'>One app, one format, zero chaos.</span>">Eiddie v&nbsp;tom udělá pořádek. <span class="em">Jedna aplikace, jeden formát, žádný chaos.</span></p>
         </div>
       </div>
     </section>
@@ -373,7 +436,7 @@
         <div class="section-head">
           <span class="eyebrow" data-reveal data-en="How it works">Jak to funguje</span>
           <h2 class="h2" data-split data-en="Write once. <em>View it</em> any way.">Napiš jednou. <em>Dívej se</em> jakkoli.</h2>
-          <p class="lead" data-reveal data-en="Every bullet in Loom is a record. You see the same data as an outline, a table, a kanban board or a whiteboard. No copying, no importing.">Každá odrážka v&nbsp;Loomu je záznam. Stejná data uvidíš jako outline, tabulku, kanban i&nbsp;tabuli. Bez kopírování a&nbsp;bez importu.</p>
+          <p class="lead" data-reveal data-en="Every bullet in Eiddie is a record. You see the same data as an outline, a table, a kanban board or a canvas. No copying, no importing.">Každá odrážka v&nbsp;aplikaci Eiddie je záznam. Stejná data uvidíš jako outline, tabulku, kanban i&nbsp;plátno. Bez kopírování a&nbsp;bez importu.</p>
         </div>
       </div>
       <div class="morph__pin" data-morph>
@@ -408,7 +471,7 @@
               <div class="mwin" aria-hidden="true">
                 <div class="mwin__bar">
                   <span class="mwin__dots"><i></i><i></i><i></i></span>
-                  <span class="mwin__name" data-en="Loom launch">Spuštění Loomu</span>
+                  <span class="mwin__name" data-en="Eiddie launch">Spuštění aplikace Eiddie</span>
                   <div class="vswitch" data-vswitch>
                     <span class="vswitch__ind"></span>
                     <button type="button" class="is-on" tabindex="-1"><svg class="ic"><use href="#i-outline"/></svg><span>Outline</span></button>
@@ -547,15 +610,15 @@
 
           <article class="tile tile--5" data-reveal data-tile>
             <div class="tile__ic"><svg class="ic"><use href="#i-board"/></svg></div>
-            <h3 data-en="Infinite whiteboards">Nekonečné tabule</h3>
-            <p data-en="Note cards, sections and arrows on an infinite canvas. Saved as JSON Canvas, so they open in Obsidian too.">Karty poznámek, sekce a&nbsp;šipky na nekonečném plátně. Ukládá se jako JSON Canvas, takže ho otevřeš i&nbsp;v&nbsp;Obsidianu.</p>
+            <h3 data-en="Infinite canvas">Nekonečné plátno</h3>
+            <p data-en="Note cards, sections and arrows with room for every idea. Saved as JSON Canvas, so it opens in Obsidian too.">Karty poznámek, sekce a&nbsp;šipky s&nbsp;místem pro každý nápad. Ukládá se jako JSON Canvas, takže ho otevřeš i&nbsp;v&nbsp;Obsidianu.</p>
             <div class="tile__viz">
               <div class="v-board">
                 <svg viewBox="0 0 400 170" preserveAspectRatio="none" aria-hidden="true">
                   <path d="M120 48 C 170 48, 180 36, 222 36"/>
                   <path d="M90 70 C 100 120, 120 125, 140 122"/>
                 </svg>
-                <div class="c c1"><svg class="ic"><use href="#i-file"/></svg><span data-en="Loom launch">Spuštění</span></div>
+                <div class="c c1"><svg class="ic"><use href="#i-file"/></svg><span data-en="Eiddie launch">Spuštění</span></div>
                 <div class="c c2"><svg class="ic"><use href="#i-file"/></svg><span data-en="Ideas">Nápady</span></div>
                 <div class="c c3"><span data-en="Why? One tool.">Proč? Jeden nástroj.</span></div>
               </div>
@@ -811,12 +874,12 @@
         <div>
           <div class="section-head section-head--left" style="margin-bottom:0">
             <span class="eyebrow" data-reveal data-en="Your data">Tvoje data</span>
-            <h2 class="h2" data-split data-en="If Loom vanished tomorrow, <em>your notes wouldn’t</em>.">Kdyby Loom zítra zmizel, <em>tvoje poznámky ne</em>.</h2>
-            <p class="lead" data-reveal data-en="No proprietary database, no cloud. Loom works with an ordinary folder of Markdown files that open in any editor.">Žádná proprietární databáze, žádný cloud. Loom pracuje s&nbsp;obyčejnou složkou Markdown souborů, které otevřeš v&nbsp;jakémkoli editoru.</p>
+            <h2 class="h2" data-split data-en="If Eiddie vanished tomorrow, <em>your notes wouldn’t</em>.">Kdyby aplikace Eiddie zítra zmizela, <em>tvoje poznámky ne</em>.</h2>
+            <p class="lead" data-reveal data-en="No proprietary database, no cloud. Eiddie works with an ordinary folder of Markdown files that open in any editor.">Žádná proprietární databáze, žádný cloud. Eiddie pracuje s&nbsp;obyčejnou složkou Markdown souborů, které otevřeš v&nbsp;jakémkoli editoru.</p>
           </div>
           <ul class="owned__list" data-stagger>
             <li data-reveal><span class="ic-wrap"><svg class="ic"><use href="#i-file"/></svg></span><div><b data-en="100% Markdown">100% Markdown</b><span data-en="YAML frontmatter, [[wikilinks]], #tags and ^block-ids. Typical files round-trip byte for byte.">YAML frontmatter, [[wikilinky]], #tagy i&nbsp;^block-id. Běžné soubory zůstanou do posledního bajtu stejné.</span></div></li>
-            <li data-reveal><span class="ic-wrap"><svg class="ic"><use href="#i-layers"/></svg></span><div><b data-en="Opens your Obsidian vault">Otevře tvůj Obsidian vault</b><span data-en="Point Loom at the folder and you’re done. Nothing gets converted.">Stačí vybrat složku. Nic se nepřevádí.</span></div></li>
+            <li data-reveal><span class="ic-wrap"><svg class="ic"><use href="#i-layers"/></svg></span><div><b data-en="Opens your Obsidian vault">Otevře tvůj Obsidian vault</b><span data-en="Point Eiddie at the folder and you’re done. Nothing gets converted.">Stačí vybrat složku. Nic se nepřevádí.</span></div></li>
             <li data-reveal><span class="ic-wrap"><svg class="ic"><use href="#i-sync"/></svg></span><div><b data-en="Sync it however you like">Synchronizuj čím chceš</b><span data-en="OneDrive, Dropbox, Syncthing or git. It’s just a folder.">OneDrive, Dropbox, Syncthing nebo git. Je to jen složka.</span></div></li>
             <li data-reveal><span class="ic-wrap"><svg class="ic"><use href="#i-shield"/></svg></span><div><b data-en="Nothing gets lost">Nic se neztratí</b><span data-en="Deleted files go to .trash/, renaming a page fixes every link, and viewing never modifies a file.">Smazané soubory končí v&nbsp;.trash/, přejmenování opraví odkazy a&nbsp;samotné prohlížení soubor nikdy nezmění.</span></div></li>
           </ul>
@@ -825,7 +888,7 @@
         <div class="code" data-reveal aria-hidden="true">
           <div class="code__bar">
             <span class="mwin__dots"><i></i><i></i><i></i></span>
-            <span class="tabname"><svg class="ic"><use href="#i-file"/></svg><span data-en="Loom launch.md">Spuštění Loomu.md</span></span>
+            <span class="tabname"><svg class="ic"><use href="#i-file"/></svg><span data-en="Eiddie launch.md">Spuštění aplikace Eiddie.md</span></span>
           </div>
           <div class="code__body">
             <div class="code__tree">
@@ -833,10 +896,10 @@
               <div class="d1"><svg class="ic"><use href="#i-folder"/></svg>Daily</div>
               <div class="d1"><svg class="ic"><use href="#i-folder"/></svg><span data-en="People">Lidé</span></div>
               <div class="d1"><svg class="ic"><use href="#i-folder"/></svg><span data-en="Projects">Projekty</span></div>
-              <div class="d1 on"><svg class="ic"><use href="#i-file"/></svg><span data-en="Loom launch.md">Spuštění Loomu.md</span></div>
+              <div class="d1 on"><svg class="ic"><use href="#i-file"/></svg><span data-en="Eiddie launch.md">Spuštění aplikace Eiddie.md</span></div>
               <div class="d1"><svg class="ic"><use href="#i-folder"/></svg><span data-en="Whiteboards">Tabule</span></div>
               <div class="d1"><svg class="ic"><use href="#i-board"/></svg>Product map.canvas</div>
-              <div class="d1 cfg"><svg class="ic"><use href="#i-folder"/></svg>.loom/schema.json</div>
+              <div class="d1 cfg"><svg class="ic"><use href="#i-folder"/></svg>.eiddie/schema.json</div>
               <div class="d1 cfg"><svg class="ic"><use href="#i-trash"/></svg>.trash/</div>
             </div>
 <pre class="md"><span class="ln">1</span><span class="fm">---</span>
@@ -869,17 +932,17 @@
                 <th scope="col"><span class="sr-only" data-en="Feature">Funkce</span></th>
                 <th scope="col" data-en="Cloud all-in-one apps">Cloudové all-in-one aplikace</th>
                 <th scope="col" data-en="Markdown editors">Markdown editory</th>
-                <th scope="col" class="is-loom"><img src="assets/img/logo.svg" alt="">Loom</th>
+                <th scope="col" class="is-us"><img src="assets/img/logo.svg" alt="">Eiddie</th>
               </tr>
             </thead>
             <tbody>
-              <tr><th scope="row" data-en="Works 100% offline">Funguje 100% offline</th><td><span class="no"><svg class="ic"><use href="#i-x"/></svg></span></td><td><span class="yes"><svg class="ic"><use href="#i-check"/></svg></span></td><td class="is-loom"><span class="yes"><svg class="ic"><use href="#i-check"/></svg></span></td></tr>
-              <tr><th scope="row" data-en="Data as plain files on your disk">Data jako obyčejné soubory na disku</th><td><span class="no"><svg class="ic"><use href="#i-x"/></svg></span></td><td><span class="yes"><svg class="ic"><use href="#i-check"/></svg></span></td><td class="is-loom"><span class="yes"><svg class="ic"><use href="#i-check"/></svg></span></td></tr>
-              <tr><th scope="row" data-en="Outliner where every bullet is a node">Outliner, kde je každá odrážka uzel</th><td><span class="meh" data-en="partly">částečně</span></td><td><span class="meh" data-en="partly">částečně</span></td><td class="is-loom"><span class="yes"><svg class="ic"><use href="#i-check"/></svg></span></td></tr>
-              <tr><th scope="row" data-en="Table, kanban &amp; calendar views">Tabulka, kanban a&nbsp;kalendář</th><td><span class="yes"><svg class="ic"><use href="#i-check"/></svg></span></td><td><span class="meh" data-en="plugins">pluginy</span></td><td class="is-loom"><span class="yes"><svg class="ic"><use href="#i-check"/></svg></span></td></tr>
-              <tr><th scope="row" data-en="Infinite whiteboards">Nekonečné tabule</th><td><span class="meh" data-en="partly">částečně</span></td><td><span class="meh" data-en="plugins">pluginy</span></td><td class="is-loom"><span class="yes"><svg class="ic"><use href="#i-check"/></svg></span></td></tr>
-              <tr><th scope="row" data-en="All in one app, no plugins">Vše v&nbsp;jedné aplikaci bez pluginů</th><td><span class="yes"><svg class="ic"><use href="#i-check"/></svg></span></td><td><span class="no"><svg class="ic"><use href="#i-x"/></svg></span></td><td class="is-loom"><span class="yes"><svg class="ic"><use href="#i-check"/></svg></span></td></tr>
-              <tr><th scope="row" data-en="One-time payment">Jednorázová platba</th><td><span class="no"><svg class="ic"><use href="#i-x"/></svg></span></td><td><span class="meh" data-en="varies">různě</span></td><td class="is-loom"><span class="yes"><svg class="ic"><use href="#i-check"/></svg></span></td></tr>
+              <tr><th scope="row" data-en="Works 100% offline">Funguje 100% offline</th><td><span class="no"><svg class="ic"><use href="#i-x"/></svg></span></td><td><span class="yes"><svg class="ic"><use href="#i-check"/></svg></span></td><td class="is-us"><span class="yes"><svg class="ic"><use href="#i-check"/></svg></span></td></tr>
+              <tr><th scope="row" data-en="Data as plain files on your disk">Data jako obyčejné soubory na disku</th><td><span class="no"><svg class="ic"><use href="#i-x"/></svg></span></td><td><span class="yes"><svg class="ic"><use href="#i-check"/></svg></span></td><td class="is-us"><span class="yes"><svg class="ic"><use href="#i-check"/></svg></span></td></tr>
+              <tr><th scope="row" data-en="Outliner where every bullet is a node">Outliner, kde je každá odrážka uzel</th><td><span class="meh" data-en="partly">částečně</span></td><td><span class="meh" data-en="partly">částečně</span></td><td class="is-us"><span class="yes"><svg class="ic"><use href="#i-check"/></svg></span></td></tr>
+              <tr><th scope="row" data-en="Table, kanban &amp; calendar views">Tabulka, kanban a&nbsp;kalendář</th><td><span class="yes"><svg class="ic"><use href="#i-check"/></svg></span></td><td><span class="meh" data-en="plugins">pluginy</span></td><td class="is-us"><span class="yes"><svg class="ic"><use href="#i-check"/></svg></span></td></tr>
+              <tr><th scope="row" data-en="Infinite canvas">Nekonečné plátno</th><td><span class="meh" data-en="partly">částečně</span></td><td><span class="meh" data-en="plugins">pluginy</span></td><td class="is-us"><span class="yes"><svg class="ic"><use href="#i-check"/></svg></span></td></tr>
+              <tr><th scope="row" data-en="All in one app, no plugins">Vše v&nbsp;jedné aplikaci bez pluginů</th><td><span class="yes"><svg class="ic"><use href="#i-check"/></svg></span></td><td><span class="no"><svg class="ic"><use href="#i-x"/></svg></span></td><td class="is-us"><span class="yes"><svg class="ic"><use href="#i-check"/></svg></span></td></tr>
+              <tr><th scope="row" data-en="One-time payment">Jednorázová platba</th><td><span class="no"><svg class="ic"><use href="#i-x"/></svg></span></td><td><span class="meh" data-en="varies">různě</span></td><td class="is-us"><span class="yes"><svg class="ic"><use href="#i-check"/></svg></span></td></tr>
             </tbody>
           </table>
         </div>
@@ -975,7 +1038,7 @@
 
           <div class="plan plan--pro on-dark" data-reveal>
             <span class="plan__badge" data-en="Launch price">Zaváděcí cena</span>
-            <h3 data-en="Loom lifetime licence">Loom: doživotní licence</h3>
+            <h3 data-en="Eiddie lifetime licence">Eiddie: doživotní licence</h3>
             <p class="plan__desc" data-en="Pay once, own it forever. No subscription, no tiers.">Jednou zaplatíš, navždy máš. Žádné předplatné, žádné tarify.</p>
             <div class="plan__price"><b data-cfg="price">999 Kč</b><span data-cfg="priceNote">jednorázově</span></div>
             <div class="plan__sub" data-en="Final price including VAT">Konečná cena včetně DPH</div>
@@ -986,7 +1049,7 @@
               <li><svg class="ic"><use href="#i-check"/></svg><span data-en="A tax receipt, automatically">Daňový doklad automaticky</span></li>
               <li><svg class="ic"><use href="#i-check"/></svg><span data-en="Support straight from the developer">Podpora přímo od vývojáře</span></li>
             </ul>
-            <a class="btn btn--primary btn--lg" href="#cena" data-buy data-magnetic><svg class="ic"><use href="#i-card"/></svg><span data-en="Buy Loom">Koupit Loom</span><span class="btn-price" data-cfg="price">999 Kč</span></a>
+            <a class="btn btn--primary btn--lg" href="#cena" data-buy data-magnetic><svg class="ic"><use href="#i-card"/></svg><span data-en="Buy Eiddie">Koupit Eiddie</span><span class="btn-price" data-cfg="price">999 Kč</span></a>
             <div class="plan__pay"><svg class="ic"><use href="#i-shield"/></svg><span data-en="Secure payment by card, Apple Pay, Google Pay or PayPal via Lemon Squeezy">Bezpečná platba kartou, Apple Pay, Google Pay nebo PayPalem přes Lemon Squeezy</span></div>
           </div>
         </div>
@@ -1005,7 +1068,7 @@
           </div>
           <div class="calc__out" aria-live="polite">
             <div class="calc__line"><span data-calc-sub-label>Předplatné za 3 roky</span><b><s data-calc-sub>9 000 Kč</s></b></div>
-            <div class="calc__line"><span>Loom</span><b data-cfg="price">999 Kč</b></div>
+            <div class="calc__line"><span>Eiddie</span><b data-cfg="price">999 Kč</b></div>
             <div class="calc__save"><span data-calc-save-label>Ušetříš</span><b data-calc-save>8 001 Kč</b></div>
           </div>
         </div>
@@ -1014,7 +1077,7 @@
         <ol class="flow" data-stagger>
           <li data-reveal><span class="ic-wrap"><svg class="ic"><use href="#i-card"/></svg></span><b data-en="Pay securely">Zaplať bezpečně</b><span data-en="The checkout opens right on this page. Card, Apple Pay, Google Pay or PayPal.">Pokladna se otevře přímo na stránce. Kartou, Apple Pay, Google Pay nebo PayPalem.</span></li>
           <li data-reveal><span class="ic-wrap"><svg class="ic"><use href="#i-mail"/></svg></span><b data-en="Check your inbox">Zkontroluj e-mail</b><span data-en="Within minutes you get your licence key, the download link and a tax receipt.">Do pár minut ti přijde licenční klíč, odkaz ke stažení a&nbsp;daňový doklad.</span></li>
-          <li data-reveal><span class="ic-wrap"><svg class="ic"><use href="#i-sparkle"/></svg></span><b data-en="Activate and create">Aktivuj a&nbsp;tvoř</b><span data-en="Install Loom, paste the key and carry on with the notes from your trial.">Nainstaluj Loom, vlož klíč a&nbsp;pokračuj ve svých poznámkách z&nbsp;trialu.</span></li>
+          <li data-reveal><span class="ic-wrap"><svg class="ic"><use href="#i-sparkle"/></svg></span><b data-en="Activate and create">Aktivuj a&nbsp;tvoř</b><span data-en="Install Eiddie, paste the key and carry on with the notes from your trial.">Nainstaluj Eiddie, vlož klíč a&nbsp;pokračuj ve svých poznámkách z&nbsp;trialu.</span></li>
         </ol>
       </div>
     </section>
@@ -1031,7 +1094,7 @@
         <div class="faq" data-stagger>
           <details data-reveal open>
             <summary><span data-en="Is it really subscription-free?">Je to opravdu bez předplatného?</span><span class="pm" aria-hidden="true"></span></summary>
-            <div class="faq__a"><p data-en="Yes. You pay 999 CZK once and Loom is yours. Every 1.x update is free.">Ano. Zaplatíš 999 Kč jednou a&nbsp;Loom je tvůj. Všechny aktualizace verze 1.x dostaneš zdarma.</p></div>
+            <div class="faq__a"><p data-en="Yes. You pay 999 CZK once and Eiddie is yours. Every 1.x update is free.">Ano. Zaplatíš 999 Kč jednou a&nbsp;aplikace je tvoje. Všechny aktualizace verze 1.x dostaneš zdarma.</p></div>
           </details>
           <details data-reveal>
             <summary><span data-en="What happens after the 14-day trial?">Co se stane po 14 dnech zkušební verze?</span><span class="pm" aria-hidden="true"></span></summary>
@@ -1039,11 +1102,11 @@
           </details>
           <details data-reveal>
             <summary><span data-en="Where is my data stored?">Kde jsou uložená moje data?</span><span class="pm" aria-hidden="true"></span></summary>
-            <div class="faq__a"><p data-en="In a folder you choose. Next to it, Loom only keeps a fast search index (SQLite) in its app data. You can delete it at any time and it rebuilds itself.">Ve složce, kterou si vybereš. Loom si k&nbsp;ní v&nbsp;datech aplikace vede jen rychlý vyhledávací index (SQLite). Ten můžeš kdykoli smazat a&nbsp;sestaví se znovu.</p></div>
+            <div class="faq__a"><p data-en="In a folder you choose. Next to it, Eiddie only keeps a fast search index (SQLite) in its app data. You can delete it at any time and it rebuilds itself.">Ve složce, kterou si vybereš. Eiddie si k&nbsp;ní v&nbsp;datech aplikace vede jen rychlý vyhledávací index (SQLite). Ten můžeš kdykoli smazat a&nbsp;sestaví se znovu.</p></div>
           </details>
           <details data-reveal>
-            <summary><span data-en="Does Loom work with my Obsidian vault?">Funguje Loom s&nbsp;mým Obsidian vaultem?</span><span class="pm" aria-hidden="true"></span></summary>
-            <div class="faq__a"><p data-en="Yes. Open the vault folder and Loom reads it as is. The Markdown stays compatible, whiteboards are saved as JSON Canvas, and Loom’s own settings live in a .loom/ folder, just like .obsidian/.">Ano. Otevři složku vaultu a&nbsp;Loom ji načte tak, jak je. Markdown zůstává kompatibilní, tabule se ukládají jako JSON Canvas a&nbsp;nastavení Loomu žije ve složce .loom/, podobně jako .obsidian/.</p></div>
+            <summary><span data-en="Does Eiddie work with my Obsidian vault?">Funguje Eiddie s&nbsp;mým Obsidian vaultem?</span><span class="pm" aria-hidden="true"></span></summary>
+            <div class="faq__a"><p data-en="Yes. Open the vault folder and Eiddie reads it as is. The Markdown stays compatible, canvases are saved as JSON Canvas, and Eiddie’s own settings live in a .eiddie/ folder, just like .obsidian/.">Ano. Otevři složku vaultu a&nbsp;Eiddie ji načte tak, jak je. Markdown zůstává kompatibilní, plátna se ukládají jako JSON Canvas a&nbsp;nastavení aplikace Eiddie žije ve složce .eiddie/, podobně jako .obsidian/.</p></div>
           </details>
           <details data-reveal>
             <summary><span data-en="Which systems does it run on?">Na jakých systémech běží?</span><span class="pm" aria-hidden="true"></span></summary>
@@ -1055,14 +1118,14 @@
           </details>
           <details data-reveal>
             <summary><span data-en="Do I need an internet connection?">Potřebuju připojení k&nbsp;internetu?</span><span class="pm" aria-hidden="true"></span></summary>
-            <div class="faq__a"><p data-en="Only to download and activate your licence. After that, Loom works completely offline.">Jen ke stažení a&nbsp;aktivaci licence. Potom Loom funguje úplně offline.</p></div>
+            <div class="faq__a"><p data-en="Only to download and activate your licence. After that, Eiddie works completely offline.">Jen ke stažení a&nbsp;aktivaci licence. Potom Eiddie funguje úplně offline.</p></div>
           </details>
           <details data-reveal>
             <summary><span data-en="Will I get an invoice?">Dostanu fakturu?</span><span class="pm" aria-hidden="true"></span></summary>
             <div class="faq__a"><p data-en="Yes. Lemon Squeezy e-mails you a tax receipt right after payment. Buying as a company? Just add your VAT ID at checkout.">Ano. Lemon Squeezy ti hned po platbě pošle daňový doklad e-mailem. Kupuješ na firmu? Stačí v&nbsp;pokladně vyplnit DIČ.</p></div>
           </details>
           <details data-reveal>
-            <summary><span data-en="What if Loom isn’t for me?">Co když mi Loom nesedne?</span><span class="pm" aria-hidden="true"></span></summary>
+            <summary><span data-en="What if Eiddie isn’t for me?">Co když mi Eiddie nesedne?</span><span class="pm" aria-hidden="true"></span></summary>
             <div class="faq__a"><p data-en="That’s exactly why the 14-day trial exists: try everything for free and buy only once you know it fits. And if something still goes wrong, write to me and we’ll sort it out.">Přesně proto existuje 14denní zkušební verze. Vyzkoušej si všechno zdarma a&nbsp;kup, až když víš, že ti sedí. A&nbsp;kdyby i&nbsp;tak něco nefungovalo, napiš mi a&nbsp;domluvíme se.</p></div>
           </details>
         </div>
@@ -1074,7 +1137,7 @@
       <div class="container">
         <div class="section-head">
           <span class="eyebrow" data-reveal data-en="Contact">Kontakt</span>
-          <h2 class="h2" data-split data-en="Behind Loom is <em>a person</em>, not a corporation.">Za Loomem je <em>člověk</em>, ne korporace.</h2>
+          <h2 class="h2" data-split data-en="Behind Eiddie is <em>a person</em>, not a corporation.">Za aplikací Eiddie je <em>člověk</em>, ne korporace.</h2>
         </div>
         <div class="contact" data-stagger>
           <div class="author" data-reveal>
@@ -1082,7 +1145,7 @@
               <span class="author__avatar">TL</span>
               <div><b data-cfg="author">Tomáš Leidl</b><span data-en="Development, design &amp; support">Vývoj, design a&nbsp;podpora</span></div>
             </div>
-            <p data-en="Loom is an independent project. No investors and no pressure to sell you a subscription, just a tool I use every single day.">Loom je nezávislý projekt. Žádní investoři a&nbsp;žádný tlak na předplatné, jen nástroj, který denně používám.</p>
+            <p data-en="Eiddie is an independent project. No investors and no pressure to sell you a subscription, just a tool I use every single day.">Eiddie je nezávislý projekt. Žádní investoři a&nbsp;žádný tlak na předplatné, jen nástroj, který denně používám.</p>
             <p data-en="I read every e-mail personally and usually reply within two days. Bug reports, feature ideas or a team licence: write to me.">Každý e-mail čtu osobně a&nbsp;obvykle odpovím do dvou dnů. Nahlášení chyby, nápad na funkci nebo licence pro tým: napiš mi.</p>
             <div class="author__sig">Tomáš</div>
             <div class="mailchip">
@@ -1107,7 +1170,7 @@
             <div class="field">
               <label for="f-topic" data-en="Topic">Téma</label>
               <select id="f-topic" name="topic">
-                <option data-en="A question about Loom">Dotaz k&nbsp;aplikaci</option>
+                <option data-en="A question about Eiddie">Dotaz k&nbsp;aplikaci</option>
                 <option data-en="Team or company licence">Licence pro tým nebo firmu</option>
                 <option data-en="Bug report">Nahlášení chyby</option>
                 <option data-en="Feature idea">Nápad na funkci</option>
@@ -1132,8 +1195,8 @@
       <div class="container">
         <div class="final" data-reveal>
           <img src="assets/img/logo.svg" alt="">
-          <h2 class="h2" data-split data-en="Your thoughts deserve <em>a better fabric</em>.">Tvoje myšlenky si zaslouží <em>lepší tkaninu</em>.</h2>
-          <p data-en="Download Loom and try it free for 14 days. No card, no sign-up.">Stáhni Loom a&nbsp;vyzkoušej ho 14 dní zdarma. Bez karty a&nbsp;bez registrace.</p>
+          <h2 class="h2" data-split data-en="Your thoughts deserve <em>a better home</em>.">Tvoje myšlenky si zaslouží <em>lepší domov</em>.</h2>
+          <p data-en="Download Eiddie and try everything free for 14 days. No card, no sign-up.">Stáhni Eiddie a&nbsp;vyzkoušej si všechno 14 dní zdarma. Bez karty a&nbsp;bez registrace.</p>
           <div class="btn-row">
             <a class="btn btn--white btn--lg" href="download.html" data-trial data-magnetic><svg class="ic"><use href="#i-download"/></svg><span data-en="Try free for 14 days">Vyzkoušet 14 dní zdarma</span></a>
             <a class="btn btn--ghost btn--lg on-dark" style="background:rgba(255,255,255,.08)" href="#cena" data-buy data-magnetic><span data-en="Buy">Koupit</span><span class="btn-price" data-cfg="price">999 Kč</span></a>
@@ -1148,12 +1211,14 @@
     <div class="container">
       <div class="footer__grid">
         <div class="footer__brand">
-          <a class="brand" href="#top"><img src="assets/img/logo.svg" alt="" width="32" height="32">Loom</a>
-          <p data-en="An outliner, whiteboards and databases in one offline app. For people who want to think, not search.">Outliner, tabule a&nbsp;databáze v&nbsp;jedné offline aplikaci. Pro lidi, kteří chtějí přemýšlet, ne hledat.</p>
+          <a class="brand" href="#top"><img src="assets/img/logo.svg" alt="" width="32" height="32">Eiddie</a>
+          <p class="footer__slogan" lang="en"><b>E</b>dit <b>I</b>deas. <b>D</b>raw <b>D</b>iagrams. <b>I</b>ndex <b>E</b>verything.</p>
+          <p data-en="An outliner, a canvas and databases in one offline app. For people who want to think, not search.">Outliner, plátno a&nbsp;databáze v&nbsp;jedné offline aplikaci. Pro lidi, kteří chtějí přemýšlet, ne hledat.</p>
         </div>
         <div>
           <h4 data-en="Product">Produkt</h4>
           <ul>
+            <li><a href="#pilire" data-en="Six pillars">Šest pilířů</a></li>
             <li><a href="#funkce" data-en="Features">Funkce</a></li>
             <li><a href="#jak" data-en="How it works">Jak to funguje</a></li>
             <li><a href="#pouziti" data-en="Use cases">Použití</a></li>
@@ -1166,8 +1231,8 @@
           <ul>
             <li><a href="#faq">FAQ</a></li>
             <li><a href="#kontakt" data-en="Contact">Kontakt</a></li>
-            <li><a href="mailto:tomas.leidl@gmail.com?subject=Loom%3A%20bug" data-cfg-mail="bug" data-en="Report a bug">Nahlásit chybu</a></li>
-            <li><a href="mailto:tomas.leidl@gmail.com?subject=Loom%3A%20team" data-cfg-mail="team" data-en="Team licence">Licence pro tým</a></li>
+            <li><a href="mailto:tomas.leidl@gmail.com?subject=Eiddie%3A%20bug" data-cfg-mail="bug" data-en="Report a bug">Nahlásit chybu</a></li>
+            <li><a href="mailto:tomas.leidl@gmail.com?subject=Eiddie%3A%20team" data-cfg-mail="team" data-en="Team licence">Licence pro tým</a></li>
           </ul>
         </div>
         <div>
