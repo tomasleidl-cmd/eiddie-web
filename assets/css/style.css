@@ -180,6 +180,7 @@ h1, h2, h3, h4 { margin: 0; font-family: var(--f-display); color: var(--ink); fo
 .wi { display: inline-block; will-change: transform; }
 .js-anim .is-split .wp { opacity: 0; transition: opacity 0.6s 0.45s; }
 .js-anim .is-split.is-shown .wp { opacity: 1; }
+.nb { white-space: nowrap; } /* last word + punctuation after an <em>, see splitWords() */
 .is-split em, .is-split .em { background: none !important; padding-right: 0; }
 .is-split em .wi, .is-split .em .wi {
   padding-right: 0.07em;
@@ -717,10 +718,10 @@ h1, h2, h3, h4 { margin: 0; font-family: var(--f-display); color: var(--ink); fo
 .v-board .c1 { left: 6%; top: 18%; }
 .v-board .c2 { left: 55%; top: 10%; }
 .v-board .c3 { left: 34%; top: 62%; background: var(--c-green-bg); border-color: transparent; color: var(--c-green-fg); }
-.v-board svg { position: absolute; inset: 0; width: 100%; height: 100%; }
-.v-board path { fill: none; stroke: var(--ink-3); stroke-width: 1.6; stroke-dasharray: 140; stroke-dashoffset: 140; }
-.is-in .v-board path { animation: draw 4.5s var(--ease) infinite; }
-.is-in .v-board path:nth-of-type(2) { animation-delay: 0.6s; }
+.v-board > svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.v-board > svg path { fill: none; stroke: var(--ink-3); stroke-width: 1.6; stroke-dasharray: 140; stroke-dashoffset: 140; }
+.is-in .v-board > svg path { animation: draw 4.5s var(--ease) infinite; }
+.is-in .v-board > svg path:nth-of-type(2) { animation-delay: 0.6s; }
 @keyframes draw { 0% { stroke-dashoffset: 140; } 35%, 85% { stroke-dashoffset: 0; } 100% { stroke-dashoffset: -140; } }
 
 .v-search { padding: 14px; border-radius: 14px; background: var(--surface-2); border: 1px solid var(--line); display: grid; gap: 8px; font-size: 13.5px; }
@@ -802,7 +803,7 @@ h1, h2, h3, h4 { margin: 0; font-family: var(--f-display); color: var(--ink); fo
 .v-theme__sw b:nth-child(4) { background: #f76b15; } .v-theme__sw b:nth-child(5) { background: #3b82f6; } .v-theme__sw b:nth-child(6) { background: #2f9e6a; }
 
 .chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 40px; }
-.chips span { display: inline-flex; align-items: center; gap: 8px; padding: 9px 15px; border-radius: 999px; background: var(--surface); border: 1px solid var(--line); font-size: 14px; font-weight: 500; color: var(--ink-2); }
+.chips > span { display: inline-flex; align-items: center; gap: 8px; padding: 9px 15px; border-radius: 999px; background: var(--surface); border: 1px solid var(--line); font-size: 14px; font-weight: 500; color: var(--ink-2); }
 .chips .ic { color: var(--violet); }
 .chips__label { width: 100%; text-align: center; font-size: 14px; color: var(--ink-3); margin-bottom: 4px; }
 
@@ -1157,7 +1158,9 @@ pre.md .ln { display: inline-block; width: 2.2em; color: #4a4a58; user-select: n
   .step-caption { display: block !important; margin: 0 0 18px; color: var(--ink-2); font-size: 15.5px; min-height: 3.2em; text-align: center; }
   .vswitch button span { display: none; }
   .panel, .owned, .contact, .calc { grid-template-columns: 1fr; }
-  .plans { grid-template-columns: 1fr; }
+  .plans { grid-template-columns: minmax(0, 1fr); }
+  .v-daily { grid-template-columns: minmax(0, 1fr); }
+  .v-cal { justify-self: start; }
   .flow { grid-template-columns: 1fr; }
   .pain-grid { grid-template-columns: 1fr 1fr; }
   .pain, .pain:nth-child(4), .pain:nth-child(5) { grid-column: span 1; }
@@ -1192,6 +1195,7 @@ pre.md .ln { display: inline-block; width: 2.2em; color: #4a4a58; user-select: n
   .app__props > div { grid-template-columns: 96px 1fr; }
   .ol__fields li { grid-template-columns: 16px 86px 1fr; }
   .pillars__grid { grid-template-columns: 1fr; gap: 10px; }
+  .plan .btn { padding-inline: 16px; }
   .pillar { display: grid; grid-template-columns: 56px 1fr; column-gap: 16px; align-items: start; padding: 18px 18px 20px; }
   .pillar__top { grid-row: 1 / span 3; margin: 0; }
   .pillar__top .ic { display: none; }
@@ -1210,6 +1214,11 @@ pre.md .ln { display: inline-block; width: 2.2em; color: #4a4a58; user-select: n
   .footer__grid { grid-template-columns: 1fr; }
   .mailchip { flex-wrap: wrap; }
   .mailchip button { margin-left: 0; }
+}
+
+/* Very narrow phones (320 px): long English labels may wrap inside a button instead of spilling out */
+@media (max-width: 340px) {
+  .btn { white-space: normal; height: auto; min-height: var(--h); padding-block: 8px; text-align: center; line-height: 1.25; }
 }
 
 @media (prefers-reduced-motion: reduce) {

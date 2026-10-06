@@ -129,17 +129,16 @@
       el.textContent = v;
       if (key === 'email' && el.tagName === 'A') el.href = `mailto:${v}`;
     });
-    // Mail templates. The app shows no version yet, so the template names the version offered on this website.
-    const v = C.version || '';
+    // Mail templates. The tester reads the installed version in the app: Settings → Updates.
     const mails = {
       cs: {
-        feedback: ['Eiddie pilot: zpětná vazba', `Ahoj,\n\nco mě potěšilo:\n\n\nco drhne nebo nefunguje:\n\n\nco mi chybí:\n\n\nWindows 10, nebo 11: \nstaženo z webu, verze ${v}`],
-        bug: ['Eiddie: chyba', `Co se stalo:\n\n\nJak se k tomu dostat:\n\n\n(Snímek obrazovky pomůže nejvíc.)\nWindows 10, nebo 11: \nverze z webu: ${v}`],
+        feedback: ['Eiddie pilot: zpětná vazba', 'Ahoj,\n\nco mě potěšilo:\n\n\nco drhne nebo nefunguje:\n\n\nco mi chybí:\n\n\nverze Eiddie (Nastavení → Updates): \nWindows 10, nebo 11: \n'],
+        bug: ['Eiddie: chyba', 'Co se stalo:\n\n\nJak se k tomu dostat:\n\n\n(Snímek obrazovky pomůže nejvíc.)\nverze Eiddie (Nastavení → Updates): \nWindows 10, nebo 11: \n'],
         team: ['Eiddie: licence pro tým', ''],
       },
       en: {
-        feedback: ['Eiddie pilot: feedback', `Hi,\n\nwhat I liked:\n\n\nwhat got in my way or didn’t work:\n\n\nwhat I’m missing:\n\n\nWindows 10 or 11: \ndownloaded from the website, version ${v}`],
-        bug: ['Eiddie: bug report', `What happened:\n\n\nHow to get there:\n\n\n(A screenshot helps the most.)\nWindows 10 or 11: \nversion from the website: ${v}`],
+        feedback: ['Eiddie pilot: feedback', 'Hi,\n\nwhat I liked:\n\n\nwhat got in my way or didn’t work:\n\n\nwhat I’m missing:\n\n\nEiddie version (Settings → Updates): \nWindows 10 or 11: \n'],
+        bug: ['Eiddie: bug report', 'What happened:\n\n\nHow to get there:\n\n\n(A screenshot helps the most.)\nEiddie version (Settings → Updates): \nWindows 10 or 11: \n'],
         team: ['Eiddie: team licence', ''],
       },
     }[lang];
@@ -1119,6 +1118,24 @@
       });
     };
     walk(el);
+    // The words are inline-blocks, so a line may still break between "</em>" and its ".": wrap the last word of the
+    // element together with the punctuation in a no-wrap span (in a shallow copy of the <em>, styles stay the same).
+    $$('.wp', el).forEach((sp) => {
+      const prev = sp.previousSibling;
+      if (!prev || prev.nodeType !== 1) return;
+      const last = prev.classList.contains('w') ? prev : $$('.w', prev).pop();
+      if (!last) return;
+      const nb = document.createElement('span');
+      nb.className = 'nb';
+      prev.after(nb);
+      let host = nb;
+      const chain = [];
+      for (let p = last.parentElement; p && p !== prev.parentElement; p = p.parentElement) chain.unshift(p);
+      chain.forEach((p) => { const c = p.cloneNode(false); host.appendChild(c); host = c; });
+      host.appendChild(last);
+      nb.appendChild(sp);
+      if (prev !== last && !prev.textContent.trim()) prev.remove();
+    });
     el.classList.add('is-split');
     return $$('.wi', el);
   }
@@ -1190,11 +1207,13 @@
   });
 
   // Generic reveals, batched so neighbours stagger
-  gsap.set('[data-reveal]', { y: 34 });
-  ST.batch('[data-reveal]', {
-    start: 'top 90%', once: true,
-    onEnter: (batch) => gsap.to(batch, { opacity: 1, y: 0, duration: 0.95, ease: 'power3.out', stagger: 0.08, overwrite: true }),
-  });
+  if ($('[data-reveal]')) {
+    gsap.set('[data-reveal]', { y: 34 });
+    ST.batch('[data-reveal]', {
+      start: 'top 90%', once: true,
+      onEnter: (batch) => gsap.to(batch, { opacity: 1, y: 0, duration: 0.95, ease: 'power3.out', stagger: 0.08, overwrite: true }),
+    });
+  }
 
   // Weave untangles while scrolling
   if (weave && setWeave) {
