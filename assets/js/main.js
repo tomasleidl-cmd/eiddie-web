@@ -1107,11 +1107,18 @@
 
   // Section headings: words rise out of a mask
   $$('[data-split]').forEach((el) => {
-    const words = splitWords(el);
+    let words = splitWords(el);
     gsap.set(words, { yPercent: 115 });
     ST.create({
       trigger: el, start: 'top 86%', once: true,
       onEnter: () => { el.classList.add('is-shown'); gsap.to(words, { yPercent: 0, duration: 1.05, ease: 'power4.out', stagger: 0.045 }); },
+    });
+    // A language switch puts the unsplit HTML back; without the .wi spans the <em> part of an .is-split heading
+    // has no gradient and stays transparent. Split it again and keep the reveal state.
+    langHooks.push(() => {
+      if (el.querySelector('.wi')) return;
+      words = splitWords(el);
+      if (!el.classList.contains('is-shown')) gsap.set(words, { yPercent: 115 });
     });
   });
 
