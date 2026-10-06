@@ -1217,3 +1217,26 @@ pre.md .ln { display: inline-block; width: 2.2em; color: #4a4a58; user-select: n
   .marquee__track, .vrow__track { animation: none; }
   .vrow { overflow-x: auto; }
 }
+
+/* ---------- Pilot mode (config.js → pilot: true sets <html data-pilot>) ---------- */
+/* [data-pilot-hide]: sales content (price, Buy, trial, sample reviews, legal placeholders).
+   [data-pilot-only]: pilot copy. Without JS the regular (non-pilot) page is shown. */
+html[data-pilot] [data-pilot-hide],
+html:not([data-pilot]) [data-pilot-only] { display: none !important; }
+.pilot__note { max-width: 680px; margin: 34px auto 0; text-align: center; font-size: 14.5px; line-height: 1.6; color: var(--ink-3); }
+.pilot .plan__pay .ic { color: #ff8fc6; }
+@media (min-width: 1081px) {
+  html[data-pilot] .footer__grid { grid-template-columns: 1.6fr repeat(2, 1fr); }
+}
+.pilot-card h2 { margin-bottom: 10px; }
+.pilot-card .lead { font-size: 16px; }
+.pilot-card ul { list-style: none; padding: 0; margin: 18px 0 24px; display: grid; gap: 10px; text-align: left; font-size: 15px; color: var(--ink-2); }
+.pilot-card li { display: flex; gap: 10px; align-items: flex-start; }
+.pilot-card li .ic { flex: none; margin-top: 3px; color: var(--teal); stroke-width: 2.6; }
+.install small { display: block; margin-top: 6px; font-size: 13.5px; color: var(--ink-3); }
+/* Download page: Windows gets the automatic download, other devices the "Windows only" copy (head script sets data-platform). */
+html[data-platform="other"] [data-win-only],
+html:not([data-platform="other"]) [data-other-only] { display: none !important; }
+.pilot-card__alt { margin: -6px 0 0; font-size: 14px; color: var(--ink-3); }
+.pilot-card__alt a { color: var(--violet-700); }
+.btn.is-disabled { opacity: 0.45; pointer-events: none; }

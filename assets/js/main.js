@@ -29,11 +29,12 @@
   /* ------------------------------------------------------------------ */
   const T = {
     cs: {
-      checkoutMissing: 'Platební brána zatím není napojená. Doplň <code>checkoutUrl</code> v assets/js/config.js.',
+      // Visitors see these; hints for the site owner go to the browser console (see ownerHint).
+      checkoutMissing: 'Prodej ještě nezačal. Zatím si můžeš Eiddie stáhnout a&nbsp;vyzkoušet zdarma.',
       checkoutThanks: 'Děkuju za nákup! Za chvíli tě přesměruju…',
-      copied: 'E-mail je zkopírovaný ve schránce.',
-      todo: 'Tenhle odkaz ještě čeká na doplnění.',
-      installerMissing: 'Instalátor zatím není nahraný. Vlož ho do website/downloads/ nebo nastav <code>trialUrl</code> v assets/js/config.js.',
+      copied: 'E-mailová adresa je zkopírovaná do schránky.',
+      todo: 'Tuhle stránku právě připravuju.',
+      installerMissing: 'Instalátor teď není k&nbsp;dispozici. Zkus to prosím za chvíli, nebo mi napiš.',
       formInvalid: 'Vyplň prosím jméno, platný e-mail a zprávu.',
       formSending: 'Odesílám…',
       formOk: 'Díky! Zpráva je na cestě, ozvu se co nejdřív.',
@@ -49,11 +50,11 @@
       locale: 'cs-CZ',
     },
     en: {
-      checkoutMissing: 'The checkout isn’t connected yet. Set <code>checkoutUrl</code> in assets/js/config.js.',
+      checkoutMissing: 'Sales haven’t started yet. For now you can download Eiddie and try it for free.',
       checkoutThanks: 'Thank you for your purchase! Redirecting you in a moment…',
       copied: 'E-mail address copied to the clipboard.',
-      todo: 'This link is still a placeholder.',
-      installerMissing: 'The installer isn’t uploaded yet. Put it in website/downloads/ or set <code>trialUrl</code> in assets/js/config.js.',
+      todo: 'I’m still preparing this page.',
+      installerMissing: 'The installer isn’t available right now. Please try again in a moment, or write to me.',
       formInvalid: 'Please fill in your name, a valid e-mail and a message.',
       formSending: 'Sending…',
       formOk: 'Thanks! Your message is on its way, I’ll reply soon.',
@@ -128,10 +129,24 @@
       el.textContent = v;
       if (key === 'email' && el.tagName === 'A') el.href = `mailto:${v}`;
     });
+    // Mail templates. The app shows no version yet, so the template names the version offered on this website.
+    const v = C.version || '';
+    const mails = {
+      cs: {
+        feedback: ['Eiddie pilot: zpětná vazba', `Ahoj,\n\nco mě potěšilo:\n\n\nco drhne nebo nefunguje:\n\n\nco mi chybí:\n\n\nWindows 10, nebo 11: \nstaženo z webu, verze ${v}`],
+        bug: ['Eiddie: chyba', `Co se stalo:\n\n\nJak se k tomu dostat:\n\n\n(Snímek obrazovky pomůže nejvíc.)\nWindows 10, nebo 11: \nverze z webu: ${v}`],
+        team: ['Eiddie: licence pro tým', ''],
+      },
+      en: {
+        feedback: ['Eiddie pilot: feedback', `Hi,\n\nwhat I liked:\n\n\nwhat got in my way or didn’t work:\n\n\nwhat I’m missing:\n\n\nWindows 10 or 11: \ndownloaded from the website, version ${v}`],
+        bug: ['Eiddie: bug report', `What happened:\n\n\nHow to get there:\n\n\n(A screenshot helps the most.)\nWindows 10 or 11: \nversion from the website: ${v}`],
+        team: ['Eiddie: team licence', ''],
+      },
+    }[lang];
     $$('[data-cfg-mail]').forEach((el) => {
       if (!C.email) return;
-      const subject = { bug: 'Eiddie: bug report', team: 'Eiddie: team licence' }[el.dataset.cfgMail] || 'Eiddie';
-      el.href = `mailto:${C.email}?subject=${encodeURIComponent(subject)}`;
+      const [subject, body] = mails[el.dataset.cfgMail] || ['Eiddie', ''];
+      el.href = `mailto:${C.email}?subject=${encodeURIComponent(subject)}${body ? `&body=${encodeURIComponent(body)}` : ''}`;
     });
   }
 
@@ -259,7 +274,11 @@
     const btn = e.target.closest('[data-buy]');
     if (!btn) return;
     e.preventDefault();
-    if (!checkoutReady) { toast(t('checkoutMissing'), 6500); return; }
+    if (!checkoutReady) {
+      console.warn('[Eiddie] Checkout not connected: set checkoutUrl in assets/js/config.js.');
+      toast(t('checkoutMissing'), 6500);
+      return;
+    }
     loadLemon()
       .then(() => window.LemonSqueezy.Url.Open(checkoutUrl))
       .catch(() => { location.href = checkoutUrl.replace(/[?&]embed=1/, ''); });
@@ -277,9 +296,10 @@
       loadLemon().then(() => window.LemonSqueezy.Url.Open(trialUrl)).catch(() => { location.href = trialUrl; });
     });
   }
-  $$('[data-trial-file]').forEach((a) => { if (trialUrl && !trialViaLemon) a.href = trialUrl; });
+  const fileLinks = $$('[data-trial-file]');
+  fileLinks.forEach((a) => { if (trialUrl && !trialViaLemon) a.href = trialUrl; });
 
-  /* Download page: start the installer download automatically */
+  /* Download page: check the installer exists, then download it automatically (Windows only, once per tab) */
   const auto = $('[data-autodownload]');
   if (auto && trialUrl && !trialViaLemon) {
     const start = () => {
@@ -290,15 +310,51 @@
       a.click();
       a.remove();
     };
-    setTimeout(() => {
-      // Same-origin file that isn't uploaded yet → tell the site owner instead of downloading a 404 page.
-      const sameOrigin = new URL(trialUrl, location.href).origin === location.origin;
-      if (!sameOrigin) { start(); return; }
-      fetch(trialUrl, { method: 'HEAD' })
-        .then((r) => { if (r.ok) start(); else toast(t('installerMissing'), 8000); })
-        .catch(() => start());
-    }, 1200);
+    const missing = () => {
+      console.warn('[Eiddie] Installer not found at trialUrl (' + trialUrl + '): publish the release/file or fix trialUrl in assets/js/config.js.');
+      toast(t('installerMissing'), 8000);
+      fileLinks.forEach((a) => { a.removeAttribute('href'); a.setAttribute('aria-disabled', 'true'); a.classList.add('is-disabled'); });
+    };
+    // A GitHub "latest release" link is checked through the GitHub API (CORS-enabled): without a release the
+    // download would navigate away to GitHub's 404 page. The answer also brings the real version and size.
+    // Rate limits (60 requests/hour per IP) or network errors never block the download: fail open.
+    const gh = /^https:\/\/github\.com\/([^/]+)\/([^/]+)\/releases\/latest\/download\/([^/?#]+)$/.exec(trialUrl);
+    const check = () => {
+      if (gh) {
+        return fetch(`https://api.github.com/repos/${gh[1]}/${gh[2]}/releases/latest`)
+          .then((r) => {
+            if (r.status === 404) return false;
+            if (!r.ok) return true;
+            return r.json().then((rel) => {
+              const asset = (rel.assets || []).find((x) => x.name === decodeURIComponent(gh[3]) && x.state === 'uploaded');
+              if (!asset) return false;
+              if (rel.tag_name) C.version = rel.tag_name.replace(/^v/i, '');
+              if (asset.size) C.installerSize = `≈ ${Math.round(asset.size / 1048576)} MB`;
+              fillConfig();
+              return true;
+            });
+          })
+          .catch(() => true);
+      }
+      if (new URL(trialUrl, location.href).origin !== location.origin) return Promise.resolve(true);
+      return fetch(trialUrl, { method: 'HEAD' }).then((r) => r.ok).catch(() => true);
+    };
+    check().then((ok) => {
+      if (!ok) { missing(); return; }
+      // Phones and Macs get the "Windows only" copy (download.html head script sets data-platform) and no 95 MB .exe.
+      if (root.dataset.platform !== 'windows') return;
+      // Once per tab: a reload or Back must not save a second copy as "Eiddie-Setup (1).exe".
+      try {
+        if (Number(sessionStorage.getItem('eiddie-dl')) > Date.now() - 10 * 60 * 1000) return;
+        sessionStorage.setItem('eiddie-dl', String(Date.now()));
+      } catch (e) { /* storage blocked: download anyway */ }
+      setTimeout(start, 600);
+    });
   }
+  // "Send me the link" on phones: an e-mail to yourself with this page's address.
+  $$('[data-send-link]').forEach((a) => {
+    a.href = `mailto:?subject=${encodeURIComponent('Eiddie')}&body=${encodeURIComponent(location.origin + location.pathname)}`;
+  });
 
   /* ------------------------------------------------------------------ */
   /* Intro video: one file per language (config.video), click to play   */
@@ -312,6 +368,9 @@
     const openBtns = $$('[data-video-open]');
     const file = (tpl) => (tpl || '').replace('{lang}', lang);
     let near = false; // the poster is fetched only once the section gets close to the viewport
+    // Pilot: stop before the end card burned into the video (price, 14-day trial) and show the HTML end card instead.
+    const cut = C.pilot && V.pilotEnd > 0 ? V.pilotEnd : 0;
+    const shownDuration = cut ? `${Math.floor(cut / 60)}:${String(Math.floor(cut % 60)).padStart(2, '0')}` : V.duration;
 
     const reset = () => {
       playBtn.hidden = false;
@@ -322,7 +381,7 @@
       const ready = !!(V.ready && V.ready[lang] && V.src);
       reelSec.hidden = !ready;
       openBtns.forEach((b) => { b.hidden = !ready; });
-      if (V.duration) $$('[data-video-duration]').forEach((el) => { el.textContent = V.duration; });
+      if (shownDuration) $$('[data-video-duration]').forEach((el) => { el.textContent = shownDuration; });
       if (!ready) {
         if (reelVideo.getAttribute('src')) { reelVideo.pause(); reelVideo.removeAttribute('src'); reelVideo.removeAttribute('poster'); reelVideo.load(); }
         return;
@@ -341,7 +400,7 @@
       endCard.hidden = true;
       reelVideo.controls = true;
       if (reelVideo.error) reelVideo.load(); // retry after a failed load
-      else if (reelVideo.ended) reelVideo.currentTime = 0;
+      else if (reelVideo.ended || (cut && reelVideo.currentTime >= cut - 0.1)) reelVideo.currentTime = 0;
       const p = reelVideo.play();
       if (p && p.catch) p.catch((err) => { if (err && err.name !== 'AbortError') reset(); });
       if (hadFocus) reelVideo.focus({ preventScroll: true });
@@ -362,13 +421,19 @@
       history.replaceState(null, '', '#video');
       play();
     }));
-    reelVideo.addEventListener('ended', () => {
+    const showEnd = () => {
       if (document.fullscreenElement === reelVideo && document.exitFullscreen) document.exitFullscreen().catch(() => {});
       const hadFocus = reelSec.contains(document.activeElement);
       reelVideo.controls = false;
       endCard.hidden = false;
       if (hadFocus) $('[data-video-replay]', reelSec).focus({ preventScroll: true });
-    });
+    };
+    reelVideo.addEventListener('ended', showEnd);
+    if (cut) {
+      reelVideo.addEventListener('timeupdate', () => {
+        if (reelVideo.currentTime >= cut && !reelVideo.paused) { reelVideo.pause(); showEnd(); }
+      });
+    }
     reelVideo.addEventListener('error', () => {
       if (!reelVideo.getAttribute('src') || !playBtn.hidden) return; // only report failures after Play
       reset();
@@ -449,6 +514,8 @@
   /* ------------------------------------------------------------------ */
   const form = $('[data-form]');
   if (form) {
+    // iOS Safari ignores display:none on <option>, so drop the topics of the other mode instead of hiding them.
+    $$(root.hasAttribute('data-pilot') ? 'option[data-pilot-hide]' : 'option[data-pilot-only]', form).forEach((o) => o.remove());
     const status = $('[data-form-status]', form);
     const setStatus = (msg, cls) => { status.textContent = msg; status.className = `form__status ${cls || ''}`; };
     form.addEventListener('input', (e) => { const f = e.target.closest('.field'); if (f) f.classList.remove('is-invalid'); });
@@ -1159,6 +1226,28 @@
   // Progress bar via ScrollTrigger (keeps it in sync with Lenis)
   if (progress) {
     gsap.fromTo(progress, { scaleX: 0 }, { scaleX: 1, ease: 'none', scrollTrigger: { start: 0, end: 'max', scrub: 0.2 } });
+  }
+
+  // Deep link (index.html#pilot opened directly): ScrollTrigger.refresh() measures at scroll 0 and restores the
+  // position it cached before the browser jumped to the fragment, so the visitor would land on the hero. Jump again
+  // after the final measurement, and reveal what is already in view (ST.batch onEnter needs a scroll to fire).
+  const hashEl = location.hash.length > 1 && document.getElementById(decodeURIComponent(location.hash.slice(1)));
+  if (hashEl) {
+    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+    const loaded = new Promise((r) => (document.readyState === 'complete' ? r() : addEventListener('load', r, { once: true })));
+    Promise.all([loaded, document.fonts ? document.fonts.ready : null]).then(() => requestAnimationFrame(() => {
+      if (lenis) lenis.resize(); // otherwise Lenis clamps the jump to a stale page height
+      ST.refresh();
+      if (lenis) lenis.scrollTo(hashEl, { immediate: true, force: true }); else hashEl.scrollIntoView();
+      requestAnimationFrame(() => {
+        ST.update();
+        const inView = $$('[data-reveal]').filter((el) => {
+          const r = el.getClientRects().length && el.getBoundingClientRect();
+          return r && r.top < innerHeight * 0.9 && r.bottom > 0;
+        });
+        gsap.to(inView, { opacity: 1, y: 0, duration: 0.95, ease: 'power3.out', stagger: 0.08, overwrite: true });
+      });
+    }));
   }
 
   // Recalculate once fonts and images have settled

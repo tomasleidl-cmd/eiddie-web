@@ -42,6 +42,8 @@
       </h1>
       <p>Myšlenky, plátna a&nbsp;data na jednom místě. <span>Ve tvých souborech.</span></p>
       <div class="chips2"><span>999 Kč jednorázově</span><span>14 dní zdarma</span></div>
+      <!-- og-template.html?pilot → assets/img/og-pilot.png (link preview while config.pilot is on) -->
+      <script>if (/[?&]pilot\b/.test(location.search)) document.querySelector('.chips2').innerHTML = '<span>Pilotní verze zdarma</span><span>Windows 10 a&nbsp;11</span>';</script>
     </div>
     <div class="card">
       <div class="r"><span class="ini" style="--i:0">E</span><div><b>Editor</b><small>Živý Markdown editor</small></div></div>

@@ -2,17 +2,21 @@
 <html lang="cs">
 <head>
   <meta charset="utf-8">
-  <meta name="robots" content="noindex">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <!-- Pilot: keeps the site out of search engines. Remove at the public launch (and switch pilot off in config.js). -->
+  <meta name="robots" content="noindex">
   <title>Eiddie: Edit Ideas. Draw Diagrams. Index Everything.</title>
-  <meta name="description" content="Eiddie: Edit Ideas. Draw Diagrams. Index Everything. Myšlenky, plátna a data na jednom místě, ve tvých souborech. Outliner, nekonečné plátno a databázové pohledy v jedné offline aplikaci, kompatibilní s Obsidianem. 999 Kč jednorázově, 14 dní zdarma." data-en-content="Eiddie: Edit Ideas. Draw Diagrams. Index Everything. Thoughts, canvases and data in one place, in your own files. An outliner, an infinite canvas and database views in one offline app that works with Obsidian vaults. 999 CZK one-time, 14 days free.">
+  <meta name="description" content="Eiddie: Edit Ideas. Draw Diagrams. Index Everything. Myšlenky, plátna a data na jednom místě, ve tvých souborech. Outliner, nekonečné plátno a databázové pohledy v jedné offline aplikaci, kompatibilní s Obsidianem." data-en-content="Eiddie: Edit Ideas. Draw Diagrams. Index Everything. Thoughts, canvases and data in one place, in your own files. An outliner, an infinite canvas and database views in one offline app that works with Obsidian vaults.">
   <meta name="theme-color" content="#6c5cff">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Eiddie">
   <meta property="og:title" content="Eiddie: Edit Ideas. Draw Diagrams. Index Everything.">
   <meta property="og:description" content="Myšlenky, plátna a data na jednom místě. Ve tvých souborech. Offline aplikace bez předplatného." data-en-content="Thoughts, canvases and data in one place. In your own files. An offline app with no subscription.">
-  <!-- TODO after deploy: use absolute URLs, e.g. https://your-domain.cz/assets/img/og.png, and add <link rel="canonical"> -->
-  <meta property="og:image" content="assets/img/og.png">
+  <link rel="canonical" href="https://www.eiddie.cz/">
+  <meta property="og:url" content="https://www.eiddie.cz/">
+  <!-- Absolute URL: social networks ignore relative ones. -->
+  <!-- Pilot: og-pilot.png (no price, no trial). At launch switch back to og.png. -->
+  <meta property="og:image" content="https://www.eiddie.cz/assets/img/og-pilot.png">
   <meta property="og:image:alt" content="Eiddie: Edit Ideas. Draw Diagrams. Index Everything.">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Eiddie: Edit Ideas. Draw Diagrams. Index Everything.">
@@ -26,11 +30,14 @@
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Inter:wght@400..700&family=Instrument+Serif:ital@1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css">
 
+  <!-- Loaded synchronously (tiny): the pilot switch must be known before the first paint -->
+  <script src="assets/js/config.js"></script>
   <script>
     // Runs before first paint: enables reveal styles and hides the page briefly while English is applied.
     (function () {
       var d = document.documentElement, lang = null;
       d.classList.add('js');
+      if ((window.EIDDIE_CONFIG || {}).pilot) d.dataset.pilot = '';
       try { lang = new URLSearchParams(location.search).get('lang') || localStorage.getItem('eiddie-lang'); } catch (e) {}
       if (!lang) lang = /^(cs|sk)/i.test(navigator.language || '') ? 'cs' : 'en';
       d.dataset.lang = lang === 'en' ? 'en' : 'cs';
@@ -47,7 +54,6 @@
     "applicationCategory": "ProductivityApplication",
     "operatingSystem": "Windows 10, Windows 11",
     "description": "Thoughts, canvases and data in one place, in your own files: a live Markdown editor, an outliner, daily notes, database views and an infinite canvas in one offline app. Plain Markdown files.",
-    "offers": { "@type": "Offer", "price": "999", "priceCurrency": "CZK" },
     "author": { "@type": "Person", "name": "Tomáš Leidl" }
   }
   </script>
@@ -138,7 +144,8 @@
         <a href="#funkce" data-en="Features">Funkce</a>
         <a href="#jak" data-en="How it works">Jak to funguje</a>
         <a href="#pouziti" data-en="Use cases">Použití</a>
-        <a href="#cena" data-en="Pricing">Cena</a>
+        <a href="#cena" data-en="Pricing" data-pilot-hide>Cena</a>
+        <a href="#pilot" data-pilot-only>Pilot</a>
         <a href="#faq">FAQ</a>
         <a href="#kontakt" data-en="Contact">Kontakt</a>
       </nav>
@@ -147,8 +154,11 @@
           <button type="button" data-lang-btn="cs" aria-pressed="true">CZ</button>
           <button type="button" data-lang-btn="en" aria-pressed="false">EN</button>
         </div>
-        <a class="btn btn--primary btn--sm nav__cta" href="#cena">
+        <a class="btn btn--primary btn--sm nav__cta" href="#cena" data-pilot-hide>
           <span data-en="Buy">Koupit</span><span class="btn-price" data-cfg="price">999 Kč</span>
+        </a>
+        <a class="btn btn--primary btn--sm nav__cta" href="download.html" data-trial data-pilot-only>
+          <svg class="ic"><use href="#i-download"/></svg><span data-en="Download">Stáhnout</span>
         </a>
         <button class="nav__burger" type="button" aria-expanded="false" aria-controls="drawer" aria-label="Menu" data-burger>
           <svg class="ic"><use href="#i-menu"/></svg>
@@ -161,10 +171,11 @@
     <a href="#funkce" data-en="Features">Funkce</a>
     <a href="#jak" data-en="How it works">Jak to funguje</a>
     <a href="#pouziti" data-en="Use cases">Použití</a>
-    <a href="#cena" data-en="Pricing">Cena</a>
+    <a href="#cena" data-en="Pricing" data-pilot-hide>Cena</a>
+    <a href="#pilot" data-pilot-only>Pilot</a>
     <a href="#faq">FAQ</a>
     <a href="#kontakt" data-en="Contact">Kontakt</a>
-    <a class="btn btn--primary btn--lg" href="download.html" data-trial><svg class="ic"><use href="#i-download"/></svg><span data-en="Try free for 14 days">Vyzkoušet 14 dní zdarma</span></a>
+    <a class="btn btn--primary btn--lg" href="download.html" data-trial><svg class="ic"><use href="#i-download"/></svg><span data-en="Try free for 14 days" data-pilot-hide>Vyzkoušet 14 dní zdarma</span><span data-en="Download the pilot version" data-pilot-only>Stáhnout pilotní verzi</span></a>
   </div>
 
   <main id="main">
@@ -176,9 +187,14 @@
 
       <div class="container">
         <div class="hero__copy">
-          <a class="badge" href="#cena" data-hero-in>
+          <a class="badge" href="#cena" data-hero-in data-pilot-hide>
             <b data-en="New">Nově</b>
             <span data-en="Launch price 999 CZK · no subscription">Zaváděcí cena 999 Kč · bez předplatného</span>
+            <svg class="ic"><use href="#i-arrow"/></svg>
+          </a>
+          <a class="badge" href="#pilot" data-hero-in data-pilot-only>
+            <b>Pilot</b>
+            <span data-en="Early access before release · free">Předběžný přístup ještě před vydáním · zdarma</span>
             <svg class="ic"><use href="#i-arrow"/></svg>
           </a>
           <!-- The slogan is the acronym E·I·D·D·I·E, identical in both languages. Words are pre-split (.w/.wi) so each initial stays glued to its word. -->
@@ -192,10 +208,14 @@
           <div class="btn-row hero__ctas" data-hero-in>
             <a class="btn btn--primary btn--lg" href="download.html" data-trial data-magnetic>
               <svg class="ic"><use href="#i-download"/></svg>
-              <span data-en="Try free for 14 days">Vyzkoušet 14 dní zdarma</span>
+              <span data-en="Try free for 14 days" data-pilot-hide>Vyzkoušet 14 dní zdarma</span>
+              <span data-en="Download the pilot version" data-pilot-only>Stáhnout pilotní verzi</span>
             </a>
-            <a class="btn btn--ghost btn--lg" href="#cena" data-magnetic>
+            <a class="btn btn--ghost btn--lg" href="#cena" data-magnetic data-pilot-hide>
               <span data-en="Buy">Koupit</span><span class="btn-price" data-cfg="price">999 Kč</span>
+            </a>
+            <a class="btn btn--ghost btn--lg" href="#pilot" data-magnetic data-pilot-only>
+              <span data-en="How the pilot works">Jak pilot funguje</span>
             </a>
             <!-- Shown by main.js once config.video.ready[lang] is true; scrolls to #video and starts playback -->
             <a class="btn btn--video btn--lg" href="#video" data-video-open hidden>
@@ -205,7 +225,8 @@
           </div>
           <ul class="trust" data-hero-in>
             <li><svg class="ic"><use href="#i-check"/></svg><span data-en="100% offline">100% offline</span></li>
-            <li><svg class="ic"><use href="#i-check"/></svg><span data-en="One-time payment">Jednorázová platba</span></li>
+            <li data-pilot-hide><svg class="ic"><use href="#i-check"/></svg><span data-en="One-time payment">Jednorázová platba</span></li>
+            <li data-pilot-only><svg class="ic"><use href="#i-check"/></svg><span data-en="No subscription">Bez předplatného</span></li>
             <li><svg class="ic"><use href="#i-check"/></svg><span data-en="Plain Markdown">Čistý Markdown</span></li>
             <li><svg class="ic"><use href="#i-check"/></svg><span data-en="Opens Obsidian vaults">Otevře i Obsidian vault</span></li>
           </ul>
@@ -362,7 +383,7 @@
             <div class="reel__end on-dark" data-video-end hidden>
               <p class="reel__end-title" data-en="Try it on your own notes.">Vyzkoušej to na svých poznámkách.</p>
               <div class="btn-row">
-                <a class="btn btn--primary" href="download.html" data-trial><svg class="ic"><use href="#i-download"/></svg><span data-en="Try free for 14 days">Vyzkoušet 14 dní zdarma</span></a>
+                <a class="btn btn--primary" href="download.html" data-trial><svg class="ic"><use href="#i-download"/></svg><span data-en="Try free for 14 days" data-pilot-hide>Vyzkoušet 14 dní zdarma</span><span data-en="Download the pilot version" data-pilot-only>Stáhnout pilotní verzi</span></a>
                 <button class="btn btn--ghost" type="button" data-video-replay><svg class="ic"><use href="#i-refresh"/></svg><span data-en="Watch again">Přehrát znovu</span></button>
               </div>
             </div>
@@ -979,7 +1000,8 @@
               <tr><th scope="row" data-en="Table, kanban &amp; calendar views">Tabulka, kanban a&nbsp;kalendář</th><td><span class="yes"><svg class="ic"><use href="#i-check"/></svg></span></td><td><span class="meh" data-en="plugins">pluginy</span></td><td class="is-us"><span class="yes"><svg class="ic"><use href="#i-check"/></svg></span></td></tr>
               <tr><th scope="row" data-en="Infinite canvas">Nekonečné plátno</th><td><span class="meh" data-en="partly">částečně</span></td><td><span class="meh" data-en="plugins">pluginy</span></td><td class="is-us"><span class="yes"><svg class="ic"><use href="#i-check"/></svg></span></td></tr>
               <tr><th scope="row" data-en="All in one app, no plugins">Vše v&nbsp;jedné aplikaci bez pluginů</th><td><span class="yes"><svg class="ic"><use href="#i-check"/></svg></span></td><td><span class="no"><svg class="ic"><use href="#i-x"/></svg></span></td><td class="is-us"><span class="yes"><svg class="ic"><use href="#i-check"/></svg></span></td></tr>
-              <tr><th scope="row" data-en="One-time payment">Jednorázová platba</th><td><span class="no"><svg class="ic"><use href="#i-x"/></svg></span></td><td><span class="meh" data-en="varies">různě</span></td><td class="is-us"><span class="yes"><svg class="ic"><use href="#i-check"/></svg></span></td></tr>
+              <tr data-pilot-only><th scope="row" data-en="No subscription">Bez předplatného</th><td><span class="no"><svg class="ic"><use href="#i-x"/></svg></span></td><td><span class="meh" data-en="varies">různě</span></td><td class="is-us"><span class="yes"><svg class="ic"><use href="#i-check"/></svg></span></td></tr>
+              <tr data-pilot-hide><th scope="row" data-en="One-time payment">Jednorázová platba</th><td><span class="no"><svg class="ic"><use href="#i-x"/></svg></span></td><td><span class="meh" data-en="varies">různě</span></td><td class="is-us"><span class="yes"><svg class="ic"><use href="#i-check"/></svg></span></td></tr>
             </tbody>
           </table>
         </div>
@@ -990,7 +1012,7 @@
     <!-- ============ TESTIMONIALS ============
          PLACEHOLDER COPY. Replace with real quotes (with permission) from beta testers before going live.
          Fictional reviews presented as real are illegal under Czech/EU consumer law. -->
-    <section class="section voices" id="recenze">
+    <section class="section voices" id="recenze" data-pilot-hide>
       <div class="container">
         <div class="section-head">
           <span class="eyebrow" data-reveal data-en="Early users">První uživatelé</span>
@@ -1049,8 +1071,55 @@
       </div>
     </section>
 
+    <!-- ============ PILOT (shown only while config.pilot is true, in place of the pricing) ============ -->
+    <section class="section pricing pilot" id="pilot" data-pilot-only>
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow" data-reveal data-en="Pilot version">Pilotní verze</span>
+          <h2 class="h2" data-split data-en="Try it <em>before everyone else</em>.">Vyzkoušej to <em>dřív než ostatní</em>.</h2>
+          <p class="lead" data-reveal data-en="Eiddie is close to release and a few friends are trying it out right now. The pilot version is free and has no time limit. In return I’m asking for just one thing: your honest opinion.">Aplikace Eiddie je těsně před vydáním a&nbsp;teď ji zkouší pár přátel. Pilotní verze je zdarma a&nbsp;nemá časové omezení. Na oplátku tě prosím jen o&nbsp;jedno: o&nbsp;upřímný názor.</p>
+        </div>
+
+        <div class="plans" data-stagger>
+          <div class="plan" data-reveal>
+            <h3 data-en="What you get">Co dostaneš</h3>
+            <p class="plan__desc" data-en="The whole app, the very same one I use every day.">Celou aplikaci, tu samou, kterou denně používám.</p>
+            <ul>
+              <li><svg class="ic"><use href="#i-check"/></svg><span data-en="Every feature, no limits">Všechny funkce bez omezení</span></li>
+              <li><svg class="ic"><use href="#i-check"/></svg><span data-en="No time limit, no card, no sign-up">Bez časového limitu, bez karty a&nbsp;bez registrace</span></li>
+              <li><svg class="ic"><use href="#i-check"/></svg><span data-en="A demo vault to get you started">Ukázkový vault pro rychlý start</span></li>
+              <li><svg class="ic"><use href="#i-check"/></svg><span data-en="Your notes stay plain Markdown files on your disk">Poznámky zůstávají obyčejnými soubory Markdown na tvém disku</span></li>
+            </ul>
+            <a class="btn btn--primary btn--lg" href="download.html" data-trial><svg class="ic"><use href="#i-download"/></svg><span data-en="Download the pilot version">Stáhnout pilotní verzi</span></a>
+          </div>
+
+          <div class="plan plan--pro on-dark" data-reveal>
+            <span class="plan__badge">Pilot</span>
+            <h3 data-en="What I’m asking of you">Co potřebuju od tebe</h3>
+            <p class="plan__desc" data-en="A few minutes now and then, and honesty.">Pár minut času a&nbsp;upřímnost.</p>
+            <ul>
+              <li><svg class="ic"><use href="#i-check"/></svg><span data-en="Use it for real notes, not just a quick look">Používej aplikaci na skutečné poznámky, ne jen na zkoušku</span></li>
+              <li><svg class="ic"><use href="#i-check"/></svg><span data-en="Tell me what you liked and what got in your way">Napiš mi, co tě potěšilo a&nbsp;co drhne</span></li>
+              <li><svg class="ic"><use href="#i-check"/></svg><span data-en="Report every bug, even a small one">Nahlas každou chybu, i&nbsp;malou</span></li>
+              <li><svg class="ic"><use href="#i-check"/></svg><span data-en="Tell me what you’re missing">Řekni mi, co ti chybí</span></li>
+            </ul>
+            <a class="btn btn--white btn--lg" href="mailto:tomas.leidl@gmail.com?subject=Eiddie%20pilot" data-cfg-mail="feedback"><svg class="ic"><use href="#i-mail"/></svg><span data-en="Send feedback">Napsat zpětnou vazbu</span></a>
+            <div class="plan__pay"><svg class="ic"><use href="#i-heart"/></svg><span data-en="I read every message myself and usually reply within two days.">Každou zprávu čtu osobně a&nbsp;obvykle odpovím do dvou dnů.</span></div>
+          </div>
+        </div>
+
+        <h3 class="flow__title" data-reveal data-en="How the pilot works">Jak pilot probíhá</h3>
+        <ol class="flow" data-stagger>
+          <li data-reveal><span class="ic-wrap"><svg class="ic"><use href="#i-download"/></svg></span><b data-en="Download and install">Stáhni a&nbsp;nainstaluj</b><span data-en="Windows 10 or 11. It takes about a minute and the download page walks you through it.">Windows 10 nebo 11. Zabere to asi minutu a&nbsp;stránka ke stažení tě celou instalací provede.</span></li>
+          <li data-reveal><span class="ic-wrap"><svg class="ic"><use href="#i-pen"/></svg></span><b data-en="Use Eiddie for real">Používej Eiddie naplno</b><span data-en="Start in the demo vault or open your own folder. Back up an existing vault before you open it.">Začni v&nbsp;ukázkovém vaultu, nebo otevři vlastní složku. Existující vault si předtím zazálohuj.</span></li>
+          <li data-reveal><span class="ic-wrap"><svg class="ic"><use href="#i-mail"/></svg></span><b data-en="Tell me how it went">Napiš mi, jak to šlo</b><span data-en="What delighted you, what got in your way and what’s missing. Every message helps.">Co tě potěšilo, co drhne a&nbsp;co chybí. Pomůže každá zpráva.</span></li>
+        </ol>
+        <p class="pilot__note" data-reveal data-en="The pilot version is a pre-release, so you may run into bugs. Your notes are ordinary files, but back up your main vault before you open it in Eiddie. New pilot versions always appear here on the website.">Pilotní verze je předběžná, takže v&nbsp;ní můžeš narazit na chyby. Poznámky jsou obyčejné soubory, ale svůj hlavní vault si před otevřením v&nbsp;aplikaci Eiddie zazálohuj. Nové pilotní verze najdeš vždycky tady na webu.</p>
+      </div>
+    </section>
+
     <!-- ============ PRICING ============ -->
-    <section class="section pricing" id="cena">
+    <section class="section pricing" id="cena" data-pilot-hide>
       <div class="container">
         <div class="section-head">
           <span class="eyebrow" data-reveal data-en="Pricing">Cena</span>
@@ -1131,9 +1200,21 @@
         <div class="faq" data-stagger>
           <details data-reveal open>
             <summary><span data-en="Is it really subscription-free?">Je to opravdu bez předplatného?</span><span class="pm" aria-hidden="true"></span></summary>
-            <div class="faq__a"><p data-en="Yes. You pay 999 CZK once and Eiddie is yours. Every 1.x update is free.">Ano. Zaplatíš 999 Kč jednou a&nbsp;aplikace je tvoje. Všechny aktualizace verze 1.x dostaneš zdarma.</p></div>
+            <div class="faq__a"><p data-en="Yes. You pay 999 CZK once and Eiddie is yours. Every 1.x update is free." data-pilot-hide>Ano. Zaplatíš 999 Kč jednou a&nbsp;aplikace je tvoje. Všechny aktualizace verze 1.x dostaneš zdarma.</p><p data-en="Yes. Eiddie will be released as a one-time purchase, with no subscription. During the pilot it’s free." data-pilot-only>Ano. Eiddie vyjde jako aplikace na jednorázovou platbu, bez předplatného. Během pilotu je zdarma.</p></div>
           </details>
-          <details data-reveal>
+          <details data-reveal data-pilot-only>
+            <summary><span data-en="How long can I use the pilot version?">Jak dlouho můžu pilotní verzi používat?</span><span class="pm" aria-hidden="true"></span></summary>
+            <div class="faq__a"><p data-en="As long as you like: the pilot version has no time limit. Your notes are ordinary Markdown files on your disk, so they stay yours whatever you decide.">Jak dlouho chceš, pilotní verze nemá časové omezení. Poznámky jsou obyčejné soubory Markdown na tvém disku, takže ti zůstanou, ať se rozhodneš jakkoli.</p></div>
+          </details>
+          <details data-reveal data-pilot-only>
+            <summary><span data-en="Why does Windows show a warning during installation?">Proč Windows při instalaci zobrazí varování?</span><span class="pm" aria-hidden="true"></span></summary>
+            <div class="faq__a"><p data-en="The pilot installer doesn’t have a digital signature yet, so Windows and your browser don’t recognise it. The download page shows you how to allow it, step by step.">Pilotní instalátor zatím nemá digitální podpis, takže ho Windows ani prohlížeč neznají. Na stránce ke stažení najdeš postup, jak ho povolit.</p></div>
+          </details>
+          <details data-reveal data-pilot-only>
+            <summary><span data-en="How do I report a bug?">Jak nahlásím chybu?</span><span class="pm" aria-hidden="true"></span></summary>
+            <div class="faq__a"><p data-en="E-mail me at <a href=&quot;mailto:tomas.leidl@gmail.com&quot; data-cfg=&quot;email&quot;>tomas.leidl@gmail.com</a>. Describe what happened and how to get there; a screenshot helps the most.">Napiš mi na <a href="mailto:tomas.leidl@gmail.com" data-cfg="email">tomas.leidl@gmail.com</a>. Popiš, co se stalo a&nbsp;jak se k&nbsp;tomu dostat. Nejvíc pomůže snímek obrazovky.</p></div>
+          </details>
+          <details data-reveal data-pilot-hide>
             <summary><span data-en="What happens after the 14-day trial?">Co se stane po 14 dnech zkušební verze?</span><span class="pm" aria-hidden="true"></span></summary>
             <div class="faq__a"><p data-en="Enter a licence key and keep going. If you decide not to buy, your notes stay with you: they are ordinary Markdown files on your disk.">Zadáš licenční klíč a&nbsp;pokračuješ. Když se rozhodneš nekoupit, poznámky ti zůstanou. Jsou to obyčejné Markdown soubory na tvém disku.</p></div>
           </details>
@@ -1149,21 +1230,21 @@
             <summary><span data-en="Which systems does it run on?">Na jakých systémech běží?</span><span class="pm" aria-hidden="true"></span></summary>
             <div class="faq__a"><p data-en="Windows 10 and 11 (64-bit). macOS and Linux versions are planned. Write to me and you’ll be the first to know.">Na Windows 10 a&nbsp;11 (64 bit). Verze pro macOS a&nbsp;Linux jsou v&nbsp;plánu. Napiš mi a&nbsp;dozvíš se to jako první.</p></div>
           </details>
-          <details data-reveal>
+          <details data-reveal data-pilot-hide>
             <summary><span data-en="How many computers can I use it on?">Na kolik počítačů můžu licenci použít?</span><span class="pm" aria-hidden="true"></span></summary>
             <div class="faq__a"><p data-en="Up to 3 of your own computers. Need licences for a team? Get in touch.">Až na 3 vlastní počítače. Potřebuješ licence pro tým? Ozvi se.</p></div>
           </details>
           <details data-reveal>
             <summary><span data-en="Do I need an internet connection?">Potřebuju připojení k&nbsp;internetu?</span><span class="pm" aria-hidden="true"></span></summary>
-            <div class="faq__a"><p data-en="Only to download and activate your licence. After that, Eiddie works completely offline.">Jen ke stažení a&nbsp;aktivaci licence. Potom Eiddie funguje úplně offline.</p></div>
+            <div class="faq__a"><p data-en="Only to download and activate your licence. After that, Eiddie works completely offline." data-pilot-hide>Jen ke stažení a&nbsp;aktivaci licence. Potom Eiddie funguje úplně offline.</p><p data-en="Only to download it. The pilot version works completely offline and doesn’t send anything about you anywhere." data-pilot-only>Jen ke stažení. Pilotní verze funguje úplně offline a&nbsp;nikam o&nbsp;tobě nic neodesílá.</p></div>
           </details>
-          <details data-reveal>
+          <details data-reveal data-pilot-hide>
             <summary><span data-en="Will I get an invoice?">Dostanu fakturu?</span><span class="pm" aria-hidden="true"></span></summary>
             <div class="faq__a"><p data-en="Yes. Lemon Squeezy e-mails you a tax receipt right after payment. Buying as a company? Just add your VAT ID at checkout.">Ano. Lemon Squeezy ti hned po platbě pošle daňový doklad e-mailem. Kupuješ na firmu? Stačí v&nbsp;pokladně vyplnit DIČ.</p></div>
           </details>
           <details data-reveal>
             <summary><span data-en="What if Eiddie isn’t for me?">Co když mi Eiddie nesedne?</span><span class="pm" aria-hidden="true"></span></summary>
-            <div class="faq__a"><p data-en="That’s exactly why the 14-day trial exists: try everything for free and buy only once you know it fits. And if something still goes wrong, write to me and we’ll sort it out.">Přesně proto existuje 14denní zkušební verze. Vyzkoušej si všechno zdarma a&nbsp;kup, až když víš, že ti sedí. A&nbsp;kdyby i&nbsp;tak něco nefungovalo, napiš mi a&nbsp;domluvíme se.</p></div>
+            <div class="faq__a"><p data-en="That’s exactly why the 14-day trial exists: try everything for free and buy only once you know it fits. And if something still goes wrong, write to me and we’ll sort it out." data-pilot-hide>Přesně proto existuje 14denní zkušební verze. Vyzkoušej si všechno zdarma a&nbsp;kup, až když víš, že ti sedí. A&nbsp;kdyby i&nbsp;tak něco nefungovalo, napiš mi a&nbsp;domluvíme se.</p><p data-en="That’s useful to know too. Tell me what didn’t work for you. It helps me more than praise. You can uninstall the app in Settings → Apps → Installed apps, and your notes stay in their folder." data-pilot-only>I&nbsp;to je užitečná zpráva. Napiš mi, co ti nesedlo, pomůže mi to víc než pochvala. Aplikaci odinstaluješ v&nbsp;Nastavení → Aplikace → Nainstalované aplikace a&nbsp;poznámky ti zůstanou ve složce.</p></div>
           </details>
         </div>
       </div>
@@ -1183,7 +1264,8 @@
               <div><b data-cfg="author">Tomáš Leidl</b><span data-en="Development, design &amp; support">Vývoj, design a&nbsp;podpora</span></div>
             </div>
             <p data-en="Eiddie is an independent project. No investors and no pressure to sell you a subscription, just a tool I use every single day.">Eiddie je nezávislý projekt. Žádní investoři a&nbsp;žádný tlak na předplatné, jen nástroj, který denně používám.</p>
-            <p data-en="I read every e-mail personally and usually reply within two days. Bug reports, feature ideas or a team licence: write to me.">Každý e-mail čtu osobně a&nbsp;obvykle odpovím do dvou dnů. Nahlášení chyby, nápad na funkci nebo licence pro tým: napiš mi.</p>
+            <p data-en="I read every e-mail personally and usually reply within two days. Bug reports, feature ideas or a team licence: write to me." data-pilot-hide>Každý e-mail čtu osobně a&nbsp;obvykle odpovím do dvou dnů. Nahlášení chyby, nápad na funkci nebo licence pro tým: napiš mi.</p>
+            <p data-en="I read every e-mail personally and usually reply within two days. Pilot feedback, bug reports or feature ideas: write to me." data-pilot-only>Každý e-mail čtu osobně a&nbsp;obvykle odpovím do dvou dnů. Zpětná vazba z&nbsp;pilotu, nahlášení chyby nebo nápad na funkci: napiš mi.</p>
             <div class="author__sig">Tomáš</div>
             <div class="mailchip">
               <svg class="ic"><use href="#i-mail"/></svg>
@@ -1208,7 +1290,8 @@
               <label for="f-topic" data-en="Topic">Téma</label>
               <select id="f-topic" name="topic">
                 <option data-en="A question about Eiddie">Dotaz k&nbsp;aplikaci</option>
-                <option data-en="Team or company licence">Licence pro tým nebo firmu</option>
+                <option data-en="Pilot feedback" data-pilot-only>Zpětná vazba z&nbsp;pilotu</option>
+                <option data-en="Team or company licence" data-pilot-hide>Licence pro tým nebo firmu</option>
                 <option data-en="Bug report">Nahlášení chyby</option>
                 <option data-en="Feature idea">Nápad na funkci</option>
                 <option data-en="Collaboration">Spolupráce</option>
@@ -1233,10 +1316,12 @@
         <div class="final" data-reveal>
           <img src="assets/img/logo.svg" alt="">
           <h2 class="h2" data-split data-en="Your thoughts deserve <em>a better home</em>.">Tvoje myšlenky si zaslouží <em>lepší domov</em>.</h2>
-          <p data-en="Download Eiddie and try everything free for 14 days. No card, no sign-up.">Stáhni Eiddie a&nbsp;vyzkoušej si všechno 14 dní zdarma. Bez karty a&nbsp;bez registrace.</p>
+          <p data-en="Download Eiddie and try everything free for 14 days. No card, no sign-up." data-pilot-hide>Stáhni Eiddie a&nbsp;vyzkoušej si všechno 14 dní zdarma. Bez karty a&nbsp;bez registrace.</p>
+          <p data-en="Download the pilot version and tell me how you get on with it. Free, no card, no sign-up." data-pilot-only>Stáhni si pilotní verzi a&nbsp;napiš mi, jak se ti s&nbsp;ní pracuje. Zdarma, bez karty a&nbsp;bez registrace.</p>
           <div class="btn-row">
-            <a class="btn btn--white btn--lg" href="download.html" data-trial data-magnetic><svg class="ic"><use href="#i-download"/></svg><span data-en="Try free for 14 days">Vyzkoušet 14 dní zdarma</span></a>
-            <a class="btn btn--ghost btn--lg on-dark" style="background:rgba(255,255,255,.08)" href="#cena" data-buy data-magnetic><span data-en="Buy">Koupit</span><span class="btn-price" data-cfg="price">999 Kč</span></a>
+            <a class="btn btn--white btn--lg" href="download.html" data-trial data-magnetic><svg class="ic"><use href="#i-download"/></svg><span data-en="Try free for 14 days" data-pilot-hide>Vyzkoušet 14 dní zdarma</span><span data-en="Download the pilot version" data-pilot-only>Stáhnout pilotní verzi</span></a>
+            <a class="btn btn--ghost btn--lg on-dark" style="background:rgba(255,255,255,.08)" href="#cena" data-buy data-magnetic data-pilot-hide><span data-en="Buy">Koupit</span><span class="btn-price" data-cfg="price">999 Kč</span></a>
+            <a class="btn btn--ghost btn--lg on-dark" style="background:rgba(255,255,255,.08)" href="mailto:tomas.leidl@gmail.com?subject=Eiddie%20pilot" data-cfg-mail="feedback" data-magnetic data-pilot-only><svg class="ic"><use href="#i-mail"/></svg><span data-en="Send feedback">Napsat zpětnou vazbu</span></a>
           </div>
         </div>
       </div>
@@ -1259,7 +1344,8 @@
             <li><a href="#funkce" data-en="Features">Funkce</a></li>
             <li><a href="#jak" data-en="How it works">Jak to funguje</a></li>
             <li><a href="#pouziti" data-en="Use cases">Použití</a></li>
-            <li><a href="#cena" data-en="Pricing">Cena</a></li>
+            <li data-pilot-hide><a href="#cena" data-en="Pricing">Cena</a></li>
+            <li data-pilot-only><a href="#pilot" data-en="Pilot version">Pilotní verze</a></li>
             <li><a href="download.html" data-trial data-en="Download">Stáhnout</a></li>
           </ul>
         </div>
@@ -1269,10 +1355,12 @@
             <li><a href="#faq">FAQ</a></li>
             <li><a href="#kontakt" data-en="Contact">Kontakt</a></li>
             <li><a href="mailto:tomas.leidl@gmail.com?subject=Eiddie%3A%20bug" data-cfg-mail="bug" data-en="Report a bug">Nahlásit chybu</a></li>
-            <li><a href="mailto:tomas.leidl@gmail.com?subject=Eiddie%3A%20team" data-cfg-mail="team" data-en="Team licence">Licence pro tým</a></li>
+            <li data-pilot-only><a href="mailto:tomas.leidl@gmail.com?subject=Eiddie%20pilot" data-cfg-mail="feedback" data-en="Pilot feedback">Zpětná vazba z&nbsp;pilotu</a></li>
+            <li data-pilot-hide><a href="mailto:tomas.leidl@gmail.com?subject=Eiddie%3A%20team" data-cfg-mail="team" data-en="Team licence">Licence pro tým</a></li>
           </ul>
         </div>
-        <div>
+        <!-- Pilot: hidden until the real documents exist (no sales and no data collection during the pilot) -->
+        <div data-pilot-hide>
           <h4 data-en="Legal">Právní</h4>
           <ul>
             <!-- TODO: link your real documents before launch -->
@@ -1295,7 +1383,6 @@
   <script src="assets/vendor/gsap.min.js" defer></script>
   <script src="assets/vendor/ScrollTrigger.min.js" defer></script>
   <script src="assets/vendor/lenis.min.js" defer></script>
-  <script src="assets/js/config.js" defer></script>
   <script src="assets/js/main.js" defer></script>
 </body>
 </html>

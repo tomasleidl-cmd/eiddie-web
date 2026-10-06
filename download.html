@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title data-en="Download Eiddie: 14-day free trial">Stáhnout Eiddie: 14 dní zdarma</title>
-  <meta name="description" content="Stáhni si Eiddie pro Windows a 14 dní zkoušej všechno zdarma." data-en-content="Download Eiddie for Windows and try it free for 14 days.">
+  <title data-en="Download Eiddie for Windows">Stáhnout Eiddie pro Windows</title>
+  <meta name="description" content="Stáhni si aplikaci Eiddie pro Windows 10 a 11." data-en-content="Download Eiddie for Windows 10 and 11.">
   <meta name="robots" content="noindex">
   <meta name="theme-color" content="#6c5cff">
   <link rel="icon" href="assets/img/logo.svg" type="image/svg+xml">
@@ -12,9 +12,16 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Inter:wght@400..700&family=Instrument+Serif:ital@1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css">
+  <!-- Loaded synchronously (tiny): the pilot switch must be known before the first paint -->
+  <script src="assets/js/config.js"></script>
   <script>
     (function () {
       var d = document.documentElement, lang = null;
+      if ((window.EIDDIE_CONFIG || {}).pilot) d.dataset.pilot = '';
+      // Windows gets the automatic download; phones and Macs get the "Windows only" copy ([data-win-only] / [data-other-only]).
+      var uad = navigator.userAgentData;
+      var win = uad && uad.platform ? uad.platform === 'Windows' : /Windows NT/.test(navigator.userAgent || '');
+      d.dataset.platform = win ? 'windows' : 'other';
       try { lang = new URLSearchParams(location.search).get('lang') || localStorage.getItem('eiddie-lang'); } catch (e) {}
       if (!lang) lang = /^(cs|sk)/i.test(navigator.language || '') ? 'cs' : 'en';
       d.dataset.lang = lang === 'en' ? 'en' : 'cs';
@@ -32,6 +39,13 @@
     <symbol id="i-card" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20M6 15h4"/></symbol>
     <symbol id="i-sparkle" viewBox="0 0 24 24"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/></symbol>
     <symbol id="i-gift" viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13M19 12v9H5v-9M7.5 8a2.5 2.5 0 0 1 0-5C10 3 12 8 12 8s2-5 4.5-5a2.5 2.5 0 0 1 0 5"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></symbol>
+    <symbol id="i-bug" viewBox="0 0 24 24"><rect x="7" y="7" width="10" height="13" rx="5"/><path d="M12 7V4M9 4l1.5 2M15 4l-1.5 2M3 12h4M17 12h4M4 18l3-2M20 18l-3-2M4 6l3 2M20 6l-3 2"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 11a8 8 0 0 0-14.6-4.5L4 8M4 4v4h4M4 13a8 8 0 0 0 14.6 4.5L20 16M20 20v-4h-4"/></symbol>
+    <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16M10 11v6M14 11v6M5 7l1 13h12l1-13M9 7V4h6v3"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"/><path d="m9 12 2 2 4-4"/></symbol>
   </svg>
 
   <header class="nav is-scrolled">
@@ -53,27 +67,59 @@
     <div class="container">
       <div class="subcard" data-autodownload>
         <div class="dl-ring"><svg class="ic"><use href="#i-download"/></svg></div>
-        <span class="eyebrow" data-en="14 days free">14 dní zdarma</span>
-        <h1 class="h2" data-en="Your download is <em>starting</em>">Stahování <em>začíná</em></h1>
-        <p class="lead" data-en="The full version of Eiddie for 14 days, no card and no sign-up. If the download doesn’t start, use the button below.">Plná verze aplikace Eiddie na 14 dní, bez karty a&nbsp;bez registrace. Pokud se stahování nespustí, použij tlačítko níže.</p>
+        <span class="eyebrow" data-en="14 days free" data-pilot-hide>14 dní zdarma</span>
+        <span class="eyebrow" data-en="Pilot version" data-pilot-only>Pilotní verze</span>
+        <h1 class="h2" data-en="Your download is <em>starting</em>" data-win-only>Stahování <em>začíná</em></h1>
+        <h1 class="h2" data-en="Eiddie is for <em>Windows</em>" data-other-only>Eiddie je pro <em>Windows</em></h1>
+        <p class="lead" data-en="The full version of Eiddie for 14 days, no card and no sign-up. If the download doesn’t start, use the button below." data-pilot-hide data-win-only>Plná verze aplikace Eiddie na 14 dní, bez karty a&nbsp;bez registrace. Pokud se stahování nespustí, použij tlačítko níže.</p>
+        <p class="lead" data-en="The pilot version of Eiddie: free, complete and with no time limit. If the download doesn’t start, use the button below." data-pilot-only data-win-only>Pilotní verze aplikace Eiddie: zdarma, kompletní a&nbsp;bez časového omezení. Pokud se stahování nespustí, použij tlačítko níže.</p>
+        <p class="lead" data-en="For now Eiddie runs on Windows 10 and 11 only, so nothing is downloading here. Open this page on your Windows PC, or e-mail yourself the link." data-other-only>Aplikace Eiddie zatím běží jen na Windows 10 a&nbsp;11, proto se tady nic nestahuje. Otevři tuhle stránku na počítači s&nbsp;Windows, nebo si odkaz pošli e-mailem.</p>
         <div class="meta-row">
           <span><svg class="ic"><use href="#i-windows"/></svg>Windows 10 / 11 · 64 bit</span>
           <span><svg class="ic"><use href="#i-file"/></svg><span data-en="Version">Verze</span>&nbsp;<span data-cfg="version">0.1.0</span></span>
           <span><svg class="ic"><use href="#i-download"/></svg><span data-cfg="installerSize">≈ 95 MB</span></span>
         </div>
-        <a class="btn btn--primary btn--lg" href="downloads/Eiddie-Setup.exe" download data-trial-file><svg class="ic"><use href="#i-download"/></svg><span data-en="Download again">Stáhnout znovu</span></a>
+        <a class="btn btn--primary btn--lg" href="mailto:" data-send-link data-other-only><svg class="ic"><use href="#i-mail"/></svg><span data-en="E-mail me the link">Poslat si odkaz e-mailem</span></a>
+        <a class="btn btn--primary btn--lg" href="https://github.com/tomasleidl-cmd/eiddie-web/releases/latest/download/Eiddie-Setup.exe" download data-trial-file data-win-only><svg class="ic"><use href="#i-download"/></svg><span data-en="Download again">Stáhnout znovu</span></a>
+        <a class="btn btn--ghost" href="https://github.com/tomasleidl-cmd/eiddie-web/releases/latest/download/Eiddie-Setup.exe" download data-trial-file data-other-only><svg class="ic"><use href="#i-download"/></svg><span data-en="Download for Windows anyway">Přesto stáhnout pro Windows</span></a>
 
+        <!-- Install help for an installer without a code-signing certificate. Shorten once the installer is signed. -->
         <ol class="install">
-          <li><div><b data-en="Run Eiddie-Setup.exe">Spusť Eiddie-Setup.exe</b><span data-en="You’ll find it in your Downloads folder.">Najdeš ho ve složce Stažené soubory.</span></div></li>
-          <li><div><b data-en="Allow it to run">Povol spuštění</b><span data-en="Windows may show a blue SmartScreen window. Click “More info”, then “Run anyway”.">Windows může ukázat modré okno SmartScreen. Klikni na „Další informace“ a&nbsp;pak na „Přesto spustit“.</span></div></li>
-          <li><div><b data-en="Start writing">Začni psát</b><span data-en="Eiddie opens with a demo vault in your Documents. Or open your own folder or an existing Obsidian vault.">Eiddie se otevře s&nbsp;ukázkovým vaultem v&nbsp;Dokumentech. Nebo otevři vlastní složku či existující Obsidian vault.</span></div></li>
+          <li><div><b data-en="Keep the downloaded file">Ponech si stažený soubor</b><span data-en="Your browser may say the file “isn’t commonly downloaded”. That only means Eiddie is new. In Chrome open the downloads icon at the top right, click the warning next to the file and choose “Download suspicious file”. In Edge open the … menu next to the file, choose “Keep”, then “Show more” → “Keep anyway”.">Prohlížeč může napsat, že se soubor „běžně nestahuje“. Znamená to jen, že aplikace Eiddie je nová. V&nbsp;Chromu otevři stažené soubory (ikona vpravo nahoře), klikni na upozornění u&nbsp;souboru a&nbsp;zvol „Stáhnout podezřelý soubor“. V&nbsp;Edgi otevři u&nbsp;souboru nabídku …, zvol „Ponechat“ a&nbsp;pak „Zobrazit více“ → „Přesto ponechat“.</span></div></li>
+          <li><div><b data-en="Run Eiddie-Setup.exe and allow it">Spusť Eiddie-Setup.exe a&nbsp;povol ho</b><span data-en="You’ll find it in your Downloads folder. Windows may show a blue “Windows protected your PC” window: click “More info”, then “Run anyway”.">Najdeš ho ve složce Stažené soubory. Windows může ukázat modré okno „Systém Windows ochránil váš počítač“: klikni na „Další informace“ a&nbsp;pak na „Přesto spustit“.</span><small data-en="No “Run anyway” button, or Windows says Smart App Control blocked the app? Smart App Control doesn’t let you make an exception for unsigned apps. For the pilot you can turn it off in Windows Security → App &amp; browser control. Careful: on older Windows 11 builds it can only be switched back on by reinstalling Windows, so install Windows updates first. Not sure? Write to me." data-pilot-only>Nevidíš „Přesto spustit“, nebo Windows hlásí, že aplikaci zablokovalo Inteligentní řízení aplikací? To u&nbsp;nepodepsaných aplikací nedovolí udělat výjimku. Pro pilot ho můžeš vypnout v&nbsp;Zabezpečení Windows → Řízení aplikací a&nbsp;prohlížečů. Pozor: na starších verzích Windows&nbsp;11 ho pak zpátky zapneš jen přeinstalací systému, proto si nejdřív nainstaluj aktualizace (Nastavení → Windows Update). Váháš? Napiš mi.</small></div></li>
+          <li><div><b data-en="Click through the installer">Projdi průvodcem instalace</b><span data-en="It takes about a minute. Eiddie installs just for your user account, no administrator rights needed.">Zabere to asi minutu. Eiddie se nainstaluje jen pro tvůj uživatelský účet, práva správce nepotřebuješ.</span></div></li>
+          <li><div><b data-en="Start writing">Začni psát</b><span data-en="Eiddie opens with a demo vault in Documents\Eiddie\Demo vault. Or open your own folder or an existing Obsidian vault." data-pilot-hide>Eiddie se otevře s&nbsp;ukázkovým vaultem ve složce Dokumenty\Eiddie\Demo vault. Nebo otevři vlastní složku či existující Obsidian vault.</span><span data-en="Eiddie opens with a demo vault in Documents\Eiddie\Demo vault. Want to try your own folder or Obsidian vault? Back it up first: this is a pre-release." data-pilot-only>Eiddie se otevře s&nbsp;ukázkovým vaultem ve složce Dokumenty\Eiddie\Demo vault. Chceš zkusit vlastní složku nebo Obsidian vault? Nejdřív si data zazálohuj, jde o&nbsp;předběžnou verzi.</span></div></li>
         </ol>
       </div>
 
-      <div class="subcard" style="margin-top:22px">
+      <div class="subcard" style="margin-top:22px" data-pilot-hide>
         <h2 class="h3" data-en="Already sure? Get the lifetime licence">Už víš, že to je ono? Pořiď si doživotní licenci</h2>
         <p class="lead" style="font-size:16px" data-en="One payment, no subscription. Your licence key arrives by e-mail within minutes.">Jedna platba, žádné předplatné. Licenční klíč ti přijde e-mailem do pár minut.</p>
         <a class="btn btn--ghost btn--lg" href="index.html#cena" data-buy><svg class="ic"><use href="#i-card"/></svg><span data-en="Buy Eiddie">Koupit Eiddie</span><span class="btn-price" data-cfg="price">999 Kč</span></a>
+      </div>
+
+      <div class="subcard pilot-card" style="margin-top:22px" data-pilot-only>
+        <h2 class="h3" data-en="What I’m asking of you">Co potřebuju od tebe</h2>
+        <p class="lead" data-en="Use Eiddie for a few days on real notes, then write to me:">Pár dní používej Eiddie na skutečné poznámky a&nbsp;pak mi napiš:</p>
+        <ul>
+          <li><svg class="ic"><use href="#i-heart"/></svg><span data-en="what delighted you,">co tě potěšilo,</span></li>
+          <li><svg class="ic"><use href="#i-bug"/></svg><span data-en="what got in your way or didn’t work (a screenshot helps the most),">co drhne nebo nefunguje (nejvíc pomůže snímek obrazovky),</span></li>
+          <li><svg class="ic"><use href="#i-plus"/></svg><span data-en="what you’re missing.">co ti chybí.</span></li>
+        </ul>
+        <a class="btn btn--primary btn--lg" href="mailto:tomas.leidl@gmail.com?subject=Eiddie%20pilot" data-cfg-mail="feedback"><svg class="ic"><use href="#i-mail"/></svg><span data-en="Send feedback">Napsat zpětnou vazbu</span></a>
+        <p class="pilot-card__alt" data-en="Or write to <a href=&quot;mailto:tomas.leidl@gmail.com&quot; data-cfg=&quot;email&quot;>tomas.leidl@gmail.com</a>">Nebo napiš na <a href="mailto:tomas.leidl@gmail.com" data-cfg="email">tomas.leidl@gmail.com</a></p>
+      </div>
+
+      <div class="subcard pilot-card" style="margin-top:22px" data-pilot-only>
+        <h2 class="h3" data-en="Good to know">Dobré vědět</h2>
+        <ul>
+          <li><svg class="ic"><use href="#i-refresh"/></svg><span data-en="<b>New version:</b> download it here and install it over the old one. Your notes and settings stay.">
+            <b>Nová verze:</b> stáhneš ji tady a&nbsp;nainstaluješ přes tu starou. Poznámky i&nbsp;nastavení zůstanou.</span></li>
+          <li><svg class="ic"><use href="#i-trash"/></svg><span data-en="<b>Uninstall:</b> Settings → Apps → Installed apps (Apps &amp; features on Windows 10) → Eiddie → Uninstall. Your notes stay on your disk, right where they are.">
+            <b>Odinstalace:</b> Nastavení → Aplikace → Nainstalované aplikace (ve Windows&nbsp;10 Aplikace a&nbsp;funkce) → Eiddie → Odinstalovat. Poznámky zůstanou na disku tam, kde jsou.</span></li>
+          <li><svg class="ic"><use href="#i-shield"/></svg><span data-en="<b>Privacy:</b> Eiddie works offline and doesn’t send anything about you anywhere. Your notes are plain Markdown files.">
+            <b>Soukromí:</b> Eiddie funguje offline a&nbsp;nikam o&nbsp;tobě nic neodesílá. Poznámky jsou obyčejné soubory Markdown.</span></li>
+        </ul>
       </div>
     </div>
   </main>
@@ -82,7 +128,6 @@
 
   <script src="assets/vendor/gsap.min.js" defer></script>
   <script src="assets/vendor/ScrollTrigger.min.js" defer></script>
-  <script src="assets/js/config.js" defer></script>
   <script src="assets/js/main.js" defer></script>
 </body>
 </html>
