@@ -69,6 +69,7 @@
     <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></symbol>
     <symbol id="i-lock" viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></symbol>
     <symbol id="i-wifi-off" viewBox="0 0 24 24"><path d="m2 2 20 20"/><path d="M8.5 16.5a5 5 0 0 1 7 0M5 12.9a10 10 0 0 1 5.2-2.7M19 12.9a10 10 0 0 0-2.2-1.6M2 8.8a15 15 0 0 1 4.2-2.6M22 8.8A15 15 0 0 0 11 5"/><path d="M12 20h.01"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path d="M7 4.5v15a1 1 0 0 0 1.5.86l12.5-7.5a1 1 0 0 0 0-1.72L8.5 3.64A1 1 0 0 0 7 4.5z"/></symbol>
     <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
     <symbol id="i-chev" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
     <symbol id="i-chev-l" viewBox="0 0 24 24"><path d="m15 6-6 6 6 6"/></symbol>
@@ -195,6 +196,11 @@
             </a>
             <a class="btn btn--ghost btn--lg" href="#cena" data-magnetic>
               <span data-en="Buy">Koupit</span><span class="btn-price" data-cfg="price">999 Kč</span>
+            </a>
+            <!-- Shown by main.js once config.video.ready[lang] is true; scrolls to #video and starts playback -->
+            <a class="btn btn--video btn--lg" href="#video" data-video-open hidden>
+              <span class="btn-play" aria-hidden="true"><svg class="ic"><use href="#i-play"/></svg></span>
+              <span data-en="Watch the video">Přehrát video</span><span class="btn-price" data-video-duration>0:30</span>
             </a>
           </div>
           <ul class="trust" data-hero-in>
@@ -333,6 +339,37 @@
         <span class="marquee__item"><svg class="ic"><use href="#i-wifi-off"/></svg>Offline</span>
       </div>
     </div>
+
+    <!-- ============ INTRO VIDEO ============
+         Hidden until config.video.ready[lang] is true. main.js sets the language's file and poster
+         (assets/video/eiddie-promo-cs|en.mp4 / .jpg) and swaps them when the language changes. -->
+    <section class="section reel-sec" id="video" data-video hidden>
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow" data-reveal data-en="Eiddie in 30 seconds">Eiddie za 30 sekund</span>
+          <h2 class="h2" data-split data-en="From chaos <em>to calm.</em>">Od chaosu <em>ke klidu.</em></h2>
+          <p class="lead" data-reveal data-en="Watch scattered notes come together in one app: an outline, a database, a canvas and search. Recorded in the real app.">Podívej se, jak se rozházené poznámky sejdou v&nbsp;jedné aplikaci: outline, databáze, plátno i&nbsp;hledání. Natočeno ve skutečné aplikaci.</p>
+        </div>
+
+        <div class="reel" data-reveal>
+          <div class="reel__glow" aria-hidden="true"></div>
+          <div class="reel__frame">
+            <video class="reel__video" playsinline preload="none" data-video-el aria-label="Eiddie: představení aplikace za 30 sekund" data-en-aria-label="Eiddie: the app in 30 seconds"></video>
+            <button class="reel__play" type="button" data-video-play>
+              <span class="reel__btn" aria-hidden="true"><svg class="ic"><use href="#i-play"/></svg></span>
+              <span class="reel__label"><b data-en="Watch the video">Přehrát video</b><span data-video-duration>0:30</span></span>
+            </button>
+            <div class="reel__end on-dark" data-video-end hidden>
+              <p class="reel__end-title" data-en="Try it on your own notes.">Vyzkoušej to na svých poznámkách.</p>
+              <div class="btn-row">
+                <a class="btn btn--primary" href="download.html" data-trial><svg class="ic"><use href="#i-download"/></svg><span data-en="Try free for 14 days">Vyzkoušet 14 dní zdarma</span></a>
+                <button class="btn btn--ghost" type="button" data-video-replay><svg class="ic"><use href="#i-refresh"/></svg><span data-en="Watch again">Přehrát znovu</span></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- ============ SIX PILLARS (E·I·D·D·I·E) ============ -->
     <section class="section pillars" id="pilire">

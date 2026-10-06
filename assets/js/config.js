@@ -19,6 +19,15 @@ window.EIDDIE_CONFIG = {
   priceNote: { cs: 'jednorázově', en: 'one-time' },
   devices: 3,
 
+  // Intro video (the 30 s promo), one file per language, made by scratch/video/render/web-export.mjs.
+  // While ready[lang] is false, the video section and the hero "Watch the video" button stay hidden for that language.
+  video: {
+    ready: { cs: true, en: true },
+    src: 'assets/video/eiddie-promo-{lang}.mp4',
+    poster: 'assets/video/eiddie-promo-{lang}.jpg',
+    duration: '0:30',
+  },
+
   author: 'Tomáš Leidl',
   email: 'tomas.leidl@gmail.com',
 

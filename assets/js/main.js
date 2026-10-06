@@ -39,6 +39,7 @@
       formOk: 'Díky! Zpráva je na cestě, ozvu se co nejdřív.',
       formErr: 'Něco se pokazilo. Napiš mi prosím rovnou na e-mail.',
       formMailto: 'Otevírám tvůj e-mailový program…',
+      videoError: 'Video se nepodařilo načíst. Zkus to prosím později.',
       years: { 1: '1 rok', 3: '3 roky', 5: '5 let' },
       subFor: (y) => `Předplatné za ${y}`,
       save: 'Ušetříš',
@@ -58,6 +59,7 @@
       formOk: 'Thanks! Your message is on its way, I’ll reply soon.',
       formErr: 'Something went wrong. Please e-mail me directly.',
       formMailto: 'Opening your e-mail app…',
+      videoError: 'The video couldn’t be loaded. Please try again later.',
       years: { 1: '1 year', 3: '3 years', 5: '5 years' },
       subFor: (y) => `Subscriptions over ${y}`,
       save: 'You save',
@@ -296,6 +298,98 @@
         .then((r) => { if (r.ok) start(); else toast(t('installerMissing'), 8000); })
         .catch(() => start());
     }, 1200);
+  }
+
+  /* ------------------------------------------------------------------ */
+  /* Intro video: one file per language (config.video), click to play   */
+  /* ------------------------------------------------------------------ */
+  const reelSec = $('[data-video]');
+  const reelVideo = $('[data-video-el]');
+  if (reelSec && reelVideo) {
+    const V = C.video || {};
+    const playBtn = $('[data-video-play]', reelSec);
+    const endCard = $('[data-video-end]', reelSec);
+    const openBtns = $$('[data-video-open]');
+    const file = (tpl) => (tpl || '').replace('{lang}', lang);
+    let near = false; // the poster is fetched only once the section gets close to the viewport
+
+    const reset = () => {
+      playBtn.hidden = false;
+      endCard.hidden = true;
+      reelVideo.controls = false;
+    };
+    const setSource = () => {
+      const ready = !!(V.ready && V.ready[lang] && V.src);
+      reelSec.hidden = !ready;
+      openBtns.forEach((b) => { b.hidden = !ready; });
+      if (V.duration) $$('[data-video-duration]').forEach((el) => { el.textContent = V.duration; });
+      if (!ready) {
+        if (reelVideo.getAttribute('src')) { reelVideo.pause(); reelVideo.removeAttribute('src'); reelVideo.removeAttribute('poster'); reelVideo.load(); }
+        return;
+      }
+      if (reelVideo.getAttribute('src') !== file(V.src)) {
+        reelVideo.pause();
+        reelVideo.src = file(V.src); // preload="none": nothing is downloaded until Play
+        reset();
+      }
+      if (near && V.poster) reelVideo.poster = file(V.poster);
+    };
+    const play = () => {
+      if (reelSec.hidden) return;
+      const hadFocus = reelSec.contains(document.activeElement);
+      playBtn.hidden = true;
+      endCard.hidden = true;
+      reelVideo.controls = true;
+      if (reelVideo.error) reelVideo.load(); // retry after a failed load
+      else if (reelVideo.ended) reelVideo.currentTime = 0;
+      const p = reelVideo.play();
+      if (p && p.catch) p.catch((err) => { if (err && err.name !== 'AbortError') reset(); });
+      if (hadFocus) reelVideo.focus({ preventScroll: true });
+    };
+
+    playBtn.addEventListener('click', play);
+    $('[data-video-replay]', reelSec).addEventListener('click', () => { reelVideo.currentTime = 0; play(); });
+    // Hero button: bring the player itself into view (centred, below the nav) and start right away,
+    // still inside the click so sound is allowed. Handled here instead of by the generic #anchor scroll.
+    openBtns.forEach((b) => b.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      near = true;
+      setSource();
+      const frame = reelVideo.parentElement.getBoundingClientRect();
+      const navH = nav ? nav.offsetHeight : 0;
+      scrollToY(window.scrollY + frame.top - Math.max(navH + 16, (innerHeight + navH - frame.height) / 2));
+      history.replaceState(null, '', '#video');
+      play();
+    }));
+    reelVideo.addEventListener('ended', () => {
+      if (document.fullscreenElement === reelVideo && document.exitFullscreen) document.exitFullscreen().catch(() => {});
+      const hadFocus = reelSec.contains(document.activeElement);
+      reelVideo.controls = false;
+      endCard.hidden = false;
+      if (hadFocus) $('[data-video-replay]', reelSec).focus({ preventScroll: true });
+    });
+    reelVideo.addEventListener('error', () => {
+      if (!reelVideo.getAttribute('src') || !playBtn.hidden) return; // only report failures after Play
+      reset();
+      toast(t('videoError'));
+    });
+
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(([e]) => {
+        if (e.isIntersecting && !near) { near = true; setSource(); }
+      }, { rootMargin: '800px 0px' }).observe(reelSec);
+      // Pause once the player is scrolled (mostly) out of view; starting it while it scrolls in is fine
+      let inView = false;
+      new IntersectionObserver(([e]) => {
+        const visible = e.intersectionRatio >= 0.25;
+        if (inView && !visible && !reelVideo.paused && document.fullscreenElement !== reelVideo) reelVideo.pause();
+        inView = visible;
+      }, { threshold: [0, 0.25] }).observe(reelVideo);
+    } else {
+      near = true;
+    }
+    langHooks.push(setSource);
   }
 
   /* Thank-you page confetti (brand colours) */
