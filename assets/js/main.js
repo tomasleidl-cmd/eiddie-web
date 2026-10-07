@@ -129,6 +129,12 @@
       el.textContent = v;
       if (key === 'email' && el.tagName === 'A') el.href = `mailto:${v}`;
     });
+    // "What's new in version X" (download page) → that version's section of novinky.html, also after the GitHub API answered;
+    // the top of the page when the API failed (no version known then, see versionUnknown()).
+    $$('[data-cfg-news]').forEach((a) => {
+      if (root.dataset.version === 'unknown') a.href = 'novinky.html';
+      else if (C.version) a.href = `novinky.html#v${String(C.version).replace(/\./g, '-')}`;
+    });
     // Mail templates. The tester reads the installed version in the app: Settings → Updates.
     const mails = {
       cs: {
@@ -197,6 +203,14 @@
     if (id === '#top') scrollToY(0); else scrollToEl(target);
     history.replaceState(null, '', id === '#top' ? location.pathname + location.search : id);
   });
+  // What's new page: a link to an older version (novinky.html#v0-1-1) opens its collapsed entry.
+  function openLinkedRelease() {
+    const el = location.hash.length > 1 ? document.getElementById(location.hash.slice(1)) : null;
+    const fold = el && el.classList.contains('release') ? $('details', el) : null;
+    if (fold) fold.open = true;
+  }
+  openLinkedRelease();
+  addEventListener('hashchange', openLinkedRelease);
 
   /* ------------------------------------------------------------------ */
   /* Nav, drawer, progress bar                                           */
@@ -316,14 +330,16 @@
     };
     // A GitHub "latest release" link is checked through the GitHub API (CORS-enabled): without a release the
     // download would navigate away to GitHub's 404 page. The answer also brings the real version and size.
-    // Rate limits (60 requests/hour per IP) or network errors never block the download: fail open.
+    // Rate limits (60 requests/hour per IP) or network errors never block the download: fail open. The page then says
+    // "the latest version" instead of the fallback number from config.js, which may name an older release.
+    const versionUnknown = () => { root.dataset.version = 'unknown'; fillConfig(); };
     const gh = /^https:\/\/github\.com\/([^/]+)\/([^/]+)\/releases\/latest\/download\/([^/?#]+)$/.exec(trialUrl);
     const check = () => {
       if (gh) {
         return fetch(`https://api.github.com/repos/${gh[1]}/${gh[2]}/releases/latest`)
           .then((r) => {
             if (r.status === 404) return false;
-            if (!r.ok) return true;
+            if (!r.ok) { versionUnknown(); return true; }
             return r.json().then((rel) => {
               const asset = (rel.assets || []).find((x) => x.name === decodeURIComponent(gh[3]) && x.state === 'uploaded');
               if (!asset) return false;
@@ -333,7 +349,7 @@
               return true;
             });
           })
-          .catch(() => true);
+          .catch(() => { versionUnknown(); return true; });
       }
       if (new URL(trialUrl, location.href).origin !== location.origin) return Promise.resolve(true);
       return fetch(trialUrl, { method: 'HEAD' }).then((r) => r.ok).catch(() => true);

@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title data-en="What’s new in Eiddie">Co je nového v aplikaci Eiddie</title>
+  <meta name="description" content="Co je nového v aplikaci Eiddie: všechny verze a co která změnila." data-en-content="What’s new in Eiddie: every version and what it changed.">
+  <!-- Pilot: keeps the site out of search engines. Remove at the public launch, like in index.html. -->
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#6c5cff">
+  <link rel="canonical" href="https://www.eiddie.cz/novinky.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Eiddie">
+  <meta property="og:title" content="Co je nového v aplikaci Eiddie" data-en-content="What’s new in Eiddie">
+  <meta property="og:description" content="Všechny verze aplikace Eiddie a co která změnila." data-en-content="Every version of Eiddie and what it changed.">
+  <meta property="og:url" content="https://www.eiddie.cz/novinky.html">
+  <!-- Pilot: og-pilot.png (no price, no trial). At launch switch back to og.png, like in index.html. -->
+  <meta property="og:image" content="https://www.eiddie.cz/assets/img/og-pilot.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="assets/img/logo.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Inter:wght@400..700&family=Instrument+Serif:ital@1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <!-- Loaded synchronously (tiny): the pilot switch must be known before the first paint -->
+  <script src="assets/js/config.js"></script>
+  <script>
+    (function () {
+      var d = document.documentElement, lang = null;
+      if ((window.EIDDIE_CONFIG || {}).pilot) d.dataset.pilot = '';
+      try { lang = new URLSearchParams(location.search).get('lang') || localStorage.getItem('eiddie-lang'); } catch (e) {}
+      if (!lang) lang = /^(cs|sk)/i.test(navigator.language || '') ? 'cs' : 'en';
+      d.dataset.lang = lang === 'en' ? 'en' : 'cs';
+      if (d.dataset.lang === 'en') { d.classList.add('i18n-pending'); setTimeout(function () { d.classList.remove('i18n-pending'); }, 1500); }
+    })();
+  </script>
+</head>
+<body class="subpage">
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></symbol>
+    <symbol id="i-chev-l" viewBox="0 0 24 24"><path d="m15 6-6 6 6 6"/></symbol>
+    <symbol id="i-sparkle" viewBox="0 0 24 24"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/><path d="M19 15l.7 1.9L21.5 18l-1.8.6L19 20.5l-.7-1.9-1.8-.6 1.8-.7z"/></symbol>
+    <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 11a8 8 0 0 0-14.6-4.5L4 8M4 4v4h4M4 13a8 8 0 0 0 14.6 4.5L20 16M20 20v-4h-4"/></symbol>
+    <symbol id="i-alert" viewBox="0 0 24 24"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></symbol>
+  </svg>
+
+  <header class="nav is-scrolled">
+    <div class="container nav__inner">
+      <a class="brand" href="index.html"><img src="assets/img/logo.svg" alt="" width="32" height="32">Eiddie</a>
+      <div class="nav__right">
+        <div class="lang" role="group" aria-label="Jazyk / Language">
+          <button type="button" data-lang-btn="cs" aria-pressed="true">CZ</button>
+          <button type="button" data-lang-btn="en" aria-pressed="false">EN</button>
+        </div>
+        <a class="btn btn--ghost btn--sm" href="index.html"><svg class="ic"><use href="#i-chev-l"/></svg><span data-en="Back to the site">Zpět na web</span></a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="aurora" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+    <div class="grid-bg" aria-hidden="true"></div>
+    <div class="container">
+      <div class="subcard">
+        <div class="dl-ring news-ring"><svg class="ic"><use href="#i-sparkle"/></svg></div>
+        <span class="eyebrow" data-en="Version history">Historie verzí</span>
+        <h1 class="h2" data-en="What’s <em>new</em>">Co je <em>nového</em></h1>
+        <p class="lead" data-en="What changed in Eiddie, version by version. The newest one is at the top.">Co se v&nbsp;aplikaci Eiddie změnilo, verze po verzi. Nejnovější je nahoře.</p>
+        <a class="btn btn--primary btn--lg" href="download.html"><svg class="ic"><use href="#i-download"/></svg><span data-en="Download the latest version">Stáhnout nejnovější verzi</span></a>
+
+        <!-- The same text as in the app (Settings → Updates and the 0.1.4 notes). The app's labels stay in English. -->
+        <div class="news-box">
+          <span class="news-box__ic"><svg class="ic"><use href="#i-refresh"/></svg></span>
+          <div><b data-en="How Eiddie updates">Jak se Eiddie aktualizuje</b><p data-en="Eiddie downloads new versions by itself. When the status bar shows “Update … ready · restart”, click it (or “Restart and update” in Settings → Updates). Eiddie reopens in a few seconds and your notes stay where they were.">Eiddie si nové verze stahuje sám. Když dole ve stavovém řádku uvidíš „Update … ready · restart“, klikni na něj (nebo na „Restart and update“ v&nbsp;Settings → Updates). Za pár vteřin se Eiddie otevře znovu a&nbsp;poznámky zůstanou, kde byly.</p></div>
+        </div>
+        <!-- 0.1.0 has no updater: those testers replace it once by hand. -->
+        <div class="news-box news-box--warn" data-pilot-only>
+          <span class="news-box__ic"><svg class="ic"><use href="#i-alert"/></svg></span>
+          <div><b data-en="Still on version 0.1.0?">Máš ještě verzi 0.1.0?</b><p data-en="It can’t update itself (you can tell by the missing Updates section in Settings). Download the new version once from the <a href=&quot;download.html&quot;>download page</a> and install it over the old one. Your notes stay, and later versions arrive by themselves.">Ta se sama aktualizovat neumí (poznáš ji tak, že v&nbsp;Settings nemáš část Updates). Stáhni si novou verzi jednou ručně ze <a href="download.html">stránky ke stažení</a> a&nbsp;nainstaluj ji přes starou. Poznámky zůstanou a&nbsp;další verze už přijdou samy.</p></div>
+        </div>
+      </div>
+
+      <div class="subcard news">
+        <!-- changelog:start -->
+        <!-- Generated by scripts/changelog-web.mjs from src/shared/changelog.json (versions up to 0.1.4). Edit the JSON, not this part. -->
+        <section class="release release--latest" id="v0-1-4" aria-labelledby="v0-1-4-title">
+          <span class="eyebrow" data-en="Latest version">Nejnovější verze</span>
+          <div class="release__head"><h2 class="h3 release__title" id="v0-1-4-title" data-en="Version 0.1.4">Verze 0.1.4</h2><time class="release__date" datetime="2026-10-07" data-en="7 October 2026">7. října 2026</time></div>
+          <p class="release__summary" data-en="After an update, you see right away what&#39;s new in the app.">Po aktualizaci hned uvidíš, co je v&nbsp;aplikaci nového.</p>
+          <h3 class="release__group release__group--new" data-en="New">Nové</h3>
+          <ul class="release__items">
+            <li><span data-en="After every update, Eiddie shows you once what&#39;s new. Changes in earlier versions are in the version history.">Po každé aktualizaci ti Eiddie jednou ukáže, co je nového. Novinky starších verzí najdeš v&nbsp;historii verzí.</span><small data-en="Try it: Settings → Updates → Version history">Vyzkoušej: Settings → Updates → Version history</small></li>
+            <li><span data-en="All changes are on the website too: www.eiddie.cz/novinky.html">Všechny novinky jsou i&nbsp;na webu: www.eiddie.cz/novinky.html</span></li>
+          </ul>
+          <div class="release__notice" role="note"><b data-en="Important">Důležité</b><span data-en="How updates work: Eiddie downloads a new version by itself. When the status bar shows “Update … ready · restart”, click it (or “Restart and update” in Settings → Updates). Eiddie reopens in a few seconds and your notes stay where they were.">Jak fungují aktualizace: Eiddie si novou verzi stáhne sám. Když dole ve stavovém řádku uvidíš „Update … ready · restart“, klikni na něj (nebo na „Restart and update“ v&nbsp;Settings → Updates). Za pár vteřin se Eiddie otevře znovu a&nbsp;poznámky zůstanou, kde byly.</span></div>
+        </section>
+        <h2 class="h3 news__older" data-en="Earlier versions">Starší verze</h2>
+        <div class="faq news__list">
+          <section class="release" id="v0-1-3" aria-labelledby="v0-1-3-title">
+            <details>
+              <summary><span class="release__line"><b class="release__title" id="v0-1-3-title" data-en="Version 0.1.3">Verze 0.1.3</b><time class="release__date" datetime="2026-10-07" data-en="7 October 2026">7. října 2026</time><span class="release__summary" data-en="Safer saving.">Bezpečnější ukládání.</span></span><span class="pm" aria-hidden="true"></span></summary>
+              <div class="faq__a release__body">
+                <h3 class="release__group release__group--improved" data-en="Improved">Vylepšeno</h3>
+                <ul class="release__items">
+                  <li><span data-en="Notes, whiteboards and settings are saved in full even if the app crashes or the power goes out while saving.">Poznámky, tabule a&nbsp;nastavení se uloží celé, i&nbsp;když aplikace spadne nebo vypadne proud přímo během ukládání.</span></li>
+                  <li><span data-en="On the next start, Eiddie finishes the interrupted save. When in doubt, it keeps both versions, one as a visible copy.">Při dalším spuštění Eiddie přerušené uložení dokončí. V&nbsp;nejasném případě ponechá obě verze, jednu jako viditelnou kopii.</span></li>
+                  <li><span data-en="Files stay the same files: creation date, OneDrive and Obsidian keep working.">Soubory zůstávají stejné: datum vytvoření, OneDrive i&nbsp;Obsidian fungují dál.</span></li>
+                </ul>
+              </div>
+            </details>
+          </section>
+          <section class="release" id="v0-1-2" aria-labelledby="v0-1-2-title">
+            <details>
+              <summary><span class="release__line"><b class="release__title" id="v0-1-2-title" data-en="Version 0.1.2">Verze 0.1.2</b><time class="release__date" datetime="2026-10-06" data-en="6 October 2026">6. října 2026</time><span class="release__summary" data-en="More reliable updates.">Spolehlivější aktualizace.</span></span><span class="pm" aria-hidden="true"></span></summary>
+              <div class="faq__a release__body">
+                <h3 class="release__group release__group--improved" data-en="Improved">Vylepšeno</h3>
+                <ul class="release__items">
+                  <li><span data-en="If a downloaded update goes missing, Eiddie downloads it again.">Když se stažená aktualizace ztratí, Eiddie ji stáhne znovu.</span></li>
+                  <li><span data-en="Clearer texts in the update settings.">Přesnější texty v&nbsp;nastavení aktualizací.</span><small data-en="Try it: Settings → Updates">Vyzkoušej: Settings → Updates</small></li>
+                </ul>
+                <h3 class="release__group release__group--fixed" data-en="Fixed">Opraveno</h3>
+                <ul class="release__items">
+                  <li><span data-en="If the demo vault is inside the program folder (only 0.1.0 installs with a custom folder), the installer moves it to Documents\Eiddie Vaults before updating, so it isn&#39;t deleted.">Když je ukázkový vault ve složce programu (jen u&nbsp;verze 0.1.0 s&nbsp;vlastní instalační složkou), instalátor ho před aktualizací přesune do Dokumenty\Eiddie Vaults, aby se nesmazal.</span></li>
+                </ul>
+              </div>
+            </details>
+          </section>
+          <section class="release" id="v0-1-1" aria-labelledby="v0-1-1-title">
+            <details>
+              <summary><span class="release__line"><b class="release__title" id="v0-1-1-title" data-en="Version 0.1.1">Verze 0.1.1</b><time class="release__date" datetime="2026-10-06" data-en="6 October 2026">6. října 2026</time><span class="release__summary" data-en="Eiddie now updates itself.">Eiddie se teď aktualizuje sám.</span></span><span class="pm" aria-hidden="true"></span></summary>
+              <div class="faq__a release__body">
+                <h3 class="release__group release__group--new" data-en="New">Nové</h3>
+                <ul class="release__items">
+                  <li><span data-en="Eiddie downloads a new version in the background and installs it when you click “Restart and update”. That&#39;s also where you see which version you have.">Novou verzi si Eiddie stáhne na pozadí a&nbsp;nainstaluje ji, až klikneš na „Restart and update“. Najdeš tam i&nbsp;číslo verze, kterou máš.</span><small data-en="Try it: Settings → Updates">Vyzkoušej: Settings → Updates</small></li>
+                </ul>
+                <h3 class="release__group release__group--improved" data-en="Improved">Vylepšeno</h3>
+                <ul class="release__items">
+                  <li><span data-en="One-click install just for your account: no questions, no admin rights.">Instalace jedním kliknutím jen pro tvůj účet, bez dotazů a&nbsp;bez práv správce.</span></li>
+                  <li><span data-en="Starting Eiddie again switches to the window that&#39;s already open.">Když Eiddie spustíš podruhé, jen se přepne na okno, které už je otevřené.</span></li>
+                </ul>
+                <h3 class="release__group release__group--fixed" data-en="Fixed">Opraveno</h3>
+                <ul class="release__items">
+                  <li><span data-en="Whiteboard edits are saved even if you close the app right after making them.">Úpravy na tabuli se uloží, i&nbsp;když aplikaci hned potom zavřeš.</span></li>
+                </ul>
+                <div class="release__notice" role="note"><b data-en="Important">Důležité</b><span data-en="Still on version 0.1.0? It can&#39;t update itself. Download the new version from www.eiddie.cz once and install it over the old one. Your notes stay, and later versions arrive by themselves.">Máš ještě verzi 0.1.0? Ta se sama aktualizovat neumí. Stáhni si jednou novou verzi z&nbsp;www.eiddie.cz a&nbsp;nainstaluj ji přes starou. Poznámky zůstanou a&nbsp;další verze už přijdou samy.</span></div>
+              </div>
+            </details>
+          </section>
+          <section class="release" id="v0-1-0" aria-labelledby="v0-1-0-title">
+            <details>
+              <summary><span class="release__line"><b class="release__title" id="v0-1-0-title" data-en="Version 0.1.0">Verze 0.1.0</b><time class="release__date" datetime="2026-10-06" data-en="6 October 2026">6. října 2026</time><span class="release__summary" data-en="The first pilot version.">První pilotní verze.</span></span><span class="pm" aria-hidden="true"></span></summary>
+              <div class="faq__a release__body">
+                <h3 class="release__group release__group--new" data-en="New">Nové</h3>
+                <ul class="release__items">
+                  <li><span data-en="Outlines, markdown notes, whiteboards, databases and daily notes in one app. Everything stays on your computer.">Osnovy, markdown poznámky, tabule, databáze a&nbsp;denní poznámky v&nbsp;jedné aplikaci. Všechno zůstává v&nbsp;tvém počítači.</span></li>
+                </ul>
+              </div>
+            </details>
+          </section>
+        </div>
+        <!-- changelog:end -->
+      </div>
+    </div>
+  </main>
+
+  <div class="toast" role="status" aria-live="polite" data-toast><svg class="ic"><use href="#i-sparkle"/></svg><span data-toast-text></span></div>
+
+  <script src="assets/js/main.js" defer></script>
+</body>
+</html>

@@ -19,8 +19,10 @@ window.EIDDIE_CONFIG = {
   // Alternative: a free (0 Kč) Lemon Squeezy product, so you also collect e-mails.
   trialUrl: 'https://github.com/tomasleidl-cmd/eiddie-web/releases/latest/download/Eiddie-Setup.exe',
 
-  // Fallback for the download page when the GitHub API can't answer (rate limit); keep roughly current.
-  version: '0.1.0',
+  // Fallback for the download page until the GitHub API answers (download.html repeats both for visitors without
+  // JavaScript). scripts/release-pilot.mjs rewrites them after each release. If the API fails, the page says
+  // "the latest version" instead of this number.
+  version: '0.1.4',
   installerSize: '≈ 106 MB',
   trialDays: 14,
   price: { cs: '999 Kč', en: '999 CZK' },

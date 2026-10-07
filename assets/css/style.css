@@ -281,7 +281,7 @@ h1, h2, h3, h4 { margin: 0; font-family: var(--f-display); color: var(--ink); fo
 .brand { display: inline-flex; align-items: center; gap: 10px; font: 700 21px/1 var(--f-display); letter-spacing: -0.03em; }
 .brand img { width: 32px; height: 32px; filter: drop-shadow(0 4px 10px rgba(108, 92, 255, 0.35)); }
 .nav__links { display: flex; gap: 4px; margin-left: 12px; }
-.nav__links a { padding: 8px 12px; border-radius: 999px; font-size: 15px; font-weight: 500; color: var(--ink-2); transition: color 0.2s, background-color 0.2s; }
+.nav__links a { padding: 8px 12px; white-space: nowrap; border-radius: 999px; font-size: 15px; font-weight: 500; color: var(--ink-2); transition: color 0.2s, background-color 0.2s; }
 .nav__links a:hover { color: var(--ink); background: rgba(108, 92, 255, 0.08); }
 .nav__right { margin-left: auto; display: flex; align-items: center; gap: 12px; }
 .lang { display: inline-flex; padding: 3px; border-radius: 999px; background: rgba(28, 24, 64, 0.05); border: 1px solid var(--line); }
@@ -294,12 +294,16 @@ h1, h2, h3, h4 { margin: 0; font-family: var(--f-display); color: var(--ink); fo
   background: rgba(251, 250, 255, 0.96);
   backdrop-filter: blur(20px);
   display: flex; flex-direction: column; gap: 6px;
+  /* Too many links for a short phone: the drawer scrolls (index.html gives it data-lenis-prevent, because Lenis is
+     stopped while it is open) and the CTA keeps its height (.btn--primary's overflow: hidden would let it shrink to 0). */
+  overflow-y: auto; overscroll-behavior: contain;
   opacity: 0; visibility: hidden; transform: translateY(-8px);
   transition: opacity 0.3s, transform 0.4s var(--ease), visibility 0.3s;
 }
 .drawer.is-open { opacity: 1; visibility: visible; transform: none; }
 .drawer a:not(.btn) { font: 600 28px/1.25 var(--f-display); letter-spacing: -0.03em; padding: 10px 0; border-bottom: 1px solid var(--line); }
-.drawer .btn { margin-top: 20px; }
+.drawer .btn { margin-top: 20px; flex: none; }
+@media (max-height: 720px) { .drawer a:not(.btn) { font-size: 22px; padding: 7px 0; } }
 
 /* ---------- Hero ---------- */
 .hero { position: relative; padding-top: calc(var(--nav-h) + clamp(48px, 7vw, 96px)); padding-bottom: clamp(40px, 6vw, 80px); overflow: clip; isolation: isolate; }
@@ -1128,6 +1132,11 @@ pre.md .ln { display: inline-block; width: 2.2em; color: #4a4a58; user-select: n
 }
 
 /* ---------- Responsive ---------- */
+/* Just above the burger breakpoint the nine nav links (with "What’s new") only fit a little tighter */
+@media (max-width: 1240px) {
+  .nav__links { gap: 0; margin-left: 6px; }
+  .nav__links a { padding: 8px 9px; font-size: 14.5px; }
+}
 @media (max-width: 1180px) {
   .pillars__grid { grid-template-columns: repeat(3, 1fr); }
 }
@@ -1249,3 +1258,47 @@ html:not([data-platform="other"]) [data-other-only] { display: none !important; 
 .pilot-card__alt { margin: -6px 0 0; font-size: 14px; color: var(--ink-3); }
 .pilot-card__alt a { color: var(--violet-700); }
 .btn.is-disabled { opacity: 0.45; pointer-events: none; }
+
+/* ---------- What's new (novinky.html; the version sections come from scripts/changelog-web.mjs) ---------- */
+.news-ring { background: linear-gradient(135deg, #12a594, #6c5cff 55%, #a194ff); }
+.news-ring .ic { animation: none; }
+.news-box { width: 100%; display: grid; grid-template-columns: 40px 1fr; gap: 14px; align-items: start; padding: 18px; border-radius: 18px; background: var(--surface-2); border: 1px solid var(--line); text-align: left; }
+.news-box__ic { width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; background: #fff; border: 1px solid var(--line); box-shadow: var(--shadow-1); color: var(--violet-700); font-size: 19px; }
+.news-box b { display: block; margin-bottom: 3px; font-size: 16px; }
+.news-box p { margin: 0; color: var(--ink-2); font-size: 15px; }
+.news-box--warn { background: color-mix(in srgb, var(--c-yellow-bg) 45%, #fff); border-color: color-mix(in srgb, var(--yellow) 28%, transparent); }
+.news-box--warn .news-box__ic { color: var(--c-yellow-fg); }
+.news-box a, .release a, .faq__a a, .pilot__note a, .pilot-card li a, .news-link { color: var(--violet-700); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.news { margin-top: 22px; display: block; justify-items: normal; text-align: left; }
+.release--latest .eyebrow { margin-bottom: 14px; }
+.release__head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 14px; }
+.release__date { color: var(--ink-3); font-size: 14.5px; font-weight: 500; }
+.release--latest .release__summary { margin: 10px 0 0; font-size: 18px; line-height: 1.55; color: var(--ink-2); }
+.release__group { display: flex; align-items: center; gap: 8px; margin: 24px 0 10px; font: 700 12.5px/1.2 var(--f-body); letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-2); }
+.release__group::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--teal); }
+.release__group--improved::before { background: var(--violet); }
+.release__group--fixed::before { background: var(--orange); }
+.release__items { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.release__items li { position: relative; padding-left: 18px; font-size: 15.5px; line-height: 1.6; color: var(--ink); overflow-wrap: anywhere; }
+.release__items li::before { content: ""; position: absolute; left: 2px; top: 0.72em; width: 6px; height: 6px; border-radius: 50%; background: var(--violet-300); }
+.release__items small { display: block; margin-top: 2px; font-size: 13.5px; color: var(--ink-3); }
+.release__notice { display: block; margin-top: 22px; padding: 14px 16px; border-radius: 14px; background: var(--violet-50); border: 1px solid var(--violet-100); font-size: 15px; line-height: 1.6; color: var(--ink-2); }
+.release__notice b { display: block; margin-bottom: 2px; font-size: 12.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--violet-700); }
+.news__older { margin: 44px 0 14px; font-size: 1.25rem; }
+.news__list summary { align-items: center; }
+.release__line { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 10px; min-width: 0; }
+.release__line .release__date { font-size: 13.5px; }
+.release__line .release__summary { flex-basis: 100%; font-weight: 400; font-size: 15px; color: var(--ink-2); letter-spacing: 0; }
+.release__body .release__group:first-child { margin-top: 2px; }
+.news-link { display: inline-flex; align-items: center; gap: 6px; font-size: 14.5px; font-weight: 500; }
+.news-link .ic { text-decoration: none; }
+/* Download page: the fallback version (data-ver-known) until the GitHub API answers; "the latest version" with no
+   number when it can't (main.js sets html[data-version="unknown"]). */
+[data-ver-unknown], html[data-version="unknown"] [data-ver-known] { display: none; }
+html[data-version="unknown"] [data-ver-unknown] { display: inline; }
+@media (max-width: 640px) {
+  .news { padding: 26px 18px; }
+  .news__list summary { padding: 16px 18px; gap: 12px; }
+  .news__list .faq__a { padding: 0 18px 18px; }
+  .news-box { grid-template-columns: 1fr; gap: 10px; padding: 16px; }
+}
