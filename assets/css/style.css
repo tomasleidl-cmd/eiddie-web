@@ -1259,6 +1259,8 @@ html:not([data-pilot]) [data-pilot-only] { display: none !important; }
 html[data-platform="other"] [data-win-only],
 html:not([data-platform="other"]) [data-other-only] { display: none !important; }
 .pilot-card__alt { margin: -6px 0 0; font-size: 14px; color: var(--ink-3); }
+.pilot-card__gift { display: flex; gap: 10px; align-items: flex-start; margin: -8px 0 22px; text-align: left; font-size: 15px; font-weight: 500; color: var(--ink); }
+.pilot-card__gift .ic { flex: none; margin-top: 3px; color: var(--violet-700); stroke-width: 2.2; }
 .pilot-card__alt a { color: var(--violet-700); }
 .btn.is-disabled { opacity: 0.45; pointer-events: none; }
 
