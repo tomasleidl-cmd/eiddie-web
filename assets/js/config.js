@@ -22,7 +22,7 @@ window.EIDDIE_CONFIG = {
   // Fallback for the download page until the GitHub API answers (download.html repeats both for visitors without
   // JavaScript). scripts/release-pilot.mjs rewrites them after each release. If the API fails, the page says
   // "the latest version" instead of this number.
-  version: '0.1.4',
+  version: '0.1.5',
   installerSize: '≈ 106 MB',
   trialDays: 14,
   price: { cs: '999 Kč', en: '999 CZK' },
@@ -36,8 +36,10 @@ window.EIDDIE_CONFIG = {
     src: 'assets/video/eiddie-promo-{lang}.mp4',
     poster: 'assets/video/eiddie-promo-{lang}.jpg',
     duration: '0:30',
-    // Pilot mode stops the video here: its last 5 s are the sales end card (999 Kč, 14 days free).
-    pilotEnd: 25,
+    // The files on the site now are the PILOT renders (end card "Pilotní verze zdarma · www.eiddie.cz", no price), so the
+    // video plays to the end. Before the paid launch, export the sales renders again (website/README.md, Video) and set
+    // pilotEnd back to 25 only if a sales file is ever shown in pilot mode: pilot mode then stops before its price card.
+    pilotEnd: 0,
   },
 
   author: 'Tomáš Leidl',

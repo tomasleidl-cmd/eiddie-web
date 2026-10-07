@@ -328,7 +328,7 @@
           <div class="float float--stat" data-float="-60" aria-hidden="true">
             <div class="float__in" style="display:flex;align-items:center;gap:14px;animation-delay:-3.5s">
               <span class="ic-wrap"><svg class="ic"><use href="#i-bolt"/></svg></span>
-              <span><b>40 ms</b><span data-en="to start the app">start aplikace</span></span>
+              <span><b>2–9 ms</b><span data-en="to search the whole vault">hledání v&nbsp;celém vaultu</span></span>
             </div>
           </div>
           <div class="float float--offline" data-float="-110" aria-hidden="true">
@@ -420,7 +420,7 @@
             <div class="pillar__top"><span class="pillar__letter ini" style="--i:2" aria-hidden="true">D</span><svg class="ic"><use href="#i-calendar"/></svg></div>
             <h3 class="pillar__name" lang="en"><b>D</b>aily notes</h3>
             <p class="pillar__desc" data-en="A fresh page for every day">Každý den nová stránka</p>
-            <p class="pillar__more" data-en="Today’s page is one keystroke away, and quick capture works from anywhere.">Dnešní stránka je jednu klávesu daleko a&nbsp;nápad zapíšeš odkudkoli.</p>
+            <p class="pillar__more" data-en="Today’s page is one keystroke away, and quick capture works from anywhere in the app.">Dnešní stránka je jednu klávesu daleko a&nbsp;nápad zapíšeš kdykoli v&nbsp;aplikaci.</p>
           </article>
           <article class="pillar" data-reveal>
             <div class="pillar__top"><span class="pillar__letter ini" style="--i:3" aria-hidden="true">D</span><svg class="ic"><use href="#i-db"/></svg></div>
@@ -462,8 +462,9 @@
           <article class="pain" data-reveal>
             <div class="pain__ic"><svg class="ic"><use href="#i-coins"/></svg></div>
             <h3 data-en="Another subscription. Again.">Další předplatné. Zase.</h3>
-            <p data-en="Three tools at 250 CZK a month add up to 9,000 CZK a year. For notes.">Tři nástroje po 250 Kč měsíčně jsou 9&nbsp;000 Kč ročně. Za poznámky.</p>
-            <div class="pain__stat"><span data-en="9,000 CZK / year">9 000 Kč / rok</span></div>
+            <p data-en="For example, three tools at 250 CZK a month add up to 9,000 CZK a year. For notes." data-pilot-hide>Například tři nástroje po 250&nbsp;Kč měsíčně jsou 9&nbsp;000 Kč ročně. Za poznámky.</p>
+            <p data-en="Tasks, notes, whiteboards: each tool bills you separately, month after month." data-pilot-only>Úkoly, poznámky, tabule: každý nástroj si účtuje zvlášť, měsíc co měsíc.</p>
+            <div class="pain__stat" data-pilot-hide><span data-en="9,000 CZK / year">9 000 Kč / rok</span></div>
           </article>
           <article class="pain" data-reveal>
             <div class="pain__ic"><svg class="ic"><use href="#i-cloud-off"/></svg></div>
@@ -558,7 +559,7 @@
           <div class="stats__grid" data-stagger>
             <div class="stat" data-reveal>
               <div class="stat__v"><span data-count="40">40</span><small>ms</small></div>
-              <div class="stat__l" data-en="to start the app with an indexed vault">start aplikace s&nbsp;indexovaným vaultem</div>
+              <div class="stat__l" data-en="to check the whole vault for changes at launch">kontrola změn v&nbsp;celém vaultu při spuštění</div>
             </div>
             <div class="stat" data-reveal>
               <div class="stat__v"><span>2–9</span><small>ms</small></div>
@@ -566,7 +567,7 @@
             </div>
             <div class="stat" data-reveal>
               <div class="stat__v"><span data-count="16.7" data-decimals="1">16,7</span><small>ms</small></div>
-              <div class="stat__l" data-en="from keystroke to screen: one frame">od úhozu k&nbsp;vykreslení, tedy jeden snímek</div>
+              <div class="stat__l" data-en="from keystroke to screen (median): one frame">od úhozu k&nbsp;vykreslení (medián), tedy jeden snímek</div>
             </div>
             <div class="stat" data-reveal>
               <div class="stat__v"><span data-count="138000">138 000</span></div>
@@ -717,7 +718,7 @@
           <article class="tile tile--6" data-reveal data-tile>
             <div class="tile__ic"><svg class="ic"><use href="#i-calendar"/></svg></div>
             <h3 data-en="Daily notes &amp; quick capture">Daily notes a&nbsp;rychlý záznam</h3>
-            <p data-en="A page for every day, and Ctrl+Shift+Space to capture an idea from anywhere.">Každý den vlastní stránka a&nbsp;Ctrl+Shift+Mezerník pro nápad odkudkoli.</p>
+            <p data-en="A page for every day, and Ctrl+Shift+Space to capture an idea from anywhere in the app.">Každý den vlastní stránka a&nbsp;Ctrl+Shift+Mezerník pro nápad kdykoli v&nbsp;aplikaci.</p>
             <div class="tile__viz">
               <div class="v-daily">
                 <div class="v-cal" aria-hidden="true">
@@ -940,8 +941,8 @@
           <ul class="owned__list" data-stagger>
             <li data-reveal><span class="ic-wrap"><svg class="ic"><use href="#i-file"/></svg></span><div><b data-en="100% Markdown">100% Markdown</b><span data-en="YAML frontmatter, [[wikilinks]], #tags and ^block-ids. Typical files round-trip byte for byte.">YAML frontmatter, [[wikilinky]], #tagy i&nbsp;^block-id. Běžné soubory zůstanou do posledního bajtu stejné.</span></div></li>
             <li data-reveal><span class="ic-wrap"><svg class="ic"><use href="#i-layers"/></svg></span><div><b data-en="Opens your Obsidian vault">Otevře tvůj Obsidian vault</b><span data-en="Point Eiddie at the folder and you’re done. Nothing gets converted.">Stačí vybrat složku. Nic se nepřevádí.</span></div></li>
-            <li data-reveal><span class="ic-wrap"><svg class="ic"><use href="#i-sync"/></svg></span><div><b data-en="Sync it however you like">Synchronizuj čím chceš</b><span data-en="OneDrive, Dropbox, Syncthing or git. It’s just a folder.">OneDrive, Dropbox, Syncthing nebo git. Je to jen složka.</span></div></li>
-            <li data-reveal><span class="ic-wrap"><svg class="ic"><use href="#i-shield"/></svg></span><div><b data-en="Nothing gets lost">Nic se neztratí</b><span data-en="Deleted files go to .trash/, renaming a page fixes every link, and viewing never modifies a file.">Smazané soubory končí v&nbsp;.trash/, přejmenování opraví odkazy a&nbsp;samotné prohlížení soubor nikdy nezmění.</span></div></li>
+            <li data-reveal><span class="ic-wrap"><svg class="ic"><use href="#i-sync"/></svg></span><div><b data-en="Sync it however you like">Synchronizuj čím chceš</b><span data-en="OneDrive, Dropbox, Syncthing or git. It’s just a folder. Just don’t edit the same vault on two computers at once.">OneDrive, Dropbox, Syncthing nebo git. Je to obyčejná složka. Stejný vault jen needituj na dvou počítačích zároveň.</span></div></li>
+            <li data-reveal><span class="ic-wrap"><svg class="ic"><use href="#i-shield"/></svg></span><div><b data-en="Safety nets">Pojistky proti ztrátě</b><span data-en="Deleted files go to .trash/, renaming a page fixes every link, and viewing never modifies a file.">Smazané soubory končí v&nbsp;.trash/, přejmenování opraví odkazy a&nbsp;samotné prohlížení soubor nikdy nezmění.</span></div></li>
           </ul>
         </div>
 
@@ -996,18 +997,18 @@
               </tr>
             </thead>
             <tbody>
-              <tr><th scope="row" data-en="Works 100% offline">Funguje 100% offline</th><td><span class="no"><svg class="ic"><use href="#i-x"/></svg></span></td><td><span class="yes"><svg class="ic"><use href="#i-check"/></svg></span></td><td class="is-us"><span class="yes"><svg class="ic"><use href="#i-check"/></svg></span></td></tr>
-              <tr><th scope="row" data-en="Data as plain files on your disk">Data jako obyčejné soubory na disku</th><td><span class="no"><svg class="ic"><use href="#i-x"/></svg></span></td><td><span class="yes"><svg class="ic"><use href="#i-check"/></svg></span></td><td class="is-us"><span class="yes"><svg class="ic"><use href="#i-check"/></svg></span></td></tr>
-              <tr><th scope="row" data-en="Outliner where every bullet is a node">Outliner, kde je každá odrážka uzel</th><td><span class="meh" data-en="partly">částečně</span></td><td><span class="meh" data-en="partly">částečně</span></td><td class="is-us"><span class="yes"><svg class="ic"><use href="#i-check"/></svg></span></td></tr>
-              <tr><th scope="row" data-en="Table, kanban &amp; calendar views">Tabulka, kanban a&nbsp;kalendář</th><td><span class="yes"><svg class="ic"><use href="#i-check"/></svg></span></td><td><span class="meh" data-en="plugins">pluginy</span></td><td class="is-us"><span class="yes"><svg class="ic"><use href="#i-check"/></svg></span></td></tr>
-              <tr><th scope="row" data-en="Infinite canvas">Nekonečné plátno</th><td><span class="meh" data-en="partly">částečně</span></td><td><span class="meh" data-en="plugins">pluginy</span></td><td class="is-us"><span class="yes"><svg class="ic"><use href="#i-check"/></svg></span></td></tr>
-              <tr><th scope="row" data-en="All in one app, no plugins">Vše v&nbsp;jedné aplikaci bez pluginů</th><td><span class="yes"><svg class="ic"><use href="#i-check"/></svg></span></td><td><span class="no"><svg class="ic"><use href="#i-x"/></svg></span></td><td class="is-us"><span class="yes"><svg class="ic"><use href="#i-check"/></svg></span></td></tr>
-              <tr data-pilot-only><th scope="row" data-en="No subscription">Bez předplatného</th><td><span class="no"><svg class="ic"><use href="#i-x"/></svg></span></td><td><span class="meh" data-en="varies">různě</span></td><td class="is-us"><span class="yes"><svg class="ic"><use href="#i-check"/></svg></span></td></tr>
-              <tr data-pilot-hide><th scope="row" data-en="One-time payment">Jednorázová platba</th><td><span class="no"><svg class="ic"><use href="#i-x"/></svg></span></td><td><span class="meh" data-en="varies">různě</span></td><td class="is-us"><span class="yes"><svg class="ic"><use href="#i-check"/></svg></span></td></tr>
+              <tr><th scope="row" data-en="Data as plain files on your disk">Data jako obyčejné soubory na disku</th><td><span class="no"><svg class="ic" aria-hidden="true"><use href="#i-x"/></svg><span class="sr-only" data-en="no">ne</span></span></td><td><span class="yes"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span class="sr-only" data-en="yes">ano</span></span></td><td class="is-us"><span class="yes"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span class="sr-only" data-en="yes">ano</span></span></td></tr>
+              <tr><th scope="row" data-en="Works without the internet">Funguje bez internetu</th><td><span class="meh" data-en="partly">částečně</span></td><td><span class="yes"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span class="sr-only" data-en="yes">ano</span></span></td><td class="is-us"><span class="yes"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span class="sr-only" data-en="yes">ano</span></span></td></tr>
+              <tr><th scope="row" data-en="Every bullet is a node with its own fields">Každá odrážka je uzel s&nbsp;vlastními poli</th><td><span class="meh" data-en="partly">částečně</span></td><td><span class="meh" data-en="partly">částečně</span></td><td class="is-us"><span class="yes"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span class="sr-only" data-en="yes">ano</span></span></td></tr>
+              <tr><th scope="row" data-en="Table, kanban &amp; calendar straight from your bullets">Tabulka, kanban a&nbsp;kalendář přímo z&nbsp;odrážek</th><td><span class="meh" data-en="partly">částečně</span></td><td><span class="meh" data-en="partly">částečně</span></td><td class="is-us"><span class="yes"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span class="sr-only" data-en="yes">ano</span></span></td></tr>
+              <tr><th scope="row" data-en="Infinite canvas">Nekonečné plátno</th><td><span class="meh" data-en="partly">částečně</span></td><td><span class="meh" data-en="partly">částečně</span></td><td class="is-us"><span class="yes"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span class="sr-only" data-en="yes">ano</span></span></td></tr>
+              <tr><th scope="row" data-en="All in one app, no add-ons">Vše v&nbsp;jedné aplikaci bez doplňků</th><td><span class="yes"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span class="sr-only" data-en="yes">ano</span></span></td><td><span class="meh" data-en="partly">částečně</span></td><td class="is-us"><span class="yes"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span class="sr-only" data-en="yes">ano</span></span></td></tr>
+              <tr data-pilot-only><th scope="row" data-en="No subscription">Bez předplatného</th><td><span class="meh" data-en="free with limits">zdarma s&nbsp;limity</span></td><td><span class="meh" data-en="varies">různě</span></td><td class="is-us"><span class="yes"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span class="sr-only" data-en="yes">ano</span></span></td></tr>
+              <tr data-pilot-hide><th scope="row" data-en="One-time payment">Jednorázová platba</th><td><span class="no"><svg class="ic" aria-hidden="true"><use href="#i-x"/></svg><span class="sr-only" data-en="no">ne</span></span></td><td><span class="meh" data-en="varies">různě</span></td><td class="is-us"><span class="yes"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span class="sr-only" data-en="yes">ano</span></span></td></tr>
             </tbody>
           </table>
         </div>
-        <p class="compare__note" data-en="A general comparison of tool categories, not of specific products.">Obecné srovnání kategorií nástrojů, ne konkrétních produktů.</p>
+        <p class="compare__note" data-en="A general comparison of tool categories, not of specific products, and individual apps differ: Obsidian, for example, has a canvas and table views (Bases) built in.">Obecné srovnání kategorií nástrojů, ne konkrétních produktů. Jednotlivé aplikace se liší: třeba Obsidian má plátno i&nbsp;tabulkové pohledy (Bases) přímo v&nbsp;sobě.</p>
       </div>
     </section>
 
@@ -1205,6 +1206,14 @@
             <summary><span data-en="Is it really subscription-free?">Je to opravdu bez předplatného?</span><span class="pm" aria-hidden="true"></span></summary>
             <div class="faq__a"><p data-en="Yes. You pay 999 CZK once and Eiddie is yours. Every 1.x update is free." data-pilot-hide>Ano. Zaplatíš 999 Kč jednou a&nbsp;aplikace je tvoje. Všechny aktualizace verze 1.x dostaneš zdarma.</p><p data-en="Yes. Eiddie will be released as a one-time purchase, with no subscription. During the pilot it’s free." data-pilot-only>Ano. Eiddie vyjde jako aplikace na jednorázovou platbu, bez předplatného. Během pilotu je zdarma.</p></div>
           </details>
+          <details data-reveal>
+            <summary><span data-en="How do I start?">Jak začít?</span><span class="pm" aria-hidden="true"></span></summary>
+            <div class="faq__a"><p data-en="Eiddie opens with a demo vault and a Getting started list: six things, about two minutes. The same steps with pictures, a table of keyboard shortcuts and tips for anyone coming from Obsidian, Tana, Heptabase or Notion are on the <a href=&quot;start.html&quot;>Getting started</a> page.">Aplikace Eiddie se otevře s&nbsp;ukázkovou složkou a&nbsp;seznamem Začínáme: šest věcí zhruba na dvě minuty. Tytéž kroky s&nbsp;obrázky, tabulku klávesových zkratek a&nbsp;tipy pro přechod z&nbsp;Obsidianu, Tany, Heptabase nebo Notionu najdeš na stránce <a href="start.html">Začínáme</a>.</p></div>
+          </details>
+          <details data-reveal>
+            <summary><span data-en="What language is the app in?">V&nbsp;jakém jazyce je aplikace?</span><span class="pm" aria-hidden="true"></span></summary>
+            <div class="faq__a"><p data-en="The app’s interface is in English for now; this website is in Czech and English. Write your notes in any language: search finds words with or without accents.">Rozhraní aplikace je zatím anglicky, tenhle web je česky i&nbsp;anglicky. Poznámky si píšeš v&nbsp;jakémkoli jazyce a&nbsp;hledání najde slova s&nbsp;diakritikou i&nbsp;bez ní.</p></div>
+          </details>
           <details data-reveal data-pilot-only>
             <summary><span data-en="How long can I use the pilot version?">Jak dlouho můžu pilotní verzi používat?</span><span class="pm" aria-hidden="true"></span></summary>
             <div class="faq__a"><p data-en="As long as you like: the pilot version has no time limit. Your notes are ordinary Markdown files on your disk, so they stay yours whatever you decide.">Jak dlouho chceš, pilotní verze nemá časové omezení. Poznámky jsou obyčejné soubory Markdown na tvém disku, takže ti zůstanou, ať se rozhodneš jakkoli.</p></div>
@@ -1227,7 +1236,7 @@
           </details>
           <details data-reveal>
             <summary><span data-en="Does Eiddie work with my Obsidian vault?">Funguje Eiddie s&nbsp;mým Obsidian vaultem?</span><span class="pm" aria-hidden="true"></span></summary>
-            <div class="faq__a"><p data-en="Yes. Open the vault folder and Eiddie reads it as is. The Markdown stays compatible, canvases are saved as JSON Canvas, and Eiddie’s own settings live in a .eiddie/ folder, just like .obsidian/.">Ano. Otevři složku vaultu a&nbsp;Eiddie ji načte tak, jak je. Markdown zůstává kompatibilní, plátna se ukládají jako JSON Canvas a&nbsp;nastavení aplikace Eiddie žije ve složce .eiddie/, podobně jako .obsidian/.</p></div>
+            <div class="faq__a"><p data-en="Yes. Open the vault folder and Eiddie reads it as is: notes, [[links]], #tags, frontmatter and canvases (JSON Canvas). Eiddie keeps its own settings in a .eiddie/ folder and never touches .obsidian/. Obsidian plugins don’t run in Eiddie, so a Dataview query, for example, shows up as a plain code block. It stays in the file exactly as it was and keeps working in Obsidian.">Ano. Otevři složku vaultu a&nbsp;Eiddie ji načte tak, jak je: poznámky, [[odkazy]], #tagy, frontmatter i&nbsp;plátna (JSON Canvas). Nastavení aplikace Eiddie žije ve vlastní složce .eiddie/ a&nbsp;složky .obsidian/ se nedotkne. Pluginy Obsidianu se v&nbsp;Eiddie nespouštějí, takže třeba dotaz Dataview uvidíš jako obyčejný blok kódu. V&nbsp;souboru přitom zůstane, jak byl, a&nbsp;v&nbsp;Obsidianu funguje dál.</p><p data-en="The pilot version is a pre-release, so back up your main vault before you open it in Eiddie." data-pilot-only>Pilotní verze je předběžná, proto si hlavní vault před otevřením v&nbsp;aplikaci Eiddie zazálohuj.</p></div>
           </details>
           <details data-reveal>
             <summary><span data-en="Which systems does it run on?">Na jakých systémech běží?</span><span class="pm" aria-hidden="true"></span></summary>
@@ -1356,6 +1365,7 @@
         <div>
           <h4 data-en="Support">Podpora</h4>
           <ul>
+            <li><a href="start.html" data-en="Getting started">Začínáme</a></li>
             <li><a href="#faq">FAQ</a></li>
             <li><a href="#kontakt" data-en="Contact">Kontakt</a></li>
             <li><a href="mailto:tomas.leidl@gmail.com?subject=Eiddie%3A%20bug" data-cfg-mail="bug" data-en="Report a bug">Nahlásit chybu</a></li>

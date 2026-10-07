@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <!-- Getting started: the website mirror of the app's "Začínáme / Getting started" checklist (one section per letter E·I·D·D·I·E).
+       The app links here as start.html?lang=cs|en#editor|ideas|daily|databases|canvas|local, so keep those ids. -->
+  <title data-en="Getting started with Eiddie">Začínáme s aplikací Eiddie</title>
+  <meta name="description" content="Šest věcí, dvě minuty: jak začít s aplikací Eiddie. Kroky ze seznamu Začínáme, klávesové zkratky a tipy pro přechod z Obsidianu, Tany, Heptabase a Notionu." data-en-content="Six things, two minutes: how to get started with Eiddie. The steps of the Getting started list, keyboard shortcuts and tips for people coming from Obsidian, Tana, Heptabase and Notion.">
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#6c5cff">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Eiddie">
+  <meta property="og:title" content="Začínáme s aplikací Eiddie" data-en-content="Getting started with Eiddie">
+  <meta property="og:description" content="Šest věcí, dvě minuty – tytéž kroky najdeš v aplikaci v seznamu Začínáme." data-en-content="Six things, two minutes — the same steps as the Getting started list in the app.">
+  <link rel="canonical" href="https://www.eiddie.cz/start.html">
+  <meta property="og:url" content="https://www.eiddie.cz/start.html">
+  <!-- Pilot: og-pilot.png (no price, no trial). At launch switch back to og.png, like index.html. -->
+  <meta property="og:image" content="https://www.eiddie.cz/assets/img/og-pilot.png">
+  <meta property="og:image:alt" content="Eiddie: Edit Ideas. Draw Diagrams. Index Everything.">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="assets/img/logo.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Inter:wght@400..700&family=Instrument+Serif:ital@1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <!-- Loaded synchronously (tiny): the pilot switch must be known before the first paint -->
+  <script src="assets/js/config.js"></script>
+  <script>
+    (function () {
+      var d = document.documentElement, lang = null;
+      if ((window.EIDDIE_CONFIG || {}).pilot) d.dataset.pilot = '';
+      try { lang = new URLSearchParams(location.search).get('lang') || localStorage.getItem('eiddie-lang'); } catch (e) {}
+      if (!lang) lang = /^(cs|sk)/i.test(navigator.language || '') ? 'cs' : 'en';
+      d.dataset.lang = lang === 'en' ? 'en' : 'cs';
+      if (d.dataset.lang === 'en') { d.classList.add('i18n-pending'); setTimeout(function () { d.classList.remove('i18n-pending'); }, 1500); }
+    })();
+  </script>
+</head>
+<body class="subpage">
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="i-chev-l" viewBox="0 0 24 24"><path d="m15 6-6 6 6 6"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></symbol>
+    <symbol id="i-sparkle" viewBox="0 0 24 24"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  </svg>
+  <a class="skip" href="#main" data-en="Skip to content">Přeskočit na obsah</a>
+
+  <header class="nav is-scrolled">
+    <div class="container nav__inner">
+      <a class="brand" href="index.html"><img src="assets/img/logo.svg" alt="" width="32" height="32">Eiddie</a>
+      <div class="nav__right">
+        <div class="lang" role="group" aria-label="Jazyk / Language">
+          <button type="button" data-lang-btn="cs" aria-pressed="true">CZ</button>
+          <button type="button" data-lang-btn="en" aria-pressed="false">EN</button>
+        </div>
+        <a class="btn btn--ghost btn--sm" href="index.html"><svg class="ic"><use href="#i-chev-l"/></svg><span data-en="Back to the site">Zpět na web</span></a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="aurora" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+    <div class="grid-bg" aria-hidden="true"></div>
+    <div class="container guide">
+      <header class="guide-head">
+        <span class="eyebrow" data-en="Getting started">Začínáme</span>
+        <h1 class="h2" data-en="Getting started with <em>Eiddie</em>">Začínáme s&nbsp;aplikací <em>Eiddie</em></h1>
+        <p class="lead" data-en="Six things, two minutes — the same steps as the Getting started list in the app.">Šest věcí, dvě minuty – tytéž kroky najdeš v&nbsp;aplikaci v&nbsp;seznamu Začínáme.</p>
+        <nav class="guide-toc" aria-label="Kroky" data-en-aria-label="Steps">
+          <a href="#editor"><b class="ini" style="--i:0" aria-hidden="true">E</b><span lang="en">Editor</span></a>
+          <a href="#ideas"><b class="ini" style="--i:1" aria-hidden="true">I</b><span lang="en">Ideas</span></a>
+          <a href="#daily"><b class="ini" style="--i:2" aria-hidden="true">D</b><span lang="en">Daily notes</span></a>
+          <a href="#databases"><b class="ini" style="--i:3" aria-hidden="true">D</b><span lang="en">Databases</span></a>
+          <a href="#canvas"><b class="ini" style="--i:4" aria-hidden="true">I</b><span lang="en">Infinite canvas</span></a>
+          <a href="#local"><b class="ini" style="--i:5" aria-hidden="true">E</b><span lang="en">Everything local</span></a>
+        </nav>
+      </header>
+
+      <div class="gsteps">
+        <!-- E · Editor -->
+        <section class="gcard gstep" id="editor" aria-labelledby="editor-title">
+          <div class="gstep__head">
+            <span class="gstep__letter ini" style="--i:0" aria-hidden="true">E</span>
+            <p class="gstep__pillar"><span lang="en"><b>E</b>ditor</span> · <span data-en="step 1 of 6">krok 1 ze 6</span></p>
+            <h2 id="editor-title" data-en="Jump anywhere with Ctrl+K">Skoč kamkoli přes Ctrl+K</h2>
+            <p data-en="Press <kbd>Ctrl+K</kbd>, type “Ideas” and hit <kbd>Enter</kbd>. Every page and every command is this quick to reach, so you rarely need the mouse. <kbd>Ctrl+E</kbd> then switches the page from the outline to a live Markdown document and back.">Stiskni <kbd>Ctrl+K</kbd>, napiš „Ideas“ a&nbsp;dej <kbd>Enter</kbd>. Stejně rychle se dostaneš ke každé stránce i&nbsp;příkazu, takže myš skoro nepotřebuješ. <kbd>Ctrl+E</kbd> pak přepne stránku z&nbsp;outlineru na dokument s&nbsp;živým Markdownem a&nbsp;zpátky.</p>
+          </div>
+          <figure class="gstep__shot">
+            <img src="assets/img/start/editor.webp" width="1400" height="900" decoding="async"
+              alt="Aplikace Eiddie s otevřeným vyhledáváním: je napsané „Ideas“ a zvýrazněná je stránka Ideas."
+              data-en-alt="Eiddie with the search open: “Ideas” is typed and the Ideas page is highlighted.">
+          </figure>
+        </section>
+
+        <!-- I · Ideas -->
+        <section class="gcard gstep" id="ideas" aria-labelledby="ideas-title">
+          <div class="gstep__head">
+            <span class="gstep__letter ini" style="--i:1" aria-hidden="true">I</span>
+            <p class="gstep__pillar"><span lang="en"><b>I</b>deas</span> · <span data-en="step 2 of 6">krok 2 ze 6</span></p>
+            <h2 id="ideas-title" data-en="Turn a bullet into a record: #task">Udělej z&nbsp;odrážky záznam: #task</h2>
+            <p data-en="Open the “Website redesign” page, type a task under the last bullet and add <code>#task</code>. The bullet becomes a record with fields like “Status” and “Due”, and it shows up in the database of all your tasks. In the file it is still one ordinary line of Markdown.">Otevři stránku „Website redesign“, pod poslední odrážku napiš úkol a&nbsp;přidej <code>#task</code>. Z&nbsp;odrážky se stane záznam s&nbsp;poli jako „Status“ nebo „Due“ a&nbsp;objeví se v&nbsp;databázi všech úkolů. V&nbsp;souboru přitom zůstane obyčejným řádkem Markdownu.</p>
+          </div>
+          <figure class="gstep__shot">
+            <img src="assets/img/start/ideas.webp" width="1400" height="900" loading="lazy" decoding="async"
+              alt="Stránka Website redesign v outlineru: tři úkoly se štítkem #task a pod každým pole Status, Priority, Due a Estimate."
+              data-en-alt="The Website redesign page in the outliner: three tasks tagged #task, each with Status, Priority, Due and Estimate fields.">
+          </figure>
+        </section>
+
+        <!-- D · Daily notes -->
+        <section class="gcard gstep" id="daily" aria-labelledby="daily-title">
+          <div class="gstep__head">
+            <span class="gstep__letter ini" style="--i:2" aria-hidden="true">D</span>
+            <p class="gstep__pillar"><span lang="en"><b>D</b>aily notes</span> · <span data-en="step 3 of 6">krok 3 ze 6</span></p>
+            <h2 id="daily-title" data-en="Open today’s page: Alt+D">Otevři dnešní stránku: Alt+D</h2>
+            <p data-en="Press <kbd>Alt+D</kbd> or click “Today” in the sidebar. Every day has its own page: jot down thoughts, meetings and tasks here and sort them out later. For a quick idea while you work on something else, <kbd>Ctrl+Shift+Space</kbd> writes it to today’s page from anywhere in the app.">Stiskni <kbd>Alt+D</kbd> nebo klikni na „Today“ v&nbsp;postranním panelu. Každý den má svou stránku: piš sem myšlenky, schůzky i&nbsp;úkoly a&nbsp;roztřiď je později. Rychlý nápad zapíšeš do dnešní stránky kdykoli v&nbsp;aplikaci přes <kbd>Ctrl+Shift+Mezerník</kbd>, ať zrovna děláš cokoli.</p>
+          </div>
+          <figure class="gstep__shot">
+            <img src="assets/img/start/daily.webp" width="1400" height="900" loading="lazy" decoding="async"
+              alt="Dnešní denní stránka: schůzka se štítkem #meeting, úkol se štítkem #task a pod stránkou odkazy z jiných poznámek."
+              data-en-alt="Today’s daily page: a meeting tagged #meeting, a task tagged #task and, below the page, references from other notes.">
+          </figure>
+        </section>
+
+        <!-- D · Databases -->
+        <section class="gcard gstep" id="databases" aria-labelledby="databases-title">
+          <div class="gstep__head">
+            <span class="gstep__letter ini" style="--i:3" aria-hidden="true">D</span>
+            <p class="gstep__pillar"><span lang="en"><b>D</b>atabases</span> · <span data-en="step 4 of 6">krok 4 ze 6</span></p>
+            <h2 id="databases-title" data-en="See every #task as a Kanban board">Zobraz úkoly jako Kanban</h2>
+            <p data-en="Open the “task” database (in the sidebar under “Supertags”), click “+” next to the view tabs and choose “Kanban”. The cards are tasks from all your pages, including the one from step I. Drag a card to another column and its “Status” changes right in the Markdown file.">Otevři databázi „task“ (v&nbsp;postranním panelu pod „Supertags“), klikni na „+“ vedle záložek pohledů a&nbsp;vyber „Kanban“. Karty jsou úkoly ze všech stránek, včetně toho z&nbsp;kroku I. Když kartu přetáhneš do jiného sloupce, změní se její „Status“ rovnou v&nbsp;souboru Markdown.</p>
+          </div>
+          <figure class="gstep__shot">
+            <img src="assets/img/start/databases.webp" width="1400" height="900" loading="lazy" decoding="async"
+              alt="Databáze #task v pohledu Kanban: sloupce Todo, Doing a Blocked s kartami úkolů z různých stránek."
+              data-en-alt="The #task database in Kanban view: Todo, Doing and Blocked columns with task cards from different pages.">
+          </figure>
+        </section>
+
+        <!-- I · Infinite canvas -->
+        <section class="gcard gstep" id="canvas" aria-labelledby="canvas-title">
+          <div class="gstep__head">
+            <span class="gstep__letter ini" style="--i:4" aria-hidden="true">I</span>
+            <p class="gstep__pillar"><span lang="en"><b>I</b>nfinite canvas</span> · <span data-en="step 5 of 6">krok 5 ze 6</span></p>
+            <h2 id="canvas-title" data-en="Open a whiteboard">Otevři tabuli</h2>
+            <p data-en="Open “Product map” (<kbd>Ctrl+K</kbd> works here too). Double-click an empty spot to add a card, or drag a note onto the board from the file list in the sidebar. Note cards aren’t copies: double-click one and the note opens beside the board, and whatever you change shows on the card as well.">Otevři „Product map“ (i&nbsp;tady funguje <kbd>Ctrl+K</kbd>). Dvojklikem na prázdné místo přidáš kartu, poznámku přetáhneš na tabuli ze seznamu souborů v&nbsp;postranním panelu. Karty poznámek nejsou kopie: dvojklik otevře poznámku vedle tabule a&nbsp;co v&nbsp;ní změníš, uvidíš i&nbsp;na kartě.</p>
+          </div>
+          <figure class="gstep__shot">
+            <img src="assets/img/start/canvas.webp" width="1400" height="900" loading="lazy" decoding="async"
+              alt="Tabule Product map: karty poznámek Eiddie launch, Ideas a Jana Nováková, textová karta a odkaz, propojené šipkami."
+              data-en-alt="The Product map whiteboard: note cards for Eiddie launch, Ideas and Jana Nováková, a text card and a link, connected by arrows.">
+          </figure>
+        </section>
+
+        <!-- E · Everything local -->
+        <section class="gcard gstep" id="local" aria-labelledby="local-title">
+          <div class="gstep__head">
+            <span class="gstep__letter ini" style="--i:5" aria-hidden="true">E</span>
+            <p class="gstep__pillar"><span lang="en"><b>E</b>verything local</span> · <span data-en="step 6 of 6">krok 6 ze 6</span></p>
+            <h2 id="local-title" data-en="Your notes are files on this computer">Poznámky máš v&nbsp;souborech u&nbsp;sebe</h2>
+            <p data-en="Click the folder name at the top left and choose “Reveal vault in Explorer”: ordinary files in a normal folder, pages as Markdown (<code>.md</code>) and whiteboards as <code>.canvas</code>. Back them up and sync them however you like. Your notes never leave your computer; the app only asks GitHub whether there’s a new version (you can switch that off in Settings → Updates).">Klikni vlevo nahoře na název složky a&nbsp;zvol „Reveal vault in Explorer“: obyčejné soubory v&nbsp;běžné složce, stránky v&nbsp;Markdownu (<code>.md</code>) a&nbsp;tabule jako <code>.canvas</code>. Zálohuj a&nbsp;synchronizuj je, jak chceš. Poznámky nikam neodcházejí, aplikace se jen ptá GitHubu, jestli je nová verze (dá se vypnout v&nbsp;Settings → Updates).</p>
+          </div>
+          <figure class="gstep__shot">
+            <img src="assets/img/start/local.webp" width="1400" height="900" loading="lazy" decoding="async"
+              alt="Postranní panel s rozbalenou nabídkou složky (Open folder as vault…, Reveal vault in Explorer) a stromem souborů se složkami Daily a Projects."
+              data-en-alt="The sidebar with the vault menu open (Open folder as vault…, Reveal vault in Explorer) and the file tree with the Daily and Projects folders.">
+          </figure>
+        </section>
+
+        <!-- Keyboard shortcuts: checked against the app (App.tsx key handler, BUILTIN_SHORTCUTS, features' registerShortcut) -->
+        <section class="gcard gblock" id="shortcuts" aria-labelledby="shortcuts-title">
+          <h2 id="shortcuts-title" data-en="Keyboard shortcuts">Klávesové zkratky</h2>
+          <p class="gblock__lead" data-en="The ones worth knowing from day one. The full list is always one <kbd>Ctrl+/</kbd> away in the app.">Ty, které se hodí od prvního dne. Úplný seznam ukáže v&nbsp;aplikaci kdykoli <kbd>Ctrl+/</kbd>.</p>
+          <div class="kbtable-wrap">
+            <table class="kbtable">
+              <thead><tr><th scope="col" data-en="Shortcut">Zkratka</th><th scope="col" data-en="What it does">Co udělá</th></tr></thead>
+              <tbody>
+                <tr class="kb-group"><th colspan="2" scope="rowgroup" data-en="Getting around">Pohyb po aplikaci</th></tr>
+                <tr><th scope="row"><kbd>Ctrl</kbd>+<kbd>K</kbd></th><td data-en="Search: pages, content and commands">Hledání: stránky, obsah i&nbsp;příkazy</td></tr>
+                <tr><th scope="row"><kbd>Ctrl</kbd>+<kbd>O</kbd></th><td data-en="Jump to a page">Skok na stránku</td></tr>
+                <tr><th scope="row"><kbd>Ctrl</kbd>+<kbd>N</kbd></th><td data-en="New page">Nová stránka</td></tr>
+                <tr><th scope="row"><kbd>Alt</kbd>+<kbd>D</kbd></th><td data-en="Today’s daily page">Dnešní stránka</td></tr>
+                <tr><th scope="row" data-en="<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Space</kbd>"><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Mezerník</kbd></th><td data-en="Quick capture, from anywhere in the app">Rychlý zápis, kdykoli v&nbsp;aplikaci</td></tr>
+                <tr><th scope="row"><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>F</kbd></th><td data-en="Search with the query language">Hledání s&nbsp;dotazovacím jazykem</td></tr>
+                <tr><th scope="row"><kbd>Alt</kbd>+<kbd>←</kbd> / <kbd>Alt</kbd>+<kbd>→</kbd></th><td data-en="Back / forward">Zpět / vpřed</td></tr>
+                <tr><th scope="row"><kbd>Ctrl</kbd>+<kbd>\</kbd></th><td data-en="Show or hide the sidebar">Skrýt nebo ukázat postranní panel</td></tr>
+                <tr><th scope="row"><kbd>F11</kbd></th><td data-en="Focus mode">Režim soustředění</td></tr>
+                <tr><th scope="row"><kbd>Ctrl</kbd>+<kbd>,</kbd></th><td data-en="Settings">Nastavení</td></tr>
+                <tr><th scope="row"><kbd>Ctrl</kbd>+<kbd>/</kbd></th><td data-en="All keyboard shortcuts">Všechny klávesové zkratky</td></tr>
+              </tbody>
+              <tbody>
+                <tr class="kb-group"><th colspan="2" scope="rowgroup" data-en="Pages and the outliner">Stránky a&nbsp;outliner</th></tr>
+                <tr><th scope="row"><kbd>Ctrl</kbd>+<kbd>E</kbd></th><td data-en="Switch between outline and document">Přepnout mezi outlinerem a&nbsp;dokumentem</td></tr>
+                <tr><th scope="row" data-en="<kbd>Ctrl</kbd>+click"><kbd>Ctrl</kbd>+klik</th><td data-en="Open a link in the side panel">Otevřít odkaz v&nbsp;bočním panelu</td></tr>
+                <tr><th scope="row"><kbd>Enter</kbd> / <kbd>Shift</kbd>+<kbd>Enter</kbd></th><td data-en="New bullet / line break">Nová odrážka / nový řádek</td></tr>
+                <tr><th scope="row"><kbd>Tab</kbd> / <kbd>Shift</kbd>+<kbd>Tab</kbd></th><td data-en="Indent / outdent">Zanořit / vynořit</td></tr>
+                <tr><th scope="row"><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>↑</kbd> <kbd>↓</kbd></th><td data-en="Move a bullet up or down">Posunout odrážku nahoru nebo dolů</td></tr>
+                <tr><th scope="row"><kbd>Ctrl</kbd>+<kbd>↑</kbd> <kbd>↓</kbd></th><td data-en="Collapse / expand">Sbalit / rozbalit</td></tr>
+                <tr><th scope="row"><kbd>Alt</kbd>+<kbd>→</kbd></th><td data-en="Zoom into a bullet">Zoom do odrážky</td></tr>
+                <tr><th scope="row"><kbd>Ctrl</kbd>+<kbd>Enter</kbd></th><td data-en="Add, tick or remove a checkbox">Přidat, odškrtnout nebo odebrat zaškrtávátko</td></tr>
+                <tr><th scope="row"><kbd>#</kbd> <kbd>[[</kbd> <kbd>@</kbd> <kbd>/</kbd></th><td data-en="Supertag, link, mention, command">Supertag, odkaz, zmínka, příkaz</td></tr>
+              </tbody>
+              <tbody>
+                <tr class="kb-group"><th colspan="2" scope="rowgroup" data-en="Writing">Psaní</th></tr>
+                <tr><th scope="row"><kbd>Ctrl</kbd>+<kbd>B</kbd> / <kbd>Ctrl</kbd>+<kbd>I</kbd></th><td data-en="Bold / italic">Tučně / kurzíva</td></tr>
+                <tr><th scope="row"><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>H</kbd></th><td data-en="Highlight">Zvýraznění</td></tr>
+                <tr><th scope="row"><kbd>Ctrl</kbd>+<kbd>Z</kbd> / <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Z</kbd></th><td data-en="Undo / redo">Zpět / znovu</td></tr>
+                <tr><th scope="row"><kbd>Ctrl</kbd>+<kbd>F</kbd></th><td data-en="Find in the document">Hledat v&nbsp;dokumentu</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Coming from another tool: factual mapping, no comparisons of quality -->
+        <section class="gcard gblock" id="coming-from" aria-labelledby="coming-from-title">
+          <h2 id="coming-from-title" data-en="Coming from…?">Přecházíš z…?</h2>
+          <p class="gblock__lead" data-en="What you already know, and where you’ll find it in Eiddie.">Co už znáš a&nbsp;kde to najdeš v&nbsp;aplikaci Eiddie.</p>
+          <ul class="from">
+            <li>
+              <h3>Obsidian</h3>
+              <p><span class="from__label" data-en="You know">Znáš</span><span data-en="A vault of Markdown files, [[links]] and backlinks, Canvas, Dataview’s <code>Field:: value</code>.">Vault ze souborů Markdown, [[odkazy]] a&nbsp;zpětné odkazy, Canvas, pole <code>Field:: value</code> z&nbsp;Dataview.</span></p>
+              <p><span class="from__label" data-en="In Eiddie">V&nbsp;aplikaci Eiddie</span><span data-en="Open your vault folder as it is. Links and backlinks work the same, whiteboards use the same JSON Canvas format, and <code>Status:: Doing</code> under a bullet becomes a database field. Eiddie keeps its settings in <code>.eiddie/</code>, next to <code>.obsidian/</code>.">Otevři složku vaultu tak, jak je. Odkazy a&nbsp;zpětné odkazy fungují stejně, tabule používají stejný formát JSON Canvas a&nbsp;<code>Status:: Doing</code> pod odrážkou se stane polem v&nbsp;databázi. Nastavení si aplikace Eiddie ukládá do <code>.eiddie/</code>, vedle <code>.obsidian/</code>.</span></p>
+            </li>
+            <li>
+              <h3>Tana</h3>
+              <p><span class="from__label" data-en="You know">Znáš</span><span data-en="Nodes, supertags with fields, search nodes, a page for every day.">Uzly, supertagy s&nbsp;poli, vyhledávací uzly, stránku pro každý den.</span></p>
+              <p><span class="from__label" data-en="In Eiddie">V&nbsp;aplikaci Eiddie</span><span data-en="Every bullet is a node, and a #supertag turns it into a record with fields. A live search is a bullet like <code>{{search: #task Status != Done}}</code>, today’s page is <kbd>Alt+D</kbd>. All of it is stored as plain Markdown files on your disk.">Každá odrážka je uzel a&nbsp;#supertag z&nbsp;ní udělá záznam s&nbsp;poli. Živé vyhledávání je odrážka jako <code>{{search: #task Status != Done}}</code>, dnešní stránka je na <kbd>Alt+D</kbd>. Všechno se ukládá jako obyčejné soubory Markdown na tvém disku.</span></p>
+            </li>
+            <li>
+              <h3>Heptabase</h3>
+              <p><span class="from__label" data-en="You know">Znáš</span><span data-en="Whiteboards whose cards are your notes, sections, opening a card beside the board.">Tabule, na kterých jsou karty tvoje poznámky, sekce, otevření karty vedle tabule.</span></p>
+              <p><span class="from__label" data-en="In Eiddie">V&nbsp;aplikaci Eiddie</span><span data-en="Infinite canvas: a note card is the note itself, not a copy, and a double-click opens it beside the board. “Section” groups cards. Each whiteboard is one <code>.canvas</code> file in your folder.">Infinite canvas: karta poznámky je ta poznámka sama, ne kopie, a&nbsp;dvojklik ji otevře vedle tabule. „Section“ seskupí karty. Každá tabule je jeden soubor <code>.canvas</code> ve tvé složce.</span></p>
+            </li>
+            <li>
+              <h3>Notion</h3>
+              <p><span class="from__label" data-en="You know">Znáš</span><span data-en="Databases with table, board, gallery and calendar views; pages; commands behind <kbd>/</kbd>.">Databáze s&nbsp;pohledy tabulka, nástěnka, galerie a&nbsp;kalendář; stránky; příkazy za <kbd>/</kbd>.</span></p>
+              <p><span class="from__label" data-en="In Eiddie">V&nbsp;aplikaci Eiddie</span><span data-en="Every supertag is a database with Grid, Kanban, Gallery and Calendar views. A record can be any bullet on any page, not just a row in one table. <kbd>/</kbd> opens commands in the outliner, and everything works offline, without an account.">Každý supertag je databáze s&nbsp;pohledy Grid, Kanban, Gallery a&nbsp;Calendar. Záznamem může být jakákoli odrážka na jakékoli stránce, ne jen řádek v&nbsp;jedné tabulce. <kbd>/</kbd> otevře příkazy v&nbsp;outlineru a&nbsp;všechno funguje offline, bez účtu.</span></p>
+            </li>
+          </ul>
+        </section>
+
+        <div class="subcard guide-end">
+          <h2 class="h3" data-en="Something not working, or missing?">Něco nejde, nebo ti něco chybí?</h2>
+          <p class="lead" data-en="Write to me, I read every message. A screenshot helps the most.">Napiš mi, čtu každou zprávu. Nejvíc pomůže snímek obrazovky.</p>
+          <div class="btn-row">
+            <a class="btn btn--primary btn--lg" href="mailto:tomas.leidl@gmail.com?subject=Eiddie%20pilot" data-cfg-mail="feedback" data-pilot-only><svg class="ic"><use href="#i-mail"/></svg><span data-en="Send feedback">Napsat zpětnou vazbu</span></a>
+            <a class="btn btn--primary btn--lg" href="mailto:tomas.leidl@gmail.com" data-cfg-mail="support" data-pilot-hide><svg class="ic"><use href="#i-mail"/></svg><span data-en="Write to me">Napsat mi</span></a>
+            <a class="btn btn--ghost btn--lg" href="download.html"><svg class="ic"><use href="#i-download"/></svg><span data-en="Don’t have Eiddie yet? Download">Ještě nemáš Eiddie? Stáhnout</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="subfoot">
+    <div class="container subfoot__inner">
+      <span data-en="© 2026 Tomáš Leidl">© 2026 Tomáš Leidl</span>
+      <nav aria-label="Patička" data-en-aria-label="Footer">
+        <a href="index.html" data-en="Home">Úvod</a>
+        <a href="download.html" data-en="Download">Stáhnout</a>
+        <a href="start.html" aria-current="page" data-en="Getting started">Začínáme</a>
+        <a href="index.html#faq">FAQ</a>
+        <a href="mailto:tomas.leidl@gmail.com?subject=Eiddie%3A%20bug" data-cfg-mail="bug" data-en="Report a bug">Nahlásit chybu</a>
+      </nav>
+    </div>
+  </footer>
+
+  <div class="toast" role="status" aria-live="polite" data-toast><svg class="ic"><use href="#i-sparkle"/></svg><span data-toast-text></span></div>
+
+  <!-- No GSAP here: the page has no scroll animations, and without ScrollTrigger the browser's own #anchor jump stays exact. -->
+  <script src="assets/js/main.js" defer></script>
+</body>
+</html>

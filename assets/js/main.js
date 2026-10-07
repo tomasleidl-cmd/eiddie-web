@@ -1166,6 +1166,21 @@
   /* ------------------------------------------------------------------ */
   if (!anim) {
     $$('[data-hero-in], [data-hero-visual], [data-hero-title]').forEach((el) => { el.style.opacity = 1; });
+    // Deep link without GSAP (start.html#databases from the app, or reduced motion): the browser scrolls to the fragment
+    // before web fonts and the language switch settle, so the section ends up lower. Jump once more when everything
+    // has loaded, unless the visitor has scrolled on their own by then.
+    const target = location.hash.length > 1 && document.getElementById(decodeURIComponent(location.hash.slice(1)));
+    if (target) {
+      let touched = false;
+      ['wheel', 'touchstart', 'keydown', 'mousedown'].forEach((t) => addEventListener(t, () => { touched = true; }, { once: true, passive: true }));
+      const loaded = new Promise((r) => (document.readyState === 'complete' ? r() : addEventListener('load', r, { once: true })));
+      Promise.all([loaded, document.fonts ? document.fonts.ready : null]).then(() => requestAnimationFrame(() => {
+        if (touched) return;
+        root.style.scrollBehavior = 'auto'; // instant, also where scrollIntoView has no 'instant'
+        target.scrollIntoView({ block: 'start' });
+        root.style.scrollBehavior = '';
+      }));
+    }
     return;
   }
 

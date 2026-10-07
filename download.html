@@ -47,6 +47,7 @@
     <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 11a8 8 0 0 0-14.6-4.5L4 8M4 4v4h4M4 13a8 8 0 0 0 14.6 4.5L20 16M20 20v-4h-4"/></symbol>
     <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16M10 11v6M14 11v6M5 7l1 13h12l1-13M9 7V4h6v3"/></symbol>
     <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"/><path d="m9 12 2 2 4-4"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
   </svg>
 
   <header class="nav is-scrolled">
@@ -77,12 +78,12 @@
         <p class="lead" data-en="For now Eiddie runs on Windows 10 and 11 only, so nothing is downloading here. Open this page on your Windows PC, or e-mail yourself the link." data-other-only>Aplikace Eiddie zatím běží jen na Windows 10 a&nbsp;11, proto se tady nic nestahuje. Otevři tuhle stránku na počítači s&nbsp;Windows, nebo si odkaz pošli e-mailem.</p>
         <div class="meta-row">
           <span><svg class="ic"><use href="#i-windows"/></svg>Windows 10 / 11 · 64 bit</span>
-          <span><svg class="ic"><use href="#i-file"/></svg><span data-ver-known><span data-en="Version">Verze</span>&nbsp;<span data-cfg="version">0.1.4</span></span><span data-ver-unknown data-en="Latest version">Nejnovější verze</span></span>
+          <span><svg class="ic"><use href="#i-file"/></svg><span data-ver-known><span data-en="Version">Verze</span>&nbsp;<span data-cfg="version">0.1.5</span></span><span data-ver-unknown data-en="Latest version">Nejnovější verze</span></span>
           <span><svg class="ic"><use href="#i-download"/></svg><span data-cfg="installerSize">≈ 106 MB</span></span>
         </div>
         <!-- main.js points the link at the version the GitHub API reports (data-cfg-news); without JS it shows the fallback
              (rewritten by scripts/release-pilot.mjs after each release). When the API fails: no number, the page top. -->
-        <a class="news-link" href="novinky.html#v0-1-4" data-cfg-news><span data-ver-known><span data-en="What’s new in version">Co je nového ve verzi</span>&nbsp;<span data-cfg="version">0.1.4</span></span><span data-ver-unknown data-en="What’s new in the latest version">Co je nového v nejnovější verzi</span><svg class="ic"><use href="#i-arrow"/></svg></a>
+        <a class="news-link" href="novinky.html#v0-1-5" data-cfg-news><span data-ver-known><span data-en="What’s new in version">Co je nového ve verzi</span>&nbsp;<span data-cfg="version">0.1.5</span></span><span data-ver-unknown data-en="What’s new in the latest version">Co je nového v nejnovější verzi</span><svg class="ic"><use href="#i-arrow"/></svg></a>
         <a class="btn btn--primary btn--lg" href="mailto:" data-send-link data-other-only><svg class="ic"><use href="#i-mail"/></svg><span data-en="E-mail me the link">Poslat si odkaz e-mailem</span></a>
         <a class="btn btn--primary btn--lg" href="https://github.com/tomasleidl-cmd/eiddie-web/releases/latest/download/Eiddie-Setup.exe" download data-trial-file data-win-only><svg class="ic"><use href="#i-download"/></svg><span data-en="Download again">Stáhnout znovu</span></a>
         <a class="btn btn--ghost" href="https://github.com/tomasleidl-cmd/eiddie-web/releases/latest/download/Eiddie-Setup.exe" download data-trial-file data-other-only><svg class="ic"><use href="#i-download"/></svg><span data-en="Download for Windows anyway">Přesto stáhnout pro Windows</span></a>
@@ -90,10 +91,23 @@
         <!-- Install help for an installer without a code-signing certificate. Shorten once the installer is signed. -->
         <ol class="install">
           <li><div><b data-en="Keep the downloaded file">Ponech si stažený soubor</b><span data-en="Your browser may say the file “isn’t commonly downloaded”. That only means Eiddie is new. In Chrome open the downloads icon at the top right, click the warning next to the file and choose “Download suspicious file”. In Edge open the … menu next to the file, choose “Keep”, then “Show more” → “Keep anyway”.">Prohlížeč může napsat, že se soubor „běžně nestahuje“. Znamená to jen, že aplikace Eiddie je nová. V&nbsp;Chromu otevři stažené soubory (ikona vpravo nahoře), klikni na upozornění u&nbsp;souboru a&nbsp;zvol „Stáhnout podezřelý soubor“. V&nbsp;Edgi otevři u&nbsp;souboru nabídku …, zvol „Ponechat“ a&nbsp;pak „Zobrazit více“ → „Přesto ponechat“.</span></div></li>
-          <li><div><b data-en="Run Eiddie-Setup.exe and allow it">Spusť Eiddie-Setup.exe a&nbsp;povol ho</b><span data-en="You’ll find it in your Downloads folder. Windows may show a blue “Windows protected your PC” window: click “More info”, then “Run anyway”.">Najdeš ho ve složce Stažené soubory. Windows může ukázat modré okno „Systém Windows ochránil váš počítač“: klikni na „Další informace“ a&nbsp;pak na „Přesto spustit“.</span><small data-en="No “Run anyway” button, or Windows says Smart App Control blocked the app? Smart App Control doesn’t let you make an exception for unsigned apps. For the pilot you can turn it off in Windows Security → App &amp; browser control. Careful: on older Windows 11 builds it can only be switched back on by reinstalling Windows, so install Windows updates first. Not sure? Write to me." data-pilot-only>Nevidíš „Přesto spustit“, nebo Windows hlásí, že aplikaci zablokovalo Inteligentní řízení aplikací? To u&nbsp;nepodepsaných aplikací nedovolí udělat výjimku. Pro pilot ho můžeš vypnout v&nbsp;Zabezpečení Windows → Řízení aplikací a&nbsp;prohlížečů. Pozor: na starších verzích Windows&nbsp;11 ho pak zpátky zapneš jen přeinstalací systému, proto si nejdřív nainstaluj aktualizace (Nastavení → Windows Update). Váháš? Napiš mi.</small></div></li>
+          <li><div><b data-en="Run Eiddie-Setup.exe and allow it">Spusť Eiddie-Setup.exe a&nbsp;povol ho</b><span data-en="You’ll find it in your Downloads folder. Windows may show a blue “Windows protected your PC” window: click “More info”, then “Run anyway”.">Najdeš ho ve složce Stažené soubory. Windows může ukázat modré okno „Systém Windows ochránil váš počítač“: klikni na „Další informace“ a&nbsp;pak na „Přesto spustit“.</span><small data-en="No “Run anyway” button, or Windows says Smart App Control blocked the app? Smart App Control doesn’t allow exceptions for unsigned apps, and I don’t recommend switching it off for a pilot. <a href=&quot;mailto:tomas.leidl@gmail.com?subject=Eiddie%3A%20installation&quot;>Write to me</a> and I’ll let you know as soon as the installer is signed." data-pilot-only>Nevidíš „Přesto spustit“, nebo Windows hlásí, že aplikaci zablokovalo Inteligentní řízení aplikací? To u&nbsp;nepodepsaných aplikací výjimku nedovolí a&nbsp;vypínat ho kvůli pilotu nedoporučuju. <a href="mailto:tomas.leidl@gmail.com?subject=Eiddie%3A%20instalace">Napiš mi</a> a&nbsp;dám ti vědět, jakmile bude instalátor podepsaný.</small></div></li>
           <li><div><b data-en="Wait a moment">Chvilku počkej</b><span data-en="The installation runs by itself, with nothing to click, and then Eiddie starts. It installs just for your user account, no administrator rights needed.">Instalace proběhne sama, nic nevybíráš, a&nbsp;pak se Eiddie spustí. Nainstaluje se jen pro tvůj uživatelský účet, práva správce nepotřebuješ.</span></div></li>
-          <li><div><b data-en="Start writing">Začni psát</b><span data-en="Eiddie opens with a demo vault in Documents\Eiddie\Demo vault. Or open your own folder or an existing Obsidian vault." data-pilot-hide>Eiddie se otevře s&nbsp;ukázkovým vaultem ve složce Dokumenty\Eiddie\Demo vault. Nebo otevři vlastní složku či existující Obsidian vault.</span><span data-en="Eiddie opens with a demo vault in Documents\Eiddie\Demo vault. Want to try your own folder or Obsidian vault? Back it up first: this is a pre-release." data-pilot-only>Eiddie se otevře s&nbsp;ukázkovým vaultem ve složce Dokumenty\Eiddie\Demo vault. Chceš zkusit vlastní složku nebo Obsidian vault? Nejdřív si data zazálohuj, jde o&nbsp;předběžnou verzi.</span></div></li>
+          <li><div><b data-en="Start writing">Začni psát</b><span data-en="Eiddie opens with a demo vault in Documents\Eiddie\Demo vault. Or open your own folder or an existing Obsidian vault." data-pilot-hide>Eiddie se otevře s&nbsp;ukázkovým vaultem ve složce Dokumenty\Eiddie\Demo vault. Nebo otevři vlastní složku či existující Obsidian vault.</span><span data-en="Eiddie opens with a demo vault in Documents\Eiddie\Demo vault. Want to try your own folder or Obsidian vault? Back it up first: this is a pre-release." data-pilot-only>Eiddie se otevře s&nbsp;ukázkovým vaultem ve složce Dokumenty\Eiddie\Demo vault. Chceš zkusit vlastní složku nebo Obsidian vault? Nejdřív si data zazálohuj, jde o&nbsp;předběžnou verzi.</span><a class="install__more" href="start.html"><span data-en="Getting started: six things, two minutes">Začínáme: šest věcí, dvě minuty</span><svg class="ic"><use href="#i-arrow"/></svg></a></div></li>
         </ol>
+      </div>
+
+      <!-- Mirrors the app's Getting started list (E I D D I; the last E, "Everything local", is done from the start) -->
+      <div class="subcard first5" style="margin-top:22px">
+        <h2 class="h3" data-en="Your first five steps">Prvních pět kroků</h2>
+        <ol class="first5__list">
+          <li><b class="ini" style="--i:0" aria-hidden="true">E</b><span data-en="<kbd>Ctrl+K</kbd>, type “Ideas”, <kbd>Enter</kbd>. <kbd>Ctrl+E</kbd> switches the page to a document."><kbd>Ctrl+K</kbd>, napiš „Ideas“, <kbd>Enter</kbd>. <kbd>Ctrl+E</kbd> přepne stránku na dokument.</span></li>
+          <li><b class="ini" style="--i:1" aria-hidden="true">I</b><span data-en="On “Website redesign”, write a task and add <code>#task</code>.">Na stránce „Website redesign“ napiš úkol a&nbsp;přidej <code>#task</code>.</span></li>
+          <li><b class="ini" style="--i:2" aria-hidden="true">D</b><span data-en="<kbd>Alt+D</kbd> opens today’s page."><kbd>Alt+D</kbd> otevře dnešní stránku.</span></li>
+          <li><b class="ini" style="--i:3" aria-hidden="true">D</b><span data-en="The “task” database → “+” next to the view tabs → “Kanban”.">Databáze „task“ → „+“ vedle záložek → „Kanban“.</span></li>
+          <li><b class="ini" style="--i:4" aria-hidden="true">I</b><span data-en="Open “Product map” and double-click to add a card.">Otevři „Product map“ a&nbsp;dvojklikem přidej kartu.</span></li>
+        </ol>
+        <a class="btn btn--ghost" href="start.html"><span data-en="The whole guide, with pictures">Celý návod s&nbsp;obrázky</span><svg class="ic ic--arrow"><use href="#i-arrow"/></svg></a>
       </div>
 
       <div class="subcard" style="margin-top:22px" data-pilot-hide>
@@ -117,8 +131,8 @@
       <div class="subcard pilot-card" style="margin-top:22px" data-pilot-only>
         <h2 class="h3" data-en="Good to know">Dobré vědět</h2>
         <ul>
-          <li><svg class="ic"><use href="#i-refresh"/></svg><span data-en="<b>Updates:</b> Eiddie downloads new versions by itself; one click on “Restart and update” installs them (Settings → Updates or the status bar). On version 0.1.0? It can’t do that yet: download the new version here once and install it over the old one. Your notes and settings stay.">
-            <b>Aktualizace:</b> Eiddie si nové verze stahuje sám a&nbsp;nainstaluješ je jedním kliknutím na „Restart and update“ (Nastavení → Updates nebo stavový řádek). Máš verzi 0.1.0? Ta to ještě neumí: novou verzi si jednou stáhni tady a&nbsp;nainstaluj ji přes tu starou. Poznámky i&nbsp;nastavení zůstanou.</span></li>
+          <li><svg class="ic"><use href="#i-refresh"/></svg><span data-en="<b>Updates:</b> Eiddie downloads new versions by itself; one click on “Restart and update” installs them (Settings → Updates or the status bar). The only exception is the very first pilot version, 0.1.0. If that’s the one you have, download the new version here once and install it over the old one; your notes and settings stay.">
+            <b>Aktualizace:</b> Eiddie si nové verze stahuje sám a&nbsp;nainstaluješ je jedním kliknutím na „Restart and update“ (Nastavení → Updates nebo stavový řádek). Výjimkou je jen úplně první pilotní verze 0.1.0. Pokud máš tu, stáhni si tady jednou novou verzi a&nbsp;nainstaluj ji přes tu starou. Poznámky i&nbsp;nastavení zůstanou.</span></li>
           <li><svg class="ic"><use href="#i-sparkle"/></svg><span data-en="<b>What’s new:</b> what each version changed is on the <a href=&quot;novinky.html&quot;>What’s new</a> page.">
             <b>Novinky:</b> co přinesla která verze, najdeš na stránce <a href="novinky.html">Co je nového</a>.</span></li>
           <li><svg class="ic"><use href="#i-trash"/></svg><span data-en="<b>Uninstall:</b> Settings → Apps → Installed apps (Apps &amp; features on Windows 10) → Eiddie → Uninstall. Your notes stay on your disk, right where they are.">
@@ -131,6 +145,19 @@
       </div>
     </div>
   </main>
+
+  <footer class="subfoot">
+    <div class="container subfoot__inner">
+      <span data-en="© 2026 Tomáš Leidl">© 2026 Tomáš Leidl</span>
+      <nav aria-label="Patička" data-en-aria-label="Footer">
+        <a href="index.html" data-en="Home">Úvod</a>
+        <a href="download.html" aria-current="page" data-en="Download">Stáhnout</a>
+        <a href="start.html" data-en="Getting started">Začínáme</a>
+        <a href="index.html#faq">FAQ</a>
+        <a href="mailto:tomas.leidl@gmail.com?subject=Eiddie%3A%20bug" data-cfg-mail="bug" data-en="Report a bug">Nahlásit chybu</a>
+      </nav>
+    </div>
+  </footer>
 
   <div class="toast" role="status" aria-live="polite" data-toast><svg class="ic"><use href="#i-sparkle"/></svg><span data-toast-text></span></div>
 
