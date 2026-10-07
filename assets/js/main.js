@@ -71,6 +71,7 @@
     },
   };
   let lang = root.dataset.lang === 'en' ? 'en' : 'cs';
+  try { if (new URLSearchParams(location.search).has('lang')) store.set('eiddie-lang', lang); } catch (e) { /* old browser */ }
   const t = (k) => T[lang][k];
 
   /* ------------------------------------------------------------------ */
@@ -823,7 +824,7 @@
       records: '5 záznamů', filter: 'Filtr', group: 'Seskupit', sort: 'Řadit',
       cols: ['Název', 'Status', 'Priorita', 'Termín', 'Štítky'], add: 'Nový záznam',
       fs: 'Status', fp: 'Priorita', fd: 'Termín',
-      section: 'Spuštění', noteT: 'Proč?', noteB: 'Jeden nástroj na outline, tabule i tabulky. Všechno v Markdownu.',
+      section: 'Spuštění', noteT: 'Proč?', noteB: 'Jeden nástroj na odrážky, tabule i tabulky. Všechno v Markdownu.',
       l1: 'blokuje', l2: 'navazuje',
     },
     en: {
@@ -956,7 +957,7 @@
 
     const moveIndicator = (k) => {
       const b = vbtns[k];
-      vbtns.forEach((x, i) => x.classList.toggle('is-on', i === k));
+      vbtns.forEach((x, i) => { x.classList.toggle('is-on', i === k); x.setAttribute('aria-pressed', String(i === k)); });
       ind.style.width = `${b.offsetWidth}px`;
       ind.style.transform = `translateX(${b.offsetLeft - 3}px)`;
     };
@@ -1080,26 +1081,54 @@
         let k = 0;
         let timer;
         let visible = false;
+        // Autoplay until the visitor picks a view themselves; then the chosen view stays (WCAG 2.2.2) and,
+        // only from then on, the caption is announced (no screen reader chatter every 3.6 s).
+        let manual = false;
         const go = (n) => {
           clearTimeout(timer);
+          gsap.killTweensOf([stage, tl]);
           if (n === 0 && k !== 0) {
-            gsap.to(stage, { opacity: 0, duration: 0.3, onComplete: () => { tl.seek(0); gsap.to(stage, { opacity: 1, duration: 0.4 }); } });
-          } else tl.tweenTo(L[n], { duration: 1.3, ease: 'power2.inOut' });
+            gsap.to(stage, { opacity: 0, duration: 0.3, onComplete: () => { tl.seek(0, false); gsap.to(stage, { opacity: 1, duration: 0.4 }); } });
+          } else {
+            gsap.set(stage, { opacity: 1 });
+            tl.tweenTo(L[n], { duration: 1.3, ease: 'power2.inOut' });
+          }
           k = n;
-          if (visible) timer = setTimeout(() => go((k + 1) % 4), 3600);
+          if (visible && !manual) timer = setTimeout(() => go((k + 1) % 4), 3600);
         };
         const io = new IntersectionObserver(([e]) => {
           visible = e.isIntersecting;
           clearTimeout(timer);
-          if (visible) timer = setTimeout(() => go((k + 1) % 4), 2000);
+          if (visible && !manual) timer = setTimeout(() => go((k + 1) % 4), 2000);
         }, { threshold: 0.4 });
         io.observe(wrap);
-        applyStep = (n) => go(n);
-        const handlers = steps.map((s, n) => { const h = () => go(n); s.addEventListener('click', h); return h; });
-        return () => { io.disconnect(); clearTimeout(timer); steps.forEach((s, n) => s.removeEventListener('click', handlers[n])); };
+        applyStep = (n) => {
+          manual = true;
+          go(n);
+        };
+        const handlers = steps.map((s, n) => { const h = () => applyStep(n); s.addEventListener('click', h); return h; });
+        return () => {
+          io.disconnect();
+          clearTimeout(timer);
+          steps.forEach((s, n) => s.removeEventListener('click', handlers[n]));
+        };
       });
     }
-    requestAnimationFrame(() => moveIndicator(Math.max(0, active)));
+    // The view buttons in the window bar drive the same state as the steps: on desktop they scroll the pinned
+    // section to that view (the scrub plays the morph), on mobile they jump the carousel and stop its autoplay.
+    // applyStep is reassigned per mode, so one listener always reaches the current implementation.
+    // The visible caption is not a live region (on phones it changes on every autoplay step and while the
+    // timeline passes the views in between); the chosen view is announced once here.
+    const viewStatus = $('[data-view-status]', morph);
+    vbtns.forEach((b, k) => b.addEventListener('click', () => {
+      applyStep(k);
+      if (viewStatus) viewStatus.textContent = `${$('h3', steps[k]).textContent.trim()}: ${$('p', steps[k]).textContent.trim()}`;
+    }));
+    // Button widths change with the web font and at the 900 px breakpoint (icon-only below it)
+    const remeasure = () => moveIndicator(Math.max(0, active));
+    requestAnimationFrame(remeasure);
+    addEventListener('resize', () => requestAnimationFrame(remeasure));
+    if (document.fonts) document.fonts.ready.then(remeasure);
   }
 
   /* ------------------------------------------------------------------ */

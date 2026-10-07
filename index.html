@@ -127,6 +127,7 @@
     <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></symbol>
     <symbol id="i-palette" viewBox="0 0 24 24"><path d="M12 3a9 9 0 0 0 0 18c1.1 0 2-.9 2-2 0-.5-.2-1-.5-1.3-.3-.4-.5-.8-.5-1.3 0-1.1.9-2 2-2h2.3A4.7 4.7 0 0 0 22 9.8C22 6 17.5 3 12 3z"/><circle cx="7.5" cy="11" r="1"/><circle cx="10.5" cy="7" r="1"/><circle cx="15.5" cy="7.5" r="1"/></symbol>
     <symbol id="i-gift" viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13M19 12v9H5v-9M7.5 8a2.5 2.5 0 0 1 0-5C10 3 12 8 12 8s2-5 4.5-5a2.5 2.5 0 0 1 0 5"/></symbol>
+    <symbol id="i-dice" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="4"/><circle cx="8.5" cy="8.5" r="1.15" fill="currentColor"/><circle cx="15.5" cy="8.5" r="1.15" fill="currentColor"/><circle cx="12" cy="12" r="1.15" fill="currentColor"/><circle cx="8.5" cy="15.5" r="1.15" fill="currentColor"/><circle cx="15.5" cy="15.5" r="1.15" fill="currentColor"/></symbol>
     <symbol id="i-windows" viewBox="0 0 24 24"><rect x="3" y="3" width="8" height="8" rx="1"/><rect x="13" y="3" width="8" height="8" rx="1"/><rect x="3" y="13" width="8" height="8" rx="1"/><rect x="13" y="13" width="8" height="8" rx="1"/></symbol>
   </svg>
 
@@ -206,7 +207,7 @@
             <span class="slogan__line"><span class="w"><span class="wi"><b class="ini" style="--i:4">I</b>ndex</span></span> <span class="w"><span class="wi"><b class="ini" style="--i:5">E</b>verything.</span></span></span>
           </h1>
           <p class="hero__sub" data-hero-in data-en="Thoughts, canvases and data in one place. <span>In your own files.</span>">Myšlenky, plátna a&nbsp;data na jednom místě. <span>Ve tvých souborech.</span></p>
-          <p class="lead" data-hero-in data-en="Eiddie brings a lightning-fast outliner, an infinite canvas and database views together in one offline app. Plain Markdown on your own disk, yours forever.">Eiddie spojuje bleskový outliner, nekonečné plátno a&nbsp;databázové pohledy v&nbsp;jedné offline aplikaci. Čistý Markdown na tvém disku, navždy tvůj.</p>
+          <p class="lead" data-hero-in data-en="Eiddie brings an outliner (lightning-fast writing in nested bullets), an infinite canvas and database views together in one offline app. Plain Markdown on your own disk, yours forever.">Eiddie spojuje bleskové psaní v&nbsp;zanořených odrážkách (outliner), nekonečné plátno a&nbsp;databázové pohledy v&nbsp;jedné offline aplikaci. Čistý Markdown na tvém disku, navždy tvůj.</p>
           <div class="btn-row hero__ctas" data-hero-in>
             <a class="btn btn--primary btn--lg" href="download.html" data-trial data-magnetic>
               <svg class="ic"><use href="#i-download"/></svg>
@@ -225,6 +226,13 @@
               <span data-en="Watch the video">Přehrát video</span><span class="btn-price" data-video-duration>0:30</span>
             </a>
           </div>
+          <!-- What the download means in practice, plus the illustrated guide (start.html), before anyone installs -->
+          <p class="hero__meta" data-hero-in>
+            <span><svg class="ic" aria-hidden="true"><use href="#i-windows"/></svg><span data-en="Windows 10 &amp; 11">Windows 10 a&nbsp;11</span></span>
+            <span data-en="no account">bez účtu</span>
+            <span data-en="sample notes included">s&nbsp;ukázkovými poznámkami</span>
+            <a href="start.html"><span data-en="Getting started, with pictures">Začínáme: návod s&nbsp;obrázky</span><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          </p>
           <ul class="trust" data-hero-in>
             <li><svg class="ic"><use href="#i-check"/></svg><span data-en="100% offline">100% offline</span></li>
             <li data-pilot-hide><svg class="ic"><use href="#i-check"/></svg><span data-en="One-time payment">Jednorázová platba</span></li>
@@ -328,7 +336,7 @@
           <div class="float float--stat" data-float="-60" aria-hidden="true">
             <div class="float__in" style="display:flex;align-items:center;gap:14px;animation-delay:-3.5s">
               <span class="ic-wrap"><svg class="ic"><use href="#i-bolt"/></svg></span>
-              <span><b>2–9 ms</b><span data-en="to search the whole vault">hledání v&nbsp;celém vaultu</span></span>
+              <span><b>2–9 ms</b><span data-en="to search all your notes">hledání ve všech poznámkách</span></span>
             </div>
           </div>
           <div class="float float--offline" data-float="-110" aria-hidden="true">
@@ -351,7 +359,7 @@
         <span class="marquee__item"><svg class="ic"><use href="#i-gallery"/></svg><span data-en="Gallery">Galerie</span></span>
         <span class="marquee__item"><svg class="ic"><use href="#i-calendar"/></svg><span data-en="Calendar">Kalendář</span></span>
         <span class="marquee__item"><svg class="ic"><use href="#i-board"/></svg><span data-en="Whiteboards">Tabule</span></span>
-        <span class="marquee__item"><svg class="ic"><use href="#i-link"/></svg>[[Wikilinky]]</span>
+        <span class="marquee__item"><svg class="ic"><use href="#i-link"/></svg><span data-en="[[Wikilinks]]">[[Wikilinky]]</span></span>
         <span class="marquee__item"><svg class="ic"><use href="#i-graph"/></svg><span data-en="Backlinks">Zpětné odkazy</span></span>
         <span class="marquee__item"><svg class="ic"><use href="#i-clock"/></svg>Daily notes</span>
         <span class="marquee__item"><svg class="ic"><use href="#i-search"/></svg><span data-en="Live search">Živé hledání</span></span>
@@ -371,7 +379,7 @@
         <div class="section-head">
           <span class="eyebrow" data-reveal data-en="Eiddie in 30 seconds">Eiddie za 30 sekund</span>
           <h2 class="h2" data-split data-en="From chaos <em>to calm.</em>">Od chaosu <em>ke klidu.</em></h2>
-          <p class="lead" data-reveal data-en="Watch scattered notes come together in one app: an outline, a database, a canvas and search. Recorded in the real app.">Podívej se, jak se rozházené poznámky sejdou v&nbsp;jedné aplikaci: outline, databáze, plátno i&nbsp;hledání. Natočeno ve skutečné aplikaci.</p>
+          <p class="lead" data-reveal data-en="Watch scattered notes come together in one app: an outline, a database, a canvas and search. Recorded in the real app.">Podívej se, jak se rozházené poznámky sejdou v&nbsp;jedné aplikaci: odrážky, databáze, plátno i&nbsp;hledání. Natočeno ve skutečné aplikaci.</p>
         </div>
 
         <div class="reel" data-reveal>
@@ -393,6 +401,19 @@
         </div>
       </div>
     </section>
+
+    <!-- One small thing that is new in the app (0.1.5: the "Co teď?" dice), linked to its release notes.
+         Outside #video on purpose: it must not disappear when a language has no video or JS is off.
+         Swap it for the next nice novelty, or delete it once it stops being new. -->
+    <div class="container">
+      <p class="news-teaser" data-reveal>
+        <a href="novinky.html#v0-1-5">
+          <span class="news-teaser__ic" aria-hidden="true"><svg class="ic"><use href="#i-dice"/></svg></span>
+          <span class="news-teaser__txt"><b data-en="New:">Nově:</b> <span data-en="can’t decide where to start? The “What&#160;now?” dice picks one open task for you.">nevíš, čím začít? Kostka „Co&nbsp;teď?“ ti vybere jeden otevřený úkol.</span></span>
+          <span class="news-teaser__more"><span data-en="What’s new">Co je nového</span><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span>
+        </a>
+      </p>
+    </div>
 
     <!-- ============ SIX PILLARS (E·I·D·D·I·E) ============ -->
     <section class="section pillars" id="pilire">
@@ -426,13 +447,13 @@
             <div class="pillar__top"><span class="pillar__letter ini" style="--i:3" aria-hidden="true">D</span><svg class="ic"><use href="#i-db"/></svg></div>
             <h3 class="pillar__name" lang="en"><b>D</b>atabases</h3>
             <p class="pillar__desc" data-en="Table, kanban, gallery, calendar">Tabulka, kanban, galerie, kalendář</p>
-            <p class="pillar__more" data-en="A supertag turns a bullet into a record with fields, filters and sorting.">Supertag udělá z&nbsp;odrážky záznam s&nbsp;poli, filtry a&nbsp;řazením.</p>
+            <p class="pillar__more" data-en="A supertag (a tag like #task or #book) turns a bullet into a record with its own fields.">Supertag (štítek jako #task nebo #kniha) udělá z&nbsp;odrážky záznam s&nbsp;vlastními poli.</p>
           </article>
           <article class="pillar" data-reveal>
             <div class="pillar__top"><span class="pillar__letter ini" style="--i:4" aria-hidden="true">I</span><svg class="ic"><use href="#i-board"/></svg></div>
             <h3 class="pillar__name" lang="en"><b>I</b>nfinite canvas</h3>
             <p class="pillar__desc" data-en="Whiteboards with live note cards">Nekonečné plátno s&nbsp;živými kartami</p>
-            <p class="pillar__more" data-en="Cards are real notes, not copies. Saved as JSON Canvas.">Karty jsou skutečné poznámky, ne kopie. Ukládá se jako JSON Canvas.</p>
+            <p class="pillar__more" data-en="Cards are real notes, not copies. Saved in the open JSON Canvas format.">Karty jsou skutečné poznámky, ne kopie. Ukládá se v&nbsp;otevřeném formátu JSON Canvas.</p>
           </article>
           <article class="pillar" data-reveal>
             <div class="pillar__top"><span class="pillar__letter ini" style="--i:5" aria-hidden="true">E</span><svg class="ic"><use href="#i-lock"/></svg></div>
@@ -497,7 +518,7 @@
         <div class="section-head">
           <span class="eyebrow" data-reveal data-en="How it works">Jak to funguje</span>
           <h2 class="h2" data-split data-en="Write once. <em>View it</em> any way.">Napiš jednou. <em>Dívej se</em> jakkoli.</h2>
-          <p class="lead" data-reveal data-en="Every bullet in Eiddie is a record. You see the same data as an outline, a table, a kanban board or a canvas. No copying, no importing.">Každá odrážka v&nbsp;aplikaci Eiddie je záznam. Stejná data uvidíš jako outline, tabulku, kanban i&nbsp;plátno. Bez kopírování a&nbsp;bez importu.</p>
+          <p class="lead" data-reveal data-en="Every bullet in Eiddie is a record. You see the same data as an outline, a table, a kanban board or a canvas. No copying, no importing.">Každá odrážka v&nbsp;aplikaci Eiddie je záznam. Stejná data uvidíš jako odrážky, tabulku, kanban i&nbsp;plátno. Bez kopírování a&nbsp;bez importu.</p>
         </div>
       </div>
       <div class="morph__pin" data-morph>
@@ -508,12 +529,12 @@
                 <li class="step is-active" data-step="0">
                   <span class="step__n">01</span>
                   <h3><svg class="ic"><use href="#i-outline"/></svg><span data-en="Write">Piš</span></h3>
-                  <p data-en="Enter for a new node, Tab to indent. The outliner reacts within a single frame, even on pages with thousands of rows.">Enter pro nový uzel, Tab pro zanoření. Outliner reaguje do jednoho snímku i&nbsp;na stránce s&nbsp;tisíci řádky.</p>
+                  <p data-en="Enter for a new bullet, Tab to indent. The outliner reacts within a single frame, even on pages with thousands of rows.">Enter pro novou odrážku, Tab pro zanoření. Outliner reaguje do jednoho snímku i&nbsp;na stránce s&nbsp;tisíci řádky.</p>
                 </li>
                 <li class="step" data-step="1">
                   <span class="step__n">02</span>
                   <h3><svg class="ic"><use href="#i-grid"/></svg><span data-en="Structure">Třiď</span></h3>
-                  <p data-en="Add #task and you have a database. A supertag turns a bullet into a record with fields that line up in a table with filters and sorting.">Přidej #task a&nbsp;máš databázi. Supertag udělá z&nbsp;odrážky záznam s&nbsp;poli, které se seřadí do tabulky s&nbsp;filtry a&nbsp;řazením.</p>
+                  <p data-en="Add #task and you have a database. A supertag turns a bullet into a record with fields that line up in a table with filters and sorting.">Přidej #task a&nbsp;máš databázi. Supertag udělá z&nbsp;odrážky záznam s&nbsp;poli, která se seřadí do tabulky s&nbsp;filtry a&nbsp;řazením.</p>
                 </li>
                 <li class="step" data-step="2">
                   <span class="step__n">03</span>
@@ -528,20 +549,23 @@
               </ol>
             </div>
             <div>
-              <p class="step-caption" data-step-caption aria-live="polite"></p>
-              <div class="mwin" aria-hidden="true">
+              <p class="step-caption" data-step-caption></p>
+              <!-- Interface preview: the view buttons are real (main.js applyStep), the window content is decorative -->
+              <p class="mwin__hint" data-en="Simplified preview: the same five tasks in four views. Try&#160;switching.">Zjednodušená ukázka: stejných pět úkolů ve čtyřech pohledech. Zkus&nbsp;přepnout.</p>
+              <p class="sr-only" role="status" data-view-status></p>
+              <div class="mwin">
                 <div class="mwin__bar">
-                  <span class="mwin__dots"><i></i><i></i><i></i></span>
-                  <span class="mwin__name" data-en="Eiddie launch">Spuštění aplikace Eiddie</span>
-                  <div class="vswitch" data-vswitch>
+                  <span class="mwin__dots" aria-hidden="true"><i></i><i></i><i></i></span>
+                  <span class="mwin__name" aria-hidden="true" data-en="Eiddie launch">Spuštění aplikace Eiddie</span>
+                  <div class="vswitch" data-vswitch role="group" aria-label="Pohled" data-en-aria-label="View">
                     <span class="vswitch__ind"></span>
-                    <button type="button" class="is-on" tabindex="-1"><svg class="ic"><use href="#i-outline"/></svg><span>Outline</span></button>
-                    <button type="button" tabindex="-1"><svg class="ic"><use href="#i-grid"/></svg><span data-en="Table">Tabulka</span></button>
-                    <button type="button" tabindex="-1"><svg class="ic"><use href="#i-kanban"/></svg><span>Kanban</span></button>
-                    <button type="button" tabindex="-1"><svg class="ic"><use href="#i-board"/></svg><span data-en="Board">Tabule</span></button>
+                    <button type="button" class="is-on" aria-pressed="true"><svg class="ic" aria-hidden="true"><use href="#i-outline"/></svg><span data-en="Outline">Odrážky</span></button>
+                    <button type="button" aria-pressed="false"><svg class="ic" aria-hidden="true"><use href="#i-grid"/></svg><span data-en="Table">Tabulka</span></button>
+                    <button type="button" aria-pressed="false"><svg class="ic" aria-hidden="true"><use href="#i-kanban"/></svg><span>Kanban</span></button>
+                    <button type="button" aria-pressed="false"><svg class="ic" aria-hidden="true"><use href="#i-board"/></svg><span data-en="Board">Tabule</span></button>
                   </div>
                 </div>
-                <div class="stage-wrap" data-stage-wrap>
+                <div class="stage-wrap" data-stage-wrap aria-hidden="true">
                   <div class="stage" data-stage></div>
                 </div>
               </div>
@@ -559,11 +583,11 @@
           <div class="stats__grid" data-stagger>
             <div class="stat" data-reveal>
               <div class="stat__v"><span data-count="40">40</span><small>ms</small></div>
-              <div class="stat__l" data-en="to check the whole vault for changes at launch">kontrola změn v&nbsp;celém vaultu při spuštění</div>
+              <div class="stat__l" data-en="to check all your notes for changes at launch">kontrola změn ve všech poznámkách při spuštění</div>
             </div>
             <div class="stat" data-reveal>
               <div class="stat__v"><span>2–9</span><small>ms</small></div>
-              <div class="stat__l" data-en="full-text search across the whole vault">fulltextové hledání v&nbsp;celém vaultu</div>
+              <div class="stat__l" data-en="full-text search across all your notes">fulltextové hledání ve všech poznámkách</div>
             </div>
             <div class="stat" data-reveal>
               <div class="stat__v"><span data-count="16.7" data-decimals="1">16,7</span><small>ms</small></div>
@@ -571,10 +595,10 @@
             </div>
             <div class="stat" data-reveal>
               <div class="stat__v"><span data-count="138000">138 000</span></div>
-              <div class="stat__l" data-en="nodes in the test vault, without a stutter">uzlů v&nbsp;testovacím vaultu bez zaváhání</div>
+              <div class="stat__l" data-en="bullets in a test set of notes, without a stutter">odrážek v&nbsp;testovací sadě poznámek bez zaváhání</div>
             </div>
           </div>
-          <p class="stats__note" data-en="Measured on a test vault with 3,000 notes and 138,000 nodes, Windows 11.">Naměřeno na testovacím vaultu se 3&nbsp;000 poznámkami a&nbsp;138&nbsp;000 uzly, Windows 11.</p>
+          <p class="stats__note" data-en="Measured on a test set of 3,000 notes with 138,000 bullets, Windows 11.">Naměřeno na testovací sadě 3&nbsp;000 poznámek se 138&nbsp;000 odrážkami, Windows 11.</p>
         </div>
       </div>
     </section>
@@ -689,7 +713,7 @@
           <article class="tile" data-reveal data-tile>
             <div class="tile__ic"><svg class="ic"><use href="#i-link"/></svg></div>
             <h3 data-en="Links and backlinks">Odkazy a&nbsp;zpětné odkazy</h3>
-            <p data-en="[[Wikilinks]], #tags and backlinks. Rename a page and every link updates itself.">[[Wikilinky]], #tagy a&nbsp;zpětné odkazy. Přejmenuješ stránku a&nbsp;všechny odkazy se opraví samy.</p>
+            <p data-en="[[Wikilinks]] between pages, #tags and backlinks (see what links to each page). Rename a page and every link updates itself.">[[Wikilinky]] mezi stránkami, #tagy a&nbsp;zpětné odkazy (u&nbsp;každé stránky uvidíš, co na ni odkazuje). Přejmenuješ stránku a&nbsp;všechny odkazy se opraví samy.</p>
             <div class="tile__viz">
               <div class="v-graph">
                 <svg viewBox="0 0 300 170" aria-hidden="true">
@@ -787,7 +811,7 @@
             <div>
               <span class="panel__who"><svg class="ic"><use href="#i-cap"/></svg><span data-en="Students">Studenti</span></span>
               <h3 data-en="Exam season without the panic">Zkouškové bez paniky</h3>
-              <p data-en="Write lecture notes as an outline, keep sources as #book records and see every exam date in the calendar.">Výpisky z&nbsp;přednášek píšeš jako outline, zdroje ukládáš jako #kniha a&nbsp;termíny zkoušek vidíš v&nbsp;kalendáři.</p>
+              <p data-en="Write lecture notes as nested bullets, keep sources as #book records and see every exam date in the calendar.">Výpisky z&nbsp;přednášek píšeš v&nbsp;odrážkách, zdroje ukládáš jako #kniha a&nbsp;termíny zkoušek vidíš v&nbsp;kalendáři.</p>
               <ul class="checks">
                 <li><svg class="ic"><use href="#i-check"/></svg><span data-en="Lecture bullets become revision cards on a whiteboard">Odrážky z&nbsp;přednášky se stanou kartičkami na opakování na tabuli</span></li>
                 <li><svg class="ic"><use href="#i-check"/></svg><span data-en="#exam with a Date field gives you an automatic calendar">#zkouška s&nbsp;polem Termín = automatický kalendář</span></li>
@@ -847,9 +871,9 @@
             <div>
               <span class="panel__who"><svg class="ic"><use href="#i-pen"/></svg><span data-en="Researchers &amp; writers">Výzkum a&nbsp;psaní</span></span>
               <h3 data-en="From first idea to manuscript">Od nápadu k&nbsp;rukopisu</h3>
-              <p data-en="A Zettelkasten with backlinks, citations as records, and your book outline laid out on a whiteboard.">Zettelkasten se zpětnými odkazy, citace jako záznamy a&nbsp;osnova knihy rozložená na tabuli.</p>
+              <p data-en="A Zettelkasten (a slip-box of linked notes) with backlinks, citations as records, and your book outline laid out on a whiteboard.">Zettelkasten (kartotéka propojených poznámek) se zpětnými odkazy, citace jako záznamy a&nbsp;osnova knihy rozložená na tabuli.</p>
               <ul class="checks">
-                <li><svg class="ic"><use href="#i-check"/></svg><span data-en="Atomic notes connected with [[wikilinks]]">Atomické poznámky propojené [[wikilinky]]</span></li>
+                <li><svg class="ic"><use href="#i-check"/></svg><span data-en="Short notes, one idea each, connected with [[wikilinks]]">Krátké poznámky, každá o&nbsp;jedné myšlence, propojené [[wikilinky]]</span></li>
                 <li><svg class="ic"><use href="#i-check"/></svg><span data-en="#source with Author, Year and Quote fields">#zdroj s&nbsp;poli Autor, Rok a&nbsp;Citace</span></li>
                 <li><svg class="ic"><use href="#i-check"/></svg><span data-en="Chapter outline on a whiteboard, writing in document mode">Osnova kapitol na tabuli, psaní v&nbsp;dokumentovém režimu</span></li>
               </ul>
@@ -877,7 +901,7 @@
             <div>
               <span class="panel__who"><svg class="ic"><use href="#i-target"/></svg><span data-en="Product managers">Produktoví manažeři</span></span>
               <h3 data-en="From meeting to roadmap in a minute">Od schůzky k&nbsp;roadmapě za minutu</h3>
-              <p data-en="Meeting notes, decisions and tasks in a single outline. Tasks show up on the sprint board on their own.">Zápisy ze schůzek, rozhodnutí a&nbsp;úkoly v&nbsp;jednom outline. Úkoly se samy objeví na kanbanu sprintu.</p>
+              <p data-en="Meeting notes, decisions and tasks as bullets on a single page. Tasks show up on the sprint board on their own.">Zápisy ze schůzek, rozhodnutí a&nbsp;úkoly v&nbsp;odrážkách na jedné stránce. Úkoly se samy objeví na kanbanu sprintu.</p>
               <ul class="checks">
                 <li><svg class="ic"><use href="#i-check"/></svg><span data-en="A #meeting template with Attendees and Decisions">Šablona #schůzka s&nbsp;Účastníky a&nbsp;Rozhodnutími</span></li>
                 <li><svg class="ic"><use href="#i-check"/></svg><span data-en="A live list of everything you own">Živý seznam všeho, co máš na starost</span></li>
@@ -936,7 +960,7 @@
           <div class="section-head section-head--left" style="margin-bottom:0">
             <span class="eyebrow" data-reveal data-en="Your data">Tvoje data</span>
             <h2 class="h2" data-split data-en="If Eiddie vanished tomorrow, <em>your notes wouldn’t</em>.">Kdyby aplikace Eiddie zítra zmizela, <em>tvoje poznámky ne</em>.</h2>
-            <p class="lead" data-reveal data-en="No proprietary database, no cloud. Eiddie works with an ordinary folder of Markdown files that open in any editor.">Žádná proprietární databáze, žádný cloud. Eiddie pracuje s&nbsp;obyčejnou složkou Markdown souborů, které otevřeš v&nbsp;jakémkoli editoru.</p>
+            <p class="lead" data-reveal data-en="No proprietary database, no cloud. Eiddie works with an ordinary folder of Markdown files that open in any editor. A folder like this is called a vault.">Žádná proprietární databáze, žádný cloud. Eiddie pracuje s&nbsp;obyčejnou složkou souborů Markdown, které otevřeš v&nbsp;jakémkoli editoru. Takové složce se říká vault.</p>
           </div>
           <ul class="owned__list" data-stagger>
             <li data-reveal><span class="ic-wrap"><svg class="ic"><use href="#i-file"/></svg></span><div><b data-en="100% Markdown">100% Markdown</b><span data-en="YAML frontmatter, [[wikilinks]], #tags and ^block-ids. Typical files round-trip byte for byte.">YAML frontmatter, [[wikilinky]], #tagy i&nbsp;^block-id. Běžné soubory zůstanou do posledního bajtu stejné.</span></div></li>
@@ -1043,7 +1067,7 @@
           </figure>
           <figure class="quote">
             <div class="quote__stars" aria-label="5/5"><svg class="ic"><use href="#i-star"/></svg><svg class="ic"><use href="#i-star"/></svg><svg class="ic"><use href="#i-star"/></svg><svg class="ic"><use href="#i-star"/></svg><svg class="ic"><use href="#i-star"/></svg></div>
-            <p data-en="“A whiteboard for my thesis outline, an outline for writing. No more switching apps.”">„Tabule na osnovu disertace, outline na psaní. Žádné přepínání mezi aplikacemi.“</p>
+            <p data-en="“A whiteboard for my thesis outline, bullets for writing. No more switching apps.”">„Tabule na osnovu disertace, odrážky na psaní. Žádné přepínání mezi aplikacemi.“</p>
             <footer><span class="avatar">OP</span><div><b>Ondřej P.</b><span data-en="PhD candidate">Doktorand</span></div></footer>
           </figure>
         </div>
@@ -1091,7 +1115,7 @@
               <li><svg class="ic"><use href="#i-check"/></svg><span data-en="Every feature, no limits">Všechny funkce bez omezení</span></li>
               <li><svg class="ic"><use href="#i-check"/></svg><span data-en="New versions download by themselves, one click installs them">Nové verze se stáhnou samy, nainstaluješ je jedním kliknutím</span></li>
               <li><svg class="ic"><use href="#i-check"/></svg><span data-en="No time limit, no card, no sign-up">Bez časového limitu, bez karty a&nbsp;bez registrace</span></li>
-              <li><svg class="ic"><use href="#i-check"/></svg><span data-en="A demo vault to get you started">Ukázkový vault pro rychlý start</span></li>
+              <li><svg class="ic"><use href="#i-check"/></svg><span data-en="Sample notes to get you started">Ukázkové poznámky pro rychlý start</span></li>
               <li><svg class="ic"><use href="#i-check"/></svg><span data-en="Your notes stay plain Markdown files on your disk">Poznámky zůstávají obyčejnými soubory Markdown na tvém disku</span></li>
               <li><svg class="ic"><use href="#i-check"/></svg><span data-en="A free full licence after the release, as a thank-you for your feedback">Po vydání plnou licenci zdarma jako poděkování za zpětnou vazbu</span></li>
             </ul>
@@ -1116,10 +1140,10 @@
         <h3 class="flow__title" data-reveal data-en="How the pilot works">Jak pilot probíhá</h3>
         <ol class="flow" data-stagger>
           <li data-reveal><span class="ic-wrap"><svg class="ic"><use href="#i-download"/></svg></span><b data-en="Download and install">Stáhni a&nbsp;nainstaluj</b><span data-en="Windows 10 or 11. It takes about a minute and the download page walks you through it.">Windows 10 nebo 11. Zabere to asi minutu a&nbsp;stránka ke stažení tě celou instalací provede.</span></li>
-          <li data-reveal><span class="ic-wrap"><svg class="ic"><use href="#i-pen"/></svg></span><b data-en="Use Eiddie for real">Používej Eiddie naplno</b><span data-en="Start in the demo vault or open your own folder. Back up an existing vault before you open it.">Začni v&nbsp;ukázkovém vaultu, nebo otevři vlastní složku. Existující vault si předtím zazálohuj.</span></li>
+          <li data-reveal><span class="ic-wrap"><svg class="ic"><use href="#i-pen"/></svg></span><b data-en="Use Eiddie for real">Používej Eiddie naplno</b><span data-en="Start with the sample notes or open your own folder (back it up first).">Začni s&nbsp;ukázkovými poznámkami, nebo otevři vlastní složku (tu si předtím zazálohuj).</span></li>
           <li data-reveal><span class="ic-wrap"><svg class="ic"><use href="#i-mail"/></svg></span><b data-en="Tell me how it went">Napiš mi, jak to šlo</b><span data-en="What delighted you, what got in your way and what’s missing. Every message helps.">Co tě potěšilo, co drhne a&nbsp;co chybí. Pomůže každá zpráva.</span></li>
         </ol>
-        <p class="pilot__note" data-reveal data-en="The pilot version is a test pre-release. You get it free of charge and as is, without any warranty, so you may run into bugs. Your notes are ordinary files, but back up your main vault before you open it in Eiddie. Eiddie downloads new pilot versions by itself, and what each one brings is on the <a href=&quot;novinky.html&quot;>What’s new</a> page.">Pilotní verze je předběžná testovací verze. Dostáváš ji zdarma tak, jak je, bez jakékoli záruky, a&nbsp;můžeš v&nbsp;ní narazit na chyby. Poznámky jsou obyčejné soubory, ale svůj hlavní vault si před otevřením v&nbsp;aplikaci Eiddie zazálohuj. Nové pilotní verze si Eiddie stáhne sám a&nbsp;co která přináší, najdeš na stránce <a href="novinky.html">Co je nového</a>.</p>
+        <p class="pilot__note" data-reveal data-en="The pilot version is a test pre-release. You get it free of charge and as is, without any warranty, so you may run into bugs. Your notes are ordinary files, but back up your main notes folder before you open it in Eiddie. Eiddie downloads new pilot versions by itself, and what each one brings is on the <a href=&quot;novinky.html&quot;>What’s new</a> page.">Pilotní verze je předběžná testovací verze. Dostáváš ji zdarma tak, jak je, bez jakékoli záruky, a&nbsp;můžeš v&nbsp;ní narazit na chyby. Poznámky jsou obyčejné soubory, ale svou hlavní složku s&nbsp;poznámkami si před otevřením v&nbsp;aplikaci Eiddie zazálohuj. Nové pilotní verze si Eiddie stáhne sám a&nbsp;co která přináší, najdeš na stránce <a href="novinky.html">Co je nového</a>.</p>
       </div>
     </section>
 
@@ -1141,7 +1165,7 @@
             <ul>
               <li><svg class="ic"><use href="#i-check"/></svg><span data-en="The full version, no limits">Plná verze bez omezení</span></li>
               <li><svg class="ic"><use href="#i-check"/></svg><span data-en="No credit card required">Bez platební karty</span></li>
-              <li><svg class="ic"><use href="#i-check"/></svg><span data-en="A demo vault to get you started">Ukázkový vault pro rychlý start</span></li>
+              <li><svg class="ic"><use href="#i-check"/></svg><span data-en="Sample notes to get you started">Ukázkové poznámky pro rychlý start</span></li>
               <li><svg class="ic"><use href="#i-check"/></svg><span data-en="Your notes stay yours after the trial">Poznámky ti zůstanou i&nbsp;po skončení</span></li>
             </ul>
             <a class="btn btn--ghost btn--lg" href="download.html" data-trial><svg class="ic"><use href="#i-download"/></svg><span data-en="Download for free">Stáhnout zdarma</span></a>
@@ -1209,7 +1233,7 @@
           </details>
           <details data-reveal>
             <summary><span data-en="How do I start?">Jak začít?</span><span class="pm" aria-hidden="true"></span></summary>
-            <div class="faq__a"><p data-en="Eiddie opens with a demo vault and a Getting started list: six things, about two minutes. The same steps with pictures, a table of keyboard shortcuts and tips for anyone coming from Obsidian, Tana, Heptabase or Notion are on the <a href=&quot;start.html&quot;>Getting started</a> page.">Aplikace Eiddie se otevře s&nbsp;ukázkovou složkou a&nbsp;seznamem Začínáme: šest věcí zhruba na dvě minuty. Tytéž kroky s&nbsp;obrázky, tabulku klávesových zkratek a&nbsp;tipy pro přechod z&nbsp;Obsidianu, Tany, Heptabase nebo Notionu najdeš na stránce <a href="start.html">Začínáme</a>.</p></div>
+            <div class="faq__a"><p data-en="Eiddie opens with sample notes and a Getting started list: six things, about two minutes. The same steps with pictures, a table of keyboard shortcuts and tips for anyone coming from Obsidian, Tana, Heptabase or Notion are on the <a href=&quot;start.html&quot;>Getting started</a> page.">Aplikace Eiddie se otevře s&nbsp;ukázkovými poznámkami a&nbsp;seznamem Začínáme: šest věcí zhruba na dvě minuty. Tytéž kroky s&nbsp;obrázky, tabulku klávesových zkratek a&nbsp;tipy pro přechod z&nbsp;Obsidianu, Tany, Heptabase nebo Notionu najdeš na stránce <a href="start.html">Začínáme</a>.</p></div>
           </details>
           <details data-reveal>
             <summary><span data-en="What language is the app in?">V&nbsp;jakém jazyce je aplikace?</span><span class="pm" aria-hidden="true"></span></summary>
@@ -1273,8 +1297,8 @@
         <div class="contact" data-stagger>
           <div class="author" data-reveal>
             <div class="author__me">
-              <span class="author__avatar">TL</span>
-              <div><b data-cfg="author">Tomáš Leidl</b><span data-en="Development, design &amp; support">Vývoj, design a&nbsp;podpora</span></div>
+              <img class="author__avatar" src="assets/img/author.webp" alt="" width="88" height="88" loading="lazy" decoding="async">
+              <div><b data-cfg="author">Tomáš Leidl</b><span data-en="Development, design &amp;&#160;support">Vývoj, design a&nbsp;podpora</span></div>
             </div>
             <p data-en="Eiddie is an independent project. No investors and no pressure to sell you a subscription, just a tool I use every single day.">Eiddie je nezávislý projekt. Žádní investoři a&nbsp;žádný tlak na předplatné, jen nástroj, který denně používám.</p>
             <p data-en="I read every e-mail personally and usually reply within two days. Bug reports, feature ideas or a team licence: write to me." data-pilot-hide>Každý e-mail čtu osobně a&nbsp;obvykle odpovím do dvou dnů. Nahlášení chyby, nápad na funkci nebo licence pro tým: napiš mi.</p>

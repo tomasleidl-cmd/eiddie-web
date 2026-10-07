@@ -363,6 +363,21 @@ h1, h2, h3, h4 { margin: 0; font-family: var(--f-display); color: var(--ink); fo
 .trust { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 26px; padding: 0; margin: 4px 0 0; list-style: none; font-size: 14.5px; color: var(--ink-2); font-weight: 500; }
 .trust li { display: inline-flex; align-items: center; gap: 8px; }
 .trust .ic { color: var(--teal); font-size: 17px; stroke-width: 2.2; }
+/* Under the download button: platform, no account, demo notes · link to the illustrated first steps (start.html) */
+.hero__meta { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 6px 0; margin: -12px 0 0; font-size: 14px; color: var(--ink-2); }
+.hero__meta > span { display: inline-flex; align-items: center; gap: 7px; }
+.hero__meta > span + span::before { content: "·"; content: "·" / ""; margin: 0 2px 0 9px; color: var(--ink-3); }
+.hero__meta .ic { font-size: 16px; color: var(--ink-3); }
+.hero__meta a { display: inline-flex; align-items: center; gap: 6px; margin-left: 18px; font-weight: 600; color: var(--violet-700); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.hero__meta a .ic { color: currentColor; font-size: 15px; transition: transform 0.2s; }
+.hero__meta a:hover .ic { transform: translateX(3px); }
+@media (max-width: 719px) {
+  .hero__meta a { flex-basis: 100%; justify-content: center; margin-left: 0; }
+}
+@media (max-width: 460px) {
+  .hero__meta > span:nth-child(3) { flex-basis: 100%; justify-content: center; }
+  .hero__meta > span:nth-child(3)::before { content: none; }
+}
 
 .hero__visual { position: relative; margin-top: clamp(56px, 7vw, 88px); perspective: 1800px; }
 .hero__tilt { transform-origin: 50% 0; transform-style: preserve-3d; will-change: transform; }
@@ -574,6 +589,17 @@ h1, h2, h3, h4 { margin: 0; font-family: var(--f-display); color: var(--ink); fo
 .vswitch button { position: relative; z-index: 1; display: inline-flex; align-items: center; gap: 6px; height: 28px; padding: 0 11px; border-radius: 7px; font-size: 12.5px; font-weight: 500; color: #8c8c99; transition: color 0.3s; }
 .vswitch button .ic { font-size: 14px; }
 .vswitch button.is-on { color: #fff; }
+@media (hover: hover) { .vswitch button:not(.is-on):hover { color: #d4d2e6; } }
+.vswitch button:focus-visible { outline: 2px solid #b2a8ff; outline-offset: 1px; }
+/* "Interface preview" note above the mock window: tells visitors the view buttons are theirs to click */
+.mwin__hint { margin: 0 0 12px; padding-right: 15px; text-align: right; text-wrap: balance; font-size: 13.5px; color: #a8a6bd; }
+/* Without JavaScript the window stays empty: hide it and show every step's text instead */
+html:not(.js) .mwin, html:not(.js) .mwin__hint { display: none; }
+html:not(.js) .morph__pin { min-height: 0; }
+html:not(.js) .morph__grid { grid-template-columns: minmax(0, 1fr); max-width: 760px; margin-inline: auto; }
+html:not(.js) .step { opacity: 1; cursor: default; }
+html:not(.js) .step.is-active { background: none; box-shadow: none; }
+html:not(.js) .step p { max-height: none; opacity: 1; }
 .vswitch__ind { position: absolute; z-index: 0; top: 3px; height: 28px; border-radius: 7px; background: linear-gradient(135deg, rgba(139, 125, 255, 0.35), rgba(79, 70, 229, 0.35)); box-shadow: inset 0 0 0 1px rgba(178, 168, 255, 0.35); transition: transform 0.45s var(--ease), width 0.45s var(--ease); }
 .stage-wrap { position: relative; overflow: hidden; }
 .stage { position: absolute; left: 0; top: 0; width: 1000px; height: 600px; transform-origin: 0 0; font: 400 15px/1.4 var(--f-body); color: #e9e9ee; }
@@ -981,7 +1007,8 @@ pre.md .ln { display: inline-block; width: 2.2em; color: #4a4a58; user-select: n
 .author { position: relative; padding: clamp(28px, 4vw, 44px); border-radius: var(--r-xl); background: #100f1a; color: #fff; overflow: hidden; isolation: isolate; display: flex; flex-direction: column; gap: 22px; }
 .author::before { content: ""; position: absolute; inset: 0; z-index: -1; background: radial-gradient(80% 60% at 0% 0%, rgba(108, 92, 255, 0.5), transparent 60%), radial-gradient(60% 50% at 100% 100%, rgba(233, 61, 151, 0.3), transparent 60%); }
 .author__me { display: flex; align-items: center; gap: 16px; }
-.author__avatar { width: 64px; height: 64px; border-radius: 20px; display: grid; place-items: center; font: 700 22px/1 var(--f-display); color: #fff; background: var(--grad); box-shadow: 0 10px 30px -8px rgba(108, 92, 255, 0.8); }
+/* The author's photo (assets/img/author.webp, 320 × 320) in a thin ring of the brand gradient */
+.author__avatar { flex: none; width: 88px; height: 88px; padding: 3px; border-radius: 28px; object-fit: cover; background: var(--grad); box-shadow: 0 10px 30px -8px rgba(108, 92, 255, 0.8); }
 .author__me b { display: block; font: 700 22px/1.1 var(--f-display); letter-spacing: -0.02em; }
 .author__me span { color: #b4b2c6; font-size: 14.5px; }
 .author p { margin: 0; color: #d8d6ea; font-size: 16px; line-height: 1.65; }
@@ -1073,6 +1100,21 @@ pre.md .ln { display: inline-block; width: 2.2em; color: #4a4a58; user-select: n
 .btn--video .btn-price { font-variant-numeric: tabular-nums; }
 
 .reel-sec { padding-top: clamp(72px, 9vw, 120px); padding-bottom: 0; }
+/* Under the video: one small novelty from the app, linked to its release notes (novinky.html) */
+.news-teaser { display: flex; justify-content: center; margin: clamp(28px, 4vw, 40px) 0 0; }
+.news-teaser a { display: inline-flex; align-items: center; gap: 12px; max-width: 100%; padding: 8px 16px 8px 8px; border-radius: 999px; background: var(--surface); border: 1px solid var(--line); box-shadow: var(--shadow-1); color: var(--ink-2); font-size: 15px; line-height: 1.4; transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s; }
+.news-teaser a:hover { border-color: color-mix(in srgb, var(--violet) 35%, transparent); box-shadow: var(--shadow-2); transform: translateY(-1px); }
+.news-teaser__ic { flex: none; width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; background: var(--violet-50); color: var(--violet-700); font-size: 19px; }
+.news-teaser__txt { text-wrap: balance; }
+.news-teaser__txt b { color: var(--ink); }
+.news-teaser__more { flex: none; display: inline-flex; align-items: center; gap: 5px; font-weight: 600; color: var(--violet-700); }
+.news-teaser__more .ic { transition: transform 0.2s; }
+.news-teaser a:hover .news-teaser__more .ic { transform: translateX(3px); }
+@media (max-width: 640px) {
+  .news-teaser a { display: grid; grid-template-columns: 34px minmax(0, 1fr); column-gap: 12px; row-gap: 4px; align-items: center; border-radius: 20px; padding: 12px 14px; }
+  .news-teaser__ic { grid-row: 1 / span 2; align-self: start; }
+  .news-teaser__more { grid-column: 2; }
+}
 .reel-sec .section-head { margin-bottom: clamp(36px, 5vw, 60px); }
 .reel { position: relative; max-width: 1080px; margin-inline: auto; }
 .reel__glow { position: absolute; inset: 10% 6% -6%; z-index: -1; border-radius: 40px; background: var(--grad); filter: blur(80px); opacity: 0.32; }
@@ -1165,7 +1207,14 @@ pre.md .ln { display: inline-block; width: 2.2em; color: #4a4a58; user-select: n
   .step p { display: none; }
   .step.is-active { background: rgba(255, 255, 255, 0.07); box-shadow: inset 0 0 0 1px rgba(178, 168, 255, 0.3); }
   .step-caption { display: block !important; margin: 0 0 18px; color: var(--ink-2); font-size: 15.5px; min-height: 3.2em; text-align: center; }
-  .vswitch button span { display: none; }
+  /* Icon-only buttons on phones; the label stays for screen readers (and keeps its data-en translation) */
+  .vswitch button span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .mwin__hint { text-align: center; padding-right: 0; }
+  html:not(.js) .steps { grid-template-columns: minmax(0, 1fr); }
+  html:not(.js) .step { text-align: left; }
+  html:not(.js) .step h3 { justify-content: flex-start; }
+  html:not(.js) .step p { display: block; }
+  html:not(.js) .step-caption { display: none !important; }
   .panel, .owned, .contact, .calc { grid-template-columns: 1fr; }
   .plans { grid-template-columns: minmax(0, 1fr); }
   .v-daily { grid-template-columns: minmax(0, 1fr); }
@@ -1379,3 +1428,7 @@ html[data-version="unknown"] [data-ver-unknown] { display: inline; }
 .subfoot nav { display: flex; flex-wrap: wrap; gap: 6px 18px; }
 .subfoot a { color: var(--ink-2); transition: color 0.2s; }
 .subfoot a:hover, .subfoot a[aria-current="page"] { color: var(--violet-700); }
+
+/* Phones: reserve room for the longest step caption, so the hint and the window don't jump on every step */
+@media (max-width: 520px) { .step-caption { min-height: 4.8em; } }
+@media (max-width: 375px) { .step-caption { min-height: 6.4em; } }
