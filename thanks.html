@@ -44,7 +44,8 @@
     </div>
   </header>
 
-  <main data-confetti>
+  <!-- data-clear-code: after a purchase main.js forgets the remembered discount code (single-use codes) -->
+  <main data-confetti data-clear-code>
     <div class="aurora" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
     <div class="grid-bg" aria-hidden="true"></div>
     <div class="container">
@@ -54,11 +55,11 @@
         <h1 class="h2" data-en="Thank you for supporting <em>independent software</em>!">Díky, že podporuješ <em>nezávislý software</em>!</h1>
         <p class="lead" data-en="Within a few minutes you’ll get an e-mail with your licence key, the download link and a tax receipt.">Do pár minut ti přijde e-mail s&nbsp;licenčním klíčem, odkazem ke stažení a&nbsp;daňovým dokladem.</p>
 
-        <!-- TODO: step 3 assumes a licence screen in the app (Settings → Licence); adjust once it exists. -->
+        <!-- Step 3 names the app's English interface as it is ("Settings → Licence"), in Czech too. -->
         <ol class="install">
           <li><div><b data-en="Open the e-mail from Lemon Squeezy">Otevři e-mail od Lemon Squeezy</b><span data-en="Nothing there? Check your spam folder, or write to me and I’ll sort it out.">Nic nepřišlo? Mrkni do spamu, nebo mi napiš a&nbsp;vyřešíme to.</span></div></li>
           <li><div><b data-en="Download and install Eiddie">Stáhni a&nbsp;nainstaluj Eiddie</b><span data-en="Already running the trial? Keep it, there’s nothing to reinstall.">Máš už nainstalovaný trial? Nech ho být, nic se nepřeinstalovává.</span></div></li>
-          <li><div><b data-en="Paste your licence key">Vlož licenční klíč</b><span data-en="In Eiddie open Settings → Licence and paste the key. It works on up to 3 of your computers.">V&nbsp;aplikaci Eiddie otevři Nastavení → Licence a&nbsp;vlož klíč. Platí až pro 3 tvoje počítače.</span></div></li>
+          <li><div><b data-en="Paste your licence key">Vlož licenční klíč</b><span data-en="In Eiddie open Settings → Licence (<kbd>Ctrl+,</kbd>), paste the key and activate it. Activation needs the internet once; after that the licence works offline too. It works on up to 3 of your computers.">V&nbsp;aplikaci Eiddie otevři Settings → Licence (<kbd>Ctrl+,</kbd>), vlož klíč a&nbsp;aktivuj ho. Aktivace jednou potřebuje internet, pak licence funguje i&nbsp;offline. Platí až pro 3 tvoje počítače.</span></div></li>
         </ol>
 
         <div class="btn-row" style="justify-content:center">

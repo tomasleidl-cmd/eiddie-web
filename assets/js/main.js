@@ -41,6 +41,13 @@
       formErr: 'Něco se pokazilo. Napiš mi prosím rovnou na e-mail.',
       formMailto: 'Otevírám tvůj e-mailový program…',
       videoError: 'Video se nepodařilo načíst. Zkus to prosím později.',
+      // Discount code (koupit.html?code=…): text around the code, which is inserted as text, never as HTML
+      discount: ['Slevový kód ', ' se použije v pokladně.'],
+      discountPilot: ['Slevový kód ', ' si schovej. Použiješ ho v pokladně, až prodej začne.'],
+      discountRemove: 'Nepoužít',
+      discountRemoved: 'Slevový kód se nepoužije.',
+      codeCopy: 'Zkopírovat',
+      codeCopied: 'Slevový kód je zkopírovaný do schránky.',
       years: { 1: '1 rok', 3: '3 roky', 5: '5 let' },
       subFor: (y) => `Předplatné za ${y}`,
       save: 'Ušetříš',
@@ -61,6 +68,12 @@
       formErr: 'Something went wrong. Please e-mail me directly.',
       formMailto: 'Opening your e-mail app…',
       videoError: 'The video couldn’t be loaded. Please try again later.',
+      discount: ['Discount code ', ' will be applied at checkout.'],
+      discountPilot: ['Keep your discount code ', '. You’ll use it at checkout once sales start.'],
+      discountRemove: 'Don’t use',
+      discountRemoved: 'The discount code won’t be used.',
+      codeCopy: 'Copy',
+      codeCopied: 'Discount code copied to the clipboard.',
       years: { 1: '1 year', 3: '3 years', 5: '5 years' },
       subFor: (y) => `Subscriptions over ${y}`,
       save: 'You save',
@@ -142,11 +155,14 @@
         feedback: ['Eiddie pilot: zpětná vazba', 'Ahoj,\n\nco mě potěšilo:\n\n\nco drhne nebo nefunguje:\n\n\nco mi chybí:\n\n\nverze Eiddie (Nastavení → Updates): \nWindows 10, nebo 11: \n'],
         bug: ['Eiddie: chyba', 'Co se stalo:\n\n\nJak se k tomu dostat:\n\n\n(Snímek obrazovky pomůže nejvíc.)\nverze Eiddie (Nastavení → Updates): \nWindows 10, nebo 11: \n'],
         team: ['Eiddie: licence pro tým', ''],
+        // the same subject as the app's "Klíč mi nepřišel" button, so these e-mails land together
+        testerKey: ['Eiddie: klíč pro testery', ''],
       },
       en: {
         feedback: ['Eiddie pilot: feedback', 'Hi,\n\nwhat I liked:\n\n\nwhat got in my way or didn’t work:\n\n\nwhat I’m missing:\n\n\nEiddie version (Settings → Updates): \nWindows 10 or 11: \n'],
         bug: ['Eiddie: bug report', 'What happened:\n\n\nHow to get there:\n\n\n(A screenshot helps the most.)\nEiddie version (Settings → Updates): \nWindows 10 or 11: \n'],
         team: ['Eiddie: team licence', ''],
+        testerKey: ['Eiddie: tester key', ''],
       },
     }[lang];
     $$('[data-cfg-mail]').forEach((el) => {
@@ -248,6 +264,69 @@
   }
 
   /* ------------------------------------------------------------------ */
+  /* Discount code: koupit.html?code=EIDDIE50K7Q2MX (or ?sleva=)         */
+  /* ------------------------------------------------------------------ */
+  // The app's "Buy with this code" and shared giveaway links bring a code in the URL, and anyone can craft that URL:
+  // uppercase it, keep it only if it is 3–64 letters/digits, show it with textContent only and hand it to the checkout
+  // through URLSearchParams. Remembered for this tab (sessionStorage), so the Buy buttons on every page use it.
+  // The website never checks whether a code exists: the checkout (Lemon Squeezy) does.
+  const session = {
+    get(k) { try { return sessionStorage.getItem(k); } catch (e) { return null; } },
+    set(k, v) { try { if (v) sessionStorage.setItem(k, v); else sessionStorage.removeItem(k); } catch (e) { /* storage blocked */ } },
+  };
+  const cleanCode = (v) => {
+    const code = typeof v === 'string' ? v.trim().toUpperCase() : '';
+    return /^[A-Z0-9]{3,64}$/.test(code) ? code : null;
+  };
+  let discountCode = null;
+  {
+    let fromUrl = null;
+    try { const q = new URLSearchParams(location.search); fromUrl = q.get('code') ?? q.get('sleva'); } catch (e) { /* old browser */ }
+    // The thank-you page forgets it: a single-use code must not ride along to the next purchase in this tab.
+    discountCode = $('[data-clear-code]') ? null : cleanCode(fromUrl) || cleanCode(session.get('eiddie-code'));
+    session.set('eiddie-code', discountCode);
+  }
+  function renderDiscount() {
+    $$('[data-discount]').forEach((el) => {
+      el.hidden = !discountCode;
+      if (!discountCode) return;
+      const pilotCopy = el.dataset.discount === 'pilot';
+      const [before, after] = t(pilotCopy ? 'discountPilot' : 'discount');
+      const code = document.createElement('b');
+      code.textContent = discountCode;
+      $('[data-discount-text]', el).replaceChildren(before, code, after);
+      $('[data-discount-btn]', el).textContent = t(pilotCopy ? 'codeCopy' : 'discountRemove');
+    });
+  }
+  document.addEventListener('click', (e) => {
+    const btn = e.target.closest('[data-discount-btn]');
+    if (!btn || !discountCode) return;
+    if (btn.closest('[data-discount]').dataset.discount === 'pilot') {
+      // Sales haven't started: the visitor keeps the code. Without clipboard access, select it for Ctrl+C.
+      const code = $('[data-discount-text] b', btn.parentElement);
+      Promise.resolve().then(() => navigator.clipboard.writeText(discountCode)).then(() => toast(t('codeCopied'))).catch(() => {
+        const r = document.createRange();
+        r.selectNodeContents(code);
+        getSelection().removeAllRanges();
+        getSelection().addRange(r);
+      });
+      return;
+    }
+    discountCode = null;
+    session.set('eiddie-code', null);
+    try {
+      // A reload must not bring the code back from the address bar.
+      const u = new URL(location.href);
+      u.searchParams.delete('code');
+      u.searchParams.delete('sleva');
+      history.replaceState(null, '', u.pathname + u.search + u.hash);
+    } catch (err) { /* old browser */ }
+    renderDiscount();
+    toast(t('discountRemoved'));
+  });
+  langHooks.push(renderDiscount);
+
+  /* ------------------------------------------------------------------ */
   /* Checkout (Lemon Squeezy overlay)                                    */
   /* ------------------------------------------------------------------ */
   const checkoutUrl = C.checkoutUrl || '';
@@ -281,8 +360,22 @@
     });
   }
   if (checkoutReady) {
-    // Warm up the script when the browser is idle so the overlay opens instantly.
-    (window.requestIdleCallback || setTimeout)(() => loadLemon().catch(() => {}), 2500);
+    // Warm up the script when the browser is idle so the overlay opens instantly. (requestIdleCallback takes an options
+    // object, not a delay: requestIdleCallback(fn, 2500) throws in Chrome and stopped this whole script once a real
+    // checkoutUrl was set.)
+    const warm = () => loadLemon().catch(() => {});
+    setTimeout(() => (window.requestIdleCallback ? window.requestIdleCallback(warm, { timeout: 3000 }) : warm()), 2500);
+  }
+  /** The checkout link: the overlay keeps embed=1, the plain page fallback drops it; plus the remembered discount code. */
+  function checkoutHref(embed) {
+    try {
+      const u = new URL(checkoutUrl);
+      if (!embed) u.searchParams.delete('embed');
+      if (discountCode) u.searchParams.set('checkout[discount_code]', discountCode); // Lemon Squeezy's prefill
+      return u.href;
+    } catch (e) {
+      return checkoutUrl;
+    }
   }
   document.addEventListener('click', (e) => {
     const btn = e.target.closest('[data-buy]');
@@ -294,8 +387,8 @@
       return;
     }
     loadLemon()
-      .then(() => window.LemonSqueezy.Url.Open(checkoutUrl))
-      .catch(() => { location.href = checkoutUrl.replace(/[?&]embed=1/, ''); });
+      .then(() => window.LemonSqueezy.Url.Open(checkoutHref(true)))
+      .catch(() => { location.href = checkoutHref(false); });
   });
   $$('[data-todo]').forEach((a) => a.addEventListener('click', (e) => { e.preventDefault(); toast(t('todo')); }));
 

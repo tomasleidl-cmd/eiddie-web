@@ -129,6 +129,7 @@
     <symbol id="i-gift" viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13M19 12v9H5v-9M7.5 8a2.5 2.5 0 0 1 0-5C10 3 12 8 12 8s2-5 4.5-5a2.5 2.5 0 0 1 0 5"/></symbol>
     <symbol id="i-dice" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="4"/><circle cx="8.5" cy="8.5" r="1.15" fill="currentColor"/><circle cx="15.5" cy="8.5" r="1.15" fill="currentColor"/><circle cx="12" cy="12" r="1.15" fill="currentColor"/><circle cx="8.5" cy="15.5" r="1.15" fill="currentColor"/><circle cx="15.5" cy="15.5" r="1.15" fill="currentColor"/></symbol>
     <symbol id="i-windows" viewBox="0 0 24 24"><rect x="3" y="3" width="8" height="8" rx="1"/><rect x="13" y="3" width="8" height="8" rx="1"/><rect x="3" y="13" width="8" height="8" rx="1"/><rect x="13" y="13" width="8" height="8" rx="1"/></symbol>
+    <symbol id="i-tag" viewBox="0 0 24 24"><path d="M3 12.2V4a1 1 0 0 1 1-1h8.2a1 1 0 0 1 .7.3l8.4 8.4a1 1 0 0 1 0 1.4l-8.2 8.2a1 1 0 0 1-1.4 0l-8.4-8.4a1 1 0 0 1-.3-.7z"/><circle cx="7.6" cy="7.6" r="1.4"/></symbol>
   </svg>
 
   <div class="progress" aria-hidden="true"></div>
@@ -1104,7 +1105,7 @@
         <div class="section-head">
           <span class="eyebrow" data-reveal data-en="Pilot version">Pilotní verze</span>
           <h2 class="h2" data-split data-en="Try it <em>before everyone else</em>.">Vyzkoušej to <em>dřív než ostatní</em>.</h2>
-          <p class="lead" data-reveal data-en="Eiddie is close to release and a few friends are trying it out right now. The pilot version is free and has no time limit. In return I’m asking for just one thing: your honest opinion.">Aplikace Eiddie je těsně před vydáním a&nbsp;teď ji zkouší pár přátel. Pilotní verze je zdarma a&nbsp;nemá časové omezení. Na oplátku tě prosím jen o&nbsp;jedno: o&nbsp;upřímný názor.</p>
+          <p class="lead" data-reveal data-en="Eiddie is close to release and a few friends are trying it out right now. It’s free for the whole pilot. In return I’m asking for just one thing: your honest opinion.">Aplikace Eiddie je těsně před vydáním a&nbsp;teď ji zkouší pár přátel. Po celou dobu pilotu je zdarma. Na oplátku tě prosím jen o&nbsp;jedno: o&nbsp;upřímný názor.</p>
         </div>
 
         <div class="plans" data-stagger>
@@ -1114,7 +1115,7 @@
             <ul>
               <li><svg class="ic"><use href="#i-check"/></svg><span data-en="Every feature, no limits">Všechny funkce bez omezení</span></li>
               <li><svg class="ic"><use href="#i-check"/></svg><span data-en="New versions download by themselves, one click installs them">Nové verze se stáhnou samy, nainstaluješ je jedním kliknutím</span></li>
-              <li><svg class="ic"><use href="#i-check"/></svg><span data-en="No time limit, no card, no sign-up">Bez časového limitu, bez karty a&nbsp;bez registrace</span></li>
+              <li><svg class="ic"><use href="#i-check"/></svg><span data-en="Free for the whole pilot, no card, no sign-up">Zdarma po celou dobu pilotu, bez karty a&nbsp;bez registrace</span></li>
               <li><svg class="ic"><use href="#i-check"/></svg><span data-en="Sample notes to get you started">Ukázkové poznámky pro rychlý start</span></li>
               <li><svg class="ic"><use href="#i-check"/></svg><span data-en="Your notes stay plain Markdown files on your disk">Poznámky zůstávají obyčejnými soubory Markdown na tvém disku</span></li>
               <li><svg class="ic"><use href="#i-check"/></svg><span data-en="A free full licence after the release, as a thank-you for your feedback">Po vydání plnou licenci zdarma jako poděkování za zpětnou vazbu</span></li>
@@ -1184,6 +1185,8 @@
               <li><svg class="ic"><use href="#i-check"/></svg><span data-en="A tax receipt, automatically">Daňový doklad automaticky</span></li>
               <li><svg class="ic"><use href="#i-check"/></svg><span data-en="Support straight from the developer">Podpora přímo od vývojáře</span></li>
             </ul>
+            <!-- A discount code remembered from koupit.html?code=… (main.js fills it in as text; every Buy button uses it) -->
+            <p class="discount" data-discount="sale" hidden><svg class="ic" aria-hidden="true"><use href="#i-tag"/></svg><span data-discount-text></span><button type="button" class="discount__btn" data-discount-btn></button></p>
             <a class="btn btn--primary btn--lg" href="#cena" data-buy data-magnetic><svg class="ic"><use href="#i-card"/></svg><span data-en="Buy Eiddie">Koupit Eiddie</span><span class="btn-price" data-cfg="price">999 Kč</span></a>
             <div class="plan__pay"><svg class="ic"><use href="#i-shield"/></svg><span data-en="Secure payment by card, Apple Pay, Google Pay or PayPal via Lemon Squeezy">Bezpečná platba kartou, Apple Pay, Google Pay nebo PayPalem přes Lemon Squeezy</span></div>
           </div>
@@ -1241,7 +1244,7 @@
           </details>
           <details data-reveal data-pilot-only>
             <summary><span data-en="How long can I use the pilot version?">Jak dlouho můžu pilotní verzi používat?</span><span class="pm" aria-hidden="true"></span></summary>
-            <div class="faq__a"><p data-en="As long as you like: the pilot version has no time limit. As a thank-you, you’ll get a full licence for free after the release: just send me feedback during the pilot (criticism counts too). Your notes are ordinary Markdown files on your disk, so they stay yours whatever you decide.">Jak dlouho chceš, pilotní verze nemá časové omezení. Jako poděkování dostaneš po vydání plnou licenci zdarma, stačí mi během pilotu poslat zpětnou vazbu (počítá se i&nbsp;kritika). Poznámky jsou obyčejné soubory Markdown na tvém disku, takže ti zůstanou, ať se rozhodneš jakkoli.</p></div>
+            <div class="faq__a"><p data-en="It’s free for the whole pilot. After the release, Eiddie will ask for a licence key. Testers who send me feedback during the pilot (criticism counts too) get one free by e-mail, as a thank-you. Everyone else can keep using Eiddie fully for another 30 days after the release, then get a licence or just keep browsing their notes. Your notes are ordinary Markdown files on your disk, so they stay yours whatever you decide.">Po celou dobu pilotu je zdarma. Po vydání si Eiddie řekne o&nbsp;licenční klíč. Testeři, kteří mi během pilotu pošlou zpětnou vazbu (počítá se i&nbsp;kritika), ho jako poděkování dostanou zdarma e-mailem. Ostatní můžou Eiddie po vydání ještě 30&nbsp;dní používat naplno a&nbsp;pak si pořídit licenci, nebo si poznámky dál jen prohlížet. Poznámky jsou obyčejné soubory Markdown na tvém disku, takže ti zůstanou, ať se rozhodneš jakkoli.</p></div>
           </details>
           <details data-reveal data-pilot-only>
             <summary><span data-en="Why does Windows show a warning during installation?">Proč Windows při instalaci zobrazí varování?</span><span class="pm" aria-hidden="true"></span></summary>
@@ -1253,7 +1256,12 @@
           </details>
           <details data-reveal data-pilot-hide>
             <summary><span data-en="What happens after the 14-day trial?">Co se stane po 14 dnech zkušební verze?</span><span class="pm" aria-hidden="true"></span></summary>
-            <div class="faq__a"><p data-en="Enter a licence key and keep going. If you decide not to buy, your notes stay with you: they are ordinary Markdown files on your disk.">Zadáš licenční klíč a&nbsp;pokračuješ. Když se rozhodneš nekoupit, poznámky ti zůstanou. Jsou to obyčejné Markdown soubory na tvém disku.</p></div>
+            <div class="faq__a"><p data-en="Enter a licence key and keep going. If you decide not to buy, Eiddie switches to read-only: you can still browse, search and copy your notes, just not edit them in the app. They are ordinary Markdown files on your disk, so any other app opens them too.">Zadáš licenční klíč a&nbsp;pokračuješ. Když se rozhodneš nekoupit, Eiddie přejde do režimu jen pro čtení: poznámky si v&nbsp;aplikaci dál prohlížíš, hledáš v&nbsp;nich a&nbsp;kopíruješ, jen je v&nbsp;ní neupravíš. Jsou to obyčejné soubory Markdown na tvém disku, takže je otevřeš i&nbsp;v&nbsp;jakékoli jiné aplikaci.</p></div>
+          </details>
+          <!-- Sale mode: the pilot testers' question (grace period, free key for feedback; the app shows the same) -->
+          <details data-reveal data-pilot-hide>
+            <summary><span data-en="I have the pilot version. What now?">Mám pilotní verzi. Co teď?</span><span class="pm" aria-hidden="true"></span></summary>
+            <div class="faq__a"><p data-en="Thank you for testing! Testers who sent me feedback get a free licence key by e-mail. Paste it in Eiddie: Settings → Licence. After the update to the released version you can keep using Eiddie fully for 30 days, even without a key. No key arrived? <a href=&quot;mailto:tomas.leidl@gmail.com&quot; data-cfg-mail=&quot;testerKey&quot;>Write to me</a>. Automatic updates switched off? Get the new version on the <a href=&quot;download.html&quot;>download page</a>.">Díky za testování! Testerům, kteří mi poslali zpětnou vazbu, posílám licenční klíč zdarma e-mailem. Vložíš ho v&nbsp;aplikaci Eiddie: Settings → Licence. Po aktualizaci na vydanou verzi můžeš Eiddie i&nbsp;bez klíče ještě 30&nbsp;dní používat naplno. Klíč nepřišel? <a href="mailto:tomas.leidl@gmail.com" data-cfg-mail="testerKey">Napiš mi</a>. Máš vypnuté automatické aktualizace? Novou verzi najdeš na <a href="download.html">stránce ke stažení</a>.</p></div>
           </details>
           <details data-reveal>
             <summary><span data-en="Where is my data stored?">Kde jsou uložená moje data?</span><span class="pm" aria-hidden="true"></span></summary>
@@ -1273,7 +1281,7 @@
           </details>
           <details data-reveal>
             <summary><span data-en="Do I need an internet connection?">Potřebuju připojení k&nbsp;internetu?</span><span class="pm" aria-hidden="true"></span></summary>
-            <div class="faq__a"><p data-en="Only to download and activate your licence. After that, Eiddie works completely offline." data-pilot-hide>Jen ke stažení a&nbsp;aktivaci licence. Potom Eiddie funguje úplně offline.</p><p data-en="Only to download it and for automatic updates, which you can switch off in Settings → Updates. Otherwise the pilot version works completely offline and doesn’t send anything about you anywhere. What each update brings is on the <a href=&quot;novinky.html&quot;>What’s new</a> page." data-pilot-only>Jen ke stažení a&nbsp;pro automatické aktualizace (dají se vypnout v&nbsp;Nastavení → Updates). Jinak pilotní verze funguje úplně offline a&nbsp;nikam o&nbsp;tobě nic neodesílá. Co přináší která aktualizace, najdeš na stránce <a href="novinky.html">Co je nového</a>.</p></div>
+            <div class="faq__a"><p data-en="To download it, to activate your licence and for automatic updates (you can switch those off). Otherwise Eiddie works offline. About once a week, when online, Eiddie checks that the licence key is still valid. It sends only the key, never anything about your notes, and without the internet your licence keeps working." data-pilot-hide>Ke stažení, k&nbsp;aktivaci licence a&nbsp;pro automatické aktualizace (dají se vypnout). Jinak Eiddie funguje offline. Zhruba jednou týdně, když je připojený, ověří, že je licenční klíč pořád platný. Pošle přitom jen klíč, nikdy nic o&nbsp;tvých poznámkách, a&nbsp;bez internetu licence platí dál.</p><p data-en="Only to download it and for automatic updates, which you can switch off in Settings → Updates. Once you enter a licence key, Eiddie also checks about once a week, when online, that the key is still valid, never sending anything about your notes. Otherwise the pilot version works completely offline and doesn’t send anything about you anywhere. What each update brings is on the <a href=&quot;novinky.html&quot;>What’s new</a> page." data-pilot-only>Jen ke stažení a&nbsp;pro automatické aktualizace (dají se vypnout v&nbsp;Nastavení → Updates). Když zadáš licenční klíč, Eiddie navíc zhruba jednou týdně, když je připojený, ověří, že klíč pořád platí, a&nbsp;nic o&nbsp;tvých poznámkách přitom neposílá. Jinak pilotní verze funguje úplně offline a&nbsp;nikam o&nbsp;tobě nic neodesílá. Co přináší která aktualizace, najdeš na stránce <a href="novinky.html">Co je nového</a>.</p></div>
           </details>
           <details data-reveal data-pilot-hide>
             <summary><span data-en="Will I get an invoice?">Dostanu fakturu?</span><span class="pm" aria-hidden="true"></span></summary>
