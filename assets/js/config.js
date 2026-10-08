@@ -22,7 +22,7 @@ window.EIDDIE_CONFIG = {
   // Fallback for the download page until the GitHub API answers (download.html repeats both for visitors without
   // JavaScript). scripts/release-pilot.mjs rewrites them after each release. If the API fails, the page says
   // "the latest version" instead of this number.
-  version: '0.1.5',
+  version: '0.1.6',
   installerSize: '≈ 106 MB',
   trialDays: 14,
   price: { cs: '999 Kč', en: '999 CZK' },

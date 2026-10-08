@@ -1344,6 +1344,11 @@ html:not([data-platform="other"]) [data-other-only] { display: none !important; 
 .release__line .release__date { font-size: 13.5px; }
 .release__line .release__summary { flex-basis: 100%; font-weight: 400; font-size: 15px; color: var(--ink-2); letter-spacing: 0; }
 .release__body .release__group:first-child { margin-top: 2px; }
+/* An earlier version's installer (the way back after a bad update, "Předchozí verze" box at the top) */
+.release a.release__dl { display: inline-flex; align-items: center; gap: 7px; margin-top: 20px; font-size: 14.5px; font-weight: 500; }
+.release__dl .ic { flex: none; }
+/* download.html: "What's new in version …" and "Previous versions" side by side */
+.news-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 22px; }
 .news-link { display: inline-flex; align-items: center; gap: 6px; font-size: 14.5px; font-weight: 500; }
 .news-link .ic { text-decoration: none; }
 /* Download page: the fallback version (data-ver-known) until the GitHub API answers; "the latest version" with no
