@@ -1304,6 +1304,33 @@ html:not([data-pilot]) [data-pilot-only] { display: none !important; }
 .pilot-card li { display: flex; gap: 10px; align-items: flex-start; }
 .pilot-card li .ic { flex: none; margin-top: 3px; color: var(--teal); stroke-width: 2.6; }
 .install small { display: block; margin-top: 6px; font-size: 13.5px; color: var(--ink-3); }
+/* Install help drawings (download.html): simplified Edge downloads panel and SmartScreen window, numbered clicks. */
+.shot { margin: 12px 0 2px; }
+.shot i { font-style: normal; }
+.shot__frame { position: relative; max-width: 440px; border-radius: 10px; box-shadow: var(--shadow-2); font: 13px/1.4 "Segoe UI", var(--f-body); text-align: left; }
+.shot__frame--edge { background: #fff; border: 1px solid var(--line-2); padding: 8px 10px 10px; color: #1b1b1b; }
+.shot__bar { display: block; padding: 2px 2px 8px; font-weight: 600; border-bottom: 1px solid var(--line); }
+.shot__row { display: grid; grid-template-columns: 22px 1fr auto; gap: 8px; align-items: start; padding: 8px 2px; }
+.shot__warn { display: grid; place-items: center; width: 20px; height: 20px; border-radius: 50%; background: #fff4ce; color: #8a5300; font-weight: 700; font-size: 12px; }
+.shot__file { display: block; min-width: 0; }
+.shot__file b { display: block; font-size: 13px; color: #1b1b1b; margin: 0; }
+.shot__file > i { display: block; color: #616161; font-size: 12px; }
+.shot__dots { position: relative; display: grid; place-items: center; width: 30px; height: 26px; border-radius: 6px; font-weight: 700; letter-spacing: 1px; }
+.shot__menu { display: grid; width: max-content; max-width: 100%; margin: 0 0 0 auto; padding: 4px; border-radius: 8px; background: #fff; border: 1px solid var(--line-2); box-shadow: var(--shadow-1); }
+.shot__item { position: relative; display: block; padding: 5px 30px 5px 10px; border-radius: 5px; color: #1b1b1b; }
+.shot__frame--ss { background: #0067b8; color: #fff; padding: 18px 20px 16px; }
+.shot__sstitle { display: block; font-size: 19px; font-weight: 600; line-height: 1.25; margin-bottom: 8px; }
+.shot__sstext { display: block; font-size: 12.5px; opacity: 0.92; }
+.shot__sslink { position: relative; display: inline-block; margin: 8px 0 6px; text-decoration: underline; font-weight: 600; padding: 1px 4px; border-radius: 4px; }
+.shot__ssapp { display: grid; font-size: 12px; opacity: 0.92; margin-bottom: 12px; }
+.shot__ssbtns { display: flex; justify-content: flex-end; gap: 8px; }
+.shot__ssbtn { position: relative; display: inline-block; padding: 5px 14px; border: 2px solid #fff; color: #fff; font-weight: 600; font-size: 12.5px; }
+.shot .is-hit { outline: 3px solid var(--orange); outline-offset: 2px; background: rgba(247, 107, 21, 0.14); }
+.shot__frame--ss .is-hit { background: rgba(255, 255, 255, 0.16); }
+.shot__n { position: absolute; top: -11px; right: -11px; display: grid; place-items: center; width: 20px; height: 20px; border-radius: 50%; background: var(--orange); color: #fff; font: 700 11px/1 var(--f-body); letter-spacing: 0; text-decoration: none; box-shadow: var(--shadow-1); }
+.shot figcaption { margin-top: 8px; font-size: 13.5px; color: var(--ink-3); }
+.shot figcaption b { display: inline; margin: 0; font-size: inherit; color: var(--ink-2); }
+@media (max-width: 520px) { .shot__sstitle { font-size: 16px; } }
 /* Download page: Windows gets the automatic download, other devices the "Windows only" copy (head script sets data-platform). */
 html[data-platform="other"] [data-win-only],
 html:not([data-platform="other"]) [data-other-only] { display: none !important; }
