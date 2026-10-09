@@ -27,7 +27,7 @@ window.EIDDIE_CONFIG = {
   // Fallback for the download page until the GitHub API answers (download.html repeats both for visitors without
   // JavaScript). scripts/release-pilot.mjs rewrites them after each release. If the API fails, the page says
   // "the latest version" instead of this number.
-  version: '0.1.9',
+  version: '0.1.10',
   installerSize: '≈ 106 MB',
   // Shown on the site; the app's own values are in src/shared/licence/config.ts (trialDays, devices): keep them equal.
   trialDays: 14,
