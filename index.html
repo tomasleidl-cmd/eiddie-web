@@ -144,6 +144,7 @@
       <nav class="nav__links" aria-label="Hlavní navigace" data-en-aria-label="Main navigation">
         <a href="#pilire" data-en="Pillars">Pilíře</a>
         <a href="#funkce" data-en="Features">Funkce</a>
+        <a href="#radosti" data-en="Little joys">Radosti</a>
         <a href="#jak" data-en="How it works">Jak to funguje</a>
         <a href="#pouziti" data-en="Use cases">Použití</a>
         <a href="#cena" data-en="Pricing" data-pilot-hide>Cena</a>
@@ -172,6 +173,7 @@
   <div class="drawer" id="drawer" data-drawer data-lenis-prevent>
     <a href="#pilire" data-en="Pillars">Pilíře</a>
     <a href="#funkce" data-en="Features">Funkce</a>
+    <a href="#radosti" data-en="Little joys">Radosti</a>
     <a href="#jak" data-en="How it works">Jak to funguje</a>
     <a href="#pouziti" data-en="Use cases">Použití</a>
     <a href="#cena" data-en="Pricing" data-pilot-hide>Cena</a>
@@ -408,9 +410,9 @@
          Swap it for the next nice novelty, or delete it once it stops being new. -->
     <div class="container">
       <p class="news-teaser" data-reveal>
-        <a href="novinky.html#v0-1-5">
-          <span class="news-teaser__ic" aria-hidden="true"><svg class="ic"><use href="#i-dice"/></svg></span>
-          <span class="news-teaser__txt"><b data-en="New:">Nově:</b> <span data-en="can’t decide where to start? The “What&#160;now?” dice picks one open task for you.">nevíš, čím začít? Kostka „Co&nbsp;teď?“ ti vybere jeden otevřený úkol.</span></span>
+        <a href="novinky.html#v0-1-10">
+          <span class="news-teaser__ic" aria-hidden="true"><svg class="ic"><use href="#i-sparkle"/></svg></span>
+          <span class="news-teaser__txt"><b data-en="New in 0.1.10:">Nově v&nbsp;0.1.10:</b> <span data-en="a gang of mascots on Home, a writing lantern and “Just&#160;5&#160;minutes” for the task you’d rather avoid.">parta maskotů na Home, lucerna za psaní a&nbsp;„Jen 5&nbsp;minut“ na úkol, do kterého se ti nechce.</span></span>
           <span class="news-teaser__more"><span data-en="What’s new">Co je nového</span><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span>
         </a>
       </p>
@@ -787,6 +789,213 @@
           <span><svg class="ic"><use href="#i-pin"/></svg><span data-en="Pinned &amp; recent pages">Připnuté a&nbsp;nedávné stránky</span></span>
           <span><svg class="ic"><use href="#i-refresh"/></svg><span data-en="Changes from other apps appear instantly">Změny z&nbsp;jiných aplikací se ukážou hned</span></span>
           <span><svg class="ic"><use href="#i-trash"/></svg><span data-en="Deleted files go to .trash">Smazané soubory končí v&nbsp;.trash</span></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ LITTLE JOYS (delight features, mascots, roadmap) ============
+         Badges: joy-tag--now = in the app for a while, --soon = new in the latest release, --idea = in preparation.
+         After the next release with new joys, move the 0.1.10 ones to --now. The mascot drawings are the app's own
+         (src/renderer/features/mascots/Figures.tsx, rendered by scratch/web-delight/build-section.cjs). -->
+    <section class="section joy" id="radosti">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow" data-reveal data-en="Little joys">Drobné radosti</span>
+          <h2 class="h2" data-split data-en="A tidy mind. <em>And joy in it.</em>">Pořádek v&nbsp;hlavě. <em>A&nbsp;radost z&nbsp;něj.</em></h2>
+          <p class="lead" data-reveal data-en="Eiddie takes your notes seriously, and itself not at all. The mascots, the dice and the lantern aren’t decoration: a tool that’s fun is a tool you come back to. Some of these are pure joy, others help on days when starting is the hard part, with ADHD brains in mind too.">Eiddie bere vážně tvoje poznámky, sebe ani trochu. Maskoti, kostka nebo lucerna nejsou ozdoba navíc: k&nbsp;nástroji, který baví, se člověk vrací sám. Některé drobnosti jsou čistá radost, jiné pomáhají ve dnech, kdy se nedaří začít, myšleno i&nbsp;na hlavy s&nbsp;ADHD.</p>
+        </div>
+
+        <div class="bento joy__bento" data-stagger data-joy>
+
+          <!-- Mascots: animated, talk on their own while in view, answer a click -->
+          <article class="tile tile--7 tile--tall joy-gang" data-reveal data-tile data-joy-gang>
+            <div class="joy-tags"><span class="joy-tag joy-tag--soon" data-en="New in 0.1.10">Nově v&nbsp;0.1.10</span></div>
+            <h3 data-en="The mascot gang">Parta maskotů</h3>
+            <p data-en="Six animals whose names spell E·I·D·D·I·E, plus Nitka, the thread from the logo, who ties them together. On Home they drop a funny or encouraging line about your tasks and forgotten notes, and cheer when you finish something. They never nag.">Šest zvířátek, jejichž jména dávají E·I·D·D·I·E, a&nbsp;Nitka, nit z&nbsp;loga, která je drží pohromadě. Na domovské stránce prohodí vtipnou nebo povzbudivou větu o&nbsp;tvých úkolech a&nbsp;zapomenutých poznámkách a&nbsp;radují se z&nbsp;hotové práce. Nikdy nevyčítají.</p>
+            <div class="tile__viz">
+              <div class="joy-say" aria-live="polite">
+                <span class="joy-say__who" data-joy-who>Nitka <small>průvodkyně · cívka</small></span>
+                <span class="joy-say__text" data-joy-text>Ahoj, já jsem Nitka. Spojuju partu dohromady.</span>
+              </div>
+              <div class="joy-cast" role="group" aria-label="Parta maskotů: klikni na postavičku" data-en-aria-label="The mascot gang: click a character">
+                <button type="button" class="joy-char" data-char="ema" data-name="Ema" data-sub-cs="E · Editor · sova" data-sub-en="E · Editor · owl" aria-label="Ema"><svg class="mc-fig mc-fig-ema" data-mood="idle" data-char="ema" width="96" height="96" viewBox="0 0 100 100" aria-hidden="true"><g class="mc-bob"><ellipse cx="50" cy="93" rx="22" ry="3" fill="#000" opacity="0.08"></ellipse><path d="M41 89 l-3 4 M45 89 v5 M55 89 v5 M59 89 l3 4" stroke="#BA7517" stroke-width="3" stroke-linecap="round"></path><g class="mc-ema-head"><path d="M24 34 L26 14 L40 27Z M76 34 L74 14 L60 27Z" fill="#534AB7"></path><ellipse cx="50" cy="60" rx="29" ry="31" fill="#7F77DD"></ellipse><ellipse class="mc-wing-l" cx="22" cy="64" rx="7" ry="16" fill="#534AB7"></ellipse><ellipse class="mc-wing-r" cx="78" cy="64" rx="7" ry="16" fill="#534AB7"></ellipse><ellipse cx="50" cy="70" rx="17" ry="18" fill="#CECBF6"></ellipse><path d="M42 66 q3 3 6 0 M52 66 q3 3 6 0 M47 74 q3 3 6 0" stroke="#AFA9EC" stroke-width="2" fill="none" stroke-linecap="round"></path><circle cx="38" cy="45" r="11" fill="#fff" stroke="#26215C" stroke-width="3"></circle><circle cx="62" cy="45" r="11" fill="#fff" stroke="#26215C" stroke-width="3"></circle><path d="M49 45h2" stroke="#26215C" stroke-width="3"></path><g class="mc-eyes"><circle cx="39" cy="46" r="4.5" fill="#26215C"></circle><circle cx="61" cy="46" r="4.5" fill="#26215C"></circle><circle cx="40.5" cy="44.5" r="1.4" fill="#fff"></circle><circle cx="62.5" cy="44.5" r="1.4" fill="#fff"></circle></g><g class="mc-eyes-happy"><path d="M33 48 Q38 41 43 48" stroke="#26215C" stroke-width="3" fill="none" stroke-linecap="round"></path><path d="M57 48 Q62 41 67 48" stroke="#26215C" stroke-width="3" fill="none" stroke-linecap="round"></path></g><path d="M46 55 L50 61 L54 55Z" fill="#EF9F27"></path><g transform="rotate(24 80 32)"><rect x="77" y="16" width="6" height="24" rx="1.5" fill="#EF9F27"></rect><path d="M77 40 h6 l-3 6Z" fill="#FAEEDA"></path><rect x="77" y="16" width="6" height="4" fill="#D4537E"></rect></g></g></g></svg><span class="joy-char__l" aria-hidden="true">E</span></button>
+                <button type="button" class="joy-char" data-char="iskra" data-name="Iskra" data-sub-cs="I · Nápady · světluška" data-sub-en="I · Ideas · firefly" aria-label="Iskra"><svg class="mc-fig mc-fig-iskra" data-mood="idle" data-char="iskra" width="96" height="96" viewBox="0 0 100 100" aria-hidden="true"><g class="mc-bob mc-float"><ellipse class="mc-wing-l" cx="30" cy="40" rx="16" ry="9" fill="#B5D4F4" opacity="0.9" transform="rotate(-28 30 40)"></ellipse><ellipse class="mc-wing-r" cx="70" cy="40" rx="16" ry="9" fill="#B5D4F4" opacity="0.9" transform="rotate(28 70 40)"></ellipse><circle class="mc-glow-halo" cx="50" cy="72" r="22" fill="#FAC775" opacity="0.35"></circle><ellipse cx="50" cy="72" rx="15" ry="16" fill="#FAC775"></ellipse><ellipse class="mc-glow" cx="50" cy="75" rx="10" ry="10" fill="#EF9F27"></ellipse><path d="M38 64 h24 M37 70 h26" stroke="#BA7517" stroke-width="1.5" opacity="0.5"></path><path d="M42 32 Q37 16 29 13 M58 32 Q63 16 71 13" stroke="#534AB7" stroke-width="3" fill="none" stroke-linecap="round"></path><circle class="mc-glow" cx="29" cy="13" r="4" fill="#EF9F27"></circle><circle class="mc-glow" cx="71" cy="13" r="4" fill="#EF9F27"></circle><circle cx="50" cy="44" r="17" fill="#534AB7"></circle><g class="mc-eyes"><circle cx="43" cy="43" r="5" fill="#fff"></circle><circle cx="57" cy="43" r="5" fill="#fff"></circle><circle cx="44" cy="44" r="2.6" fill="#26215C"></circle><circle cx="58" cy="44" r="2.6" fill="#26215C"></circle></g><g class="mc-eyes-happy"><path d="M38.5 46 Q43 39.5 47.5 46" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round"></path><path d="M52.5 46 Q57 39.5 61.5 46" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round"></path></g><path d="M44 51 Q50 56 56 51" stroke="#fff" stroke-width="2.4" fill="none" stroke-linecap="round"></path><circle cx="38" cy="50" r="2.6" fill="#ED93B1" opacity="0.8"></circle><circle cx="62" cy="50" r="2.6" fill="#ED93B1" opacity="0.8"></circle></g></svg><span class="joy-char__l" aria-hidden="true">I</span></button>
+                <button type="button" class="joy-char" data-char="drobek" data-name="Drobek" data-sub-cs="D · Denní poznámky · kocour" data-sub-en="D · Daily notes · cat" aria-label="Drobek"><svg class="mc-fig mc-fig-drobek" data-mood="idle" data-char="drobek" width="96" height="96" viewBox="0 0 100 100" aria-hidden="true"><g class="mc-bob"><ellipse cx="48" cy="93" rx="26" ry="3" fill="#000" opacity="0.08"></ellipse><path class="mc-tail" d="M70 84 Q90 82 86 62 Q84 54 78 56" stroke="#D85A30" stroke-width="8" fill="none" stroke-linecap="round"></path><ellipse cx="48" cy="74" rx="24" ry="19" fill="#F0997B"></ellipse><ellipse cx="48" cy="80" rx="13" ry="11" fill="#FAECE7"></ellipse><ellipse cx="36" cy="91" rx="7" ry="4" fill="#F0997B"></ellipse><ellipse cx="60" cy="91" rx="7" ry="4" fill="#F0997B"></ellipse><path d="M26 36 L28 12 L44 27Z M70 36 L68 12 L52 27Z" fill="#D85A30"></path><path d="M30 30 L31 18 L39 26Z M66 30 L65 18 L57 26Z" fill="#F4C0D1"></path><circle cx="48" cy="42" r="21" fill="#F0997B"></circle><path d="M40 24 l2 6 M48 22 v7 M56 24 l-2 6" stroke="#D85A30" stroke-width="2.5" stroke-linecap="round"></path><g class="mc-eyes"><path d="M35 42 Q40 46 45 42 M51 42 Q56 46 61 42" stroke="#4A1B0C" stroke-width="3" fill="none" stroke-linecap="round"></path></g><g class="mc-eyes-happy"><path d="M35 45 Q40 38 45 45" stroke="#4A1B0C" stroke-width="3" fill="none" stroke-linecap="round"></path><path d="M51 45 Q56 38 61 45" stroke="#4A1B0C" stroke-width="3" fill="none" stroke-linecap="round"></path></g><path d="M46 49 h4 l-2 2.5Z" fill="#993C1D"></path><path d="M48 51.5 Q45 55 42 53 M48 51.5 Q51 55 54 53" stroke="#993C1D" stroke-width="1.8" fill="none" stroke-linecap="round"></path><path d="M30 48 h-9 M30 52 l-8 3 M66 48 h9 M66 52 l8 3" stroke="#993C1D" stroke-width="1.2" opacity="0.6"></path><g class="mc-zzz"><text x="74" y="26" font-size="13" font-weight="700" fill="#888780">z</text><text x="82" y="15" font-size="10" font-weight="700" fill="#888780">z</text></g></g></svg><span class="joy-char__l" aria-hidden="true">D</span></button>
+                <button type="button" class="joy-char" data-char="dalibor" data-name="Dalibor" data-sub-cs="D · Databáze · bobr" data-sub-en="D · Databases · beaver" aria-label="Dalibor"><svg class="mc-fig mc-fig-dalibor" data-mood="idle" data-char="dalibor" width="96" height="96" viewBox="0 0 100 100" aria-hidden="true"><g class="mc-bob"><ellipse cx="48" cy="94" rx="26" ry="3" fill="#000" opacity="0.08"></ellipse><ellipse class="mc-tail" cx="78" cy="86" rx="15" ry="7" fill="#633806"></ellipse><path class="mc-tail" d="M68 84 l20 4 M70 88 l18 -2" stroke="#412402" stroke-width="1" opacity="0.5"></path><ellipse cx="46" cy="70" rx="24" ry="23" fill="#BA7517"></ellipse><ellipse cx="46" cy="74" rx="15" ry="15" fill="#EF9F27" opacity="0.55"></ellipse><circle cx="28" cy="24" r="6" fill="#854F0B"></circle><circle cx="64" cy="24" r="6" fill="#854F0B"></circle><circle cx="46" cy="38" r="20" fill="#BA7517"></circle><g class="mc-eyes"><circle cx="38" cy="34" r="3.8" fill="#412402"></circle><circle cx="54" cy="34" r="3.8" fill="#412402"></circle><circle cx="39.2" cy="32.8" r="1.2" fill="#fff"></circle><circle cx="55.2" cy="32.8" r="1.2" fill="#fff"></circle></g><g class="mc-eyes-happy"><path d="M34 37 Q38 31 42 37" stroke="#412402" stroke-width="3" fill="none" stroke-linecap="round"></path><path d="M50 37 Q54 31 58 37" stroke="#412402" stroke-width="3" fill="none" stroke-linecap="round"></path></g><ellipse cx="46" cy="44" rx="9" ry="6" fill="#FAEEDA"></ellipse><ellipse cx="46" cy="41" rx="4.5" ry="3" fill="#412402"></ellipse><rect x="42.6" y="47" width="3.2" height="6" rx="0.8" fill="#fff" stroke="#854F0B" stroke-width="0.8"></rect><rect x="46.2" y="47" width="3.2" height="6" rx="0.8" fill="#fff" stroke="#854F0B" stroke-width="0.8"></rect><g class="mc-drawer"><rect x="27" y="62" width="38" height="25" rx="3" fill="#FAEEDA" stroke="#633806" stroke-width="2"></rect><path d="M32 70 h18 M32 76 h26 M32 82 h12" stroke="#854F0B" stroke-width="2" stroke-linecap="round"></path><rect x="53" y="66" width="8" height="5" rx="1" fill="#D4537E"></rect><ellipse cx="27" cy="74" rx="5" ry="6" fill="#854F0B"></ellipse><ellipse cx="65" cy="74" rx="5" ry="6" fill="#854F0B"></ellipse></g></g></svg><span class="joy-char__l" aria-hidden="true">D</span></button>
+                <button type="button" class="joy-char" data-char="inka" data-name="Inka" data-sub-cs="I · Nekonečná tabule · chobotnice" data-sub-en="I · Infinite canvas · octopus" aria-label="Inka"><svg class="mc-fig mc-fig-inka" data-mood="idle" data-char="inka" width="96" height="96" viewBox="0 0 100 100" aria-hidden="true"><g class="mc-bob"><ellipse cx="50" cy="95" rx="28" ry="3" fill="#000" opacity="0.08"></ellipse><path class="mc-arm mc-arm-1" d="M30 64 Q16 76 22 88 Q26 94 18 94" stroke="#ED93B1" stroke-width="8" fill="none" stroke-linecap="round"></path><path class="mc-arm mc-arm-2" d="M40 68 Q34 84 42 92" stroke="#ED93B1" stroke-width="8" fill="none" stroke-linecap="round"></path><path class="mc-arm mc-arm-3" d="M60 68 Q66 84 58 92" stroke="#ED93B1" stroke-width="8" fill="none" stroke-linecap="round"></path><g class="mc-arm mc-arm-4"><path d="M70 62 Q86 58 86 40" stroke="#ED93B1" stroke-width="8" fill="none" stroke-linecap="round"></path><g transform="rotate(-20 86 30)"><rect x="83" y="18" width="6" height="20" rx="1.5" fill="#1D9E75"></rect><path d="M83 18 h6 l-3 -6Z" fill="#04342C"></path></g></g><path class="mc-line" d="M10 22 Q22 10 34 20" stroke="#1D9E75" stroke-width="2.5" fill="none" stroke-dasharray="3 4" stroke-linecap="round"></path><ellipse cx="50" cy="46" rx="26" ry="25" fill="#ED93B1"></ellipse><ellipse cx="42" cy="32" rx="7" ry="4" fill="#FBEAF0" opacity="0.6" transform="rotate(-25 42 32)"></ellipse><g class="mc-eyes"><circle cx="41" cy="48" r="6" fill="#fff"></circle><circle cx="59" cy="48" r="6" fill="#fff"></circle><circle cx="42" cy="49" r="3" fill="#4B1528"></circle><circle cx="60" cy="49" r="3" fill="#4B1528"></circle></g><g class="mc-eyes-happy"><path d="M36 51 Q41 44 46 51" stroke="#4B1528" stroke-width="3" fill="none" stroke-linecap="round"></path><path d="M54 51 Q59 44 64 51" stroke="#4B1528" stroke-width="3" fill="none" stroke-linecap="round"></path></g><circle cx="32" cy="57" r="3.5" fill="#D4537E" opacity="0.7"></circle><circle cx="68" cy="57" r="3.5" fill="#D4537E" opacity="0.7"></circle><path d="M45 58 Q50 62 55 58" stroke="#4B1528" stroke-width="2.4" fill="none" stroke-linecap="round"></path></g></svg><span class="joy-char__l" aria-hidden="true">I</span></button>
+                <button type="button" class="joy-char" data-char="emil" data-name="Emil" data-sub-cs="E · Všechno doma · želva" data-sub-en="E · Everything local · turtle" aria-label="Emil"><svg class="mc-fig mc-fig-emil" data-mood="idle" data-char="emil" width="96" height="96" viewBox="0 0 100 100" aria-hidden="true"><g class="mc-bob"><ellipse cx="48" cy="92" rx="34" ry="3" fill="#000" opacity="0.08"></ellipse><g class="mc-head"><path d="M70 70 Q78 66 80 58" stroke="#97C459" stroke-width="11" fill="none" stroke-linecap="round"></path><circle cx="82" cy="52" r="12" fill="#97C459"></circle><g class="mc-eyes"><circle cx="85" cy="49" r="2.8" fill="#173404"></circle><circle cx="86" cy="48" r="0.9" fill="#fff"></circle></g><g class="mc-eyes-happy"><path d="M81.5 52 Q85 46.5 88.5 52" stroke="#173404" stroke-width="3" fill="none" stroke-linecap="round"></path></g><path d="M80 57 Q84 60 88 57" stroke="#173404" stroke-width="2" fill="none" stroke-linecap="round"></path><circle cx="78" cy="55" r="2.4" fill="#ED93B1" opacity="0.6"></circle></g><rect x="18" y="76" width="11" height="13" rx="4" fill="#97C459"></rect><rect x="54" y="76" width="11" height="13" rx="4" fill="#97C459"></rect><path d="M10 80 Q12 40 42 36 Q72 40 74 80Z" fill="#639922"></path><path d="M10 80 h64" stroke="#3B6D11" stroke-width="4" stroke-linecap="round"></path><path d="M22 76 L28 58 M62 76 L56 58 M28 58 h28" stroke="#3B6D11" stroke-width="2" opacity="0.5"></path><path d="M31 58 L42 46 L53 58 V72 H31Z" fill="#EAF3DE"></path><path d="M28 59 L42 44 L56 59" stroke="#3B6D11" stroke-width="3" fill="none" stroke-linejoin="round" stroke-linecap="round"></path><rect x="39" y="62" width="7" height="10" rx="1" fill="#3B6D11"></rect><rect class="mc-window" x="47.5" y="61" width="4" height="4" fill="#FAC775"></rect></g></svg><span class="joy-char__l" aria-hidden="true">E</span></button>
+                <button type="button" class="joy-char" data-char="nitka" data-name="Nitka" data-sub-cs="průvodkyně · cívka" data-sub-en="the guide · spool" aria-label="Nitka"><svg class="mc-fig mc-fig-nitka" data-mood="idle" data-char="nitka" width="96" height="96" viewBox="0 0 100 100" aria-hidden="true"><g class="mc-bob"><ellipse cx="46" cy="94" rx="22" ry="3" fill="#000" opacity="0.08"></ellipse><path class="mc-thread" d="M66 70 Q86 70 82 84 Q78 94 92 92" stroke="#1D9E75" stroke-width="3.5" fill="none" stroke-linecap="round"></path><rect x="22" y="22" width="48" height="10" rx="4" fill="#534AB7"></rect><rect x="22" y="82" width="48" height="10" rx="4" fill="#534AB7"></rect><rect x="27" y="32" width="38" height="50" fill="#5DCAA5"></rect><path d="M27 38 h38 M27 45 h38 M27 52 h38 M27 59 h38 M27 66 h38 M27 73 h38" stroke="#1D9E75" stroke-width="2.2"></path><g class="mc-eyes"><circle cx="38" cy="54" r="5" fill="#fff"></circle><circle cx="54" cy="54" r="5" fill="#fff"></circle><circle cx="38.6" cy="55" r="2.5" fill="#04342C"></circle><circle cx="54.6" cy="55" r="2.5" fill="#04342C"></circle></g><g class="mc-eyes-happy"><path d="M33.5 57 Q38 50.5 42.5 57" stroke="#04342C" stroke-width="3" fill="none" stroke-linecap="round"></path><path d="M49.5 57 Q54 50.5 58.5 57" stroke="#04342C" stroke-width="3" fill="none" stroke-linecap="round"></path></g><path d="M41 63 Q46 67 51 63" stroke="#04342C" stroke-width="2.4" fill="none" stroke-linecap="round"></path><circle cx="31" cy="61" r="2.6" fill="#ED93B1" opacity="0.7"></circle><circle cx="61" cy="61" r="2.6" fill="#ED93B1" opacity="0.7"></circle><g transform="rotate(35 70 18)"><rect x="68.5" y="4" width="3" height="26" rx="1.5" fill="#B4B2A9"></rect><ellipse cx="70" cy="9" rx="1" ry="2.5" fill="#fff"></ellipse></g></g></svg><span class="joy-char__l" aria-hidden="true">·</span></button>
+              </div>
+              <p class="joy-hint" data-en="Click one. They talk on their own too.">Klikni na kteroukoli. Mluví i&nbsp;sami od sebe.</p>
+            </div>
+          </article>
+
+          <!-- "What now?" dice -->
+          <article class="tile tile--5 tile--tall joy-dice" data-reveal data-tile data-joy-dice>
+            <div class="joy-tags"><span class="joy-tag joy-tag--now" data-en="In the app">V&nbsp;aplikaci</span><span class="joy-tag joy-tag--adhd" data-en="When starting is hard">Když se nedaří začít</span></div>
+            <h3 data-en="The “What now?” dice">Kostka „Co teď?“</h3>
+            <p data-en="Can’t decide where to start? The dice picks one open task and hides the rest. You can roll three more times, then it insists.">Nevíš, čím začít? Kostka vybere jeden otevřený úkol a&nbsp;ostatní schová. Hodit můžeš ještě třikrát, pak už trvá na svém.</p>
+            <div class="tile__viz">
+              <div class="joy-dlg">
+                <div class="joy-dlg__head"><b data-en="What now?">Co teď?</b><span class="joy-mini" data-joy-mini="nitka"><svg class="mc-fig mc-fig-nitka" data-mood="idle" data-char="nitka" width="44" height="44" viewBox="0 0 100 100" aria-hidden="true"><g class="mc-bob"><ellipse cx="46" cy="94" rx="22" ry="3" fill="#000" opacity="0.08"></ellipse><path class="mc-thread" d="M66 70 Q86 70 82 84 Q78 94 92 92" stroke="#1D9E75" stroke-width="3.5" fill="none" stroke-linecap="round"></path><rect x="22" y="22" width="48" height="10" rx="4" fill="#534AB7"></rect><rect x="22" y="82" width="48" height="10" rx="4" fill="#534AB7"></rect><rect x="27" y="32" width="38" height="50" fill="#5DCAA5"></rect><path d="M27 38 h38 M27 45 h38 M27 52 h38 M27 59 h38 M27 66 h38 M27 73 h38" stroke="#1D9E75" stroke-width="2.2"></path><g class="mc-eyes"><circle cx="38" cy="54" r="5" fill="#fff"></circle><circle cx="54" cy="54" r="5" fill="#fff"></circle><circle cx="38.6" cy="55" r="2.5" fill="#04342C"></circle><circle cx="54.6" cy="55" r="2.5" fill="#04342C"></circle></g><g class="mc-eyes-happy"><path d="M33.5 57 Q38 50.5 42.5 57" stroke="#04342C" stroke-width="3" fill="none" stroke-linecap="round"></path><path d="M49.5 57 Q54 50.5 58.5 57" stroke="#04342C" stroke-width="3" fill="none" stroke-linecap="round"></path></g><path d="M41 63 Q46 67 51 63" stroke="#04342C" stroke-width="2.4" fill="none" stroke-linecap="round"></path><circle cx="31" cy="61" r="2.6" fill="#ED93B1" opacity="0.7"></circle><circle cx="61" cy="61" r="2.6" fill="#ED93B1" opacity="0.7"></circle><g transform="rotate(35 70 18)"><rect x="68.5" y="4" width="3" height="26" rx="1.5" fill="#B4B2A9"></rect><ellipse cx="70" cy="9" rx="1" ry="2.5" fill="#fff"></ellipse></g></g></svg><span class="joy-mini__bubble" data-joy-mini-text></span></span></div>
+                <div class="joy-die" data-joy-die aria-hidden="true">E</div>
+                <div class="joy-task" data-joy-task>
+                  <b data-joy-task-title>Hoď kostkou, vybere za tebe</b>
+                  <span class="joy-task__meta" data-joy-task-meta></span>
+                </div>
+                <p class="joy-dlg__hint" data-joy-dice-hint>Jen tenhle jeden. Všechno ostatní počká.</p>
+                <div class="joy-dlg__actions">
+                  <button type="button" class="joy-btn joy-btn--primary" data-joy-roll><svg class="ic" aria-hidden="true"><use href="#i-dice"/></svg><span data-joy-roll-label>Hodit</span></button>
+                  <span class="joy-left" data-joy-left></span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Writing lantern -->
+          <article class="tile joy-lantern" data-reveal data-tile data-joy-lantern>
+            <div class="joy-tags"><span class="joy-tag joy-tag--soon" data-en="New in 0.1.10">Nově v&nbsp;0.1.10</span></div>
+            <h3 data-en="The writing lantern">Lucerna za psaní</h3>
+            <p data-en="Every ten words add a little light; at fifty it shines in full. It never dims and never blinks at you. In October it’s a pumpkin, in December a candle, in spring a flower.">Každých deset napsaných slov přidá světla, po padesáti svítí naplno. Nikdy nezhasne, nikdy nebliká výčitkou. V&nbsp;říjnu je z&nbsp;ní dýně, v&nbsp;prosinci svíčka, na jaře kytka.</p>
+            <div class="tile__viz">
+              <div class="joy-write">
+                <textarea data-joy-words rows="3" placeholder="Zkus sem napsat pár vět…" data-en-placeholder="Try writing a few sentences…" aria-label="Zkušební text pro lucernu" data-en-aria-label="Practice text for the lantern"></textarea>
+                <div class="joy-write__side">
+                  <span class="joy-lamp" data-joy-lamp role="img" aria-label="Lucerna"></span>
+                  <span class="joy-lamp__bubble" data-joy-lit data-en="A lit thought ✨">Myšlenka rozsvícená ✨</span>
+                </div>
+              </div>
+              <div class="joy-write__foot">
+                <span data-joy-count>0 slov</span>
+                <span class="joy-motifs" role="group" aria-label="Motiv" data-en-aria-label="Motif">
+                  <button type="button" data-motif="pumpkin" title="Říjen" data-en-title="October">🎃</button>
+                  <button type="button" data-motif="candle" title="Prosinec" data-en-title="December">🕯️</button>
+                  <button type="button" data-motif="flower" title="Jaro a léto" data-en-title="Spring and summer">🌷</button>
+                  <button type="button" data-motif="lantern" title="Zbytek roku" data-en-title="Rest of the year">🏮</button>
+                </span>
+                <button type="button" class="joy-link" data-joy-autowrite data-en="Write for me">Napiš to za mě</button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Just 5 minutes -->
+          <article class="tile joy-five" data-reveal data-tile data-joy-five>
+            <div class="joy-tags"><span class="joy-tag joy-tag--soon" data-en="New in 0.1.10">Nově v&nbsp;0.1.10</span><span class="joy-tag joy-tag--adhd" data-en="When starting is hard">Když se nedaří začít</span></div>
+            <h3 data-en="Just 5 minutes">Jen 5 minut</h3>
+            <p data-en="For the task you’re avoiding. Only that task opens, with no distractions, for five minutes. Then one question: keep going, or is that enough? Both count.">Na úkol, do kterého se nechce. Otevře se jen on, bez rozptylování, a&nbsp;běží pět minut. Pak jediná otázka: pokračovat, nebo to stačí? Obojí se počítá.</p>
+            <div class="tile__viz">
+              <div class="joy-timer" data-joy-timer>
+                <div class="joy-timer__task"><span class="ol__cb"></span><span data-en="Write the tax return">Vyplnit daňové přiznání</span></div>
+                <div class="joy-timer__bar"><span data-joy-bar></span></div>
+                <div class="joy-timer__row">
+                  <button type="button" class="joy-btn" data-joy-five-start>⏳ <span data-en="Just 5 minutes">Jen 5 minut</span></button>
+                  <span class="joy-timer__count" data-joy-five-count hidden></span>
+                  <span class="joy-mini joy-mini--right" data-joy-mini="drobek"><svg class="mc-fig mc-fig-drobek" data-mood="idle" data-char="drobek" width="44" height="44" viewBox="0 0 100 100" aria-hidden="true"><g class="mc-bob"><ellipse cx="48" cy="93" rx="26" ry="3" fill="#000" opacity="0.08"></ellipse><path class="mc-tail" d="M70 84 Q90 82 86 62 Q84 54 78 56" stroke="#D85A30" stroke-width="8" fill="none" stroke-linecap="round"></path><ellipse cx="48" cy="74" rx="24" ry="19" fill="#F0997B"></ellipse><ellipse cx="48" cy="80" rx="13" ry="11" fill="#FAECE7"></ellipse><ellipse cx="36" cy="91" rx="7" ry="4" fill="#F0997B"></ellipse><ellipse cx="60" cy="91" rx="7" ry="4" fill="#F0997B"></ellipse><path d="M26 36 L28 12 L44 27Z M70 36 L68 12 L52 27Z" fill="#D85A30"></path><path d="M30 30 L31 18 L39 26Z M66 30 L65 18 L57 26Z" fill="#F4C0D1"></path><circle cx="48" cy="42" r="21" fill="#F0997B"></circle><path d="M40 24 l2 6 M48 22 v7 M56 24 l-2 6" stroke="#D85A30" stroke-width="2.5" stroke-linecap="round"></path><g class="mc-eyes"><path d="M35 42 Q40 46 45 42 M51 42 Q56 46 61 42" stroke="#4A1B0C" stroke-width="3" fill="none" stroke-linecap="round"></path></g><g class="mc-eyes-happy"><path d="M35 45 Q40 38 45 45" stroke="#4A1B0C" stroke-width="3" fill="none" stroke-linecap="round"></path><path d="M51 45 Q56 38 61 45" stroke="#4A1B0C" stroke-width="3" fill="none" stroke-linecap="round"></path></g><path d="M46 49 h4 l-2 2.5Z" fill="#993C1D"></path><path d="M48 51.5 Q45 55 42 53 M48 51.5 Q51 55 54 53" stroke="#993C1D" stroke-width="1.8" fill="none" stroke-linecap="round"></path><path d="M30 48 h-9 M30 52 l-8 3 M66 48 h9 M66 52 l8 3" stroke="#993C1D" stroke-width="1.2" opacity="0.6"></path><g class="mc-zzz"><text x="74" y="26" font-size="13" font-weight="700" fill="#888780">z</text><text x="82" y="15" font-size="10" font-weight="700" fill="#888780">z</text></g></g></svg><span class="joy-mini__bubble" data-joy-mini-text></span></span>
+                </div>
+                <div class="joy-timer__card" data-joy-five-card hidden>
+                  <b data-joy-five-title>5 minut hotovo 🙂</b>
+                  <span data-en="Keep going, or is that enough? <i>Either way, it counts.</i>">Pokračovat, nebo to stačí? <i>Obojí se počítá.</i></span>
+                  <span class="joy-timer__actions"><button type="button" class="joy-btn joy-btn--primary" data-joy-five-more data-en="Keep going">Pokračovat</button><button type="button" class="joy-btn" data-joy-five-enough data-en="That’s enough">Stačí</button></span>
+                </div>
+              </div>
+              <p class="joy-hint" data-en="The demo runs fast: 5 minutes in 5 seconds.">Ukázka běží zrychleně: 5 minut za 5 sekund.</p>
+            </div>
+          </article>
+
+          <!-- Confetti + Done today -->
+          <article class="tile joy-done" data-reveal data-tile data-joy-done>
+            <div class="joy-tags"><span class="joy-tag joy-tag--now" data-en="In the app">V&nbsp;aplikaci</span></div>
+            <h3 data-en="Confetti for ticking off">Konfety za odškrtnutí</h3>
+            <p data-en="The first task of the day, and then every fifth, gets a handful of confetti. Home shows how much you’ve done today, just for you: nothing is written into your notes.">První hotový úkol dne a&nbsp;pak každý pátý oslaví hrst konfet. Na domovské stránce vidíš, kolik máš dnes hotovo. Jen pro tebe, do poznámek se nic nezapisuje.</p>
+            <div class="tile__viz">
+              <div class="joy-list">
+                <label><input type="checkbox" data-joy-check><span data-en="Reply to Jana">Odepsat Janě</span></label>
+                <label><input type="checkbox" data-joy-check><span data-en="Water the basil">Zalít bazalku</span></label>
+                <label><input type="checkbox" data-joy-check><span data-en="Book the dentist">Objednat se k&nbsp;zubaři</span></label>
+                <label><input type="checkbox" data-joy-check><span data-en="Send the invoice">Poslat fakturu</span></label>
+                <label><input type="checkbox" data-joy-check><span data-en="Take a walk">Jít se projít</span></label>
+                <div class="joy-list__foot"><span class="pill pill--green" data-joy-done-count>Dnes hotovo: 0</span><span class="joy-mini joy-mini--right" data-joy-mini="dalibor"><svg class="mc-fig mc-fig-dalibor" data-mood="idle" data-char="dalibor" width="44" height="44" viewBox="0 0 100 100" aria-hidden="true"><g class="mc-bob"><ellipse cx="48" cy="94" rx="26" ry="3" fill="#000" opacity="0.08"></ellipse><ellipse class="mc-tail" cx="78" cy="86" rx="15" ry="7" fill="#633806"></ellipse><path class="mc-tail" d="M68 84 l20 4 M70 88 l18 -2" stroke="#412402" stroke-width="1" opacity="0.5"></path><ellipse cx="46" cy="70" rx="24" ry="23" fill="#BA7517"></ellipse><ellipse cx="46" cy="74" rx="15" ry="15" fill="#EF9F27" opacity="0.55"></ellipse><circle cx="28" cy="24" r="6" fill="#854F0B"></circle><circle cx="64" cy="24" r="6" fill="#854F0B"></circle><circle cx="46" cy="38" r="20" fill="#BA7517"></circle><g class="mc-eyes"><circle cx="38" cy="34" r="3.8" fill="#412402"></circle><circle cx="54" cy="34" r="3.8" fill="#412402"></circle><circle cx="39.2" cy="32.8" r="1.2" fill="#fff"></circle><circle cx="55.2" cy="32.8" r="1.2" fill="#fff"></circle></g><g class="mc-eyes-happy"><path d="M34 37 Q38 31 42 37" stroke="#412402" stroke-width="3" fill="none" stroke-linecap="round"></path><path d="M50 37 Q54 31 58 37" stroke="#412402" stroke-width="3" fill="none" stroke-linecap="round"></path></g><ellipse cx="46" cy="44" rx="9" ry="6" fill="#FAEEDA"></ellipse><ellipse cx="46" cy="41" rx="4.5" ry="3" fill="#412402"></ellipse><rect x="42.6" y="47" width="3.2" height="6" rx="0.8" fill="#fff" stroke="#854F0B" stroke-width="0.8"></rect><rect x="46.2" y="47" width="3.2" height="6" rx="0.8" fill="#fff" stroke="#854F0B" stroke-width="0.8"></rect><g class="mc-drawer"><rect x="27" y="62" width="38" height="25" rx="3" fill="#FAEEDA" stroke="#633806" stroke-width="2"></rect><path d="M32 70 h18 M32 76 h26 M32 82 h12" stroke="#854F0B" stroke-width="2" stroke-linecap="round"></path><rect x="53" y="66" width="8" height="5" rx="1" fill="#D4537E"></rect><ellipse cx="27" cy="74" rx="5" ry="6" fill="#854F0B"></ellipse><ellipse cx="65" cy="74" rx="5" ry="6" fill="#854F0B"></ellipse></g></g></svg><span class="joy-mini__bubble" data-joy-mini-text></span></span></div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Seasons, holidays, name days -->
+          <article class="tile tile--7 joy-season" data-reveal data-tile data-joy-season>
+            <div class="joy-tags"><span class="joy-tag joy-tag--now" data-en="In the app">V&nbsp;aplikaci</span></div>
+            <h3 data-en="Seasons, holidays and name days">Sezóny, svátky a&nbsp;jmeniny</h3>
+            <p data-en="Bats fly across on Halloween and the logo wears a pumpkin, December brings snow, Easter rolls eggs. Every day you see whose Czech name day it is, linked to their page if you have one. Remembrance days stay quiet: no effects, no jokes.">Na Halloween proletí netopýři a&nbsp;logo dostane dýni, v&nbsp;prosinci sněží, o&nbsp;Velikonocích se kutálejí vajíčka. Na Mikuláše ti anděl nebo čert řekne, jak jsi na tom s&nbsp;úkoly. A&nbsp;každý den víš, kdo má svátek, i&nbsp;s&nbsp;odkazem na jeho stránku, pokud ji máš. Pietní dny zůstávají tiché: bez efektů a&nbsp;vtipů.</p>
+            <div class="tile__viz">
+              <div class="joy-home" data-joy-stage>
+                <div class="joy-home__line">
+                  <span class="joy-chip joy-chip--occ" data-joy-occ hidden></span>
+                  <span class="joy-chip" data-joy-nameday></span>
+                </div>
+                <div class="joy-seasons" role="group" aria-label="Vyzkoušej sváteční den" data-en-aria-label="Try a holiday">
+                  <button type="button" data-occ="halloween">🎃 Halloween</button>
+                  <button type="button" data-occ="christmas" data-en="❄️ Christmas">❄️ Vánoce</button>
+                  <button type="button" data-occ="valentine" data-en="💌 Valentine’s">💌 Valentýn</button>
+                  <button type="button" data-occ="easter" data-en="🐣 Easter">🐣 Velikonoce</button>
+                  <button type="button" data-occ="mikulas" data-en="😇 St Nicholas">😇 Mikuláš</button>
+                </div>
+                <span class="joy-mini joy-mini--corner" data-joy-mini="inka"><svg class="mc-fig mc-fig-inka" data-mood="idle" data-char="inka" width="44" height="44" viewBox="0 0 100 100" aria-hidden="true"><g class="mc-bob"><ellipse cx="50" cy="95" rx="28" ry="3" fill="#000" opacity="0.08"></ellipse><path class="mc-arm mc-arm-1" d="M30 64 Q16 76 22 88 Q26 94 18 94" stroke="#ED93B1" stroke-width="8" fill="none" stroke-linecap="round"></path><path class="mc-arm mc-arm-2" d="M40 68 Q34 84 42 92" stroke="#ED93B1" stroke-width="8" fill="none" stroke-linecap="round"></path><path class="mc-arm mc-arm-3" d="M60 68 Q66 84 58 92" stroke="#ED93B1" stroke-width="8" fill="none" stroke-linecap="round"></path><g class="mc-arm mc-arm-4"><path d="M70 62 Q86 58 86 40" stroke="#ED93B1" stroke-width="8" fill="none" stroke-linecap="round"></path><g transform="rotate(-20 86 30)"><rect x="83" y="18" width="6" height="20" rx="1.5" fill="#1D9E75"></rect><path d="M83 18 h6 l-3 -6Z" fill="#04342C"></path></g></g><path class="mc-line" d="M10 22 Q22 10 34 20" stroke="#1D9E75" stroke-width="2.5" fill="none" stroke-dasharray="3 4" stroke-linecap="round"></path><ellipse cx="50" cy="46" rx="26" ry="25" fill="#ED93B1"></ellipse><ellipse cx="42" cy="32" rx="7" ry="4" fill="#FBEAF0" opacity="0.6" transform="rotate(-25 42 32)"></ellipse><g class="mc-eyes"><circle cx="41" cy="48" r="6" fill="#fff"></circle><circle cx="59" cy="48" r="6" fill="#fff"></circle><circle cx="42" cy="49" r="3" fill="#4B1528"></circle><circle cx="60" cy="49" r="3" fill="#4B1528"></circle></g><g class="mc-eyes-happy"><path d="M36 51 Q41 44 46 51" stroke="#4B1528" stroke-width="3" fill="none" stroke-linecap="round"></path><path d="M54 51 Q59 44 64 51" stroke="#4B1528" stroke-width="3" fill="none" stroke-linecap="round"></path></g><circle cx="32" cy="57" r="3.5" fill="#D4537E" opacity="0.7"></circle><circle cx="68" cy="57" r="3.5" fill="#D4537E" opacity="0.7"></circle><path d="M45 58 Q50 62 55 58" stroke="#4B1528" stroke-width="2.4" fill="none" stroke-linecap="round"></path></g></svg><span class="joy-mini__bubble" data-joy-mini-text></span></span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Easter egg -->
+          <article class="tile tile--5 joy-egg" data-reveal data-tile data-joy-egg>
+            <div class="joy-tags"><span class="joy-tag joy-tag--soon" data-en="New in 0.1.10">Nově v&nbsp;0.1.10</span></div>
+            <h3 data-en="A secret in the logo">Tajemství v&nbsp;logu</h3>
+            <p data-en="The app hides a few secrets. We’ll give one away: click the E logo five times, quickly. It works here on the website too, try it below or up in the bar.">V&nbsp;aplikaci se schovává pár tajemství. Jedno prozradíme: pětkrát rychle klikni na logo E. Funguje to i&nbsp;tady na webu, zkus to tady nebo nahoře v&nbsp;liště.</p>
+            <div class="tile__viz">
+              <div class="joy-egg__stage">
+                <button type="button" class="joy-egg__logo" data-joy-egg-logo aria-label="Logo Eiddie, klikni pětkrát rychle za sebou" data-en-aria-label="Eiddie logo, click five times quickly"><img src="assets/img/logo.svg" alt="" width="72" height="72"></button>
+                <span class="joy-egg__dots" data-joy-egg-dots aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <!-- The rules the little joys keep -->
+        <ul class="joy-rules" data-stagger>
+          <li data-reveal><span class="joy-rules__ic"><svg class="ic"><use href="#i-heart"/></svg></span><div><b data-en="Never guilt">Nikdy nevyčítá</b><span data-en="No streaks to break, no red badges. An overdue task gets a shrug, not a scolding.">Žádné série, které by se daly přerušit, žádné červené odznaky. Úkol po termínu je pokrčení ramen, ne výtka.</span></div></li>
+          <li data-reveal><span class="joy-rules__ic"><svg class="ic"><use href="#i-lock"/></svg></span><div><b data-en="Never touches your notes">Nesahá na poznámky</b><span data-en="The little joys live next to your files, not in them. Your Markdown stays clean, offline and without AI.">Radosti žijí vedle tvých souborů, ne v&nbsp;nich. Markdown zůstává čistý, všechno offline a&nbsp;bez AI.</span></div></li>
+          <li data-reveal><span class="joy-rules__ic"><svg class="ic"><use href="#i-eye"/></svg></span><div><b data-en="One switch">Jeden vypínač</b><span data-en="Not everyone likes confetti, so the decorations are opt-in, under one switch in Settings. The dice and “Just 5 minutes” always work.">Ne každý má rád konfety, proto je zapneš v&nbsp;Nastavení jedním vypínačem, jen když chceš. Kostka a&nbsp;„Jen 5 minut“ fungují vždycky.</span></div></li>
+        </ul>
+
+        <!-- Roadmap: what is coming next -->
+        <div class="joy-next">
+          <div class="joy-next__head" data-reveal>
+            <h3 class="h3" data-en="We add them <em>bit by bit</em>.">Přidáváme je <em>postupně</em>.</h3>
+            <p data-en="Every version brings something small on top. The lantern and the idea table both came from pilot testers. Here’s what we’re working on:">Každá verze přinese něco malého navíc. Lucerna i&nbsp;stůl nápadů vznikly z&nbsp;nápadů pilotních testerů. Na čem pracujeme teď:</p>
+          </div>
+          <div class="joy-next__grid" data-stagger>
+            <article class="joy-card joy-card--table" data-reveal>
+              <div class="joy-deck" aria-hidden="true">
+                <span class="joy-deck__c joy-deck__c--1"><i class="s s--circle"></i><small data-en="Problem">Problém</small><span data-en="People forget to water plants">Lidi zapomínají zalévat kytky</span></span>
+                <span class="joy-deck__c joy-deck__c--2"><i class="s s--heart"></i><small data-en="For whom">Pro koho</small><span data-en="People who travel a lot">Kdo často cestuje</span></span>
+                <span class="joy-deck__c joy-deck__c--3"><i class="s s--tri"></i><small data-en="Strategy">Strategie</small><span data-en="Sell it as a kit">Prodávat jako sadu</span></span>
+                <span class="joy-deck__c joy-deck__c--4 is-empty"><small data-en="Risk">Riziko</small><span data-en="What could go wrong?">Co se může pokazit?</span></span>
+              </div>
+              <div>
+                <span class="joy-tag joy-tag--idea" data-en="In preparation">Připravujeme</span>
+                <h4 data-en="The idea table">Stůl nápadů</h4>
+                <p data-en="An idea as a deck of cards: problem, for whom, risk, next step. Empty slots ask what’s still missing. Themes: shapes, playing cards or tarot.">Nápad jako balíček karet: problém, pro koho, riziko, další krok. Prázdná místa se ptají, co ještě chybí. Motivy tvary, hrací karty nebo tarot.</p>
+              </div>
+            </article>
+            <article class="joy-card" data-reveal>
+              <span class="joy-card__ic" aria-hidden="true">🕊️</span>
+              <span class="joy-card__tags"><span class="joy-tag joy-tag--idea" data-en="In preparation">Připravujeme</span><span class="joy-tag joy-tag--adhd" data-en="When starting is hard">Když se nedaří začít</span></span>
+              <h4 data-en="Task amnesty">Amnestie úkolů</h4>
+              <p data-en="Back after a few days away to a pile of overdue tasks? One click gives them a fresh start, no guilt attached.">Vrátíš se po pár dnech a&nbsp;čeká tě hromada úkolů po termínu? Jedním klikem jim dáš nový začátek, bez výčitek.</p>
+            </article>
+            <article class="joy-card joy-card--you" data-reveal>
+              <span class="joy-card__ic" aria-hidden="true">💡</span>
+              <h4 data-en="Your idea?">Tvůj nápad?</h4>
+              <p data-en="What little thing would make your day? Tell me and it may end up in the next version.">Jaká drobnost by ti udělala radost? Napiš mi a&nbsp;možná ji najdeš v&nbsp;příští verzi.</p>
+              <a class="joy-link" href="#kontakt"><span data-en="Write to me">Napsat nápad</span><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+            </article>
+          </div>
         </div>
       </div>
     </section>
