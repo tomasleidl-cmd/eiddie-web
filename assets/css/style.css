@@ -1018,6 +1018,14 @@ pre.md .ln { display: inline-block; width: 2.2em; color: #4a4a58; user-select: n
 .mailchip a { font-weight: 600; font-size: 15.5px; overflow: hidden; text-overflow: ellipsis; }
 .mailchip button { margin-left: auto; display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 12px; border-radius: 10px; background: rgba(255, 255, 255, 0.1); color: #fff; font-size: 13px; font-weight: 600; transition: background-color 0.2s; flex: none; }
 .mailchip button:hover { background: rgba(255, 255, 255, 0.18); }
+/* The e-mail chip and, under it, the same chip as one link to the Facebook page (config.js → facebook) */
+.author__links { margin-top: auto; display: grid; gap: 10px; }
+.author__links .mailchip { margin-top: 0; }
+.mailchip--link { font-weight: 600; font-size: 15.5px; transition: background-color 0.2s, border-color 0.2s; }
+.mailchip--link:hover { background: rgba(255, 255, 255, 0.12); border-color: rgba(255, 255, 255, 0.24); }
+.mailchip__go { margin-left: auto; flex: none; display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 12px; border-radius: 10px; background: rgba(255, 255, 255, 0.1); font-size: 13px; }
+.mailchip__go .ic { font-size: 14px; color: inherit; transition: transform 0.25s var(--ease); }
+.mailchip--link:hover .mailchip__go .ic { transform: translateX(3px); }
 .form { padding: clamp(28px, 4vw, 44px); border-radius: var(--r-xl); background: var(--surface); border: 1px solid var(--line); box-shadow: var(--shadow-2); display: grid; gap: 16px; }
 .form h3 { font-size: 24px; letter-spacing: -0.025em; }
 .form__row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
@@ -1051,6 +1059,9 @@ pre.md .ln { display: inline-block; width: 2.2em; color: #4a4a58; user-select: n
 .footer__brand p { margin: 14px 0 0; color: var(--ink-3); font-size: 14.5px; max-width: 300px; }
 .footer__brand .footer__slogan { font: 600 15px/1.4 var(--f-display); letter-spacing: -0.01em; color: var(--ink-2); max-width: 340px; }
 .footer__slogan b { color: var(--violet-700); font-weight: 800; }
+.footer__social { display: inline-flex; align-items: center; gap: 10px; margin-top: 20px; padding: 5px 16px 5px 5px; border-radius: 999px; background: var(--surface); border: 1px solid var(--line-2); color: var(--ink-2); font-size: 14.5px; font-weight: 600; transition: color 0.2s, border-color 0.2s, box-shadow 0.2s; }
+.footer__social .ic { box-sizing: content-box; padding: 8px; border-radius: 50%; background: var(--violet); color: #fff; font-size: 16px; }
+.footer__social:hover { color: var(--violet-700); border-color: color-mix(in srgb, var(--violet) 40%, transparent); box-shadow: var(--shadow-1); }
 .footer h4 { font: 600 13px/1 var(--f-body); letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 16px; }
 .footer ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; font-size: 15px; }
 .footer ul a { color: var(--ink-2); transition: color 0.2s; }
@@ -1317,6 +1328,8 @@ pre.md .ln { display: inline-block; width: 2.2em; color: #4a4a58; user-select: n
   .footer__grid { grid-template-columns: 1fr; }
   .mailchip { flex-wrap: wrap; }
   .mailchip button { margin-left: 0; }
+  .mailchip--link { flex-wrap: nowrap; }
+  .mailchip__go > span { display: none; }
 }
 
 /* Very narrow phones (320 px): long English labels may wrap inside a button instead of spilling out */

@@ -93,6 +93,7 @@
     <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></symbol>
     <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></symbol>
     <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></symbol>
+    <symbol id="i-facebook" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></symbol>
     <symbol id="i-card" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20M6 15h4"/></symbol>
     <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"/><path d="m9 12 2 2 4-4"/></symbol>
     <symbol id="i-layers" viewBox="0 0 24 24"><path d="m12 3 9 5-9 5-9-5z"/><path d="m3 13 9 5 9-5"/></symbol>
@@ -1480,6 +1481,10 @@
             <div class="faq__a"><p data-en="Eiddie opens with sample notes and a Getting started list: six things, about two minutes. The same steps with pictures, a table of keyboard shortcuts and tips for anyone coming from Obsidian, Tana, Heptabase or Notion are on the <a href=&quot;start.html&quot;>Getting started</a> page.">Aplikace Eiddie se otevře s&nbsp;ukázkovými poznámkami a&nbsp;seznamem Začínáme: šest věcí zhruba na dvě minuty. Tytéž kroky s&nbsp;obrázky, tabulku klávesových zkratek a&nbsp;tipy pro přechod z&nbsp;Obsidianu, Tany, Heptabase nebo Notionu najdeš na stránce <a href="start.html">Začínáme</a>.</p></div>
           </details>
           <details data-reveal>
+            <summary><span data-en="Where do I find news and more information?">Kde najdu novinky a&nbsp;další informace?</span><span class="pm" aria-hidden="true"></span></summary>
+            <div class="faq__a"><p data-en="What each version brought is on the <a href=&quot;novinky.html&quot;>What’s new</a> page, and the first steps are in <a href=&quot;start.html&quot;>Getting started</a>. I also post a look inside the app and news about new versions on the <a href=&quot;https://www.facebook.com/profile.php?id=61594936154489&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot; data-cfg-link=&quot;facebook&quot;>Eiddie Facebook page</a>. Follow it so you don’t miss anything.">Co přinesla která verze, najdeš na stránce <a href="novinky.html">Co je nového</a> a&nbsp;první kroky na stránce <a href="start.html">Začínáme</a>. Ukázky z&nbsp;aplikace a&nbsp;zprávy o&nbsp;nových verzích dávám i&nbsp;na <a href="https://www.facebook.com/profile.php?id=61594936154489" target="_blank" rel="noopener" data-cfg-link="facebook">facebookovou stránku Eiddie</a>. Sleduj ji, ať ti nic neuteče.</p></div>
+          </details>
+          <details data-reveal>
             <summary><span data-en="What language is the app in?">V&nbsp;jakém jazyce je aplikace?</span><span class="pm" aria-hidden="true"></span></summary>
             <div class="faq__a"><p data-en="The app’s interface is in English for now; this website is in Czech and English. Write your notes in any language: search finds words with or without accents.">Rozhraní aplikace je zatím anglicky, tenhle web je česky i&nbsp;anglicky. Poznámky si píšeš v&nbsp;jakémkoli jazyce a&nbsp;hledání najde slova s&nbsp;diakritikou i&nbsp;bez ní.</p></div>
           </details>
@@ -1553,10 +1558,17 @@
             <p data-en="I read every e-mail personally and usually reply within two days. Bug reports, feature ideas or a team licence: write to me." data-pilot-hide>Každý e-mail čtu osobně a&nbsp;obvykle odpovím do dvou dnů. Nahlášení chyby, nápad na funkci nebo licence pro tým: napiš mi.</p>
             <p data-en="I read every e-mail personally and usually reply within two days. Pilot feedback, bug reports or feature ideas: write to me." data-pilot-only>Každý e-mail čtu osobně a&nbsp;obvykle odpovím do dvou dnů. Zpětná vazba z&nbsp;pilotu, nahlášení chyby nebo nápad na funkci: napiš mi.</p>
             <div class="author__sig">Tomáš</div>
-            <div class="mailchip">
-              <svg class="ic"><use href="#i-mail"/></svg>
-              <a href="mailto:tomas.leidl@gmail.com" data-cfg="email">tomas.leidl@gmail.com</a>
-              <button type="button" data-copy-email><svg class="ic"><use href="#i-copy"/></svg><span data-en="Copy">Kopírovat</span></button>
+            <div class="author__links">
+              <div class="mailchip">
+                <svg class="ic"><use href="#i-mail"/></svg>
+                <a href="mailto:tomas.leidl@gmail.com" data-cfg="email">tomas.leidl@gmail.com</a>
+                <button type="button" data-copy-email><svg class="ic"><use href="#i-copy"/></svg><span data-en="Copy">Kopírovat</span></button>
+              </div>
+              <a class="mailchip mailchip--link" href="https://www.facebook.com/profile.php?id=61594936154489" target="_blank" rel="noopener" data-cfg-link="facebook">
+                <svg class="ic"><use href="#i-facebook"/></svg>
+                <span data-en="Eiddie on Facebook">Eiddie na Facebooku</span>
+                <span class="mailchip__go"><span data-en="Follow">Sledovat</span><svg class="ic"><use href="#i-arrow"/></svg></span>
+              </a>
             </div>
           </div>
 
@@ -1622,6 +1634,7 @@
           <a class="brand" href="#top"><img src="assets/img/logo.svg" alt="" width="32" height="32">Eiddie</a>
           <p class="footer__slogan" lang="en"><b>E</b>dit <b>I</b>deas. <b>D</b>raw <b>D</b>iagrams. <b>I</b>ndex <b>E</b>verything.</p>
           <p data-en="An outliner, a canvas and databases in one offline app. For people who want to think, not search.">Outliner, plátno a&nbsp;databáze v&nbsp;jedné offline aplikaci. Pro lidi, kteří chtějí přemýšlet, ne hledat.</p>
+          <a class="footer__social" href="https://www.facebook.com/profile.php?id=61594936154489" target="_blank" rel="noopener" data-cfg-link="facebook"><svg class="ic"><use href="#i-facebook"/></svg><span data-en="Follow Eiddie on Facebook">Sleduj Eiddie na Facebooku</span></a>
         </div>
         <div>
           <h4 data-en="Product">Produkt</h4>

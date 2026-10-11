@@ -58,6 +58,9 @@ window.EIDDIE_CONFIG = {
 
   author: 'Tomáš Leidl',
   email: 'tomas.leidl@gmail.com',
+  // The Eiddie Facebook page: every [data-cfg-link="facebook"] link (contact card, footers, FAQ, What's new, download page).
+  // Plain links only, no embed and no Facebook script, so soukromi.html ("no cookies, no analytics") stays true.
+  facebook: 'https://www.facebook.com/profile.php?id=61594936154489',
 
   // Optional: form endpoint (Formspree, Web3Forms, Basin…). Empty → the form opens a pre-filled e-mail.
   formEndpoint: '',

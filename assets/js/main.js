@@ -143,6 +143,11 @@
       el.textContent = v;
       if (key === 'email' && el.tagName === 'A') el.href = `mailto:${v}`;
     });
+    // Outside links kept in config.js (the Facebook page)
+    $$('[data-cfg-link]').forEach((a) => {
+      const url = C[a.dataset.cfgLink];
+      if (url) a.href = url;
+    });
     // "What's new in version X" (download page) → that version's section of novinky.html, also after the GitHub API answered;
     // the top of the page when the API failed (no version known then, see versionUnknown()).
     $$('[data-cfg-news]').forEach((a) => {
