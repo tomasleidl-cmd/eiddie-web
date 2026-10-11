@@ -74,18 +74,18 @@
         <h1 class="h2" data-en="Your download is <em>starting</em>" data-win-only>Stahování <em>začíná</em></h1>
         <h1 class="h2" data-en="Eiddie is for <em>Windows</em>" data-other-only>Eiddie je pro <em>Windows</em></h1>
         <p class="lead" data-en="The full version of Eiddie for 14 days, no card and no sign-up. If the download doesn’t start, use the button below." data-pilot-hide data-win-only>Plná verze aplikace Eiddie na 14 dní, bez karty a&nbsp;bez registrace. Pokud se stahování nespustí, použij tlačítko níže.</p>
-        <p class="lead" data-en="The pilot version of Eiddie: complete, and free for the whole pilot. If the download doesn’t start, use the button below." data-pilot-only data-win-only>Pilotní verze aplikace Eiddie: kompletní a&nbsp;po celou dobu pilotu zdarma. Pokud se stahování nespustí, použij tlačítko níže.</p>
+        <p class="lead" data-en="The pilot version of Eiddie, complete. The pilot is closed to testers: free with a licence key from me, and without one you have 30 days to try it. If the download doesn’t start, use the button below." data-pilot-only data-win-only>Pilotní verze aplikace Eiddie, kompletní. Pilot je uzavřený pro testery: s&nbsp;licenčním klíčem ode mě je zdarma, bez klíče máš 30&nbsp;dní na vyzkoušení. Pokud se stahování nespustí, použij tlačítko níže.</p>
         <p class="lead" data-en="For now Eiddie runs on Windows 10 and 11 only, so nothing is downloading here. Open this page on your Windows PC, or e-mail yourself the link." data-other-only>Aplikace Eiddie zatím běží jen na Windows 10 a&nbsp;11, proto se tady nic nestahuje. Otevři tuhle stránku na počítači s&nbsp;Windows, nebo si odkaz pošli e-mailem.</p>
         <div class="meta-row">
           <span><svg class="ic"><use href="#i-windows"/></svg>Windows 10 / 11 · 64 bit</span>
-          <span><svg class="ic"><use href="#i-file"/></svg><span data-ver-known><span data-en="Version">Verze</span>&nbsp;<span data-cfg="version">0.1.11</span></span><span data-ver-unknown data-en="Latest version">Nejnovější verze</span></span>
+          <span><svg class="ic"><use href="#i-file"/></svg><span data-ver-known><span data-en="Version">Verze</span>&nbsp;<span data-cfg="version">0.1.12</span></span><span data-ver-unknown data-en="Latest version">Nejnovější verze</span></span>
           <span><svg class="ic"><use href="#i-download"/></svg><span data-cfg="installerSize">≈ 106 MB</span></span>
         </div>
         <!-- main.js points the link at the version the GitHub API reports (data-cfg-news); without JS it shows the fallback
              (rewritten by scripts/release-pilot.mjs after each release). When the API fails: no number, the page top. -->
         <!-- "Previous versions": the way back after a bad update (the box at the top of novinky.html, every installer there). -->
         <div class="news-links">
-          <a class="news-link" href="novinky.html#v0-1-11" data-cfg-news><span data-ver-known><span data-en="What’s new in version">Co je nového ve verzi</span>&nbsp;<span data-cfg="version">0.1.11</span></span><span data-ver-unknown data-en="What’s new in the latest version">Co je nového v nejnovější verzi</span><svg class="ic"><use href="#i-arrow"/></svg></a>
+          <a class="news-link" href="novinky.html#v0-1-12" data-cfg-news><span data-ver-known><span data-en="What’s new in version">Co je nového ve verzi</span>&nbsp;<span data-cfg="version">0.1.12</span></span><span data-ver-unknown data-en="What’s new in the latest version">Co je nového v nejnovější verzi</span><svg class="ic"><use href="#i-arrow"/></svg></a>
           <a class="news-link" href="novinky.html#predchozi-verze"><span data-en="Previous versions">Předchozí verze</span><svg class="ic"><use href="#i-arrow"/></svg></a>
         </div>
         <a class="btn btn--primary btn--lg" href="mailto:" data-send-link data-other-only><svg class="ic"><use href="#i-mail"/></svg><span data-en="E-mail me the link">Poslat si odkaz e-mailem</span></a>
@@ -124,7 +124,7 @@
               </div>
               <figcaption data-en="Simplified: <b>More info</b> first, then the <b>Run anyway</b> button appears.">Zjednodušeně: nejdřív <b>Další informace</b>, pak se objeví tlačítko <b>Přesto spustit</b>.</figcaption>
             </figure><small data-en="No “Run anyway” button, or Windows says Smart App Control blocked the app? Smart App Control doesn’t allow exceptions for unsigned apps, and I don’t recommend switching it off for a pilot. <a href=&quot;mailto:tomas.leidl@gmail.com?subject=Eiddie%3A%20installation&quot;>Write to me</a> and I’ll let you know as soon as the installer is signed." data-pilot-only>Nevidíš „Přesto spustit“, nebo Windows hlásí, že aplikaci zablokovalo Inteligentní řízení aplikací? To u&nbsp;nepodepsaných aplikací výjimku nedovolí a&nbsp;vypínat ho kvůli pilotu nedoporučuju. <a href="mailto:tomas.leidl@gmail.com?subject=Eiddie%3A%20instalace">Napiš mi</a> a&nbsp;dám ti vědět, jakmile bude instalátor podepsaný.</small></div></li>
-          <li><div><b data-en="Wait a moment">Chvilku počkej</b><span data-en="The installation runs by itself, with nothing to click, and then Eiddie starts. It installs just for your user account, no administrator rights needed.">Instalace proběhne sama, nic nevybíráš, a&nbsp;pak se Eiddie spustí. Nainstaluje se jen pro tvůj uživatelský účet, práva správce nepotřebuješ.</span></div></li>
+          <li><div><b data-en="Wait a moment">Chvilku počkej</b><span data-en="The installation runs by itself, with nothing to click, and then Eiddie starts. It installs just for your user account, no administrator rights needed. Your antivirus may check the unsigned installer for a minute or two first (updates too), so it can look as if nothing is happening: just wait.">Instalace proběhne sama, nic nevybíráš, a&nbsp;pak se Eiddie spustí. Nainstaluje se jen pro tvůj uživatelský účet, práva správce nepotřebuješ. Antivirus může nepodepsaný instalátor nejdřív minutu nebo dvě kontrolovat (i aktualizace), takže to chvíli vypadá, že se nic neděje: stačí počkat.</span></div></li>
           <li><div><b data-en="Start writing">Začni psát</b><span data-en="Eiddie opens with sample notes in Documents\<wbr>Eiddie\<wbr>Demo vault. Or open your own folder or an existing Obsidian vault." data-pilot-hide>Eiddie se otevře s&nbsp;ukázkovými poznámkami ve složce Dokumenty\<wbr>Eiddie\<wbr>Demo vault. Nebo otevři vlastní složku či existující Obsidian vault.</span><span data-en="Eiddie opens with sample notes in Documents\<wbr>Eiddie\<wbr>Demo vault. Want to try your own folder or Obsidian vault? Back it up first: this is a pre-release." data-pilot-only>Eiddie se otevře s&nbsp;ukázkovými poznámkami ve složce Dokumenty\<wbr>Eiddie\<wbr>Demo vault. Chceš zkusit vlastní složku nebo Obsidian vault? Nejdřív si data zazálohuj, jde o&nbsp;předběžnou verzi.</span><a class="install__more" href="start.html"><span data-en="Getting started: six things, two minutes">Začínáme: šest věcí, dvě minuty</span><svg class="ic"><use href="#i-arrow"/></svg></a></div></li>
         </ol>
       </div>
@@ -156,7 +156,7 @@
           <li><svg class="ic"><use href="#i-bug"/></svg><span data-en="what got in your way or didn’t work (a screenshot helps the most),">co drhne nebo nefunguje (nejvíc pomůže snímek obrazovky),</span></li>
           <li><svg class="ic"><use href="#i-plus"/></svg><span data-en="what you’re missing.">co ti chybí.</span></li>
         </ul>
-        <p class="pilot-card__gift"><svg class="ic"><use href="#i-gift"/></svg><span data-en="As a thank-you, you’ll get a full licence for free after the release: just send me feedback during the pilot (criticism counts too).">Jako poděkování dostaneš po vydání plnou licenci zdarma, stačí mi během pilotu poslat zpětnou vazbu (počítá se i&nbsp;kritika).</span></p>
+        <p class="pilot-card__gift"><svg class="ic"><use href="#i-gift"/></svg><span data-en="Testers get a free licence key by e-mail, and it stays valid after the release. In return, just send me feedback (criticism counts too). No key yet? Write to me.">Testeři dostanou licenční klíč zdarma e-mailem a&nbsp;platí i&nbsp;po vydání. Na oplátku mi stačí poslat zpětnou vazbu (počítá se i&nbsp;kritika). Klíč ještě nemáš? Napiš mi.</span></p>
         <a class="btn btn--primary btn--lg" href="mailto:tomas.leidl@gmail.com?subject=Eiddie%20pilot" data-cfg-mail="feedback"><svg class="ic"><use href="#i-mail"/></svg><span data-en="Send feedback">Napsat zpětnou vazbu</span></a>
         <p class="pilot-card__alt" data-en="Or write to <a href=&quot;mailto:tomas.leidl@gmail.com&quot; data-cfg=&quot;email&quot;>tomas.leidl@gmail.com</a>">Nebo napiš na <a href="mailto:tomas.leidl@gmail.com" data-cfg="email">tomas.leidl@gmail.com</a></p>
       </div>
@@ -187,6 +187,7 @@
         <a href="download.html" aria-current="page" data-en="Download">Stáhnout</a>
         <a href="start.html" data-en="Getting started">Začínáme</a>
         <a href="index.html#faq">FAQ</a>
+        <a href="soukromi.html" data-en="Privacy">Soukromí</a>
         <a href="mailto:tomas.leidl@gmail.com?subject=Eiddie%3A%20bug" data-cfg-mail="bug" data-en="Report a bug">Nahlásit chybu</a>
       </nav>
     </div>

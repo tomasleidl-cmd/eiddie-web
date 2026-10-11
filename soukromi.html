@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title data-en="Privacy in the Eiddie pilot">Soukromí v pilotu aplikace Eiddie</title>
+  <meta name="description" content="Co aplikace Eiddie a web eiddie.cz posílají, co o tobě mám a jak dlouho." data-en-content="What Eiddie and eiddie.cz send, what I keep about you and for how long.">
+  <!-- Pilot: keeps the site out of search engines. Remove at the public launch, like in index.html. -->
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#6c5cff">
+  <link rel="canonical" href="https://www.eiddie.cz/soukromi.html">
+  <link rel="icon" href="assets/img/logo.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Inter:wght@400..700&family=Instrument+Serif:ital@1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <!-- Loaded synchronously (tiny): the pilot switch must be known before the first paint -->
+  <script src="assets/js/config.js"></script>
+  <script>
+    (function () {
+      var d = document.documentElement, lang = null;
+      if ((window.EIDDIE_CONFIG || {}).pilot) d.dataset.pilot = '';
+      try { lang = new URLSearchParams(location.search).get('lang') || localStorage.getItem('eiddie-lang'); } catch (e) {}
+      if (!lang) lang = /^(cs|sk)/i.test(navigator.language || '') ? 'cs' : 'en';
+      d.dataset.lang = lang === 'en' ? 'en' : 'cs';
+      if (d.dataset.lang === 'en') { d.classList.add('i18n-pending'); setTimeout(function () { d.classList.remove('i18n-pending'); }, 1500); }
+    })();
+  </script>
+</head>
+<body class="subpage">
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="i-chev-l" viewBox="0 0 24 24"><path d="m15 6-6 6 6 6"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3 4 6v6c0 4.5 3.4 8.3 8 9 4.6-.7 8-4.5 8-9V6z"/><path d="m9 12 2 2 4-4"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></symbol>
+    <symbol id="i-sparkle" viewBox="0 0 24 24"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/></symbol>
+  </svg>
+
+  <header class="nav is-scrolled">
+    <div class="container nav__inner">
+      <a class="brand" href="index.html"><img src="assets/img/logo.svg" alt="" width="32" height="32">Eiddie</a>
+      <div class="nav__right">
+        <div class="lang" role="group" aria-label="Jazyk / Language">
+          <button type="button" data-lang-btn="cs" aria-pressed="true">CZ</button>
+          <button type="button" data-lang-btn="en" aria-pressed="false">EN</button>
+        </div>
+        <a class="btn btn--ghost btn--sm" href="index.html"><svg class="ic"><use href="#i-chev-l"/></svg><span data-en="Back to the site">Zpět na web</span></a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Privacy for the pilot (draft: scratch/diagnostics/soukromi-pilot-draft.md). Not legal advice; before the paid
+       launch it grows into the full policy (shop, licence, Lemon Squeezy) linked from index.html's Legal column.
+       What it says about the app was checked against the code on 2026-10-09: the app talks only to GitHub (updates),
+       www.eiddie.cz/licence/revoked.json (weekly, a plain download) and, for a purchased key only, Lemon Squeezy. -->
+  <main>
+    <div class="aurora" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+    <div class="grid-bg" aria-hidden="true"></div>
+    <div class="container">
+      <div class="subcard">
+        <div class="dl-ring news-ring"><svg class="ic"><use href="#i-shield"/></svg></div>
+        <span class="eyebrow" data-en="Privacy">Soukromí</span>
+        <h1 class="h2" data-en="Your notes stay <em>with you</em>">Tvoje poznámky zůstávají <em>u tebe</em></h1>
+        <p class="lead" data-en="What the Eiddie app and this website send, what I keep about you, and for how long. Written for the pilot version.">Co aplikace Eiddie a&nbsp;tenhle web posílají, co o&nbsp;tobě mám a&nbsp;jak dlouho. Platí pro pilotní verzi.</p>
+      </div>
+
+      <div class="subcard news privacy">
+        <p data-en="<b>Who:</b> Tomáš Leidl, the author of Eiddie. Contact: <a href=&quot;mailto:tomas.leidl@gmail.com&quot;>tomas.leidl@gmail.com</a>."><b>Kdo:</b> Tomáš Leidl, autor aplikace Eiddie. Kontakt: <a href="mailto:tomas.leidl@gmail.com">tomas.leidl@gmail.com</a>.</p>
+
+        <h2 class="release__group" data-en="Your notes">Tvoje poznámky</h2>
+        <p data-en="Your notes, their names and folders stay on your computer (or in your own cloud, if your vault lives there). Eiddie sends them nowhere and I have no access to them.">Poznámky, jejich názvy a&nbsp;složky zůstávají v&nbsp;tvém počítači (nebo ve tvém cloudu, pokud tam složku s&nbsp;poznámkami máš). Eiddie je nikam neposílá a&nbsp;já k&nbsp;nim nemám přístup.</p>
+
+        <h2 class="release__group" data-en="What the app sends by itself">Co aplikace posílá sama</h2>
+        <ul class="release__items">
+          <li><span data-en="<b>Updates:</b> now and then Eiddie asks GitHub whether a newer version exists and downloads it. GitHub sees your IP address and the app version, as with any download. You can switch automatic updates off in Settings → Updates.">
+            <b>Aktualizace:</b> Eiddie se občas zeptá serveru GitHub, jestli existuje novější verze, a&nbsp;případně ji stáhne. GitHub přitom vidí tvoji IP adresu a&nbsp;verzi aplikace, stejně jako u&nbsp;každého stahování. Automatické aktualizace jdou vypnout v&nbsp;Settings → Updates.</span></li>
+          <li><span data-en="<b>Revoked keys:</b> about once a week Eiddie downloads a public list of cancelled licence keys from www.eiddie.cz. It sends nothing about you or your key; the server (GitHub Pages) only sees your IP address.">
+            <b>Zneplatněné klíče:</b> zhruba jednou týdně si Eiddie stáhne z&nbsp;www.eiddie.cz veřejný seznam zrušených licenčních klíčů. Nic o&nbsp;tobě ani o&nbsp;tvém klíči přitom neposílá, server (GitHub Pages) vidí jen tvoji IP adresu.</span></li>
+          <li><span data-en="Nothing else. Eiddie has no analytics and no tracking.">Nic jiného. Eiddie neobsahuje žádnou analytiku ani sledování.</span></li>
+        </ul>
+
+        <h2 class="release__group" data-en="Tester licence keys">Licenční klíče pro testery</h2>
+        <p data-en="When I send you a tester key, I keep your name, e-mail address, the key and the date I sent it, in my own records on my computer. The key carries your name so the app can show who it is licensed to. A key works offline: I can’t see whether or where you activated it.">Když ti pošlu klíč pro testery, zapíšu si do vlastní evidence v&nbsp;počítači tvoje jméno, e-mail, klíč a&nbsp;datum odeslání. Klíč nese tvoje jméno, aby aplikace ukázala, komu patří. Klíč funguje offline: nevidím, jestli a&nbsp;kde se aktivoval.</p>
+        <ul class="release__items">
+          <li><span data-en="<b>Purpose:</b> to give you the licence, send it again if it gets lost, and replace or cancel it if needed."><b>Účel:</b> dát ti licenci, poslat ji znovu, když se ztratí, a&nbsp;případně ji vyměnit nebo zrušit.</span></li>
+          <li><span data-en="<b>Legal basis:</b> giving you the licence you asked for (Art. 6(1)(b) GDPR)."><b>Právní základ:</b> poskytnutí licence, o&nbsp;kterou žádáš (čl. 6 odst. 1 písm. b GDPR).</span></li>
+          <li><span data-en="<b>How long:</b> as long as the licence is valid. Ask me and I’ll delete the record; after that I can’t resend the key."><b>Jak dlouho:</b> dokud licence platí. Když mi napíšeš, záznam smažu; klíč ti pak už nebudu umět poslat znovu.</span></li>
+        </ul>
+
+        <h2 class="release__group" data-en="Technical log and problem reports">Technický záznam a&nbsp;hlášení o&nbsp;chybě</h2>
+        <p data-en="Eiddie writes a technical log of errors on your computer (folder %APPDATA%\Eiddie\logs, about 3 MB at most). Before writing, it removes note contents and names, folder paths and your Windows user name. The log stays with you.">Eiddie si do tvého počítače zapisuje technický záznam o&nbsp;chybách (složka %APPDATA%\Eiddie\logs, nejvýš asi 3&nbsp;MB). Ještě před zápisem z&nbsp;něj odstraní obsah a&nbsp;názvy poznámek, cesty ke složkám a&nbsp;tvoje jméno ve Windows. Záznam zůstává jen u&nbsp;tebe.</p>
+        <p data-en="When something goes wrong, Settings → Report a problem copies a <b>problem report</b> that you can e-mail to me. You read all of it first and can delete anything. It holds the app and Windows version, the kind of storage of your vault (e.g. OneDrive), the number of notes, when and which errors happened, and technical lines from the last launches.">Když něco nefunguje, v&nbsp;Settings → Report a problem si zkopíruješ <b>hlášení o&nbsp;chybě</b> a&nbsp;pošleš mi ho e-mailem. Před odesláním si ho celé přečteš a&nbsp;cokoli z&nbsp;něj můžeš smazat. Obsahuje verzi aplikace a&nbsp;Windows, druh úložiště (třeba OneDrive), počet poznámek, kdy a&nbsp;jaké chyby nastaly a&nbsp;technické řádky z&nbsp;posledních spuštění.</p>
+
+        <h2 class="release__group" data-en="E-mails and feedback">E-maily a&nbsp;zpětná vazba</h2>
+        <p data-en="When you write to me (feedback, a problem report, a key request), I use your address and message only to answer and to improve Eiddie.">Když mi napíšeš (zpětnou vazbu, hlášení o&nbsp;chybě, žádost o&nbsp;klíč), použiju tvoji adresu a&nbsp;zprávu jen k&nbsp;odpovědi a&nbsp;ke zlepšení aplikace.</p>
+        <ul class="release__items">
+          <li><span data-en="<b>Legal basis:</b> legitimate interest (Art. 6(1)(f) GDPR): you write so that I answer or fix something."><b>Právní základ:</b> oprávněný zájem (čl. 6 odst. 1 písm. f GDPR): píšeš mi, abych odpověděl nebo něco opravil.</span></li>
+          <li><span data-en="<b>Where:</b> in my mailbox at Google (Gmail)."><b>Kde:</b> v&nbsp;mé e-mailové schránce u&nbsp;Google (Gmail).</span></li>
+          <li><span data-en="<b>AI tools:</b> to sort feedback and read technical lines I may use an AI tool (Claude by Anthropic) in a mode that doesn’t train on the data. I don’t put your e-mail address into it."><b>AI nástroje:</b> k&nbsp;třídění zpětné vazby a&nbsp;rozboru technických řádků můžu použít AI nástroj (Claude od Anthropic) v&nbsp;režimu, ve kterém se na datech netrénuje. Tvoji e-mailovou adresu do něj nevkládám.</span></li>
+          <li><span data-en="<b>How long:</b> until the bug is fixed or the conversation is over, at most 12 months. Then I delete it."><b>Jak dlouho:</b> do opravy chyby nebo do konce domluvy, nejdéle 12&nbsp;měsíců. Pak e-mail smažu.</span></li>
+        </ul>
+
+        <h2 class="release__group" data-en="The website www.eiddie.cz">Web www.eiddie.cz</h2>
+        <p data-en="The site runs on GitHub Pages; GitHub handles technical visit data (such as your IP address) under its own policy. Fonts load from Google Fonts, so Google sees your IP address too. The site uses no cookies and no analytics. Your browser only remembers the language you chose, and the download page asks GitHub for the number of the latest version.">Web běží na GitHub Pages; GitHub jako provozovatel zpracovává technické údaje o&nbsp;návštěvách (třeba IP adresu) podle svých zásad. Písma se načítají z&nbsp;Google Fonts, takže tvoji IP adresu vidí i&nbsp;Google. Web nepoužívá cookies ani analytiku. Prohlížeč si pamatuje jen zvolený jazyk a&nbsp;stránka ke stažení si od GitHubu načítá číslo nejnovější verze.</p>
+
+        <h2 class="release__group" data-en="Your rights">Tvoje práva</h2>
+        <p data-en="You can ask me what I have about you, to correct or delete it, or object. Just write to <a href=&quot;mailto:tomas.leidl@gmail.com&quot;>tomas.leidl@gmail.com</a>. You can also complain to the Czech data protection authority (<a href=&quot;https://uoou.gov.cz&quot;>ÚOOÚ</a>).">Můžeš mě požádat, abych ti řekl, co o&nbsp;tobě mám, abych to opravil nebo smazal, nebo vznést námitku. Stačí napsat na <a href="mailto:tomas.leidl@gmail.com">tomas.leidl@gmail.com</a>. Máš také právo podat stížnost u&nbsp;Úřadu pro ochranu osobních údajů (<a href="https://uoou.gov.cz">ÚOOÚ</a>).</p>
+
+        <p class="privacy__date" data-en="Valid from 11 October 2026.">Platí od 11. října 2026.</p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="subfoot">
+    <div class="container subfoot__inner">
+      <span data-en="© 2026 Tomáš Leidl">© 2026 Tomáš Leidl</span>
+      <nav aria-label="Patička" data-en-aria-label="Footer">
+        <a href="index.html" data-en="Home">Úvod</a>
+        <a href="download.html" data-en="Download">Stáhnout</a>
+        <a href="start.html" data-en="Getting started">Začínáme</a>
+        <a href="index.html#faq">FAQ</a>
+        <a href="mailto:tomas.leidl@gmail.com?subject=Eiddie%3A%20bug" data-cfg-mail="bug" data-en="Report a bug">Nahlásit chybu</a>
+      </nav>
+    </div>
+  </footer>
+
+  <div class="toast" role="status" aria-live="polite" data-toast><svg class="ic"><use href="#i-sparkle"/></svg><span data-toast-text></span></div>
+
+  <script src="assets/js/main.js" defer></script>
+</body>
+</html>
