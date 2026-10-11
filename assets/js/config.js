@@ -46,6 +46,14 @@ window.EIDDIE_CONFIG = {
     // video plays to the end. Before the paid launch, export the sales renders again (website/README.md, Video) and set
     // pilotEnd back to 25 only if a sales file is ever shown in pilot mode: pilot mode then stops before its price card.
     pilotEnd: 0,
+    // Use-case videos offered on cards under the player (index.html, [data-video-pick="<key>"]); they play in the same
+    // player. A card shows only for the languages with ready[lang] true (the renders are Czech only for now).
+    // soft: true → the calm end card without the download call (the care video ends without one too).
+    cases: {
+      osvc: { ready: { cs: true, en: false }, src: 'assets/video/eiddie-podnikatel.mp4', poster: 'assets/video/eiddie-podnikatel.jpg', duration: '0:30' },
+      facil: { ready: { cs: true, en: false }, src: 'assets/video/eiddie-facilitator.mp4', poster: 'assets/video/eiddie-facilitator.jpg', duration: '0:30' },
+      pece: { ready: { cs: true, en: false }, src: 'assets/video/eiddie-pece.mp4', poster: 'assets/video/eiddie-pece.jpg', duration: '1:00', soft: true },
+    },
   },
 
   author: 'Tomáš Leidl',

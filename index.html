@@ -394,12 +394,44 @@
               <span class="reel__label"><b data-en="Watch the video">Přehrát video</b><span data-video-duration>0:30</span></span>
             </button>
             <div class="reel__end on-dark" data-video-end hidden>
-              <p class="reel__end-title" data-en="Try it on your own notes.">Vyzkoušej to na svých poznámkách.</p>
+              <p class="reel__end-title" data-video-end-sell data-en="Try it on your own notes.">Vyzkoušej to na svých poznámkách.</p>
+              <!-- The calm end card (config: soft), for the care video: no download call, only a way to look around -->
+              <p class="reel__end-title" data-video-end-soft data-en="Less on your mind. More moments together." hidden>Méně v&nbsp;hlavě. Víc chvil spolu.</p>
               <div class="btn-row">
-                <a class="btn btn--primary" href="download.html" data-trial><svg class="ic"><use href="#i-download"/></svg><span data-en="Try free for 14 days" data-pilot-hide>Vyzkoušet 14 dní zdarma</span><span data-en="Download the pilot version" data-pilot-only>Stáhnout pilotní verzi</span></a>
+                <a class="btn btn--primary" href="download.html" data-trial data-video-end-sell><svg class="ic"><use href="#i-download"/></svg><span data-en="Try free for 14 days" data-pilot-hide>Vyzkoušet 14 dní zdarma</span><span data-en="Download the pilot version" data-pilot-only>Stáhnout pilotní verzi</span></a>
+                <a class="btn btn--primary" href="#pouziti" data-video-end-soft hidden><span data-en="What else Eiddie can help with">S&nbsp;čím dalším Eiddie pomůže</span><svg class="ic"><use href="#i-arrow"/></svg></a>
                 <button class="btn btn--ghost" type="button" data-video-replay><svg class="ic"><use href="#i-refresh"/></svg><span data-en="Watch again">Přehrát znovu</span></button>
               </div>
             </div>
+          </div>
+        </div>
+
+        <!-- More videos for the same player: one card per use case, a click plays it in the player above.
+             A card shows only when its video is ready for the language (config.video.cases[key].ready[lang]); with no
+             use-case card left (English, until those renders exist) the whole row stays hidden. -->
+        <div class="reel-picks" data-video-picks data-reveal hidden>
+          <p class="reel-picks__label" id="reel-picks-label" data-en="See how Eiddie helps">Podívej se, jak Eiddie pomáhá</p>
+          <div class="reel-picks__row" role="group" aria-labelledby="reel-picks-label">
+            <button class="reel-pick" type="button" data-video-pick="main" aria-pressed="true">
+              <span class="reel-pick__thumb"><img alt="" width="320" height="180" decoding="async" data-video-thumb><span class="reel-pick__play" aria-hidden="true"><svg class="ic"><use href="#i-play"/></svg></span><span class="reel-pick__time" data-video-time></span></span>
+              <span class="reel-pick__who"><svg class="ic" aria-hidden="true"><use href="#i-sparkle"/></svg><span data-video-name data-en="The intro">Představení</span></span>
+              <span class="reel-pick__txt" data-en="From scattered notes to one app.">Od rozházených poznámek k&nbsp;jedné aplikaci.</span>
+            </button>
+            <button class="reel-pick" type="button" data-video-pick="osvc" aria-pressed="false" hidden>
+              <span class="reel-pick__thumb"><img alt="" width="320" height="180" decoding="async" data-video-thumb><span class="reel-pick__play" aria-hidden="true"><svg class="ic"><use href="#i-play"/></svg></span><span class="reel-pick__time" data-video-time></span></span>
+              <span class="reel-pick__who"><svg class="ic" aria-hidden="true"><use href="#i-brief"/></svg><span data-video-name data-en="Small business">Podnikatelé a&nbsp;OSVČ</span></span>
+              <span class="reel-pick__txt" data-en="Invoices, client meetings and tax dates in one place.">Faktury, schůzky s&nbsp;klienty a&nbsp;daňové termíny na jednom místě.</span>
+            </button>
+            <button class="reel-pick" type="button" data-video-pick="facil" aria-pressed="false" hidden>
+              <span class="reel-pick__thumb"><img alt="" width="320" height="180" decoding="async" data-video-thumb><span class="reel-pick__play" aria-hidden="true"><svg class="ic"><use href="#i-play"/></svg></span><span class="reel-pick__time" data-video-time></span></span>
+              <span class="reel-pick__who"><svg class="ic" aria-hidden="true"><use href="#i-target"/></svg><span data-video-name data-en="Facilitators &amp; coaches">Facilitátoři a&nbsp;koučové</span></span>
+              <span class="reel-pick__txt" data-en="Workshop prep, retro actions and notes from 1:1 sessions.">Příprava workshopu, akce z&nbsp;retra a&nbsp;zápisy z&nbsp;koučovacích sezení.</span>
+            </button>
+            <button class="reel-pick" type="button" data-video-pick="pece" aria-pressed="false" hidden>
+              <span class="reel-pick__thumb"><img alt="" width="320" height="180" decoding="async" data-video-thumb><span class="reel-pick__play" aria-hidden="true"><svg class="ic"><use href="#i-play"/></svg></span><span class="reel-pick__time" data-video-time></span></span>
+              <span class="reel-pick__who"><svg class="ic" aria-hidden="true"><use href="#i-heart"/></svg><span data-video-name data-en="Mums with children">Maminky s&nbsp;dětmi</span></span>
+              <span class="reel-pick__txt" data-en="Therapies, doctors, medicines, expenses and the nice moments, all together.">Terapie, lékaři, léky, útraty i&nbsp;hezké chvíle pohromadě.</span>
+            </button>
           </div>
         </div>
       </div>

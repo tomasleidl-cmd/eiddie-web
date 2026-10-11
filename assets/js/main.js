@@ -466,7 +466,8 @@
   });
 
   /* ------------------------------------------------------------------ */
-  /* Intro video: one file per language (config.video), click to play   */
+  /* Intro video: one file per language (config.video), click to play;  */
+  /* the cards under it put a use-case video (video.cases) in the player */
   /* ------------------------------------------------------------------ */
   const reelSec = $('[data-video]');
   const reelVideo = $('[data-video-el]');
@@ -475,11 +476,18 @@
     const playBtn = $('[data-video-play]', reelSec);
     const endCard = $('[data-video-end]', reelSec);
     const openBtns = $$('[data-video-open]');
+    const picksBox = $('[data-video-picks]', reelSec);
+    const picks = $$('[data-video-pick]', reelSec);
     const file = (tpl) => (tpl || '').replace('{lang}', lang);
-    let near = false; // the poster is fetched only once the section gets close to the viewport
-    // Pilot: stop before the end card burned into the video (price, 14-day trial) and show the HTML end card instead.
-    const cut = C.pilot && V.pilotEnd > 0 ? V.pilotEnd : 0;
-    const shownDuration = cut ? `${Math.floor(cut / 60)}:${String(Math.floor(cut % 60)).padStart(2, '0')}` : V.duration;
+    let near = false; // the posters are fetched only once the section gets close to the viewport
+    let cur = 'main'; // the video in the player: 'main' (the intro) or a key of V.cases
+    const item = (key) => (key === 'main' ? V : (V.cases || {})[key]) || {};
+    const isReady = (key) => { const it = item(key); return !!(it.ready && it.ready[lang] && it.src); };
+    // Pilot: stop before the end card burned into the intro (price, 14-day trial) and show the HTML end card instead.
+    const mainCut = C.pilot && V.pilotEnd > 0 ? V.pilotEnd : 0;
+    const cut = () => (cur === 'main' ? mainCut : 0);
+    const shownDuration = mainCut ? `${Math.floor(mainCut / 60)}:${String(Math.floor(mainCut % 60)).padStart(2, '0')}` : V.duration;
+    const introLabel = { cs: reelVideo.getAttribute('aria-label'), en: reelVideo.getAttribute('data-en-aria-label') };
 
     const reset = () => {
       playBtn.hidden = false;
@@ -487,7 +495,7 @@
       reelVideo.controls = false;
     };
     const setSource = () => {
-      const ready = !!(V.ready && V.ready[lang] && V.src);
+      const ready = isReady('main');
       reelSec.hidden = !ready;
       openBtns.forEach((b) => { b.hidden = !ready; });
       if (shownDuration) $$('[data-video-duration]').forEach((el) => { el.textContent = shownDuration; });
@@ -495,12 +503,37 @@
         if (reelVideo.getAttribute('src')) { reelVideo.pause(); reelVideo.removeAttribute('src'); reelVideo.removeAttribute('poster'); reelVideo.load(); }
         return;
       }
-      if (reelVideo.getAttribute('src') !== file(V.src)) {
+      if (!isReady(cur)) cur = 'main'; // the picked video doesn't exist in this language
+      let cases = 0;
+      picks.forEach((b) => {
+        const key = b.dataset.videoPick;
+        const it = item(key);
+        const ok = isReady(key);
+        b.hidden = !ok;
+        if (ok && key !== 'main') cases++;
+        b.setAttribute('aria-pressed', String(key === cur));
+        $('[data-video-time]', b).textContent = (key === 'main' ? shownDuration : it.duration) || '';
+        const img = $('[data-video-thumb]', b);
+        if (near && ok && it.poster && img.getAttribute('src') !== file(it.poster)) img.src = file(it.poster);
+      });
+      if (picksBox) picksBox.hidden = !cases;
+      const it = item(cur);
+      if (cur !== 'main') {
+        if (it.duration) $$('[data-video-duration]', reelSec).forEach((el) => { el.textContent = it.duration; });
+        const name = $(`[data-video-pick="${cur}"] [data-video-name]`, reelSec);
+        if (name) reelVideo.setAttribute('aria-label', `Eiddie: ${name.textContent}`);
+      } else if (introLabel[lang]) {
+        reelVideo.setAttribute('aria-label', introLabel[lang]);
+      }
+      $$('[data-video-end-sell]', reelSec).forEach((el) => { el.hidden = !!it.soft; });
+      $$('[data-video-end-soft]', reelSec).forEach((el) => { el.hidden = !it.soft; });
+      if (reelVideo.getAttribute('src') !== file(it.src)) {
         reelVideo.pause();
-        reelVideo.src = file(V.src); // preload="none": nothing is downloaded until Play
+        reelVideo.removeAttribute('poster'); // never the previous video's poster over the new one
+        reelVideo.src = file(it.src); // preload="none": nothing is downloaded until Play
         reset();
       }
-      if (near && V.poster) reelVideo.poster = file(V.poster);
+      if (near && it.poster) reelVideo.poster = file(it.poster);
     };
     const play = () => {
       if (reelSec.hidden) return;
@@ -509,7 +542,7 @@
       endCard.hidden = true;
       reelVideo.controls = true;
       if (reelVideo.error) reelVideo.load(); // retry after a failed load
-      else if (reelVideo.ended || (cut && reelVideo.currentTime >= cut - 0.1)) reelVideo.currentTime = 0;
+      else if (reelVideo.ended || (cut() && reelVideo.currentTime >= cut() - 0.1)) reelVideo.currentTime = 0;
       const p = reelVideo.play();
       if (p && p.catch) p.catch((err) => { if (err && err.name !== 'AbortError') reset(); });
       if (hadFocus) reelVideo.focus({ preventScroll: true });
@@ -530,6 +563,18 @@
       history.replaceState(null, '', '#video');
       play();
     }));
+    // A card: put its video in the player and start it (inside the click, so sound is allowed). The player is
+    // brought back below the nav when it has scrolled partly out of view.
+    picks.forEach((b) => b.addEventListener('click', () => {
+      const key = b.dataset.videoPick;
+      if (!isReady(key)) return;
+      near = true;
+      if (key !== cur) { cur = key; setSource(); }
+      const frame = reelVideo.parentElement.getBoundingClientRect();
+      const navH = nav ? nav.offsetHeight : 0;
+      if (frame.top < navH + 8) scrollToY(window.scrollY + frame.top - navH - 16);
+      play();
+    }));
     const showEnd = () => {
       if (document.fullscreenElement === reelVideo && document.exitFullscreen) document.exitFullscreen().catch(() => {});
       const hadFocus = reelSec.contains(document.activeElement);
@@ -538,9 +583,9 @@
       if (hadFocus) $('[data-video-replay]', reelSec).focus({ preventScroll: true });
     };
     reelVideo.addEventListener('ended', showEnd);
-    if (cut) {
+    if (mainCut) {
       reelVideo.addEventListener('timeupdate', () => {
-        if (reelVideo.currentTime >= cut && !reelVideo.paused) { reelVideo.pause(); showEnd(); }
+        if (cut() && reelVideo.currentTime >= cut() && !reelVideo.paused) { reelVideo.pause(); showEnd(); }
       });
     }
     reelVideo.addEventListener('error', () => {
