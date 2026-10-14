@@ -616,6 +616,74 @@
     langHooks.push(setSource);
   }
 
+  /* ------------------------------------------------------------------ */
+  /* Getting started video (start.html#video, config.video.guide): the  */
+  /* 90 s tour, one file (Czech captions), click to play, no autoplay   */
+  /* ------------------------------------------------------------------ */
+  const guideSec = $('[data-guide-video]');
+  const guideVideo = $('[data-guide-video-el]');
+  if (guideSec && guideVideo) {
+    const G = (C.video || {}).guide || {};
+    const playBtn = $('[data-guide-video-play]', guideSec);
+    const endCard = $('[data-guide-video-end]', guideSec);
+    const replayBtn = $('[data-guide-video-replay]', guideSec);
+    const links = $$('[data-guide-video-link]');
+
+    const reset = () => {
+      playBtn.hidden = false;
+      endCard.hidden = true;
+      guideVideo.controls = false;
+    };
+    // The card is visible in the HTML, so the browser's own jump to #video (the app opens start.html?lang=cs#video)
+    // lands on it; only a language without a render hides it, and its chip in the table of contents.
+    const sync = () => {
+      const ready = !!(G.ready && G.ready[lang]);
+      // The poster only for a language with a render (as on the landing page), so English never downloads the Czech one
+      if (ready && !guideVideo.getAttribute('poster') && guideVideo.dataset.poster) guideVideo.poster = guideVideo.dataset.poster;
+      if (!ready && !guideVideo.paused) guideVideo.pause();
+      guideSec.hidden = !ready;
+      links.forEach((a) => { a.hidden = !ready; });
+    };
+    const play = () => {
+      if (guideSec.hidden) return;
+      const hadFocus = guideSec.contains(document.activeElement);
+      playBtn.hidden = true;
+      endCard.hidden = true;
+      guideVideo.controls = true;
+      if (guideVideo.error) guideVideo.load(); // retry after a failed load
+      else if (guideVideo.ended) guideVideo.currentTime = 0;
+      const p = guideVideo.play(); // inside the click, so sound is allowed
+      if (p && p.catch) p.catch((err) => { if (err && err.name !== 'AbortError') reset(); });
+      // The clicked button is now hidden: keep keyboard focus in the player instead of dropping it to the page
+      if (hadFocus) guideVideo.focus({ preventScroll: true });
+    };
+
+    playBtn.addEventListener('click', play);
+    replayBtn.addEventListener('click', () => { guideVideo.currentTime = 0; play(); });
+    guideVideo.addEventListener('ended', () => {
+      if (document.fullscreenElement === guideVideo && document.exitFullscreen) document.exitFullscreen().catch(() => {});
+      const hadFocus = guideSec.contains(document.activeElement);
+      guideVideo.controls = false;
+      endCard.hidden = false;
+      if (hadFocus) replayBtn.focus({ preventScroll: true });
+    });
+    guideVideo.addEventListener('error', () => {
+      if (!playBtn.hidden) return; // only report failures after Play (before it, preload="none" loads nothing)
+      reset();
+      toast(t('videoError'));
+    });
+    // Pause once the player is scrolled (mostly) out of view, as on the landing page; not while it is fullscreen
+    if ('IntersectionObserver' in window) {
+      let inView = false;
+      new IntersectionObserver(([e]) => {
+        const visible = e.intersectionRatio >= 0.25;
+        if (inView && !visible && !guideVideo.paused && document.fullscreenElement !== guideVideo) guideVideo.pause();
+        inView = visible;
+      }, { threshold: [0, 0.25] }).observe(guideVideo);
+    }
+    langHooks.push(sync);
+  }
+
   /* Thank-you page confetti (brand colours) */
   const confettiHost = $('[data-confetti]');
   if (confettiHost && !reduced) {

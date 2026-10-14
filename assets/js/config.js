@@ -54,6 +54,11 @@ window.EIDDIE_CONFIG = {
       facil: { ready: { cs: true, en: false }, src: 'assets/video/eiddie-facilitator.mp4', poster: 'assets/video/eiddie-facilitator.jpg', duration: '0:30' },
       pece: { ready: { cs: true, en: false }, src: 'assets/video/eiddie-pece.mp4', poster: 'assets/video/eiddie-pece.jpg', duration: '1:00', soft: true },
     },
+    // The 90 s tour "Jeden záznam, čtyři pohledy" on start.html#video, the first card of Getting started (the app links to
+    // start.html?lang=cs#video). Czech captions only, so the card and its table-of-contents chip stay hidden in English.
+    // File and poster (data-poster, applied by main.js only for a ready language) are in start.html;
+    // made by scratch/video/usecase/build-tour.mjs + render/web-export.mjs.
+    guide: { ready: { cs: true, en: false } },
   },
 
   author: 'Tomáš Leidl',

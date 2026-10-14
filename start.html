@@ -4,7 +4,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <!-- Getting started: the website mirror of the app's "Začínáme / Getting started" checklist (one section per letter E·I·D·D·I·E).
-       The app links here as start.html?lang=cs|en#editor|ideas|daily|databases|canvas|local, so keep those ids. -->
+       The app links here as start.html?lang=cs|en#editor|ideas|daily|databases|canvas|local, so keep those ids.
+       It also links to start.html?lang=cs#video (the 90 s video, from the welcome card, the Getting started list and
+       Settings → Help & getting started), so keep that id too. -->
   <title data-en="Getting started with Eiddie">Začínáme s aplikací Eiddie</title>
   <meta name="description" content="Šest věcí, dvě minuty: jak začít s aplikací Eiddie. Kroky ze seznamu Začínáme, klávesové zkratky a tipy pro přechod z Obsidianu, Tany, Heptabase a Notionu." data-en-content="Six things, two minutes: how to get started with Eiddie. The steps of the Getting started list, keyboard shortcuts and tips for people coming from Obsidian, Tana, Heptabase and Notion.">
   <meta name="robots" content="noindex">
@@ -44,6 +46,9 @@
     <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></symbol>
     <symbol id="i-sparkle" viewBox="0 0 24 24"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/></symbol>
     <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-arrow-down" viewBox="0 0 24 24"><path d="M12 5v14M6 13l6 6 6-6"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path d="M7 4.5v15a1 1 0 0 0 1.5.86l12.5-7.5a1 1 0 0 0 0-1.72L8.5 3.64A1 1 0 0 0 7 4.5z"/></symbol>
+    <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 11a8 8 0 0 0-14.6-4.5L4 8M4 4v4h4M4 13a8 8 0 0 0 14.6 4.5L20 16M20 20v-4h-4"/></symbol>
   </svg>
   <a class="skip" href="#main" data-en="Skip to content">Přeskočit na obsah</a>
 
@@ -69,6 +74,7 @@
         <h1 class="h2" data-en="Getting started with <em>Eiddie</em>">Začínáme s&nbsp;aplikací <em>Eiddie</em></h1>
         <p class="lead" data-en="Six things, two minutes: the same steps as the Getting started list in the app.">Šest věcí, dvě minuty: tytéž kroky najdeš v&nbsp;aplikaci v&nbsp;seznamu Začínáme.</p>
         <nav class="guide-toc" aria-label="Kroky" data-en-aria-label="Steps">
+          <a class="guide-toc__video" href="#video" data-guide-video-link><span class="guide-toc__play" aria-hidden="true"><svg class="ic"><use href="#i-play"/></svg></span><span>Video</span><span class="guide-toc__time">1:30</span></a>
           <a href="#editor"><b class="ini" style="--i:0" aria-hidden="true">E</b><span lang="en">Editor</span></a>
           <a href="#ideas"><b class="ini" style="--i:1" aria-hidden="true">I</b><span lang="en">Ideas</span></a>
           <a href="#daily"><b class="ini" style="--i:2" aria-hidden="true">D</b><span lang="en">Daily notes</span></a>
@@ -79,6 +85,37 @@
       </header>
 
       <div class="gsteps">
+        <!-- Video: the 90 s tour "Jeden záznam, čtyři pohledy" (config.video.guide), Czech captions, music, no voice-over.
+             Not hidden in the HTML, so the browser's own jump to start.html?lang=cs#video (from the app) lands here;
+             main.js hides the card and its chip for a language without a render (English for now). Click to play only:
+             preload="none" fetches nothing until then, and main.js sets the poster (data-poster) only for a language
+             with a render. The player comes right under the heading, so the jump from the app shows the play button
+             even on a laptop screen; the summary follows below it. -->
+        <section class="gcard gstep gvideo" id="video" aria-labelledby="video-title" data-guide-video>
+          <div class="gstep__head">
+            <span class="gstep__letter gvideo__badge" aria-hidden="true"><svg class="ic"><use href="#i-play"/></svg></span>
+            <p class="gstep__pillar"><b>Video</b> · 1:30 · <span data-en="watch this first">nejdřív se podívej</span></p>
+            <h2 id="video-title" data-en="One record, four views">Jeden záznam, čtyři pohledy</h2>
+          </div>
+          <div class="gvideo__frame">
+            <video class="gvideo__video" playsinline preload="none" src="assets/video/eiddie-tour.mp4" data-poster="assets/video/eiddie-tour.jpg" data-guide-video-el
+              aria-label="Video „Jeden záznam, čtyři pohledy“ (1:30, hudba a české titulky)"
+              data-en-aria-label="Video “One record, four views” (1:30, music and captions)"></video>
+            <button class="reel__play gvideo__play" type="button" data-guide-video-play>
+              <span class="reel__btn" aria-hidden="true"><svg class="ic"><use href="#i-play"/></svg></span>
+              <span class="reel__label"><b data-en="Watch the video">Přehrát video</b><span>1:30</span></span>
+            </button>
+            <div class="reel__end on-dark" data-guide-video-end hidden>
+              <p class="reel__end-title" data-en="Now try it in the app.">Teď si to vyzkoušej v&nbsp;aplikaci.</p>
+              <div class="btn-row">
+                <a class="btn btn--primary" href="#ideas"><span data-en="See how: step 2">Jak na to: krok 2</span><svg class="ic"><use href="#i-arrow-down"/></svg></a>
+                <button class="btn btn--ghost" type="button" data-guide-video-replay><svg class="ic"><use href="#i-refresh"/></svg><span data-en="Watch again">Přehrát znovu</span></button>
+              </div>
+            </div>
+          </div>
+          <p class="gvideo__text" data-en="The main idea of Eiddie in a minute and a half: you write a line in a meeting note and add <code>#task</code>. The same record then shows up as a row in a table, as a card on a Kanban board and in the note when you place it on a whiteboard. Change it in one place and it changes everywhere. Try it out on the sample notes in steps 2, 4 and 5 below.">Hlavní myšlenka aplikace Eiddie za minutu a&nbsp;půl: do poznámky z&nbsp;porady napíšeš řádek a&nbsp;připíšeš <code>#úkol</code>. Tentýž záznam pak najdeš jako řádek v&nbsp;tabulce, jako kartu v&nbsp;kanbanu i&nbsp;v&nbsp;poznámce, kterou položíš na tabuli. Co změníš na jednom místě, změní se všude. Na ukázkových poznámkách si to vyzkoušíš v&nbsp;krocích 2, 4 a&nbsp;5 níže, jen se tam štítek jmenuje <code>#task</code>.</p>
+        </section>
+
         <!-- E · Editor -->
         <section class="gcard gstep" id="editor" aria-labelledby="editor-title">
           <div class="gstep__head">
