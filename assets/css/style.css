@@ -1418,6 +1418,9 @@ html:not([data-platform="other"]) [data-other-only] { display: none !important; 
 .release__items li { position: relative; padding-left: 18px; font-size: 15.5px; line-height: 1.6; color: var(--ink); overflow-wrap: anywhere; }
 .release__items li::before { content: ""; position: absolute; left: 2px; top: 0.72em; width: 6px; height: 6px; border-radius: 50%; background: var(--violet-300); }
 .release__items small { display: block; margin-top: 2px; font-size: 13.5px; color: var(--ink-3); }
+.release__video { margin: 0 0 26px; }
+.release__video video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; border-radius: 14px; border: 1px solid var(--violet-100); background: var(--violet-50); }
+.release__video figcaption { margin-top: 8px; font-size: 14px; line-height: 1.5; color: var(--ink-3); }
 .release__notice { display: block; margin-top: 22px; padding: 14px 16px; border-radius: 14px; background: var(--violet-50); border: 1px solid var(--violet-100); font-size: 15px; line-height: 1.6; color: var(--ink-2); }
 .release__notice b { display: block; margin-bottom: 2px; font-size: 12.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--violet-700); }
 .news__older { margin: 44px 0 14px; font-size: 1.25rem; }
