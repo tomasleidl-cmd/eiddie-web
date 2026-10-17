@@ -68,6 +68,7 @@
     <symbol id="i-db" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></symbol>
     <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
     <symbol id="i-board" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><rect x="7" y="7" width="5" height="4" rx="1"/><path d="M15 9h2M7 15h10"/></symbol>
+    <symbol id="i-cards" viewBox="0 0 24 24"><rect x="3" y="6.5" width="10.5" height="14.5" rx="2" transform="rotate(-9 8.25 13.75)"/><rect x="10.5" y="3" width="10.5" height="14.5" rx="2" transform="rotate(8 15.75 10.25)"/></symbol>
     <symbol id="i-folder" viewBox="0 0 24 24"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></symbol>
     <symbol id="i-file" viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/></symbol>
     <symbol id="i-hash" viewBox="0 0 24 24"><path d="M5 9h14M5 15h14M10 4 8 20M16 4l-2 16"/></symbol>
@@ -176,6 +177,7 @@
     <a href="#funkce" data-en="Features">Funkce</a>
     <a href="#radosti" data-en="Little joys">Radosti</a>
     <a href="#jak" data-en="How it works">Jak to funguje</a>
+    <a href="#stul-napadu" data-en="Idea table">Stůl nápadů</a>
     <a href="#pouziti" data-en="Use cases">Použití</a>
     <a href="#cena" data-en="Pricing" data-pilot-hide>Cena</a>
     <a href="#pilot" data-pilot-only>Pilot</a>
@@ -199,9 +201,9 @@
             <span data-en="Launch price 999 CZK · no subscription">Zaváděcí cena 999 Kč · bez předplatného</span>
             <svg class="ic"><use href="#i-arrow"/></svg>
           </a>
-          <a class="badge" href="#pilot" data-hero-in data-pilot-only>
-            <b>Pilot</b>
-            <span data-en="Early access before release · free">Předběžný přístup ještě před vydáním · zdarma</span>
+          <a class="badge" href="#stul-napadu" data-hero-in data-pilot-only>
+            <b data-en="New">Nově</b>
+            <span data-en="The idea table: an idea as a deck of cards">Stůl nápadů: nápad jako balíček karet</span>
             <svg class="ic"><use href="#i-arrow"/></svg>
           </a>
           <!-- The slogan is the acronym E·I·D·D·I·E, identical in both languages. Words are pre-split (.w/.wi) so each initial stays glued to its word. -->
@@ -418,6 +420,11 @@
               <span class="reel-pick__who"><svg class="ic" aria-hidden="true"><use href="#i-sparkle"/></svg><span data-video-name data-en="The intro">Představení</span></span>
               <span class="reel-pick__txt" data-en="From scattered notes to one app.">Od rozházených poznámek k&nbsp;jedné aplikaci.</span>
             </button>
+            <button class="reel-pick" type="button" data-video-pick="stul" aria-pressed="false" hidden>
+              <span class="reel-pick__thumb"><img alt="" width="320" height="180" decoding="async" data-video-thumb><span class="reel-pick__play" aria-hidden="true"><svg class="ic"><use href="#i-play"/></svg></span><span class="reel-pick__time" data-video-time></span></span>
+              <span class="reel-pick__who"><svg class="ic" aria-hidden="true"><use href="#i-cards"/></svg><span data-video-name data-en="The idea table">Stůl nápadů</span></span>
+              <span class="reel-pick__txt" data-en="New in 0.1.15: an idea as a deck of cards that asks what’s missing.">Nově v&nbsp;0.1.15: nápad jako balíček karet, který se ptá, co chybí.</span>
+            </button>
             <button class="reel-pick" type="button" data-video-pick="osvc" aria-pressed="false" hidden>
               <span class="reel-pick__thumb"><img alt="" width="320" height="180" decoding="async" data-video-thumb><span class="reel-pick__play" aria-hidden="true"><svg class="ic"><use href="#i-play"/></svg></span><span class="reel-pick__time" data-video-time></span></span>
               <span class="reel-pick__who"><svg class="ic" aria-hidden="true"><use href="#i-brief"/></svg><span data-video-name data-en="Small business">Podnikatelé a&nbsp;OSVČ</span></span>
@@ -438,14 +445,14 @@
       </div>
     </section>
 
-    <!-- One small thing that is new in the app (0.1.5: the "Co teď?" dice), linked to its release notes.
+    <!-- One small thing that is new in the app (the latest released version), linked to its release notes.
          Outside #video on purpose: it must not disappear when a language has no video or JS is off.
          Swap it for the next nice novelty, or delete it once it stops being new. -->
     <div class="container">
       <p class="news-teaser" data-reveal>
-        <a href="novinky.html#v0-1-10">
+        <a href="novinky.html#v0-1-15">
           <span class="news-teaser__ic" aria-hidden="true"><svg class="ic"><use href="#i-sparkle"/></svg></span>
-          <span class="news-teaser__txt"><b data-en="New in 0.1.10:">Nově v&nbsp;0.1.10:</b> <span data-en="a gang of mascots on Home, a writing lantern and “Just&#160;5&#160;minutes” for the task you’d rather avoid.">parta maskotů na Home, lucerna za psaní a&nbsp;„Jen 5&nbsp;minut“ na úkol, do kterého se ti nechce.</span></span>
+          <span class="news-teaser__txt"><b data-en="New in 0.1.15:">Nově v&nbsp;0.1.15:</b> <span data-en="the idea table. Every idea is a deck of cards, and empty places ask what it still needs.">Stůl nápadů. Každý nápad je balíček karet a&nbsp;prázdná místa se ptají, co mu ještě chybí.</span></span>
           <span class="news-teaser__more"><span data-en="What’s new">Co je nového</span><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span>
         </a>
       </p>
@@ -639,6 +646,79 @@
       </div>
     </section>
 
+    <!-- ============ IDEA TABLE (Stůl nápadů, new in 0.1.15) ============
+         A pilot tester's "poker table": the records of a supertag as decks of cards by a recipe, empty places that ask
+         what's missing, four card themes and the deck laid out on a board. The video (assets/video/eiddie-stul.mp4,
+         Czech, made by scratch/video/usecase/build.mjs --uc=idea) is config.video.cases.stul and also a card in #video;
+         main.js hides it for a language without a render. The theme switcher swaps assets/img/stul/<lang>-<theme>.webp,
+         screenshots of the real app (scratch/video/usecase/web-shots-idea.mjs). -->
+    <section class="section idea" id="stul-napadu">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow" data-reveal data-en="New in 0.1.15 · the idea table">Nově v&nbsp;0.1.15 · Stůl nápadů</span>
+          <h2 class="h2" data-split data-en="Every idea is <em>a deck of cards</em>.">Každý nápad je <em>balíček karet</em>.</h2>
+          <p class="lead" data-reveal data-en="A recipe says what a complete idea needs: the problem, who it’s for, who pays for it, what could go wrong and the next step. Empty places ask what’s still missing. You fill them card by card until the idea is complete.">Recept říká, co celý nápad potřebuje: problém, pro koho to je, kdo za to zaplatí, co se může pokazit a&nbsp;další krok. Prázdná místa se ptají, co ještě chybí. Doplňuješ kartu po kartě, dokud nápad není celý.</p>
+        </div>
+
+        <figure class="idea__film" data-idea-film data-reveal>
+          <div class="idea__film-frame">
+            <video controls playsinline preload="none" width="1920" height="1080" data-poster="assets/video/eiddie-stul.jpg" aria-label="Stůl nápadů za 30 sekund" data-en-aria-label="The idea table in 30 seconds"><source src="assets/video/eiddie-stul.mp4" type="video/mp4"></video>
+          </div>
+          <figcaption data-en="30 seconds, recorded in the real app.">30 sekund, natočeno ve skutečné aplikaci.</figcaption>
+        </figure>
+
+        <div class="idea__themes" data-reveal>
+          <div class="idea__themes-head">
+            <h3 class="h3" data-en="One deck, <em>four tables</em>">Jeden balíček, <em>čtyři stoly</em></h3>
+            <p data-en="Switch the look of the cards with the “Theme” button. The notes behind them stay the same.">Vzhled karet přepneš tlačítkem „Motiv“. Poznámky pod nimi zůstanou stejné.</p>
+          </div>
+          <!-- Shown by main.js (without JavaScript the Shapes look stays on) -->
+          <div class="tswitch" role="group" aria-label="Motiv karet" data-en-aria-label="Card theme" data-idea-switch hidden>
+            <button type="button" aria-pressed="true" data-idea-theme="shapes"><i class="tswitch__dot" style="--sw:#8b7dff" aria-hidden="true"></i><span data-en="Shapes">Tvary</span></button>
+            <button type="button" aria-pressed="false" data-idea-theme="cards"><i class="tswitch__dot" style="--sw:#23704a" aria-hidden="true"></i><span data-en="Playing cards">Hrací karty</span></button>
+            <button type="button" aria-pressed="false" data-idea-theme="tarot"><i class="tswitch__dot" style="--sw:#c9a45c" aria-hidden="true"></i><span>Tarot</span></button>
+            <button type="button" aria-pressed="false" data-idea-theme="collectible"><i class="tswitch__dot" style="--sw:#e93d97" aria-hidden="true"></i><span data-en="Collectible cards">Sběratelské karty</span></button>
+          </div>
+        </div>
+        <figure class="idea__shot" data-reveal>
+          <img src="assets/img/stul/cs-shapes.webp" width="1600" height="720" loading="lazy" decoding="async" data-idea-shot
+            alt="Stůl nápadů v&nbsp;motivu Tvary: balíčky Zalévač a&nbsp;Retro pro podporu, každý druh karty se svým tvarem a&nbsp;barvou a&nbsp;čárkovaná prázdná místa „Komu to pomůže?“ a&nbsp;„Co se může pokazit?“."
+            data-en-alt="The idea table in the Shapes theme: the decks Plant waterer and Support team retro, each kind of card with its own shape and colour, and the dashed empty places “Who does it help?” and “What could go wrong?”."
+            data-en-src="assets/img/stul/en-shapes.webp">
+          <figcaption data-idea-note data-en="The default look: each kind of card has its own shape and colour.">Výchozí vzhled: každý druh karty má svůj tvar a&nbsp;barvu.</figcaption>
+        </figure>
+
+        <div class="idea__how">
+          <ol class="idea__steps" data-stagger>
+            <li data-reveal><span class="ic-wrap"><svg class="ic"><use href="#i-book"/></svg></span><div><b data-en="Pick a recipe">Vyber recept</b><span data-en="Product idea, Workshop or Article. Or write your own: which cards an idea needs and what each one asks.">Produktový nápad, Workshop, nebo Článek. Anebo si napiš vlastní: jaké karty nápad potřebuje a&nbsp;na co se každá ptá.</span></div></li>
+            <li data-reveal><span class="ic-wrap"><svg class="ic"><use href="#i-pen"/></svg></span><div><b data-en="Fill the empty places">Doplň prázdná místa</b><span data-en="Click a place, write the answer and press Enter. The card goes into your note, and a complete deck says “Ready”.">Klikni na prázdné místo, napiš odpověď a&nbsp;potvrď Enter. Karta se zapíše do poznámky. Když balíčku nic nechybí, objeví se u&nbsp;něj „Připraveno“.</span></div></li>
+            <li data-reveal><span class="ic-wrap"><svg class="ic"><use href="#i-board"/></svg></span><div><b data-en="Lay it out on a board">Rozlož ho na tabuli</b><span data-en="One click turns the deck into a plan: the main steps in a row with arrows, and the empty places wait there too.">Jedním klikem je z&nbsp;balíčku plán: hlavní kroky za sebou se šipkami a&nbsp;prázdná místa čekají i&nbsp;tam.</span></div></li>
+          </ol>
+          <figure class="idea__board" data-reveal>
+            <img src="assets/img/stul/cs-board.webp" width="1600" height="851" loading="lazy" decoding="async"
+              alt="Balíček Zalévač rozložený na tabuli: Problém, dva podpůrné nápady, Strategie a&nbsp;Další krok za sebou se šipkami, pod nimi Finance a&nbsp;čárkovaná místa Pro koho a&nbsp;Riziko."
+              data-en-alt="The deck Plant waterer laid out on a board: Problem, two supporting ideas, Strategy and Next step in a row with arrows, Money below them and the dashed places For whom and Risk."
+              data-en-src="assets/img/stul/en-board.webp">
+          </figure>
+        </div>
+
+        <ul class="idea__facts" data-stagger>
+          <li data-reveal><svg class="ic" aria-hidden="true"><use href="#i-file"/></svg><span data-en="Cards are ordinary bullets with <code>#card</code> and a kind, right in your notes">Karty jsou obyčejné odrážky s&nbsp;<code>#karta</code> a&nbsp;druhem přímo v&nbsp;tvých poznámkách</span></li>
+          <li data-reveal><svg class="ic" aria-hidden="true"><use href="#i-hash"/></svg><span data-en="Works on any supertag: <code>#idea</code>, <code>#workshop</code>, <code>#article</code>…">Funguje nad jakýmkoli supertagem: <code>#nápad</code>, <code>#workshop</code>, <code>#článek</code>…</span></li>
+          <li data-reveal><svg class="ic" aria-hidden="true"><use href="#i-heart"/></svg><span data-en="It started as a pilot tester’s wish for a “poker table”">Vznikl z&nbsp;přání pilotního testera po „pokerovém stole“</span></li>
+        </ul>
+
+        <div class="btn-row idea__ctas" data-reveal>
+          <a class="btn btn--primary btn--lg" href="download.html" data-trial data-magnetic>
+            <svg class="ic"><use href="#i-download"/></svg>
+            <span data-en="Try free for 14 days" data-pilot-hide>Vyzkoušet 14 dní zdarma</span>
+            <span data-en="Download the pilot version" data-pilot-only>Stáhnout pilotní verzi</span>
+          </a>
+          <a class="btn btn--ghost btn--lg" href="start.html#stul-napadu" data-magnetic><span data-en="How to start">Jak začít</span><svg class="ic"><use href="#i-arrow"/></svg></a>
+        </div>
+      </div>
+    </section>
+
     <!-- ============ FEATURES (bento) ============ -->
     <section class="section" id="funkce">
       <div class="container">
@@ -828,7 +908,7 @@
 
     <!-- ============ LITTLE JOYS (delight features, mascots, roadmap) ============
          Badges: joy-tag--now = in the app for a while, --soon = new in the latest release, --idea = in preparation.
-         After the next release with new joys, move the 0.1.10 ones to --now. The mascot drawings are the app's own
+         After the next release with new joys, move the --soon ones to --now. The mascot drawings are the app's own
          (src/renderer/features/mascots/Figures.tsx, rendered by scratch/web-delight/build-section.cjs). -->
     <section class="section joy" id="radosti">
       <div class="container">
@@ -842,7 +922,7 @@
 
           <!-- Mascots: animated, talk on their own while in view, answer a click -->
           <article class="tile tile--7 tile--tall joy-gang" data-reveal data-tile data-joy-gang>
-            <div class="joy-tags"><span class="joy-tag joy-tag--soon" data-en="New in 0.1.10">Nově v&nbsp;0.1.10</span></div>
+            <div class="joy-tags"><span class="joy-tag joy-tag--now" data-en="In the app">V&nbsp;aplikaci</span></div>
             <h3 data-en="The mascot gang">Parta maskotů</h3>
             <p data-en="Six animals whose names spell E·I·D·D·I·E, plus Nitka, the thread from the logo, who ties them together. On Home they drop a funny or encouraging line about your tasks and forgotten notes, and cheer when you finish something. They never nag.">Šest zvířátek, jejichž jména dávají E·I·D·D·I·E, a&nbsp;Nitka, nit z&nbsp;loga, která je drží pohromadě. Na domovské stránce prohodí vtipnou nebo povzbudivou větu o&nbsp;tvých úkolech a&nbsp;zapomenutých poznámkách a&nbsp;radují se z&nbsp;hotové práce. Nikdy nevyčítají.</p>
             <div class="tile__viz">
@@ -887,7 +967,7 @@
 
           <!-- Writing lantern -->
           <article class="tile joy-lantern" data-reveal data-tile data-joy-lantern>
-            <div class="joy-tags"><span class="joy-tag joy-tag--soon" data-en="New in 0.1.10">Nově v&nbsp;0.1.10</span></div>
+            <div class="joy-tags"><span class="joy-tag joy-tag--now" data-en="In the app">V&nbsp;aplikaci</span></div>
             <h3 data-en="The writing lantern">Lucerna za psaní</h3>
             <p data-en="Every ten words add a little light; at fifty it shines in full. It never dims and never blinks at you. In October it’s a pumpkin, in December a candle, in spring a flower.">Každých deset napsaných slov přidá světla, po padesáti svítí naplno. Nikdy nezhasne, nikdy nebliká výčitkou. V&nbsp;říjnu je z&nbsp;ní dýně, v&nbsp;prosinci svíčka, na jaře kytka.</p>
             <div class="tile__viz">
@@ -913,7 +993,7 @@
 
           <!-- Just 5 minutes -->
           <article class="tile joy-five" data-reveal data-tile data-joy-five>
-            <div class="joy-tags"><span class="joy-tag joy-tag--soon" data-en="New in 0.1.10">Nově v&nbsp;0.1.10</span><span class="joy-tag joy-tag--adhd" data-en="When starting is hard">Když se nedaří začít</span></div>
+            <div class="joy-tags"><span class="joy-tag joy-tag--now" data-en="In the app">V&nbsp;aplikaci</span><span class="joy-tag joy-tag--adhd" data-en="When starting is hard">Když se nedaří začít</span></div>
             <h3 data-en="Just 5 minutes">Jen 5 minut</h3>
             <p data-en="For the task you’re avoiding. Only that task opens, with no distractions, for five minutes. Then one question: keep going, or is that enough? Both count.">Na úkol, do kterého se nechce. Otevře se jen on, bez rozptylování, a&nbsp;běží pět minut. Pak jediná otázka: pokračovat, nebo to stačí? Obojí se počítá.</p>
             <div class="tile__viz">
@@ -977,7 +1057,7 @@
 
           <!-- Easter egg -->
           <article class="tile tile--5 joy-egg" data-reveal data-tile data-joy-egg>
-            <div class="joy-tags"><span class="joy-tag joy-tag--soon" data-en="New in 0.1.10">Nově v&nbsp;0.1.10</span></div>
+            <div class="joy-tags"><span class="joy-tag joy-tag--now" data-en="In the app">V&nbsp;aplikaci</span></div>
             <h3 data-en="A secret in the logo">Tajemství v&nbsp;logu</h3>
             <p data-en="The app hides a few secrets. We’ll give one away: click the E logo five times, quickly. It works here on the website too, try it below or up in the bar.">V&nbsp;aplikaci se schovává pár tajemství. Jedno prozradíme: pětkrát rychle klikni na logo E. Funguje to i&nbsp;tady na webu, zkus to tady nebo nahoře v&nbsp;liště.</p>
             <div class="tile__viz">
@@ -1000,7 +1080,7 @@
         <div class="joy-next">
           <div class="joy-next__head" data-reveal>
             <h3 class="h3" data-en="We add them <em>bit by bit</em>.">Přidáváme je <em>postupně</em>.</h3>
-            <p data-en="Every version brings something small on top. The lantern and the idea table both came from pilot testers. Here’s what we’re working on:">Každá verze přinese něco malého navíc. Lucerna i&nbsp;stůl nápadů vznikly z&nbsp;nápadů pilotních testerů. Na čem pracujeme teď:</p>
+            <p data-en="Every version brings something small on top. The lantern and the idea table both came from pilot testers. The idea table is out now; here’s what’s next:">Každá verze přinese něco malého navíc. Lucerna i&nbsp;stůl nápadů vznikly z&nbsp;nápadů pilotních testerů. Stůl nápadů už je venku, na čem pracujeme dál:</p>
           </div>
           <div class="joy-next__grid" data-stagger>
             <article class="joy-card joy-card--table" data-reveal>
@@ -1011,9 +1091,10 @@
                 <span class="joy-deck__c joy-deck__c--4 is-empty"><small data-en="Risk">Riziko</small><span data-en="What could go wrong?">Co se může pokazit?</span></span>
               </div>
               <div>
-                <span class="joy-tag joy-tag--idea" data-en="In preparation">Připravujeme</span>
+                <span class="joy-tag joy-tag--soon" data-en="New in 0.1.15">Nově v&nbsp;0.1.15</span>
                 <h4 data-en="The idea table">Stůl nápadů</h4>
-                <p data-en="An idea as a deck of cards: problem, for whom, risk, next step. Empty slots ask what’s still missing. Themes: shapes, playing cards or tarot.">Nápad jako balíček karet: problém, pro koho, riziko, další krok. Prázdná místa se ptají, co ještě chybí. Motivy tvary, hrací karty nebo tarot.</p>
+                <p data-en="Done: an idea as a deck of cards whose empty places ask what’s missing. Four themes, your own recipes and the deck on a board.">Hotovo: nápad jako balíček karet, jehož prázdná místa se ptají, co chybí. Čtyři motivy, vlastní recepty a&nbsp;balíček na tabuli.</p>
+                <a class="joy-link" href="#stul-napadu"><span data-en="Take a look">Podívej se</span><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
               </div>
             </article>
             <article class="joy-card" data-reveal>
@@ -1642,6 +1723,7 @@
             <li><a href="#pilire" data-en="Six pillars">Šest pilířů</a></li>
             <li><a href="#funkce" data-en="Features">Funkce</a></li>
             <li><a href="#jak" data-en="How it works">Jak to funguje</a></li>
+            <li><a href="#stul-napadu" data-en="Idea table">Stůl nápadů</a></li>
             <li><a href="#pouziti" data-en="Use cases">Použití</a></li>
             <li data-pilot-hide><a href="#cena" data-en="Pricing">Cena</a></li>
             <li data-pilot-only><a href="#pilot" data-en="Pilot version">Pilotní verze</a></li>

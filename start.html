@@ -47,6 +47,7 @@
     <symbol id="i-sparkle" viewBox="0 0 24 24"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/></symbol>
     <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
     <symbol id="i-arrow-down" viewBox="0 0 24 24"><path d="M12 5v14M6 13l6 6 6-6"/></symbol>
+    <symbol id="i-cards" viewBox="0 0 24 24"><rect x="3" y="6.5" width="10.5" height="14.5" rx="2" transform="rotate(-9 8.25 13.75)"/><rect x="10.5" y="3" width="10.5" height="14.5" rx="2" transform="rotate(8 15.75 10.25)"/></symbol>
     <symbol id="i-play" viewBox="0 0 24 24"><path d="M7 4.5v15a1 1 0 0 0 1.5.86l12.5-7.5a1 1 0 0 0 0-1.72L8.5 3.64A1 1 0 0 0 7 4.5z"/></symbol>
     <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 11a8 8 0 0 0-14.6-4.5L4 8M4 4v4h4M4 13a8 8 0 0 0 14.6 4.5L20 16M20 20v-4h-4"/></symbol>
   </svg>
@@ -81,6 +82,7 @@
           <a href="#databases"><b class="ini" style="--i:3" aria-hidden="true">D</b><span lang="en">Databases</span></a>
           <a href="#canvas"><b class="ini" style="--i:4" aria-hidden="true">I</b><span lang="en">Infinite canvas</span></a>
           <a href="#local"><b class="ini" style="--i:5" aria-hidden="true">E</b><span lang="en">Everything local</span></a>
+          <a class="guide-toc__new" href="#stul-napadu"><svg class="ic" aria-hidden="true"><use href="#i-cards"/></svg><span data-en="Idea table">Stůl nápadů</span></a>
         </nav>
       </header>
 
@@ -203,6 +205,27 @@
             <img src="assets/img/start/local.webp" width="1400" height="900" loading="lazy" decoding="async"
               alt="Postranní panel s rozbalenou nabídkou složky (Open folder as vault…, Reveal vault in Explorer) a stromem souborů se složkami Daily a Projects."
               data-en-alt="The sidebar with the vault menu open (Open folder as vault…, Reveal vault in Explorer) and the file tree with the Daily and Projects folders.">
+          </figure>
+        </section>
+
+        <!-- New in 0.1.15: the idea table. Not one of the six checklist steps (no "krok N ze 6"); index.html#stul-napadu
+             and its "Jak začít" button link here. The screenshot swaps by language (data-en-src). -->
+        <section class="gcard gblock gidea" id="stul-napadu" aria-labelledby="stul-title">
+          <p class="gidea__tag"><span class="joy-tag joy-tag--soon" data-en="New in 0.1.15">Nově v&nbsp;0.1.15</span></p>
+          <h2 id="stul-title" data-en="The idea table: an idea as a deck of cards">Stůl nápadů: nápad jako balíček karet</h2>
+          <p class="gblock__lead" data-en="Each record of a supertag shows up as a deck of cards by a recipe, and the empty places ask what’s still missing.">Každý záznam supertagu se ukáže jako balíček karet podle receptu a&nbsp;prázdná místa se ptají, co ještě chybí.</p>
+          <ol class="gidea__steps">
+            <li data-en="<b>Open the table.</b> In the sidebar under Supertags, click a tag (say <code>#idea</code>), then <kbd>+</kbd> next to the views, and pick “Idea table”. Every page or bullet with that tag is one deck."><b>Otevři stůl.</b> V&nbsp;postranním panelu v&nbsp;části Supertags klikni na štítek (třeba <code>#nápad</code>), pak na <kbd>+</kbd> vedle pohledů a&nbsp;vyber „Stůl nápadů“. Každá stránka nebo odrážka s&nbsp;tím štítkem je jeden balíček.</li>
+            <li data-en="<b>Write a card.</b> Click a dashed empty place, type the answer and press <kbd>Enter</kbd> (<kbd>Esc</kbd> cancels). The card goes into the note as a bullet with <code>#card</code> and a <code>Kind::</code> field (<code>#karta</code> and <code>Druh::</code> if the app was in Czech when you set up the table). A complete deck says “Ready”."><b>Napiš kartu.</b> Klikni na čárkované prázdné místo, napiš odpověď a&nbsp;potvrď <kbd>Enter</kbd> (<kbd>Esc</kbd> zruší). Karta se zapíše do poznámky jako odrážka s&nbsp;<code>#karta</code> a&nbsp;polem <code>Druh::</code> (když stůl založíš v&nbsp;anglické aplikaci, s&nbsp;<code>#card</code> a&nbsp;<code>Kind::</code>). Když balíčku nic nechybí, objeví se u&nbsp;něj „Připraveno“.</li>
+            <li data-en="<b>Pick a recipe.</b> Click the recipe chip next to the deck: Product idea, Workshop or Article. The “Recipes” button edits them: which kinds of card an idea needs, how many and what each one asks."><b>Vyber recept.</b> Klikni na recept vedle názvu balíčku: Produktový nápad, Workshop, nebo Článek. Tlačítko „Recepty“ je upraví: jaké druhy karet nápad potřebuje, kolik jich má být a&nbsp;na co se každá ptá.</li>
+            <li data-en="<b>Change the look.</b> The “Theme” button switches between Shapes, Playing cards, Tarot and Collectible cards. Your notes don’t change."><b>Změň vzhled.</b> Tlačítko „Motiv“ přepíná Tvary, Hrací karty, Tarot a&nbsp;Sběratelské karty. Poznámky se nemění.</li>
+            <li data-en="<b>Lay it out on a board.</b> The board icon at the right of a deck (or <kbd>Ctrl+K</kbd> and “lay”) puts the deck on a board as a flow with arrows. You can write into an empty place there too."><b>Rozlož ho na tabuli.</b> Ikona tabule vpravo u&nbsp;balíčku (nebo <kbd>Ctrl+K</kbd> a&nbsp;„rozlož“) položí balíček na tabuli jako tok se šipkami. Do prázdného místa můžeš psát i&nbsp;tam.</li>
+          </ol>
+          <p class="gidea__note" data-en="The table, the recipes and the board speak Czech or English, following Settings → Language.">Stůl, recepty i&nbsp;tabule mluví česky nebo anglicky podle Settings → Language.</p>
+          <figure class="gstep__shot">
+            <img src="assets/img/start/idea-table.webp" width="1400" height="901" loading="lazy" decoding="async" data-en-src="assets/img/start/idea-table-en.webp"
+              alt="Stůl nápadů se třemi balíčky: Zalévač (6 z 8 karet, prázdná místa Pro koho a Riziko), Retro pro podporu (6 ze 6, Připraveno) a Proč psát poznámky rukou (3 ze 6)."
+              data-en-alt="The idea table with three decks: Plant waterer (6 of 8 cards, empty places For whom and Risk), Support team retro (6 of 6, Ready) and Why write notes by hand (3 of 6).">
           </figure>
         </section>
 

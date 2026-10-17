@@ -101,7 +101,7 @@
   /* ------------------------------------------------------------------ */
   /* i18n: Czech lives in the HTML, English in data-en attributes        */
   /* ------------------------------------------------------------------ */
-  const ATTRS = ['placeholder', 'aria-label', 'content', 'title', 'alt'];
+  const ATTRS = ['placeholder', 'aria-label', 'content', 'title', 'alt', 'src'];
   const cache = new Map();
   $$('[data-en]').forEach((el) => cache.set(el, { html: el.innerHTML }));
   ATTRS.forEach((a) => $$(`[data-en-${a}]`).forEach((el) => {
@@ -615,6 +615,86 @@
     }
     langHooks.push(setSource);
   }
+
+  /* ------------------------------------------------------------------ */
+  /* Idea table section (index.html#stul-napadu, new in 0.1.15): the    */
+  /* Czech video (config.video.cases.stul) and the four-theme switcher  */
+  /* ------------------------------------------------------------------ */
+  const ideaSec = $('#stul-napadu.idea');
+  if (ideaSec) {
+    const film = $('[data-idea-film]', ideaSec);
+    const sw = $('[data-idea-switch]', ideaSec);
+    const shot = $('[data-idea-shot]', ideaSec);
+    const note = $('[data-idea-note]', ideaSec);
+    const S = ((C.video || {}).cases || {}).stul || {};
+    const LOOKS = {
+      shapes: {
+        cs: { note: 'Výchozí vzhled: každý druh karty má svůj tvar a\u00a0barvu.', alt: shot ? shot.getAttribute('alt') : '' },
+        en: { note: 'The default look: each kind of card has its own shape and colour.', alt: shot ? shot.getAttribute('data-en-alt') : '' },
+      },
+      cards: {
+        cs: { note: 'Pro všechny, kdo chtějí pokerový stůl: barva a\u00a0hodnota karty podle jejího druhu.', alt: 'Stůl nápadů v\u00a0motivu Hrací karty: zelené plátno, balíčky Zalévač a\u00a0Retro pro podporu, eso, dáma, král a\u00a0kluk podle druhu karty a\u00a0čárkovaná prázdná místa „Komu to pomůže?“ a\u00a0„Co se může pokazit?“.' },
+        en: { note: 'For anyone who wants a poker table: suit and rank follow the kind of card.', alt: 'The idea table in the Playing cards theme: green felt, the decks Plant waterer and Support team retro, ace, queen, king and jack by the kind of card, and the dashed empty places “Who does it help?” and “What could go wrong?”.' },
+      },
+      tarot: {
+        cs: { note: 'Vlastní kresby dvanácti arkán. Jen obrázky, žádné věštění.', alt: 'Stůl nápadů v\u00a0motivu Tarot: pergamenové karty se zlatým rámečkem a\u00a0kresbami arkán (Poutník, Hvězda, Mág, Kolo štěstí, Slunce) na noční obloze.' },
+        en: { note: 'Our own drawings of twelve arcana. Pictures only, no fortune-telling.', alt: 'The idea table in the Tarot theme: parchment cards with a gold frame and drawings of arcana (The Wanderer, The Star, The Magician, The Wheel, The Sun) on a night sky.' },
+      },
+      collectible: {
+        cs: { note: 'Rámeček v\u00a0barvě druhu, krátký název a\u00a0síla podle počtu karet stejného druhu.', alt: 'Stůl nápadů v\u00a0motivu Sběratelské karty: karty v\u00a0rámečku barvy svého druhu s\u00a0krátkým názvem a\u00a0silou.' },
+        en: { note: 'A frame in the colour of its kind, a short name and a power that counts the cards of its kind.', alt: 'The idea table in the Collectible cards theme: cards framed in the colour of their kind, with a short name and a power.' },
+      },
+    };
+    let look = 'shapes';
+    let near = false; // the poster and the other looks are fetched only once the section gets close
+    let preloaded = '';
+    const fv = film && $('video', film);
+    const src = (k) => `assets/img/stul/${lang}-${k}.webp`;
+    // all four looks of the current language, so a switch never waits for the network
+    const preload = () => {
+      if (!shot || preloaded === lang) return;
+      preloaded = lang;
+      Object.keys(LOOKS).forEach((k) => { const i = new Image(); i.decoding = 'async'; i.src = src(k); });
+    };
+    const render = () => {
+      if (film) {
+        const ok = !!(S.ready && S.ready[lang]);
+        film.hidden = !ok;
+        if (fv && !ok) fv.pause();
+        // data-poster: English visitors never download the Czech poster
+        if (fv && ok && near && fv.dataset.poster && !fv.getAttribute('poster')) fv.poster = fv.dataset.poster;
+      }
+      if (near) preload();
+      if (!shot || !sw) return;
+      const t = LOOKS[look][lang];
+      shot.src = src(look);
+      shot.alt = t.alt;
+      if (note) note.textContent = t.note;
+      $$('[data-idea-theme]', sw).forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.ideaTheme === look)));
+    };
+    if (sw && shot) {
+      sw.hidden = false;
+      $$('[data-idea-theme]', sw).forEach((b) => b.addEventListener('click', () => { look = b.dataset.ideaTheme; render(); }));
+    }
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((es) => { if (es.some((e) => e.isIntersecting)) { near = true; render(); io.disconnect(); } }, { rootMargin: '800px 0px' });
+      io.observe(ideaSec);
+      // the film pauses once it scrolls out of view, like the intro reel and the guide video
+      if (fv) {
+        let inView = false;
+        new IntersectionObserver(([e]) => {
+          const visible = e.intersectionRatio >= 0.25;
+          if (inView && !visible && !fv.paused && document.fullscreenElement !== fv) fv.pause();
+          inView = visible;
+        }, { threshold: [0, 0.25] }).observe(fv);
+      }
+    } else near = true;
+    render();
+    langHooks.push(render);
+  }
+
+  // One player at a time: starting any video on the page pauses the others (the reel, the idea table film, release clips)
+  document.addEventListener('play', (e) => { $$('video').forEach((v) => { if (v !== e.target && !v.paused) v.pause(); }); }, true);
 
   /* ------------------------------------------------------------------ */
   /* Getting started video (start.html#video, config.video.guide): the  */

@@ -27,8 +27,8 @@ window.EIDDIE_CONFIG = {
   // Fallback for the download page until the GitHub API answers (download.html repeats both for visitors without
   // JavaScript). scripts/release-pilot.mjs rewrites them after each release. If the API fails, the page says
   // "the latest version" instead of this number.
-  version: '0.1.14',
-  installerSize: '≈ 107 MB',
+  version: '0.1.15',
+  installerSize: '≈ 109 MB',
   // Shown on the site; the app's own values are in src/shared/licence/config.ts (trialDays, devices): keep them equal.
   trialDays: 14,
   price: { cs: '999 Kč', en: '999 CZK' },
@@ -50,6 +50,8 @@ window.EIDDIE_CONFIG = {
     // player. A card shows only for the languages with ready[lang] true (the renders are Czech only for now).
     // soft: true → the calm end card without the download call (the care video ends without one too).
     cases: {
+      // The idea table (new in 0.1.15): also played inline in index.html#stul-napadu (main.js "Idea table section")
+      stul: { ready: { cs: true, en: false }, src: 'assets/video/eiddie-stul.mp4', poster: 'assets/video/eiddie-stul.jpg', duration: '0:30' },
       osvc: { ready: { cs: true, en: false }, src: 'assets/video/eiddie-podnikatel.mp4', poster: 'assets/video/eiddie-podnikatel.jpg', duration: '0:30' },
       facil: { ready: { cs: true, en: false }, src: 'assets/video/eiddie-facilitator.mp4', poster: 'assets/video/eiddie-facilitator.jpg', duration: '0:30' },
       pece: { ready: { cs: true, en: false }, src: 'assets/video/eiddie-pece.mp4', poster: 'assets/video/eiddie-pece.jpg', duration: '1:00', soft: true },
